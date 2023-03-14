@@ -1,0 +1,242 @@
+...
+I want to do one last example with this little hierarchy
+that we're building of animals and rabbits and cats and people
+and students.
+I want to do this to introduce one more idea that
+can be really valuable.
+And to set the stage for this, with instances,
+we've already seen the idea of an instance variable.
+In fact those are the things we've been using,
+those data attributes.
+Those variables are stored inside of each instance.
+They're specific to that instance.
+And so when I create an instance, they belong to them.
+I can use generic variable names within the class definition
+to get at them, but they're all things
+that belong to the instance.
+I'm not going to introduce the idea of a class variable,
+similar to an instance variable.
+This is going to be a variable defined inside the class
+definition, but outside of any of the methods,
+so outside of init.
+That's important.
+If it was inside init, it would be
+something that would be created within the instance.
+Here it's going to be something that belongs to the class
+and therefore is shared among all objects
+or instances of that class.
+That means any instance of a class
+that I create can get access to that variable.
+And we'll see why with an example
+that shows why this is going to be valuable to use.
+So just to remind you, there is the Animal class,
+the kinds of methods we had.
+And I'll just simply remind you here
+that these are instance variables.
+age and name are things that are created
+whenever I call init, which means
+whenever I create an instance.
+They can only be accessed from within an instance.
+I want to see what happens and why
+I want to have the value of having a class variable.
+So subclasses, as we know, inherit all the data attributes
+and methods of a parent class.
+And so I'm going to change the definition of Rabbit
+in an interesting way.
+I'm going to put a tag on a rabbit.
+Could be a little ear tag that I'm tagging onto it.
+But I want to tag every rabbit.
+So notice what I want to do here.
+Rabbit is still going to inherit from the Animal class.
+But I'm going to create a class variable.
+And notice in particular, it is outside of the init definition.
+It's at the same level as those things.
+So when I create the class of Rabbit,
+it is going to create within that frame associated
+with Rabbit a binding for tag, initially set to 1.
+And that tag is going to allow me
+to give a unique ID to every new rabbit that I create.
+So now my initialization method for Rabbit
+is a little bit different.
+In particular I'm going to ask to pass in, potentially,
+two other arguments.
+You have size, age, two parents, two other rabbits,
+because rabbits breed rabbits, as we
+saw when we did Fibonacci.
+I'm still going to initialize an instance using
+the underlying animal init method, as I did before.
+But now I'm also going to set, within that instance,
+parameters or bindings for parent1 and parent2.
+And those get set by simply taking
+the values passed in, which default
+to none if I don't pass one in.
+And I'm going to do one last thing.
+I'm going to create a local rabbit ID
+tag or an rid for this rabbit by accessing rabbit.tag.
+And that's going to get me to this point.
+It means the first time I call this instance,
+that instance is going to have, as a local variable, rid.
+And it's going to be the value 1, because that's
+the current value of the tag.
+And then the last thing I'm going to do
+is having called that instance, I'm
+going to increase it by 1 to 2.
+And that means that the class is keeping track of the tag.
+And every time I call init again,
+I create a new instance of this Rabbit,
+that instance is going to get a unique ID, the latest value.
+And the tag is going to increment by 1.
+That's cool.
+And this is a place where I've got data attributes associated
+with the class, not with the instance.
+
+Let's see what happens if we do that.
+And that's simply reminding of those pieces, an instance
+variable, how I access it, and the fact
+that I want to increment it every time I call this piece.
+So having done that, there's a couple of other things
+I can do with the rabbit.
+And in particular, the getter methods
+will include now getting out the ID
+and getting out the names of the parents.
+The one other thing I have here is that I've got also
+getters, I know, for get_name get_age
+that are inherited from Animal.
+I can use those as well.
+But these are now things specific to the rabbit.
+And the one last piece here is, since this is actually
+a particular string, because I set it to be string,
+I can fill it out with zeros to pad it so that they all
+print out at the same size.
+You'll see that in a second when I use it,
+but it's a little technique to basically make sure
+that everything prints out to the same size.
+In this case, it will be 001 rather than 1 so that things
+look and print similarly.
+OK, let's use it.
+I create peter, rabbit of age two.
+I set his name to actually be Peter.
+That's kind of nice.
+That's his name after all.
+I'm going to create another rabbit, Hopsy, is of age three.
+And I set her name to be Hopsy.
+And I'm going to now create another rabbit, Cotton,
+that has two parents.
+Peter and Hopsy got together.
+Cotton's one-year-old.
+And if I set Cotton's name to Cottontail, that's fine.
+But if I want to look at things about Cotton,
+I can print it out.
+And again, Cotton is now an animal with the link--
+sorry, with the name Cottontail inside of it and the age one.
+So I've inherited all the behaviors
+I would have wanted before.
+If I ask Cotton to get the first parent, I can print that out.
+And notice what I'm doing here is
+getting a method associated with it and invoking it.
+And it prints out, ah, exactly what I wanted.
+Cotton's first parent was Peter, age two.
+
+Once I've got that, I can add some other pieces
+to my behavior for rabbits.
+In particular, I can define, as I said earlier with classes,
+there's an inherent add method here.
+And what I want to do is define a method for rabbits.
+What does it mean to add a rabbit?
+So I got an initial method here.
+It initially is simply going to return a new rabbit.
+And that new rabbit has two parents,
+this particular rabbit, and whoever that other rabbit is.
+It's another way of saying I'm going to let the rabbits mate.
+And I'm going to create a new rabbit
+with that call to Rabbit right here, with parent1 and parent2.
+Let's look at an example of that.
+Before I do it, let's simply remind you what this is doing.
+The add operator is between two Rabbit instances.
+It defines what it means to take rabbit1, rabbit2,
+and add them together to create rabbit4.
+Initially it's a new rabbit.
+I'm going to have it be a new rabbit with age zero,
+coming from right there.
+It has self as one parent and other as the other parent.
+And ideally inside of init I should check that in fact they
+are of type Rabbit.
+I haven't done that here, but it would be a nice thing
+to do to make sure I'm enforcing the invariant
+that these are rabbits that are getting together.
+I go back to Peter and Hopsy, and I can now
+say let Mopsy be what I get when Peter and Hopsy get together.
+I'm using rabbit addition.
+I'm creating a new instance of a Rabbit.
+I'm giving it a binding of Mopsy on the outside.
+I can set its name.
+And now I can say what's the parrot of Mopsy?
+It's Peter.
+And I can say what's the other parrot of Mopsy?
+And I get out Hopsy.
+I know it's a silly example.
+What I've done though here is take the idea of,
+given instances, I can now define
+what it means to do addition on those instances.
+It's up to me to decide them.
+And I use it here to create new instances of a rabbit.
+The last thing I want to show you
+is how I can use that idea of those tags
+to actually define what it means to compare two rabbits.
+What does it mean to do equal or what
+does it mean to say R double equal P, for example.
+I'm going to define an override of the eq
+method, a built in method.
+And here what I'm going to do is say,
+I'm going to decide that two rabbits are equal if they
+have the same parents.
+I could do it some other way.
+I could do it to say two instances of Rabbit
+are the same thing if they have the same ID tag.
+But here I'm going to say they're the same,
+they're equal, if they actually have the same parent.
+How do I do that?
+Well I'm simply going to look at the tag associated
+with the instance for each parent,
+both for parent1 and parent2 of self and other.
+They could be they're the same parent1 and parent1, parent2
+and parent2, or they could be the other direction.
+And I'm going to return true if one of those cases is true.
+So I'm setting up booleans here.
+And what I'm doing is relying on the fact
+that I built a unique tag with each instance of a Rabbit.
+And if I do that, I'm simply comparing those tags.
+I know they're unique because of the way I defined them.
+And if I didn't do this, if I just
+said are the instances the same, I'm
+actually going to get into a problem
+where I'm going to get down to an attribute error
+because I can't compare the instances directly.
+So this is a nice way of doing that comparison.
+And if I try that, I create Cotton.
+I create Mopsy.
+And I say, is Mopsy equal to Cotton?
+Notice Cotton had parents of Peter and Hopsy.
+I created that directly.
+Mopsy has parents of Peter and Hopsy.
+I created that using add.
+And when I do the print, it says yes,
+in fact these are the same.
+So now I've got an example of using a class variable
+to gather information that I can associate with instances
+in a way that lets me keep track of the information that
+belongs to each instance but is defined within the class.
+And so to pull it all together, what are we doing?
+We're bundling together objects that
+share common attributes and common procedures
+to apply to those attributes, even
+though the values of the attributes
+are different across each instance.
+I'm using abstraction to distinguish
+between how I implement something and how I use it.
+And now we've seen an example of building layers of abstractions
+with inheritance associated with them.
+And that lets us create hierarchies of behaviors
+while preserving clean code and efficient code
+by associating methods with each instance of a class that
+implement that common behavior.

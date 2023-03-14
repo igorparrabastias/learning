@@ -1,0 +1,192 @@
+...
+We've seen some simple classes of algorithms, constant, log,
+linear.
+And we didn't do log linear.
+But we'll do that one in a little while.
+The next class are polynomial complexity.
+And the most common here are quadratic.
+The complexity grows with the square
+of the size of the input.
+Again, I want you to see what are some of the characteristics
+to lead to that kind of algorithm.
+And one of the things we're going to see here
+is that this commonly occurs when
+we have nested loops or recursive function calls inside
+of the algorithm.
+And we need to say that in a way where the recursive function
+call has some costs other than constant.
+Because as we saw with factorial,
+you can have recursive function calls
+and have it still be linear.
+As before, let's look at some examples
+and see the characteristics that lead to this kind of behavior.
+Here's a simple algorithm.
+I want to explain it.
+But again, I'm less concerned about what it does.
+I'm more interested in showing you
+what the pattern is that leads to this.
+So this is an algorithm that given two lists of elements--
+could be numbers, could be something else-- but given
+two lists is going to try to decide
+is the first list a subset of the second list, meaning
+every element of the first list does it also occur
+in the second list even though there
+may be other elements inside the second list.
+Let's look at the code and the characteristics of the code.
+And then let's analyze it.
+So this starts by taking an element in the first list.
+It's going to set up a little flag here
+that initially says I don't yet have a match.
+And then given that element from the first list,
+it's going to loop over all the elements of the second list
+asking do I have an instance of that element
+in the second list.
+If I find one right here, I'm going to set that flag to true
+and break out of that loop.
+Once I've broken out of that loop, I then test.
+And having set match to true, the if not match doesn't hold.
+And so I don't return false.
+I go back around to the loop and get the next element
+of the first list.
+On the other hand, if I go through all of this search
+here and don't find a match, then the matched flag
+is set to false.
+And when I come to this test, I'm
+going to break out of the entire thing by returning false.
+If I get through the entire set of the list L1
+and I've found a match in all cases, in that case,
+I'm going to return true.
+Now.
+You notice here I've got nested loops.
+I've got an outer loop on L1.
+I've got an inner loop on L2.
+And even though I could break out of either of those lists,
+either here or here, we know that it's
+the worst case behavior that we're interested in.
+And that's going to happen when in fact L1
+is in fact a subset of L2 because I'm
+going to search through all of L1 looking for that solution.
+Key thing I want you to do if I step back from this
+is to notice here I've got a nested loop, a loop
+inside of a loop.
+And that's characteristic of quadratic complexity.
+And let's see why.
+So if I take my code, I can now ask what is the order of growth
+here.
+First of all, I know that the outer loop is generally
+going to be executed the length of L1 times.
+So however many elements there are in L1, let's call
+that, for example, n, is going to execute that loop n times
+because it's going to ask for each element,
+does it have a match.
+Yes.
+It's possible they could stop earlier.
+But in the worst case, it's going
+to go through all of them.
+What else do I know?
+I know that for each outer iteration, for each element
+in L1 I'm going to go through this inner loop,
+this loop up to the length of L2 times.
+And in fact, in the worst case, I
+am going to go through it up to the length of L2 times.
+So what do I have then?
+I've got an outer loop.
+I do length of L1 times.
+For each one of those, I do length
+of L2 kinds of operations.
+And by our multiplication log we know that that basically
+says this order of growth is the product of the length of L1
+times the length of L2.
+What's the worst case?
+The worst case is when they're both of the same length.
+And in that case, again, let's just call that n.
+We're going to do n squared operations,
+n times n operations.
+And as I said, the fact that we might break out
+of the loop earlier doesn't change the order
+of growth of the algorithm.
+The worst case is basically quadratic in the length
+of the list.
+You've seen the characteristic.
+
+Nested loops is a nice characteristic of something
+that is inherently quadratic in complexity.
+Here's another example.
+I want to find the intersection of two lists.
+And then I want to return a list where
+each element appears only once.
+So L1 is a list of things, could be numbers,
+could be something else.
+L2 is similarly a list.
+And I'm going to first start by trying
+to find a list that has those that appear in both lists.
+And then because there might be some duplication
+I'm going to clean it up and only return
+a list where the elements appear exactly once.
+I'm not going to step through the code in detail.
+But notice, again, a nice, common pattern.
+There is a nested pair of loops.
+And what I'm doing here makes sense.
+I set up a temporary variable called tmp for temp.
+For each element of loop 1 I run through all the elements
+of loop 2 asking is that element from loop 1-- from list 1,
+rather, in list 2.
+And if it is, I add it into temp.
+I just appended it to the end of that.
+Once I've done all of that, I'm going to clean it up
+by sending a new temporary variable called Res result.
+And then running through the things that
+appear in both lists, I simply say if I haven't already put it
+into the result, add it in.
+But I'm not going to duplicate it
+if it appears more than once.
+And then I'm going to return the result res down here.
+Key characteristic.
+I've got a bottom loop.
+It's just a loop.
+I've got a nested pair of loops here.
+And we've already seen in our earlier example,
+that's probably an indication of the quadratic performance.
+So let's look at it.
+There's my coat and here's what I know.
+That first nested loop, by exactly the same analysis
+I did with the early example, is going
+to take the length of L1 times the length of L2 steps.
+Because for every element of L1 I do however many elements
+there are in L2 number of steps.
+And here, there's no breaking out of it earlier.
+So it's literally going to be I do length of L2
+steps for every element in L1.
+So therefore, the product of those two links.
+The second loop, the bottom, just
+goes through at most length of L1 number of steps.
+If every element of L1 also appeared in L2.
+Ah, so now I've got a case of two different orders of growth.
+The first one is quadratic.
+The second one is linear.
+That second term, as we make the problem size really large,
+simply gets overwhelmed by the first term.
+And so we ignore that second term.
+And we simply say this is quadratic in that product
+of length of L1 and length of L2.
+And again, worst case is in essence
+when consider both of the same length we'd
+say this is order n squared-- so a nice example
+of a quadratic complexity algorithm--
+characteristic, nested loops.
+Now, that can happen in a wide range of cases.
+Here's simply another example where now I'm
+simply doing something that's going over a range.
+And the only difference here is that that range
+may get generated incrementally as I need it.
+But otherwise, this is exactly like the two cases
+I saw before.
+What do I want to look at here?
+I want to look at what's the cost of the first loop, which
+is I want to do it n times because of that range.
+And then what's the cost of the second loop?
+I'm also going to do it n times because of that range.
+So it's n times n.
+Again, it's order n squared.
+You see the characteristics of quadratic complexity
+algorithms.

@@ -1,0 +1,303 @@
+...
+First, congratulations.
+You made it to the end.
+This is the last lecture in this first part of 600,
+and we're delighted that you've stuck with us
+all the way along.
+Second, this is going to be a short lecture, because we just
+want to take a step back and think
+about what have you accomplished--
+or what have we, hopefully, together
+accomplished-- in this course.
+So to pull all of this together, let's think
+about where you've been and where you're headed.
+What are the things you've learned?
+What are the lessons you should take away,
+and how might you use this as you think about next steps?
+And let's start with where you've been.
+If you go way back to the very first lecture,
+we put up a set of topics.
+We said, in this class, in this course,
+you're going to learn a different range of information,
+a different set of knowledge, a different set of tools.
+And if think about it, I think we've hit all of them.
+You've certainly learned about how to represent knowledge
+with different kinds of data structures--
+lists, tuples, dictionaries.
+They aren't the only ones.
+As you move on, you'll find other kinds of data structures.
+But most importantly, you've learned
+the idea of how to group things together, treat
+them as primitives so that you can
+reason about complicated structures in very
+efficient ways.
+The second thing we certainly did
+was to come up with different computational metaphors--
+iteration and recursion.
+You've seen loops, whether it's for or while loops.
+You've seen ways of writing things
+that walk linearly through different kinds
+of computations.
+You've seen recursion as a way of capturing computation
+very effectively.
+And they really are that wonderful term over there.
+They're metaphors for thinking about how to write procedures
+that tackle problems.
+You've certainly seen the idea of abstraction,
+both of data types and of procedures, that notion that I
+can create something once and then bury the details so that I
+can use, for example, a procedure as if it was provided
+as part of the machine, knowing that having built it once,
+there's a contract that ensures if I give it
+the right kind of input, I'm going
+to get out output that satisfies a particular constraint.
+You've definitely seen how to organize and modularize
+systems, especially around the ideas of using object classes
+and methods, associating both data and procedures together
+inside of classes, treating them as primitives,
+building hierarchies, inheriting all tools that
+are really valuable for organizing
+and modularizing your systems.
+You've also seen different classes of algorithms,
+both for straightforward things, but especially around things
+like searching and sorting, things that you do a lot.
+And associated with that, you saw
+how to reason about the complexity
+of different algorithms.
+Why do certain things have much more cost than others?
+What's the order of growth associated with inherent kinds
+of methods and algorithms?
+So those are all the topics that you covered.
+If you also think back to that first lecture,
+we also said that we were going to teach you some higher level
+things.
+You were going to learn computational modes
+of thinking.
+We want to master the art of computational problem solving.
+And especially, we said, we want to help you have the confidence
+to make computers do what you want them to do.
+So what we hope is, in fact, that we've started you
+down the path to being able to think and act like a computer
+scientist, that when you see a problem,
+you think about how can I abstract that.
+How can I build the right kinds of modules?
+What are the interfaces between those modules?
+How do I approach this computationally,
+and what does that allow me to do
+in terms of solving a problem, especially to get the computer
+to do the hard work for us?
+So if we hope we've started you down the path of thinking
+like a computer scientist, you might ask, well,
+what do computer scientists actually do?
+And I happen to put up here images of two of the earliest
+computer scientists and two of my favorite ones.
+Ada Lovelace, sometimes referred to
+as the first computer programmer, and Alan Turing.
+And what do they and more recent computer scientists really do?
+Well, they do think computationally-- abstractions,
+algorithms, automated execution--
+three tools that you've seen and that we're
+going to summarize in a second.
+And in particular, just like the traditional three R's
+of reading, writing, and arithmetic,
+computational thinking is becoming a fundamental skill
+that every well-educated person is going to need.
+And so that ability to think about abstractions,
+to think about algorithms, to think about automated
+execution, is a tool that's as valuable as being
+able to read, write, communicate, and do
+other kinds of basic computational things.
+So what is that notion of computational
+thinking that we hope you've learned?
+Well, here are basically the steps that you've seen.
+Given a problem, how do I identify or invent
+useful abstractions?
+How do I suppress details that I don't need to worry about?
+What are the interfaces between the pieces that I want?
+Once I've done that, how can I formulate a solution
+to a problem as a computational experiment
+using those abstractions?
+What is it I want to test?
+And then having done that formulation, how do I
+design and construct a sufficiently
+efficient implementation of the experiment?
+Sufficiently efficient the keyword,
+because we know that some things have more cost than others.
+Having done that, then I want to validate
+my experimental setup-- in other words, debug it to make sure
+it works the way I want it-- run the experiment,
+evaluate the results, and repeat as needed.
+That really is the tools that hopefully you're
+taking away here as you think about what
+does it mean to run a computational experiment.
+And then what are the components of that?
+Well, the three A's of computational thinking.
+Abstraction-- you've seen many examples of this.
+How do I choose the right abstraction?
+How do I operate in multiple layers of abstraction
+simultaneously?
+You saw a lot of this when we played with classes,
+but it shows up in other places as well.
+How do I define the relationships
+between the abstraction layers?
+But abstraction is an essential part of computational thinking.
+I don't want to have to think about hundreds
+of thousands of lines of code at a time.
+I want to be able to take a piece, make sure it works well,
+understand the constraints on it,
+and abstract it away so I can just use it as if it
+was a built-in thing around it.
+I want to be able to understand where's
+the right level in that hierarchy of abstractions
+in which to be performing my work.
+And you've seen examples of that.
+You're going to see a lot more of them
+as you use computation moving forward.
+Abstraction, a big element of all of this.
+Automation, second big element-- how
+do I think in terms of mechanizing those abstractions?
+It's not just enough to think about what's the algorithm.
+How do I do it in a way where I can write it
+down so that the machine can actually understand it?
+And that mechanization is possible
+because we have precise and exact notations and models,
+and because, as we saw way back at the beginning of the class,
+there is some machine that can interpret that notation.
+And so learning a new language, in fact,
+is learning what's the description of the mechanisms
+and how do I map things from my thinking level of abstraction
+down into something that the computer can actually do.
+And then algorithms-- how do I then take those ideas
+and capture common patterns of behavior that I want to use?
+And that includes both what language
+do I use for describing the automated
+process-- in our case, it was Python, maybe something else
+in the future-- but it also allows me to abstract away
+the details of the algorithm.
+Having built the algorithm once, I can extract away the details
+so I don't worry about it.
+And finally, how do I use algorithms actually
+as a language for communication?
+Talking about an algorithm at a high level
+is a way of actually communicating
+a process or an idea to somebody else.
+If you look back at everything you've done in this class,
+you'll see those three pieces constantly-- abstraction,
+automation, algorithms.
+Those are the three A's of computational
+thinking that you're going to take forward.
+The last aspect of this is to think
+about computational thinking at a slightly higher level.
+And here, there are two other things
+that you've taken away, we hope, from this class.
+The first one is when given a new problem,
+how difficult is it?
+How best can I solve it?
+We know that theoretical computer science
+gives precise meanings to these and related questions.
+And you've seen that.
+Knowing the difference between a log linear algorithm
+and an exponential algorithm is really important.
+Realizing that a choice in algorithm
+can move you from a more costly class to a less costly class
+is really valuable.
+Also, knowing that some algorithms inherently belong in
+this really expensive class is a valuable lesson to take away.
+But you ought to, when confronted with a new problem,
+ask how difficult is this.
+Does it fit into a class I've seen before?
+Is there an existing algorithm that's
+going to solve this problem for me with some small variations,
+and how do I use that?
+And then the last aspect of computational thinking
+we hope you've taken away from this
+is how to think recursively.
+It's that wonderfully twisted way of thinking,
+but it is an incredibly valuable one,
+and that is that idea of taking what
+seems like a difficult problem and reformulating it
+into a simpler version of the same problem
+plus some other things that I know how to do.
+That reduction, embedding, transformation, simulation idea
+is really valuable, but it all relies
+on that nice notion of given a complex problem,
+I don't have to start from scratch.
+I can simply say I could solve this
+by solving a simpler version of the same problem,
+and then taking that solution, add
+in some other things I know how to do in order to make it work.
+And while it may seem twisted, that idea of recursion
+really does show up nicely.
+And this image, called the Droste effect,
+wonderfully captures it based on a Dutch cocoa company's ad.
+But you get the idea that when I have a recursive problem,
+I can keep reducing it to simpler and simpler versions
+until eventually, somewhere way down in here,
+I get to a base case, and I can pull it all together
+to come up with a solution.
+I hope this image really captures for you
+that idea of taking a complex problem
+is not so hard when you simply reduce
+it recursively to simpler versions.
+And those are the things that you've seen.
+So that's where you've been.
+Where are you headed?
+Well, that's your choice, of course.
+But I hope that you'll take away two things
+as you think about how to use what you've seen in this class.
+How can you use it, and what are next steps
+to enhancing your knowledge?
+In terms of how you can use it, well, you should look, I hope,
+for ways to apply what you've learned.
+Can you use algorithmic approaches
+in your professional life?
+No matter what you do, there's got
+to be some place where abstraction or computational
+experiments can improve what you do in your job.
+If you're a student, ask how you can
+use these ideas to help you pursue your choice
+of discipline more effectively.
+You don't have to be a computer scientist
+to use computational thinking.
+An economist, a statistician, a chemist, a physicist,
+a biologist, a mechanical engineer--
+they all use computation in different ways.
+And I really encourage you to think
+about how you can use algorithmic approaches to solve
+problems in your own domain or discipline.
+You can ask the same question about your personal life.
+Can you organize your personal finance records better?
+As we saw in the last lecture, can you
+plan your retirement better?
+Can you store your historical records better?
+Can you simply use computation to help you
+in things that matter to you in personal life as well
+as professional life?
+So I hope you'll think about how can you use what you've
+learned here in multiple ways.
+And the other next step is basically
+to think about taking another course in computation.
+As we've said, the next course in this sequence,
+the second part of 600, is an introduction
+to computational thinking and data science
+where we look at using these tools in large-scale data
+analysis.
+But you might take a course in algorithm design,
+in software engineering, machine learning--
+a very important and hot topic-- and data analytics and data
+storage and whatever tickles your fancy.
+Basically, you've got an opportunity
+to build as you see fit, because you've
+learned the basics of computational thinking
+and algorithmic processing.
+So good luck.
+However you choose to use computational thinking,
+we hope that it's a useful tool for you
+in many ways-- as a way of proposing
+professional problems, as a basis for understanding
+the impact of computation in everyday life,
+and as a language for communicating ideas.
+And I look forward to seeing you do that as you take more
+courses and you add computational thinking
+to your own professional and personal life.
+Good luck.

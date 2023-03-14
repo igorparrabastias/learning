@@ -1,0 +1,122 @@
+...
+Now that we've got an understanding of floating point
+numbers, now that we've got the idea of generalizing guess
+and check methods to do things, it
+can do approximations to find solutions to things,
+we can really start building some pretty powerful programs.
+We've already seen something that
+searches for cube roots of numbers,
+even if they're not a perfect cube, square roots of numbers
+even if they're not a perfect square.
+And we've seen how we can get to quick solutions
+very nicely using things like bisection search,
+have great accuracy and still find good answers.
+I want to show you one last example just
+to give you a sense of the power of computation we can now do.
+I'm going to stick with the idea of finding roots of things
+but show you how you can actually capture things
+very dramatically.
+And that's to use a technique called Newton-Raphson.
+It was discovered by Sir Isaac Newton three or four centuries
+ago, also discovered by Raphson at about the same time.
+And here's the basic idea behind Newton-Raphson.
+It's a general approximation algorithm
+that's going to let us find roots of any polynomial in one
+variable.
+So that could be, for example, the polynomial like this-- I've
+got p of x is some coefficient times x to the n
+plus some other coefficient times x to the n minus 1
+and so on.
+And what I want to do is find the value r such that p of r
+is equal to 0.
+It's called a root.
+It basically is the root of this equation.
+Newton-Raphson will apply to any polynomial.
+I'm going to show you an example of using
+it to find square roots, and you can say,
+well, I already did that with bisection search.
+You're right, but it's a nice way
+of looking at how we can generalize the computation.
+So in particular, if I want to find the square root of 24,
+I'm going to use the polynomial x squared equals 24.
+Because if I can find the value of x for which this is 0,
+then x is in fact the square root of 24.
+What Newton showed was that if g is a good guess to that root,
+then you can get an even better guess by taking g
+and subtracting from it the polynomial evaluated
+at g divided by the derivative of the polynomial evaluated
+at g.
+And if you haven't done calculus,
+and you don't know what a derivative is, don't worry.
+We're going to show you what it is
+in this simple case of a square root.
+But I want to let you see the power of doing Newton-Raphson.
+So Newton showed, if I got a good guess,
+I can make it better by taking p of g
+divided by the derivative of p of g
+and subtracting it off of g.
+So in the simple case, if I've got an equation that
+is some constant times x squared plus another constant,
+then the first derivative of c times x squared is just 2cx.
+So in my case of looking for square roots--
+x squared plus k is the thing I'm
+trying to find a solution of-- the derivative is just 2x.
+And so Newton-Raphson says, given a guess for the root,
+take the polynomial at that point, which
+is g squared minus k, take the derivative of that point, which
+is just 2g, take that ratio and subtract it off from g.
+Cool.
+We ought to be able to build that, and we can.
+It's a nice tight little iterative loop.
+So here's a nice way of generating the guesses.
+OK, and I'm going to have some epsilon that's going to let
+me decide how close I am to an answer.
+I've got the thing I'm going to look for, and my initial guess,
+I'm just going to pick as that value divided by 2.
+And then here's the loop.
+As long as guess squared minus y, the absolute value of that
+is too big, I'm going to keep going.
+And as before, I'm going to count the number guesses to see
+how long it takes.
+Each time around, I'm going to use that little equation
+from Newton-Raphson.
+I'm going to take g squared minus y divided by 2 times g
+or guess, subtract that off of guess, and go back around.
+That's just the thing I did before.
+And I'm going to run through that loop
+until I get something close enough,
+and then I'm going to jump out.
+So let's see what happens if we do it.
+I've got the code over here.
+I'm going to load it in and run it.
+And in four guesses, it got a good solution-- four.
+OK.
+It's a whole lot better than 30,000,
+which is where we started.
+With the bisection search, it was about 15 or 20.
+Now I've got it down to four.
+Let's pick another example.
+Let's take my favorite example here of 54.
+Same thing, and I run it.
+And in five guesses, it gives me a good solution out.
+This is really cool.
+I know you don't believe it, but it really
+is cool, because it lets me not only find
+cube roots and square roots, it lets me find the solution
+to any equation very quickly.
+So what we've now seen is that this idea of a guess and check
+method builds on reusing the same code over and over again.
+It takes the idea of a looping mechanism
+and adds to it, building into it different ways
+to generate the guesses and then checking
+to see whether I'm close enough or I want to keep going.
+And we've already seen now simple exhaustive enumeration,
+bisection search, which cuts down
+the amount of expense dramatically and now,
+at least for root finding, Newton-Raphson, which
+improves it even more formally.
+So you've already seen three different classes
+of algorithms, and you've got a lot of tools
+for doing numerical computation.
+We're going to come back to that as we move on
+through the course.

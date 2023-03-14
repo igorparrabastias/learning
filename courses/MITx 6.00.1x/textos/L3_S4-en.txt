@@ -1,0 +1,212 @@
+...
+We've just seen an example of an algorithm that
+computes floating point numbers as an answer,
+and we've been playing with floats earlier on.
+I now want to take a little sidetrack to talk about floats
+and how they're represented inside the computer.
+And in particular, to deal with something
+that you may have experienced earlier on in the course, where
+you'll get answers that will give you
+some funny number where you expecting 3.0,
+and it gives you 3.00000125 or something else.
+To deal with this, we need to go inside the machine for a second
+and talk about how floats represent real numbers.
+They certainly approximate them, but it's
+useful to get a sense of how the machine actually stores it,
+because it can't store an infinite number
+of decimal points or digits after the decimal point
+inside the machine.
+Here's the basic idea.
+Let's start with a decimal number, the numbers
+you're used to dealing with.
+The number 302 is really 3 times 10
+squared plus 0 times 10 to the first power plus 2 times 10
+to the 0-th power or 1.
+It's 300 plus zero 10s plus two 1s.
+Binary numbers, which is how the computer store things,
+are actually represented the same way, but now
+in terms of powers of 2.
+So the number 10011 in binary is 1 times
+2 to the fourth, plus 0 times 2 cubed, plus 0 times 2 squared,
+plus 1 times 2 to the 1, plus 1 times 2 to the 0.
+Which is actually 16 plus 2 plus 1, or 19 in decimal notation.
+Internally, the computer represents
+every number in binary, whether it's an integer
+or it's a float.
+How would we use that idea to think about how do we represent
+floating point numbers?
+Well, let's think about how we could convert a decimal integer
+into a binary representation, and then we'll
+do the fraction portion of it.
+So given a decimal integer, how would we convert it to binary?
+Well, let's take an example.
+My example would be the one I just had before.
+19 in decimal is 10011 in binary.
+If I had 19, or anything that represents that number,
+how could I get it out?
+Well, what I can do is the following little trick.
+I can take the remainder of that number relative to 2,
+and that remainder actually gives me the last binary bit.
+It'll give me this bit right here,
+because that's the remainder that's left when I divide by 2.
+If I then take x and divide it by 2 integer-wise using
+that double slash idea, all of the bits get shifted right.
+That is x double divide by 2 is now 1 times 2 to the third
+rather than 2 to the fourth, plus 0 times 2
+squared rather than 2 to the third, plus 0 times 2 to the 1
+rather than 2 squared, plus 1 times 2
+to the zero rather than 2 to the one.
+Or another way of saying it, and notice I've taken these digits
+and just shifted them to the right.
+If I keep doing successive divisions like this,
+I can keep track of each of the bits
+that comes out, because the remainder gives me
+the next bit.
+And when I'm done with all of that,
+I've converted to binary form.
+So basic idea, given an integer, take the remainder with respect
+to 2.
+That's the low order bit.
+Divide integer-wise by 2, shifts right.
+Do the same thing until I've exhausted the entire integer
+representation.
+So here's a little piece of code that would do exactly that.
+If the number is less than 0, I'm
+going to put on a flag that says it's negative.
+And I'm going to use the positive version of it
+by taking the absolute value of that number.
+Otherwise I'm going to put in a flag that says it's not.
+And then I'm going to simply accumulate those results.
+If the number is equal to 0, it's just 0.
+That's pretty obvious.
+Otherwise, as long as the number is greater than 0,
+I'm going to do remainder, add that in,
+because that's the next bit into result,
+do the division to shift it to the right, and keep going.
+So if I look at that, here's a simple example
+of doing that conversion, converting decimal to binary.
+I'll start with a real simple example.
+If I start off with number as 3 and I do that computation,
+I didn't print anything, but the result is sitting in result.
+And there I get it.
+The binary representation of 3 is, not surprisingly, 1 plus 2.
+Let's just check to make sure I wasn't misleading you
+when I said 19 was, in fact, what I claimed it was.
+So if I make it 19, and I run it, and I look at result,
+it gives me back 10011, exactly as I said.
+All right, cool, so I can take integers and convert them
+into binary, but I started talking about floats.
+So how do I deal with the fraction part of this?
+Well, I can do almost the same thing.
+Let's take an example.
+3/8 is 0.375.
+And in binary, that is 3 times 10 to the minus 1 plus 7 times
+10 to the minus 2 plus 5 times 10 to the minus 3.
+It's just the digits associated with each of the placeholders.
+Here's the trick I'm going to play.
+If I can find a power of 2 big enough to convert all of that
+into a whole number-- that is, multiply it by something so
+that it gets converted into a whole number,
+then I can convert that into binary.
+I just did that, I know how to do that.
+And then when I'm done, just divide by that same power of 2,
+and I've got no representation in binary
+of the fractional part of this number.
+In this case, I picked an easy example.
+0.375, if I multiply it by 2 to the third, or 8,
+that's going to get me a 3 in decimal.
+I can then use what I just did as my trick
+to convert that to binary.
+That's 11.
+And then I divide by 2 to the third, which simply says
+shift it right three points.
+And there is the binary representation
+of that decimal fraction.
+That's cool, right?
+It's a really neat idea.
+What am I doing?
+I'm using something I did for one computation,
+but converting another problem into the same problem.
+In this case, given a fraction, I'm
+saying find a power of 2 that shifts it into an integer,
+use the same machinery, and then shift it back.
+And I'm simply taking advantage of powers of 2
+because that's simply moving the placeholder, if you like,
+for the decimal point, or I should say the binary point
+in a binary representation.
+
+There's code that'll do it.
+I'm not going to walk through it.
+I'm going to let you look at it.
+I'm simply going to show you that this will actually convert
+a decimal to a binary fraction.
+So if I take this and I run it, in this case,
+it says give me a decimal between 0 and 1.
+Let's pick out a nice example.
+Let's start with the one that we had, which was 0.375.
+Sorry, let me make sure I'm here.
+
+And it says, oh, I'm going to tell you
+when I've gone through it to get it up to something
+that is big enough.
+How many times I have to shift it over, what's the remainder,
+and there's the printed solution.
+Let's be daring and try another example
+I haven't tried before just to make sure
+that it actually works.
+So again, we're going to call this out.
+It says give me a number between 0 and 1.
+And I don't know, let's take 0.333.
+And what do I get?
+Well, it goes through a whole lot more computation.
+It's telling me what the remainders are,
+but it's running through that computation.
+And it says the binary representation for 0.333
+is this horrible-looking mess you see on my computer screen
+down there.
+But the point of this is now I can take any floating point
+number, convert into something that
+can be represented inside of the machine in binary form,
+and use it.
+And that, by the way, is why you will occasionally
+see these strange things where you're expecting 3.0 back,
+and it has a little bit of an extra piece
+on it because in binary it can get close to it,
+but not quite to the place it would like.
+But with that, we now have a way of understanding
+how we can represent floating point numbers inside a machine
+where everything is stored just in terms of binary bits.
+What are some of the implications of this?
+If there is no integer p such that a power of 2
+multiplied by x gives me a whole number,
+then the best I'm going to get is an internal representation
+that's close.
+Which is why I won't get something exactly right.
+And obviously, I'm only going to do this so many times
+before I run out of powers of p to use this.
+It also suggests that when you want
+to test equality of floats, you should be careful.
+
+Given two floats, x and y, you really
+don't want to use double equal sign,
+because it's going to check to see
+is the binary representation exactly the same.
+It might not be.
+It might be really close.
+So we're always better off using the absolute value
+of the difference of two floating point numbers.
+Is it smaller than some small number,
+rather than using the more exact are they exactly the same.
+And then finally, as I've already said,
+we may not always get an exact representation
+for a float in the way we would like.
+But if I do print of something, why does
+it always return what I'd expect,
+even if the representation isn't different?
+And the answer is because, wonderfully, the designers
+of Python designed it so that it would automatically
+round to the closest representation in terms
+of that floating point number.
+There are floats.
+Now we've got ability to do integers and floats,
+we're in good shape.

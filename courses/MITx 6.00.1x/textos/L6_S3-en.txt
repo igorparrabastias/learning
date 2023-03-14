@@ -1,0 +1,308 @@
+...
+We've introduced lists.
+We've introduced tuples-- we said they're
+ordered sequences of elements.
+They have different properties.
+The primary difference being mutable versus immutable.
+We want to introduce one more kind of data structure--
+a generalization that has some really nice properties.
+And that data structure is a dictionary.
+You've already seen dictionaries in your everyday life.
+We're going to have a programming language
+version of it that behaves the same way.
+And let me show you how that works.
+Let's start by using an example.
+Imagine I'm trying to store data about students in a database.
+So far I can do that just using lists.
+And I might have a separate list for each kind of data entry.
+So I might have a list of names, the names
+of the students in the class.
+I might have a list of grades for each of the students.
+I might have a list of the courses
+that they're taking-- what's the grade in?
+So one grade might be in one class.
+One grade may be in a different class.
+I have a separate list for each item.
+One of the things I'd need is I want
+each list to be of the same length, of course,
+because I need to be able to associate all of those pieces
+together.
+But the problem I've got is that the association isn't
+captured in a common place.
+Here the information is stored across lists at the same index.
+So if I want to get information about Anna,
+I have to go into index 0 and get out
+the name, the grade, and the course in which she
+got that grade.
+If I want to get the similar thing for Katie,
+I have to go to the third element of each of those lists.
+So each index refers to information
+for a different person.
+And I don't have an easy way to capture
+that kind of information.
+As a consequence, if I wanted to write a function
+to get out information, I'd have to write something
+like the thing shown here.
+I've got a function called Get Great.
+It takes in a student and then the list--
+a name list, a grade list, and a course list.
+And what I have to do is to say--
+given that index for that student-- I'd
+have to go and find where that is by basically going
+into the name list and finding the thing associated
+with student.
+What spot is Anna at?
+And having done that, I now know the right index.
+And I can use that to get the grades list element
+and the coarse list element.
+Or said another way, I have to walk down
+somehow the first list to find where is that student located.
+And then use that to go in and find
+the right spot or the corresponding spot
+in the other list to get back the grade in the course.
+Clearly, this is messy if I've got
+a lot of different information I'm trying to track.
+I've got to maintain multiple lists.
+I've got to pass them in.
+And especially-- I've got to remember
+to change multiple lists.
+If I add something to one list, I've
+got to go make sure I add the right elements in all
+of the other lists.
+I could do it, but it's not handy.
+It's really inconvenient.
+I'd like another way of being able to do that idea of finding
+things associated with a particular entry
+in a structure.
+And that's where a dictionary is going to come in.
+What I'd like is to have a way to be
+able to index to an item of interest directly.
+And it might not always be an integer.
+It might be something else.
+And I'd like to be able to use it using one data structure
+and not separate lists.
+So if you think about it, what's a list?
+It's a sequence of elements where
+the index is a set of integers starting at 0.
+And associated with each indice, I have a different element.
+A dictionary is going to be different.
+It's again going to be a collection of things,
+but now I'm going to customize how I index to it.
+Rather than saying giving me the zeroth element,
+I'm going to say, give me the element associated
+with this key.
+And so we're going to call the indices keys,
+and we're going to use them as labels
+that tell me where to find the element
+inside of the dictionary.
+So I won't have this nice linear structure I had with the list.
+It will have a structure to it, but it's
+going to give me a lot more power in terms
+of how I retrieve elements out of the dictionary.
+And I say dictionary because it behaves much like it
+would in a dictionary of words.
+I can look up a word, and retrieve from that dictionary
+all the information associated with that word.
+Not having to know that the word the word "factorial"
+is associated with entry 2745 inside of the dictionary.
+I simply look up factorial and find
+the entry associated with it.
+So we can build that in Python.
+And here's the way we do it.
+First of all, a Python dictionary
+stores pairs of data together-- a key and a value-- the key
+telling me the thing to look up.
+I'd want to create it, initially,
+with an empty dictionary.
+And you can see we're using the same basic type of structure.
+I've now used curly braces, or brackets if you like,
+in order to represent a dictionary-- as opposed
+to parentheses or square brackets.
+An empty dictionary starts off with just these curly braces.
+And then I could create a dictionary of grades.
+I could give Anna the grade B. I could give John
+the grade A plus, Denise an A, and Katie an A.
+And I'm going to index into the dictionary
+by the key element of the entry inside of a dictionary.
+So each one of these is association or a pairing
+of a key and a value.
+And that's going to allow me now to build arbitrary structures
+very nicely.
+So now I'm going to build up this dictionary.
+There it is.
+I happen to have stored them in that order.
+One of the things I'm going to say about dictionaries
+is-- I don't rely on the order.
+They're not going to be in any particular order,
+other than how I happen to put them into the dictionary.
+And there's an example dictionary of my dictionary.
+What could I do with that?
+Well, given I've got a little grades dictionary,
+I'm going to be able to look up things in the dictionary.
+It's going to be similar to indexing into a list,
+but I'm going to use it based on the key.
+So for example, I've got an example of grades over here.
+I'm going to load it into my environment.
+Grades I could print out-- it's just an arbitrary collection.
+But I can now say, I'd like to get
+the grade associated with John.
+Now in a list I would have needed
+to know what's the index at which John is stored.
+I can only index into a list based on an integer.
+But with grades as a dictionary, I
+can say give me back the value associated with that key--
+and there it is.
+If I want to get the grades associated with Sylvan,
+I can type that in.
+Sorry, I'm going to type grades properly here.
+And I can type in Sylvan.
+
+And it complains-- as it should--
+because there is no key in the dictionary for Sylvan.
+There is no association of Sylvan with a value.
+But now the retrieval-- the lookup--
+is simply, give me the key.
+I'll find that entry in the dictionary, return the value--
+sounds really good.
+So what are some of the operations
+I could do on a dictionary?
+Just as we had with lists, we're going
+to have operations on dictionaries.
+I could add an entry for Sylvan.
+So I could say, into the dictionary grades for Sylvan,
+add in an entry.
+Sylvan is doing well in this class.
+There it is.
+And as a consequence, if I now say
+what is the value associated with Sylvan?
+It's going to give me back that value.
+I can add an entry.
+It's mutable.
+I can change things inside the dictionary.
+And I've, in fact, just made that change to the dictionary.
+I can test to see if a key is in the dictionary.
+And literally I do that by simply invoking, for example,
+is John in grades?
+He is.
+Is Daniel in grades?
+He is not.
+Python is automatically walking through that structure to see--
+is that key in the collection of keys associated
+with this dictionary.
+We'll worry later on about exactly how he does it.
+But the nice thing from a programming perspective
+is I can test very simply to see if the key is in a dictionary
+I can remove an entry, as we've done with other things.
+Del for delete will remove an entry.
+So if I give Del-- say I want to remove the entry for Anna--
+in grades, I can do that.
+If I look at grades, Anna is gone.
+And, in fact, what I just did was change that dictionary.
+I can add entries.
+I can test about entries.
+I can delete an entry.
+Here are a couple of other things I can do.
+I can actually get out the set of keys.
+So let me go back to grades.
+I've got grades.
+And I can say, keys, which is a method.
+And since it's a method, I need to type an open and close paren
+to say call the method.
+And it gives me back an iterable.
+Again, I can think of that like a list or a tuple.
+It's not quite, because it doesn't generate them.
+It's going to give me a way to find them when I want them.
+But it's going to act as if I got back
+that collection of pieces inside of a structure.
+And similarly, I could get the values out.
+Grades values will give me back an iterable of the values
+associated with that structure.
+And if you're wondering why what I typed on my computer
+is a little different than what you see on the slide,
+it's because I did not reload the grades in.
+I'm using the version of the grades that's here.
+But the behavior is exactly what I want you to see.
+I get back things so that I could then iterate over--
+like I could walk down all the collections of keys,
+or I could walk down all the collections of values
+doing something to them.
+One of the things to notice about both of these is I cannot
+guarantee that there's a particular order to them.
+So it's not like the traditional dictionary
+that you get everything in lexicographic order.
+It's going to depend on how I put them in there.
+I just simply need to know that I want to do something
+with the dictionary and not rely on the order
+in which things are returned.
+
+What else can I say about dictionaries?
+A couple of things-- the values that go into the dictionary
+can be anything.
+It could be any type.
+It could be immutable types like ints or strings.
+It could be mutable things like lists.
+It could be functions.
+It could be-- absolutely anything
+can be used as a value.
+They could also be duplicates.
+That is, I could put the same value
+to be associated with different keys.
+As we also can see here, dictionary values
+could be lists.
+I could even have dictionary values be other dictionaries.
+It can be anything your heart desires.
+Keys have a little bit more constraint on them.
+The first one is they need to be unique.
+Well, that makes sense.
+If I'm going to look up something in the dictionary,
+I can't have multiple keys or the same key
+in different places in the dictionary.
+It has to be a unique entry.
+The second key point is that the key
+must be of an immutable type.
+So that means an int, a float, a string, a tuple, a bool.
+Actually, I'd need something a little stronger
+which we're going to come back to later on in the term.
+They need to be what we call hashable.
+But right now think of it as immutable,
+because basically everything we're going to deal with
+has that property.
+I'd need to be really careful if I'm
+going to use a float type as a key,
+because if the float has an accuracy issue,
+I may not find the thing I wanted to associate with it.
+The reason they need to be immutable
+is I can't store something in the dictionary under one key--
+and then change the key-- and expect
+to be able to find it, still, in the dictionary.
+It just doesn't make any sense.
+As I've already said I'll remind you
+there is no order to either the keys or the values.
+And so I've given you an example of a dictionary here where one
+index-- one key is an int, another key is a tuple,
+the third key is a string.
+How they're ordered in the dictionary, I don't care.
+But I can have all of those in one dictionary
+and retrieve from them appropriately.
+So just to compare the two pieces-- differences
+between a list and a dictionary--
+a list is an ordered sequence of elements.
+And in fact, I index it by using an integer index because
+in fact I know it's ordered.
+A dictionary is simply a collection of entries.
+I'm going to match keys to values.
+There's no particular order to them.
+And I can look up one item by simply using that index to try,
+or that key to try and pull out the piece that I want here.
+So in this case, I look up elements by an integer index.
+In this case, I look up elements by whatever the key is,
+which could itself be some arbitrary expression.
+Indices and lists have an order, no order with dictionaries.
+And the index has to be an integer with the list.
+The key can be any immutable type.
+So you can see the dictionaries have
+a lot more capability in terms of what
+we can store inside of them.
+And we're going to look at an example
+to see how you can use dictionaries and iterate over
+dictionaries to do interesting things.

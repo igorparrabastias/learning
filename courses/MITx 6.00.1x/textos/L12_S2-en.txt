@@ -1,0 +1,268 @@
+...
+Now let's assume we have a sorted list.
+Whether it's integers or something else,
+it is a list where the elements can
+be placed in increasing order.
+And it's probably simplest just to think
+about it as a list of integers.
+Other things would work equally well.
+I could certainly do linear search on a sorted list.
+And here you can see a piece of code that would do it.
+I'm going to walk through a loop down all
+of the elements of the list.
+And if I find that the element is there,
+I can just return true and break out of the search.
+If I ever get to a point where the thing in the list
+is bigger than the element I'm looking for since I assumed
+it was sorted in increasing order, at that point,
+I can also break out of the list and in that case return false.
+Because I know it can't be in any of the rest of the list
+if all of those are bigger than the thing I'm looking for.
+If I get all the way through the list without having found it,
+I'll just return false, because it says it's not present.
+Running time wise, this is actually
+going to be better than the brute force kind of search.
+I'm taking advantage of the fact that I
+know that, in fact, the list has a particular order to it.
+But the cost is still linear.
+I only need to look until I get to a point where I can stop,
+but breaking out of that loop, as we've seen,
+doesn't prevent the analysis that in the worst case
+this is still going to be linear.
+And as before, it's going to be order
+of the length of the list for the loop.
+Order 1 to test if it's there or not-- we've
+already seen that that's constant.
+So the overall complexity is still order n.
+Timing wise, maybe a little faster,
+but complexity is the same class.
+With that in mind, now let's look at bisection search.
+And when I want to look at bisection search,
+I'm going to use that idea of dividing the problem in half.
+So here's the rough idea, and then we'll implement it.
+I'm going to pick an index in the list that divides the list
+roughly in half.
+If it's not of even length, they're going to be close.
+So I'm going to pick a thing midway through,
+and I'm going to ask, is that element at the midpoint
+the thing I'm looking for.
+If it is, I'm done.
+Fantastic.
+If not, I'm going to ask is the thing I'm
+looking at bigger or smaller than the thing I'm looking for.
+And depending on that answer, I'll
+either throw away the right half or the left half of the list.
+Because I know that I can only lie in one of those two
+sublists.
+And I'm going to then do the same subdivision.
+This is something you've seen before.
+It's a divide and conquer algorithm.
+I'm breaking this up into smaller versions
+of the problem, smaller lists, and in fact, I'm
+reducing the size of the problem in half at each step.
+And of course, the nice property is the answer
+to the smaller version is still the answer
+to the original problem.
+Once I found it, I return true.
+If I can't find it, I return false.
+Let's look at what that says about the way we would actually
+do the search.
+So if I've got a list of some size,
+I'm going to start off looking at the midpoint saying is it
+there or not.
+n elements in that first version.
+If it isn't, let's assume that the thing I'm looking for
+is smaller than that midpoint.
+So then I look at only half the elements.
+And then let's assume in this case
+that the thing I'm looking for is
+bigger than the midpoint of that sublist.
+I'm going to look at n over 4 elements.
+And I'm going to keep reducing the size of the problem
+down by a factor of 2.
+So after i steps, I've got n over 2 to the i elements.
+And I'm done when I've only got one element left.
+Either it's the thing I'm looking for or not.
+So what do I know?
+I know I'm going to finish looking through the list
+when n over 2 to the i is just 1.
+And by a little bit of math, that's when i is log n.
+Wonderful.
+This is logarithmic in complexity
+where n is the length of the list.
+The characteristic-- cutting down the size of the problem
+by a constant factor at each stage.
+Wonderful thing to have if we can get it.
+So this is really nice.
+It's says if I've got a sorted list,
+I can do bisection search in log time.
+How would I implement it?
+I'll show you two examples and one
+that has a different kind of cost than the other.
+So here's the first version of it.
+Again, I've got a list l.
+I'm looking for a particular element.
+The base case is if there's nothing in the list,
+obviously it's not there.
+If I've only got one element in the list,
+I'd simply check to see is it the thing I'm looking for
+and return that Boolean value.
+If it is, it's true.
+If it's not, it's false.
+Otherwise, what I want to do is find the halfway point
+by taking the length of the list and doing an integer
+divide by 2, which is going to give me an int.
+And then I'm simply going to say is
+the thing at the halfway point bigger than the thing
+I'm looking for.
+And if it is, I'm going to search only 1/2 of the list.
+And if it isn't, I'm going to search
+a different half of the list.
+So there's a nice recursive way of solving this problem.
+But let's look at the complexity.
+That's constant.
+That's constant.
+That's great.
+That's constant-- also great.
+But that's not constant, and neither is that.
+And by that, I don't just mean there's a recursive call.
+We know that complexity.
+We know that's going to be logarithmic.
+The reason it's not constant is right there.
+I'm making a copy of the list.
+It's only half the list.
+But if you think about it, I'm making
+a copy of half the list in either case.
+And in the next recursive call, I'm
+going to make a copy of that half of the list,
+but that's going to add up to a larger complexity,
+and in fact, a complexity that is bigger
+than I want because of that cost of actually copying the list.
+What's an alternative?
+A very nice alternative is to say keep the list,
+but just keep track of where I'm looking at.
+So here I'm going to set up right here a little helper
+function.
+But it's going to have two arguments-- the lower
+half of the list I'm searching and the higher half of the list
+I'm searching.
+And what I'm going to simply do is change
+where those pointers go to.
+So let's look at it.
+Again, the base case down here is
+if I've got nothing in the list, the answer is clearly false.
+Otherwise, I'm going to call this helper function
+with the low pointer at the beginning
+of the list and the high pointer at the upper end of the list.
+And what does this now say?
+It says if the two pointers are at the same place,
+there's only one element there.
+I just check to see if it's the thing I'm looking for.
+Otherwise, I find the midpoint.
+We're taking the average of those two things.
+Ah.
+That's right.
+It says that's going to be halfway between low and high.
+If, at the midpoint, I have the thing I'm looking for,
+I return true.
+Otherwise, if the thing at the midpoint
+is bigger than what I'm looking for,
+then if there's nothing left to search, I just return false.
+Otherwise, I call it again with the same low point,
+but now my high point is reduced to the midpoint.
+I've thrown away half the things.
+And in the other case, I change my low point
+to keep the same high point.
+So if I were to think about it, it's
+as if I got my big list here.
+I start off with low pointing there and high pointing here.
+And after one recursive call, I might
+have low pointing there and high still pointing here.
+And after another recursive call,
+I might have high pointing there and low pointing there.
+But I'm cutting down half the search,
+but not copying the list.
+I'm just changing some numbers.
+So now if we look at the complexity here,
+that's not constant because of the recursive call.
+But within it, it is a constant amount of work,
+and the same thing there.
+So the only things I'm counting now
+are how many times do I do the recursive call,
+but the call itself does a constant amount of work.
+As a consequence, I've got now two algorithms.
+The first one has login calls.
+But within each of them, I have to make a copy of the list,
+and that's a cost of n.
+So overall, it's n log n.
+I could make it slightly tighter,
+but it's still going to be linear because of that copying
+effort.
+On the other hand, the second implementation
+simply uses the indices as the parameters.
+The list is never copied.
+And so the only cost here is, in fact, the recursive call.
+And that's really nice.
+Just to give you a sense of this,
+I've got those two implementations over here
+in my code.
+I'm going to run them into the machine,
+and I'm just going to show you that they, in fact, compute
+the same thing by calling bisection search.
+
+And I'm going to do the first version on a test list.
+And I'm going to ask if the number 9 is there,
+and it returns true.
+And I could call the same thing, but ask
+if the number 15 is there.
+And it returns false.
+And I can do bisection search with the more efficient
+version.
+Again, I'm going to call it with 9, and it returns true.
+And if I call it with 15, it also returns false.
+And it's really hard to see in the machine
+the difference in timing, because it's a very small list.
+But a complexity analysis tells us
+that the second solution is going
+to be much better than the first solution.
+So what do we have here?
+I want to search a sorted list where the size of the problem
+I'm going to call and the length of the list.
+Using linear search, order in.
+Using binary search, I can search for the element
+in order log n, which is great.
+But I had to assume that the list was sorted.
+So what does that say about the cost?
+Well, does it make sense to first sort
+the list and then search if I'm given
+a list in arbitrary order?
+So what that says is, well, I want
+to know when is it better to do sort and search rather
+than just search.
+And that basically says, well, when
+is the cost of sorting less than order and minus order log n.
+And that's when the cost of sorting is less than order n.
+And oh, darn.
+That's never true.
+Did I just waste your time?
+Of course not.
+Because if I'm only going to do it once,
+it's probably not worth doing the sort and then the search.
+I might as well just do a linear search.
+I can amortize the cost.
+And in particular, why would I bother sorting?
+Well, in many cases, I might simply
+want to sort the list once, but then do multiple searches.
+I'm looking for different elements inside of this list.
+I just did it with my little example on my machine.
+And so I can amortize the cost of the sort over many searches.
+If I'm going to do k searches, I then
+want to know when is the cost of sorting plus k searches-- so k
+times log n-- when is that less than just doing
+k linear searches?
+And for large k, that sort time becomes irrelevant,
+because it's always going to be the case that that log cost is
+much better than the linear cost.
+So it is still important to sort and then search.
+And that says we now need to look
+at how do we do the sorting.

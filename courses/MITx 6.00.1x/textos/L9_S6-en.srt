@@ -1,0 +1,1572 @@
+0
+00:00:00,000 --> 00:00:00,900
+...
+
+1
+00:00:00,900 --> 00:00:02,960
+So now we started building some classes.
+
+2
+00:00:02,960 --> 00:00:04,640
+And we said a key advantage is that we
+
+3
+00:00:04,640 --> 00:00:07,460
+get to cluster behaviors together around instances
+
+4
+00:00:07,460 --> 00:00:09,110
+of a class-- common behaviors.
+
+5
+00:00:09,110 --> 00:00:12,130
+Cats are a little bit different than rabbits, for example.
+
+6
+00:00:12,130 --> 00:00:14,610
+But an even more important property of classes
+
+7
+00:00:14,610 --> 00:00:17,460
+is that I can have hierarchies of classes--
+
+8
+00:00:17,460 --> 00:00:21,040
+that I could have cats and rabbits, and I do,
+
+9
+00:00:21,040 --> 00:00:23,640
+but they are also instances of animals,
+
+10
+00:00:23,640 --> 00:00:24,920
+as are other kinds of things.
+
+11
+00:00:24,920 --> 00:00:27,260
+So I've got, as we already started, the general idea
+
+12
+00:00:27,260 --> 00:00:28,660
+of a class of Animal.
+
+13
+00:00:28,660 --> 00:00:31,640
+And now I'd like to create a subclass of Animal that
+
+14
+00:00:31,640 --> 00:00:32,990
+has cat behaviors.
+
+15
+00:00:32,990 --> 00:00:35,480
+I'd like to create another subclass of Animal that
+
+16
+00:00:35,480 --> 00:00:37,062
+has rabbit behaviors.
+
+17
+00:00:37,062 --> 00:00:39,020
+I'd like to create a third class of Animal that
+
+18
+00:00:39,020 --> 00:00:40,536
+has people behaviors.
+
+19
+00:00:40,536 --> 00:00:41,910
+And even within people, there may
+
+20
+00:00:41,910 --> 00:00:43,460
+be other kinds of behaviors.
+
+21
+00:00:43,460 --> 00:00:46,090
+Students often tend to behave differently
+
+22
+00:00:46,090 --> 00:00:47,740
+than other kinds of people.
+
+23
+00:00:47,740 --> 00:00:50,570
+And what I'm doing is building a hierarchy.
+
+24
+00:00:50,570 --> 00:00:53,210
+Each one of these should be a separate class.
+
+25
+00:00:53,210 --> 00:00:55,510
+It should have common behaviors associated with cats
+
+26
+00:00:55,510 --> 00:00:58,410
+or associated with rabbits or associated with people.
+
+27
+00:00:58,410 --> 00:01:01,700
+But some of them may be shared across all of those classes.
+
+28
+00:01:01,700 --> 00:01:03,330
+And in this diagram, all of those
+
+29
+00:01:03,330 --> 00:01:06,090
+lie within the class of an Animal.
+
+30
+00:01:06,090 --> 00:01:08,180
+So they should have underlying behaviors.
+
+31
+00:01:08,180 --> 00:01:10,770
+Similarly, students have behaviors, some of which
+
+32
+00:01:10,770 --> 00:01:13,820
+are common to people, some of which are unique to students.
+
+33
+00:01:13,820 --> 00:01:16,540
+And I'd like to build classes that reflect exactly
+
+34
+00:01:16,540 --> 00:01:19,520
+that hierarchy, sharing the properties and the methods that
+
+35
+00:01:19,520 --> 00:01:22,400
+are common, but having distinct properties,
+
+36
+00:01:22,400 --> 00:01:25,390
+attributes, methods when appropriate.
+
+37
+00:01:25,390 --> 00:01:28,250
+So this leads to this idea of a hierarchy.
+
+38
+00:01:28,250 --> 00:01:29,825
+We've already begun to see it.
+
+39
+00:01:29,825 --> 00:01:32,275
+And in a hierarchy, we're going to have a parent class.
+
+40
+00:01:32,275 --> 00:01:34,650
+Here it's going to be Animal, although one could actually
+
+41
+00:01:34,650 --> 00:01:40,670
+argue that above this was the idea of an object or underlying
+
+42
+00:01:40,670 --> 00:01:41,740
+class.
+
+43
+00:01:41,740 --> 00:01:43,740
+But here, Animal is a parent class.
+
+44
+00:01:43,740 --> 00:01:45,930
+And it has some children subclasses.
+
+45
+00:01:45,930 --> 00:01:49,150
+And those children subclasses all inherit the behaviors
+
+46
+00:01:49,150 --> 00:01:53,154
+and data of the parents unless I explicitly override them.
+
+47
+00:01:53,154 --> 00:01:54,570
+One of the nice things, then, is I
+
+48
+00:01:54,570 --> 00:01:56,790
+could add more data to the subclasses,
+
+49
+00:01:56,790 --> 00:01:59,130
+I could add more behaviors to the subclasses,
+
+50
+00:01:59,130 --> 00:02:01,680
+and I could decide to have one of the subclasses have
+
+51
+00:02:01,680 --> 00:02:04,030
+a different behavior than the parent.
+
+52
+00:02:04,030 --> 00:02:05,520
+And I can override that.
+
+53
+00:02:05,520 --> 00:02:06,560
+And that's what we're going to do now,
+
+54
+00:02:06,560 --> 00:02:08,310
+is we're going to build a little hierarchy
+
+55
+00:02:08,310 --> 00:02:12,440
+and look at how we actually get those kinds of behaviors out.
+
+56
+00:02:12,440 --> 00:02:13,970
+There's my Animal class.
+
+57
+00:02:13,970 --> 00:02:15,230
+It's just what I had before.
+
+58
+00:02:15,230 --> 00:02:17,630
+I've got a way of creating them with an age and a name.
+
+59
+00:02:17,630 --> 00:02:18,450
+I've got getters.
+
+60
+00:02:18,450 --> 00:02:19,410
+I've got setters.
+
+61
+00:02:19,410 --> 00:02:20,914
+I got a way of printing them out.
+
+62
+00:02:20,914 --> 00:02:22,330
+Let's see what happens when I want
+
+63
+00:02:22,330 --> 00:02:24,480
+to build things on top of them.
+
+64
+00:02:24,480 --> 00:02:26,620
+So everything here is, of course, an object.
+
+65
+00:02:26,620 --> 00:02:29,970
+That means it inherits all of the pieces inside of Python.
+
+66
+00:02:29,970 --> 00:02:32,530
+And then the new object is going to define properties
+
+67
+00:02:32,530 --> 00:02:34,640
+that it's going to inherit from that class
+
+68
+00:02:34,640 --> 00:02:38,040
+but have its own properties on top of it.
+
+69
+00:02:38,040 --> 00:02:39,760
+Let's define a Cat.
+
+70
+00:02:39,760 --> 00:02:41,546
+I want the Cat to speak.
+
+71
+00:02:41,546 --> 00:02:43,170
+It's not very impressive how it speaks,
+
+72
+00:02:43,170 --> 00:02:44,970
+but it does have a speak() method.
+
+73
+00:02:44,970 --> 00:02:47,420
+And I also want to override the print() method,
+
+74
+00:02:47,420 --> 00:02:50,150
+because while a Cat's an Animal, I'd like to know when I see
+
+75
+00:02:50,150 --> 00:02:51,480
+a Cat that it is a Cat.
+
+76
+00:02:51,480 --> 00:02:54,220
+So I'm going to define a new string method associated
+
+77
+00:02:54,220 --> 00:02:56,240
+with the class Cat that prints out
+
+78
+00:02:56,240 --> 00:02:57,570
+almost the same kind of thing.
+
+79
+00:02:57,570 --> 00:02:59,660
+This is going to print out the name and the age.
+
+80
+00:02:59,660 --> 00:03:01,990
+But now I'm going to ask it to print out the symbol
+
+81
+00:03:01,990 --> 00:03:04,460
+cat to tell me that I'm looking at a Cat.
+
+82
+00:03:04,460 --> 00:03:07,760
+So I've added some new functionality with speak().
+
+83
+00:03:07,760 --> 00:03:11,050
+An instance of type Cat can now be called with those methods.
+
+84
+00:03:11,050 --> 00:03:14,360
+But an instance of type Animal will throw an error if I try
+
+85
+00:03:14,360 --> 00:03:18,210
+and use it with a method that only belongs to a Cat.
+
+86
+00:03:18,210 --> 00:03:20,210
+Let's look at an example of that.
+
+87
+00:03:20,210 --> 00:03:21,930
+But let's quickly remind you again,
+
+88
+00:03:21,930 --> 00:03:24,670
+I inherit all of the properties of an Animal.
+
+89
+00:03:24,670 --> 00:03:27,250
+I've added the new functionality there.
+
+90
+00:03:27,250 --> 00:03:30,560
+But I'm going to override other behaviors where necessary.
+
+91
+00:03:30,560 --> 00:03:33,080
+And I don't want to have those behaviors show up in places
+
+92
+00:03:33,080 --> 00:03:33,730
+that they shouldn't.
+
+93
+00:03:33,730 --> 00:03:35,979
+So animals are not going to be able to speak, at least
+
+94
+00:03:35,979 --> 00:03:38,160
+in the version I've got here.
+
+95
+00:03:38,160 --> 00:03:40,760
+Let's build a version of that.
+
+96
+00:03:40,760 --> 00:03:46,100
+And so I'm going to go to my computer and type this in.
+
+97
+00:03:46,100 --> 00:03:51,400
+And let's define Jelly to be a one-year-old Cat.
+
+98
+00:03:51,400 --> 00:03:54,100
+
+
+99
+00:03:54,100 --> 00:03:56,260
+All right.
+
+100
+00:03:56,260 --> 00:03:57,766
+I can set its name.
+
+101
+00:03:57,766 --> 00:03:59,890
+Now I could actually ask what the name of Jelly is.
+
+102
+00:03:59,890 --> 00:04:05,670
+So I could say to Jelly, give me your name.
+
+103
+00:04:05,670 --> 00:04:09,064
+I'll use getName() to get that out.
+
+104
+00:04:09,064 --> 00:04:10,326
+And it says, I don't have one.
+
+105
+00:04:10,326 --> 00:04:11,450
+You didn't give me one yet.
+
+106
+00:04:11,450 --> 00:04:11,949
+Hmm.
+
+107
+00:04:11,949 --> 00:04:12,540
+OK.
+
+108
+00:04:12,540 --> 00:04:13,920
+Let's change it.
+
+109
+00:04:13,920 --> 00:04:17,940
+And we'll say we're going to call Jelly,
+
+110
+00:04:17,940 --> 00:04:23,140
+just for fun reasons, Jelly Belly.
+
+111
+00:04:23,140 --> 00:04:28,820
+And now if I ask for Jelly's name-- ah, good.
+
+112
+00:04:28,820 --> 00:04:30,680
+There it is.
+
+113
+00:04:30,680 --> 00:04:36,610
+Now as a consequence, if I print Jelly, it tells me,
+
+114
+00:04:36,610 --> 00:04:38,410
+first of all, it's a Cat.
+
+115
+00:04:38,410 --> 00:04:40,620
+That comes from the string method associated
+
+116
+00:04:40,620 --> 00:04:42,400
+with an instance of a Cat.
+
+117
+00:04:42,400 --> 00:04:44,630
+It gives me the name of this particular instance
+
+118
+00:04:44,630 --> 00:04:45,280
+and its age.
+
+119
+00:04:45,280 --> 00:04:45,920
+All right.
+
+120
+00:04:45,920 --> 00:04:48,950
+So that string method is shadowing the Animal string
+
+121
+00:04:48,950 --> 00:04:50,000
+method.
+
+122
+00:04:50,000 --> 00:04:51,730
+And that's an important point.
+
+123
+00:04:51,730 --> 00:04:53,730
+Remember, if I-- this is a version of an Animal,
+
+124
+00:04:53,730 --> 00:04:57,340
+but it doesn't use the Animal string method when I use this.
+
+125
+00:04:57,340 --> 00:04:59,680
+And in fact, if I wanted to go back and look at that,
+
+126
+00:04:59,680 --> 00:05:01,690
+I could do what I just showed you there.
+
+127
+00:05:01,690 --> 00:05:03,740
+I could print out-- and here, I'm
+
+128
+00:05:03,740 --> 00:05:06,450
+going to say, take the Animal class,
+
+129
+00:05:06,450 --> 00:05:09,740
+get the string method associated with Animal,
+
+130
+00:05:09,740 --> 00:05:12,020
+and apply it to Jelly.
+
+131
+00:05:12,020 --> 00:05:14,800
+And I have to do that because Jelly will only see
+
+132
+00:05:14,800 --> 00:05:16,540
+the method associated with Cat.
+
+133
+00:05:16,540 --> 00:05:22,520
+And if I do that, it now prints out Animal, Jelly Belly, and 1.
+
+134
+00:05:22,520 --> 00:05:24,400
+So I can still get to that underlying method
+
+135
+00:05:24,400 --> 00:05:25,772
+if I really wanted to use it.
+
+136
+00:05:25,772 --> 00:05:27,230
+In a little bit, we're going to see
+
+137
+00:05:27,230 --> 00:05:30,820
+how we want to actually take advantage of that idea.
+
+138
+00:05:30,820 --> 00:05:33,620
+Let's make another Animal-- Blob.
+
+139
+00:05:33,620 --> 00:05:38,640
+This is an Animal, a one-year-old Animal.
+
+140
+00:05:38,640 --> 00:05:41,910
+And if I print it out, it tells me it's an Animal.
+
+141
+00:05:41,910 --> 00:05:44,160
+It says you've got None associated with the name,
+
+142
+00:05:44,160 --> 00:05:45,530
+because I don't have one there.
+
+143
+00:05:45,530 --> 00:05:47,670
+And its age is 1.
+
+144
+00:05:47,670 --> 00:05:49,560
+I could change that name as well.
+
+145
+00:05:49,560 --> 00:05:52,500
+I could say to Blob, set your name.
+
+146
+00:05:52,500 --> 00:05:55,220
+And since there's a default empty string for this,
+
+147
+00:05:55,220 --> 00:05:57,130
+I'm simply going to give it no argument.
+
+148
+00:05:57,130 --> 00:05:58,790
+And as we would expect from what I've
+
+149
+00:05:58,790 --> 00:06:00,770
+shown on the slide, when I print it out now,
+
+150
+00:06:00,770 --> 00:06:04,520
+it prints out Animal, Nothing, and the name.
+
+151
+00:06:04,520 --> 00:06:05,550
+Great.
+
+152
+00:06:05,550 --> 00:06:08,450
+I've got ways of dealing with different kinds of objects.
+
+153
+00:06:08,450 --> 00:06:11,600
+And you can see how the methods can shadow other methods higher
+
+154
+00:06:11,600 --> 00:06:12,800
+up in the hierarchy.
+
+155
+00:06:12,800 --> 00:06:15,210
+I'm always going to start with the class associated
+
+156
+00:06:15,210 --> 00:06:17,414
+with the instance and look for a method there.
+
+157
+00:06:17,414 --> 00:06:18,830
+If there isn't one, then I'm going
+
+158
+00:06:18,830 --> 00:06:21,440
+to go up the hierarchy to see if there's a method defined
+
+159
+00:06:21,440 --> 00:06:24,480
+earlier on in that chain.
+
+160
+00:06:24,480 --> 00:06:25,920
+OK.
+
+161
+00:06:25,920 --> 00:06:27,580
+Now let's define rabbits.
+
+162
+00:06:27,580 --> 00:06:30,150
+Again, as we have with cats, they can speak.
+
+163
+00:06:30,150 --> 00:06:31,770
+Rabbits can also speak.
+
+164
+00:06:31,770 --> 00:06:33,530
+In my experience, rabbits don't say a lot.
+
+165
+00:06:33,530 --> 00:06:35,990
+So I'm going to have it say something very quiet.
+
+166
+00:06:35,990 --> 00:06:38,647
+And similarly, I'm going to define a string
+
+167
+00:06:38,647 --> 00:06:40,480
+method here-- it looks a lot like the string
+
+168
+00:06:40,480 --> 00:06:43,590
+method for Cat-- but having me tell it it's a Rabbit
+
+169
+00:06:43,590 --> 00:06:46,190
+rather than telling me it's a Cat.
+
+170
+00:06:46,190 --> 00:06:48,070
+Easy to make the change.
+
+171
+00:06:48,070 --> 00:06:51,260
+And now if I go back to my computer,
+
+172
+00:06:51,260 --> 00:06:52,580
+I've already got Jelly.
+
+173
+00:06:52,580 --> 00:06:54,200
+I've defined that I've got Blob.
+
+174
+00:06:54,200 --> 00:06:59,490
+Let's call Peter, or give Peter to be an instance of a Rabbit
+
+175
+00:06:59,490 --> 00:07:02,890
+that's five years old.
+
+176
+00:07:02,890 --> 00:07:05,020
+I can now ask Jelly to speak.
+
+177
+00:07:05,020 --> 00:07:08,770
+
+
+178
+00:07:08,770 --> 00:07:12,460
+And it uses the method from Cat and says, "Meow."
+
+179
+00:07:12,460 --> 00:07:15,490
+Not impressive, I know, but it did the right thing.
+
+180
+00:07:15,490 --> 00:07:16,770
+There it is.
+
+181
+00:07:16,770 --> 00:07:19,270
+I could also ask Peter to speak.
+
+182
+00:07:19,270 --> 00:07:22,070
+
+
+183
+00:07:22,070 --> 00:07:24,320
+And he simply says, "Meep."
+
+184
+00:07:24,320 --> 00:07:26,130
+Why am I showing you this?
+
+185
+00:07:26,130 --> 00:07:29,120
+There are two speak() methods-- one associated with rabbits,
+
+186
+00:07:29,120 --> 00:07:30,990
+one associated with cats.
+
+187
+00:07:30,990 --> 00:07:34,730
+And what the system does is say, given Jelly,
+
+188
+00:07:34,730 --> 00:07:36,710
+let me get what that is bound to in the global
+
+189
+00:07:36,710 --> 00:07:38,250
+or the top-level environment.
+
+190
+00:07:38,250 --> 00:07:40,450
+That is a pointer to an instance--
+
+191
+00:07:40,450 --> 00:07:41,920
+an instance of a Cat.
+
+192
+00:07:41,920 --> 00:07:44,490
+And so because it's an instance, the dot says,
+
+193
+00:07:44,490 --> 00:07:47,610
+look up inside that instance the speak() method.
+
+194
+00:07:47,610 --> 00:07:49,660
+Now I didn't define speak() inside the instance.
+
+195
+00:07:49,660 --> 00:07:52,780
+But because this is an instance, I know it's a kind of Cat.
+
+196
+00:07:52,780 --> 00:07:55,540
+I look up the speak() method inside of Cat,
+
+197
+00:07:55,540 --> 00:07:59,010
+which is why it does the right thing, whereas down here,
+
+198
+00:07:59,010 --> 00:08:01,590
+this speak() method comes from Rabbit,
+
+199
+00:08:01,590 --> 00:08:04,726
+because that's what Peter is an instance of, and that's why it
+
+200
+00:08:04,726 --> 00:08:05,850
+prints out the right thing.
+
+201
+00:08:05,850 --> 00:08:09,180
+I use the appropriate method by letting the instance tell me
+
+202
+00:08:09,180 --> 00:08:12,095
+what kind of method I should look up.
+
+203
+00:08:12,095 --> 00:08:13,000
+All right.
+
+204
+00:08:13,000 --> 00:08:14,500
+Let's have Blob say something.
+
+205
+00:08:14,500 --> 00:08:18,290
+I don't know what blobs say, so let's have Blob speak.
+
+206
+00:08:18,290 --> 00:08:19,330
+Oh, goodness.
+
+207
+00:08:19,330 --> 00:08:22,650
+It complained, and it complained correctly,
+
+208
+00:08:22,650 --> 00:08:26,440
+because there is no speak() method associated with Animal.
+
+209
+00:08:26,440 --> 00:08:28,020
+Blob is an instance of Animal.
+
+210
+00:08:28,020 --> 00:08:30,280
+When I use this, I ask-- the dot says,
+
+211
+00:08:30,280 --> 00:08:32,400
+get-- Blob is an instance of Animal.
+
+212
+00:08:32,400 --> 00:08:33,580
+Look up an Animal.
+
+213
+00:08:33,580 --> 00:08:36,970
+The definition for a method for speak()-- there isn't one.
+
+214
+00:08:36,970 --> 00:08:39,870
+And this reinforces that idea that while I can inherit
+
+215
+00:08:39,870 --> 00:08:41,980
+methods from higher in the hierarchy,
+
+216
+00:08:41,980 --> 00:08:44,380
+something higher in the hierarchy cannot access
+
+217
+00:08:44,380 --> 00:08:46,060
+a method of a subclass.
+
+218
+00:08:46,060 --> 00:08:49,140
+Even though both cats and rabbits have speak() methods,
+
+219
+00:08:49,140 --> 00:08:52,050
+animals cannot get to them because they are below them
+
+220
+00:08:52,050 --> 00:08:54,840
+within the hierarchy.
+
+221
+00:08:54,840 --> 00:08:56,730
+So I get an attribute error, exactly what
+
+222
+00:08:56,730 --> 00:08:58,429
+I'd like to have happen.
+
+223
+00:08:58,429 --> 00:09:00,970
+I'm going to just recapture what we've already said but do it
+
+224
+00:09:00,970 --> 00:09:03,020
+in a little more concise form.
+
+225
+00:09:03,020 --> 00:09:05,340
+Which method should we use?
+
+226
+00:09:05,340 --> 00:09:08,220
+We know that a subclass can have methods with the same name
+
+227
+00:09:08,220 --> 00:09:09,470
+as a superclass.
+
+228
+00:09:09,470 --> 00:09:11,440
+But we always start with that subclass.
+
+229
+00:09:11,440 --> 00:09:13,900
+It shadows that higher-level method.
+
+230
+00:09:13,900 --> 00:09:16,450
+Subclasses can also have methods with the same name
+
+231
+00:09:16,450 --> 00:09:17,650
+as other subclasses.
+
+232
+00:09:17,650 --> 00:09:19,910
+I have speak() in Cat and in Rabbit.
+
+233
+00:09:19,910 --> 00:09:22,195
+I always let the type of the instance
+
+234
+00:09:22,195 --> 00:09:25,470
+direct me to finding the right method to use that.
+
+235
+00:09:25,470 --> 00:09:28,130
+And thus, as a consequence, for an instance of a class,
+
+236
+00:09:28,130 --> 00:09:30,920
+I look up the method in the current class definition.
+
+237
+00:09:30,920 --> 00:09:33,940
+If I don't find it, I go up the hierarchy looking for it
+
+238
+00:09:33,940 --> 00:09:37,600
+until I either find one and use it, or if I don't find one,
+
+239
+00:09:37,600 --> 00:09:39,100
+throw an error-- an exception saying
+
+240
+00:09:39,100 --> 00:09:41,166
+I don't know how to actually use that.
+
+241
+00:09:41,166 --> 00:09:43,790
+That nicely encapsulates or packages
+
+242
+00:09:43,790 --> 00:09:46,790
+names inside of class definitions associated
+
+243
+00:09:46,790 --> 00:09:49,634
+with instances.
+
+244
+00:09:49,634 --> 00:09:51,300
+A little bit of a messy slide, but let's
+
+245
+00:09:51,300 --> 00:09:54,850
+introduce one more kind of Animal-- a Person.
+
+246
+00:09:54,850 --> 00:09:57,140
+And that's a reasonable animal to have.
+
+247
+00:09:57,140 --> 00:09:59,760
+And I've got a number of pieces here I want to highlight out.
+
+248
+00:09:59,760 --> 00:10:02,940
+First of all, notice, this again is an instance
+
+249
+00:10:02,940 --> 00:10:08,140
+or a subclass of an Animal, as were rabbits, as were cats.
+
+250
+00:10:08,140 --> 00:10:10,950
+I've got an __init__() method, but it's a little bit
+
+251
+00:10:10,950 --> 00:10:12,280
+different.
+
+252
+00:10:12,280 --> 00:10:14,250
+So let's look at it carefully.
+
+253
+00:10:14,250 --> 00:10:16,569
+This __init__() method again has, as always,
+
+254
+00:10:16,569 --> 00:10:17,860
+the self as the first argument.
+
+255
+00:10:17,860 --> 00:10:19,370
+And it has two names I'm-- sorry,
+
+256
+00:10:19,370 --> 00:10:22,280
+two parameters I'm passing in, a name and an age.
+
+257
+00:10:22,280 --> 00:10:26,150
+But I'm going to now use the underlying Animal method
+
+258
+00:10:26,150 --> 00:10:27,790
+to create the instance.
+
+259
+00:10:27,790 --> 00:10:29,680
+And to get at it, I do what I just did.
+
+260
+00:10:29,680 --> 00:10:33,460
+I'm going to say, take Animal, the name of a class.
+
+261
+00:10:33,460 --> 00:10:35,490
+Get the __init__() method associated with that,
+
+262
+00:10:35,490 --> 00:10:38,280
+and call it to create the actual instance.
+
+263
+00:10:38,280 --> 00:10:41,030
+So I'm calling the Animal constructor here.
+
+264
+00:10:41,030 --> 00:10:44,760
+I'm also going to use the underlying setName() method
+
+265
+00:10:44,760 --> 00:10:50,170
+of Animal to change the name associated with this instance
+
+266
+00:10:50,170 --> 00:10:51,540
+of a Person.
+
+267
+00:10:51,540 --> 00:10:53,290
+In both cases, I have to get at it
+
+268
+00:10:53,290 --> 00:10:55,530
+by giving the name of the class and then
+
+269
+00:10:55,530 --> 00:10:58,030
+the name of the method that I want to use.
+
+270
+00:10:58,030 --> 00:11:01,710
+And then finally, I'm going to simply define friends
+
+271
+00:11:01,710 --> 00:11:03,910
+in this instance directly.
+
+272
+00:11:03,910 --> 00:11:06,630
+So I can add a new data attribute.
+
+273
+00:11:06,630 --> 00:11:09,060
+What I'm doing here is explicitly inheriting
+
+274
+00:11:09,060 --> 00:11:12,480
+the __init__() method of the superclass to create
+
+275
+00:11:12,480 --> 00:11:16,260
+the instance, so a different formal than we've seen before.
+
+276
+00:11:16,260 --> 00:11:16,827
+Great.
+
+277
+00:11:16,827 --> 00:11:19,160
+Now that I've got that, I can create a few other things.
+
+278
+00:11:19,160 --> 00:11:22,090
+I've got something that creates a way of getting out
+
+279
+00:11:22,090 --> 00:11:22,640
+the friends.
+
+280
+00:11:22,640 --> 00:11:24,510
+I've got a way of adding a new friend in.
+
+281
+00:11:24,510 --> 00:11:27,210
+This is simply adding a name into a list of things.
+
+282
+00:11:27,210 --> 00:11:30,060
+I can have a speak() method for a Person that's different than
+
+283
+00:11:30,060 --> 00:11:32,300
+a speak() method for a Cat or a Rabbit.
+
+284
+00:11:32,300 --> 00:11:33,760
+I can also do some other things.
+
+285
+00:11:33,760 --> 00:11:35,968
+And here's an instance where I'm going to get the age
+
+286
+00:11:35,968 --> 00:11:37,840
+difference between two people.
+
+287
+00:11:37,840 --> 00:11:42,460
+And I'm going to do it by using the getters for both instances
+
+288
+00:11:42,460 --> 00:11:43,910
+to get the difference.
+
+289
+00:11:43,910 --> 00:11:45,539
+And then I can actually compare those
+
+290
+00:11:45,539 --> 00:11:47,580
+to decide I want to print something different out
+
+291
+00:11:47,580 --> 00:11:49,246
+in terms of which one's younger or which
+
+292
+00:11:49,246 --> 00:11:50,940
+one's older as I do that.
+
+293
+00:11:50,940 --> 00:11:52,460
+And then finally, down here, I've
+
+294
+00:11:52,460 --> 00:11:54,950
+got a string method for Person as well, something
+
+295
+00:11:54,950 --> 00:11:56,950
+that I want to have that's going to override
+
+296
+00:11:56,950 --> 00:11:58,840
+the underlying string method.
+
+297
+00:11:58,840 --> 00:12:01,190
+And as before, if I really want to use the Animal string
+
+298
+00:12:01,190 --> 00:12:03,180
+method, I could.
+
+299
+00:12:03,180 --> 00:12:04,680
+Biggest difference here is where we
+
+300
+00:12:04,680 --> 00:12:09,210
+started, that I can explicitly call initialization or instance
+
+301
+00:12:09,210 --> 00:12:12,080
+creation methods of other methods-- sorry,
+
+302
+00:12:12,080 --> 00:12:13,830
+other classes within the hierarchy.
+
+303
+00:12:13,830 --> 00:12:16,460
+And I want to do that with a Person.
+
+304
+00:12:16,460 --> 00:12:18,690
+So let's create a couple of people.
+
+305
+00:12:18,690 --> 00:12:26,570
+Eric is a Person with the name Eric.
+
+306
+00:12:26,570 --> 00:12:29,530
+And he claims to be 45 years old.
+
+307
+00:12:29,530 --> 00:12:31,200
+And John is also a Person.
+
+308
+00:12:31,200 --> 00:12:34,570
+
+
+309
+00:12:34,570 --> 00:12:38,730
+And he claims to be 55 years old.
+
+310
+00:12:38,730 --> 00:12:40,390
+I can ask Eric to speak.
+
+311
+00:12:40,390 --> 00:12:43,190
+
+
+312
+00:12:43,190 --> 00:12:45,590
+And he just says, "Hello."
+
+313
+00:12:45,590 --> 00:12:48,850
+Key point again is that instance type tells me which speak()
+
+314
+00:12:48,850 --> 00:12:50,820
+method to use.
+
+315
+00:12:50,820 --> 00:12:52,437
+What else could I do?
+
+316
+00:12:52,437 --> 00:12:54,270
+I could ask, how old-- what's the difference
+
+317
+00:12:54,270 --> 00:12:56,100
+between Eric and John in age?
+
+318
+00:12:56,100 --> 00:12:58,910
+And so if I ask for the age difference between Eric
+
+319
+00:12:58,910 --> 00:13:01,880
+and John, it computes it and prints out
+
+320
+00:13:01,880 --> 00:13:04,200
+the string I asked it to.
+
+321
+00:13:04,200 --> 00:13:05,880
+That's great.
+
+322
+00:13:05,880 --> 00:13:08,010
+I could also, though, do it, as we did before,
+
+323
+00:13:08,010 --> 00:13:11,380
+just to remind you, directly by saying, get the Person
+
+324
+00:13:11,380 --> 00:13:14,461
+the method for age difference.
+
+325
+00:13:14,461 --> 00:13:16,719
+And in this case, let's do it between John and Eric.
+
+326
+00:13:16,719 --> 00:13:18,510
+And I'm doing it in the different direction
+
+327
+00:13:18,510 --> 00:13:19,934
+than I did before.
+
+328
+00:13:19,934 --> 00:13:21,600
+And it gives me out the appropriate kind
+
+329
+00:13:21,600 --> 00:13:22,871
+of information.
+
+330
+00:13:22,871 --> 00:13:25,370
+Just showing again, I can do that all within this hierarchy,
+
+331
+00:13:25,370 --> 00:13:28,000
+as I've done before.
+
+332
+00:13:28,000 --> 00:13:29,070
+OK.
+
+333
+00:13:29,070 --> 00:13:31,150
+What else might we do here?
+
+334
+00:13:31,150 --> 00:13:35,710
+Let's create a special kind of Person-- a Student.
+
+335
+00:13:35,710 --> 00:13:36,700
+A Student is a Person.
+
+336
+00:13:36,700 --> 00:13:38,658
+It's going to inherit a lot of those behaviors.
+
+337
+00:13:38,658 --> 00:13:41,210
+And it does it, again, by using Person.
+
+338
+00:13:41,210 --> 00:13:44,990
+But remember now, Person is also a subclass of Animal.
+
+339
+00:13:44,990 --> 00:13:47,550
+So a Student both inherits from Person,
+
+340
+00:13:47,550 --> 00:13:49,730
+but it will also inherit from Animal.
+
+341
+00:13:49,730 --> 00:13:52,280
+And that's going to be important in certain places.
+
+342
+00:13:52,280 --> 00:13:54,980
+I'm going to create a constructor for this.
+
+343
+00:13:54,980 --> 00:13:59,830
+And it is going to, in this case, use the Person creation
+
+344
+00:13:59,830 --> 00:14:01,760
+method, the initialization method.
+
+345
+00:14:01,760 --> 00:14:04,780
+And remember, that used inherently a direct call
+
+346
+00:14:04,780 --> 00:14:05,700
+to Animal.
+
+347
+00:14:05,700 --> 00:14:07,382
+So I can chain up here.
+
+348
+00:14:07,382 --> 00:14:09,090
+But the one other thing I want to do here
+
+349
+00:14:09,090 --> 00:14:11,524
+is, a Student has a major.
+
+350
+00:14:11,524 --> 00:14:12,690
+They're computer scientists.
+
+351
+00:14:12,690 --> 00:14:13,610
+They're economists.
+
+352
+00:14:13,610 --> 00:14:16,020
+So I'm going to define a new data attribute right here
+
+353
+00:14:16,020 --> 00:14:18,000
+in terms of doing that.
+
+354
+00:14:18,000 --> 00:14:20,170
+In my experience, students often change majors.
+
+355
+00:14:20,170 --> 00:14:22,990
+So I can do that by simply having them decide
+
+356
+00:14:22,990 --> 00:14:24,510
+they want to have a new major.
+
+357
+00:14:24,510 --> 00:14:28,700
+And I'm going to define a speak() method for Student.
+
+358
+00:14:28,700 --> 00:14:31,320
+And here I'm going to do something a little different.
+
+359
+00:14:31,320 --> 00:14:34,860
+I'm going to inherit from a module
+
+360
+00:14:34,860 --> 00:14:37,487
+the ability to just randomly pick a number.
+
+361
+00:14:37,487 --> 00:14:39,570
+And in this case, I'm going to let you look it up.
+
+362
+00:14:39,570 --> 00:14:43,140
+I import from the Miranda module ways of doing random--
+
+363
+00:14:43,140 --> 00:14:45,040
+and this particular call is going to give me
+
+364
+00:14:45,040 --> 00:14:47,269
+back a number between 0 and 1.
+
+365
+00:14:47,269 --> 00:14:49,560
+And that's going to allow me to define a different kind
+
+366
+00:14:49,560 --> 00:14:51,980
+of behavior for speak() here, which is that students change
+
+367
+00:14:51,980 --> 00:14:54,480
+their mind about what they want to say depending on how many
+
+368
+00:14:54,480 --> 00:14:55,829
+times they've done something.
+
+369
+00:14:55,829 --> 00:14:57,370
+And finally, at the bottom, I'm going
+
+370
+00:14:57,370 --> 00:15:00,120
+to define the string method.
+
+371
+00:15:00,120 --> 00:15:02,300
+And that overrides the Person string method,
+
+372
+00:15:02,300 --> 00:15:06,360
+which already overrode the Animal string method.
+
+373
+00:15:06,360 --> 00:15:06,930
+All right.
+
+374
+00:15:06,930 --> 00:15:09,140
+Let's see what happens if we create people.
+
+375
+00:15:09,140 --> 00:15:09,950
+I've got Eric.
+
+376
+00:15:09,950 --> 00:15:10,690
+I've got Fred.
+
+377
+00:15:10,690 --> 00:15:13,380
+And I'm simply now going to show you what happens here.
+
+378
+00:15:13,380 --> 00:15:17,140
+If I print out Fred-- because if I go back here for a second,
+
+379
+00:15:17,140 --> 00:15:20,620
+there's the string method; it was the label Student,
+
+380
+00:15:20,620 --> 00:15:24,374
+the name, the age, and the major-- printing
+
+381
+00:15:24,374 --> 00:15:26,040
+out Fred prints out something different,
+
+382
+00:15:26,040 --> 00:15:28,970
+because it uses the method from Student.
+
+383
+00:15:28,970 --> 00:15:32,286
+If I ask Fred to talk, well, I can do it multiple times.
+
+384
+00:15:32,286 --> 00:15:33,660
+And in fact, the behavior changes
+
+385
+00:15:33,660 --> 00:15:35,380
+here, because each time I call it,
+
+386
+00:15:35,380 --> 00:15:37,630
+it computes a random number between 0 and 1
+
+387
+00:15:37,630 --> 00:15:39,520
+and, based on that value, he either
+
+388
+00:15:39,520 --> 00:15:41,700
+says, "I have homework," "I'm watching TV,"
+
+389
+00:15:41,700 --> 00:15:45,450
+or "I'm really starving and I should go eat."
+
+390
+00:15:45,450 --> 00:15:48,266
+Again, Fred tells me which speak() method to do.
+
+391
+00:15:48,266 --> 00:15:49,640
+And that's really nice, because I
+
+392
+00:15:49,640 --> 00:15:53,150
+don't get confused about which behavior I want to have.
+

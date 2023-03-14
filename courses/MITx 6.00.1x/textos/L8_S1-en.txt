@@ -1,0 +1,274 @@
+...
+So far in this course, you've learned
+a lot about how to program.
+You learned about data structures.
+You learned about writing procedures
+that accomplish things, including
+doing them in different ways.
+And you've begun to have the ability
+to write fairly complicated code.
+And you've also undoubtedly experienced
+that that leads to bugs.
+And so we've talked a little bit about how
+to think about testing and debugging,
+to get your code to do what you wanted it to do.
+And in that discussion, we talked about things
+like defensive programming, setting things
+up so that you plan ahead to try and prevent code or at least
+prevent bugs rather, or at least have
+them arise in a way in which you can handle them well.
+And we've talked about the kinds of messages
+that the computer gives you when things
+don't go the way you expect it.
+Today, we're going to pick up on both of those topics,
+to talk about the use of exceptions
+and the use of assertions, both to accomplish
+defensive programming and to let you actually
+control how the computer reacts when something
+goes in an unexpected way.
+So let's look at that.
+Exceptions really deal with that question
+of what happens when I'm running a procedure and something
+happens I didn't expect.
+I hit an unexpected condition.
+It's an exception to what we plan for,
+what we wanted to have happen.
+And what we've already seen is you will get an exception
+to what was expected and that will lead typically
+to a message from Python.
+Some examples are you have a list
+and you try and access something beyond the length of that list.
+A little example right here.
+I have a list of length 3.
+I try and access the fourth point,
+and I get a little message saying I have an index error.
+It's telling me I've tried to go too far.
+I could have something where I try and convert
+an inappropriate type.
+I get a type error.
+I try and reference a variable.
+Get the value for a variable, but I haven't defined it yet.
+I got a name error.
+I try and mix types together without actually forcing
+one or coercing one into being of the appropriate type.
+And I get a type error.
+These are all examples of an exception to what was expected.
+These are from Python's perspective.
+So what will we do with those things?
+Well, before we talk about that, let's think about some
+of the other kinds of common errors
+you've probably seen here.
+Syntax error.
+Python can't parse the program.
+It doesn't satisfy the rules of writing legal expressions.
+A name error.
+Either a local or global name has not been found by Python.
+An attribute error.
+When I introduce a class, which we're going to do shortly,
+or when I actually try and access an existing Python
+class, a reference fails.
+Type error we've already talked about.
+A value error is one where I give an expression, an operand
+that is done legally in terms of the type,
+but the value doesn't make sense.
+And Python will complain.
+And finally, an input/output error, or an I/O error.
+Typically, I try and get a file and it doesn't exist.
+So these are common types of errors.
+And again, part of our question is, what should we
+do when these things happen?
+We've seen some of the options already.
+So what do we do when we run into an error?
+One option is just to fail silently.
+That is, substitute in a default value or just keep carrying on.
+Bad idea.
+Really bad idea.
+In fact, let me circle it because it's such a bad idea.
+The user gets no warning in this case
+that something has happened inappropriately.
+And while it's tempting to think about, well, let's just
+substitute in a default value for this and keep going,
+that could lead to all sorts of problems
+when you try and use that value later on.
+Second option is what we've already been doing,
+return an error value.
+There we have questions like, well,
+what value should I choose to return?
+And if I am going to return an explicit error value rather
+than printing out an error message,
+then I have to decide, how do I have code that
+might get that error message?
+Deal with it.
+I'm going to have to check for a special value.
+But it's still an option.
+And the third option is the one that we
+do right now, which is when we get an unexpected condition,
+we stop execution.
+And in Python, we say it raises an exception.
+It literally has a piece of code built into it
+with a special word raise that raises
+an exception with a string that describes what was
+going on when this happened.
+In fact, you've been seeing that when
+you run code that doesn't run as you expect it.
+Python is putting out of an error message,
+raising an exception saying, I've got a type error.
+And here's where you were when that happened.
+I know many of you have just ignored that and gone back
+into the code, but that error description actually
+is valuable.
+It tells you something about what
+was going on when an unexpected circumstances arose.
+And that helps you do the debugging.
+OK.
+With that in mind, we can now think
+about doing things a little bit differently.
+And in particular, we can give you
+as a programmer, or Python in the built-in system,
+the opportunity to actually handle
+an exception when it happens.
+So here's a little piece of code.
+And I want to walk you through this
+to let you see what happens here.
+Try is a special keyword.
+And what it says is, with the indentation,
+here's a block of code.
+And what I'm going to ask the system to do
+is to try to execute that code.
+So it's just like I was having that code being handled inside
+of a Python Shell.
+It's going to ask for some input.
+It's going to ask for some more input.
+It's going to then print out the ratio.
+And it's going to print out a message.
+But the difference here is the following.
+If try runs that block of code and everything
+works well, great.
+I jump down to here and simply print out what I had.
+On the other hand, if an exception is raised,
+the most likely one is that I'm trying to divide by 0.
+But I might also give in a string rather than the number.
+If an exception is raised, particularly here in this print
+statement, then I'm going to jump to the except case.
+Again, a keyword that highlights a block of code.
+And in that case, I'm going to execute this information
+and jump outside of the loop.
+So say it one more time.
+Try says try to execute each of these instructions in turn.
+But if an exception is raised, stop that processing,
+jump to the except clause, and execute those statements.
+And then, carry on outside of the entire loop.
+This allows me to define things that I
+would like to do in the case that an exception arises.
+And right now, it's simply printing out a message
+and stopping additional processing.
+But in a second, we'll get to using this a little bit
+differently.
+So I'm going to now do a version of this code on my computer.
+And I've already pre-typed it in,
+so I've got an example of that little try loop.
+And actually, I realize I said something a little different
+here.
+So I'll change it to say OK in that place.
+And I'm going to add one more piece to this,
+to make it consistent with what we had there, which
+is I'm going to put a print statement right here that
+says we're outside.
+And with that in mind, let's run it.
+So it says, give me a number.
+I give it 1.
+It says give me another number.
+I give it 2.
+And notice what it did.
+It printed out the ratio as a float.
+And it was then able to go to the next line, which says,
+print out OK.
+And it skipped past the except clause
+because there's no error here and it's simply printed,
+I'm outside the loop.
+Let's try it again, but this time I'm
+going to give it an incorrect set of inputs.
+I give it a number.
+And I give it a 0.
+And in this case, I got an error because trying
+to take the ratio is going to give me a divide by 0 error.
+It doesn't say that here because I'm handling the exception.
+But notice what happened.
+It didn't print OK because that division
+of a by b led to an exception.
+It jumped straight to the except clause.
+And in this case, it printed out my error message,
+which says there's a bug in the user input.
+And then it goes to the statement
+outside of the overall loop and prints out outside.
+The difference here is, if I didn't have an exception,
+it would have printed out a divide by 0 error.
+Now, I'm actually going to be able to control.
+What do I do when I see an exception?
+But you can also see it stops the operation,
+jumps to the except clause, deals with that,
+and then goes outside the loop.
+All right.
+With that in mind, I can now amplify this.
+Let's take the same kind of example, but now say,
+gee, there could be different kinds of errors.
+Maybe I want to do something different in each case.
+So for example, if I typed in something that was a string,
+it's not going to be able to do the division because it can't
+divide strings by numbers.
+That raises a value error.
+It's an exception.
+And in that case, I could print out something useful saying,
+all right.
+In that case, I didn't have a number.
+I want to think about that differently.
+If I gave it as I did in my example, a division
+by 0 problem, it will print out something more informative
+there telling me what went on when I had that happen.
+And in the final case, if neither of these exceptions
+come up but some other exception does,
+I'll still have a default case that I'll
+use to handle that exception.
+I could run the same code.
+I'm not going to do it here, but I could run the same code
+and you would see the same kind of behavior.
+If the code runs properly, it will never
+get to any of these cases.
+But if I hit an exception, if it's one
+that I know how to handle, like a value error,
+I'll deal with it.
+A division by 0 error, I'll deal with it.
+Otherwise, I'll go and deal with the overall general idea.
+What else might I have when I want to deal with exceptions?
+Well, two other pieces.
+One is there may be some code that I
+want to do even if it runs without any exceptions.
+And so I can put in the keyword else
+followed by a body of code.
+And that will be executed when the execution of the try body
+works correctly.
+This lets me pull things outside of the try body.
+I could leave them in there if I wanted,
+but it lets me pull things outside of the try body
+to isolate them as being things I always want
+to do if it runs correctly.
+And finally, I can have the finally keyword.
+And this identifies a body of code
+with the following property.
+This is always executed after try, else, and except clauses,
+even if they raise another error or they execute a break,
+a continue, or a return.
+And this is handy when I want to clean up some code,
+no matter what happened in the earlier code.
+Typically, this would be something
+like closing a file so that I don't leave it hanging open.
+But it lets me specify sets of things
+I will do independent of what happens in the try loop.
+Whether it runs correctly, it hits an exception,
+and then deals with an else or an except clause,
+or even if it breaks out of that execution and carries on.
+So there are the pieces of dealing with exceptions.
+And we're going to look at some examples of using
+it to actually think about how to handle code using ways
+to deal with exceptions in manners that we want
+and not just throwing an error as Python currently does.

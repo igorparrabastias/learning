@@ -1,0 +1,393 @@
+...
+So now we started building some classes.
+And we said a key advantage is that we
+get to cluster behaviors together around instances
+of a class-- common behaviors.
+Cats are a little bit different than rabbits, for example.
+But an even more important property of classes
+is that I can have hierarchies of classes--
+that I could have cats and rabbits, and I do,
+but they are also instances of animals,
+as are other kinds of things.
+So I've got, as we already started, the general idea
+of a class of Animal.
+And now I'd like to create a subclass of Animal that
+has cat behaviors.
+I'd like to create another subclass of Animal that
+has rabbit behaviors.
+I'd like to create a third class of Animal that
+has people behaviors.
+And even within people, there may
+be other kinds of behaviors.
+Students often tend to behave differently
+than other kinds of people.
+And what I'm doing is building a hierarchy.
+Each one of these should be a separate class.
+It should have common behaviors associated with cats
+or associated with rabbits or associated with people.
+But some of them may be shared across all of those classes.
+And in this diagram, all of those
+lie within the class of an Animal.
+So they should have underlying behaviors.
+Similarly, students have behaviors, some of which
+are common to people, some of which are unique to students.
+And I'd like to build classes that reflect exactly
+that hierarchy, sharing the properties and the methods that
+are common, but having distinct properties,
+attributes, methods when appropriate.
+So this leads to this idea of a hierarchy.
+We've already begun to see it.
+And in a hierarchy, we're going to have a parent class.
+Here it's going to be Animal, although one could actually
+argue that above this was the idea of an object or underlying
+class.
+But here, Animal is a parent class.
+And it has some children subclasses.
+And those children subclasses all inherit the behaviors
+and data of the parents unless I explicitly override them.
+One of the nice things, then, is I
+could add more data to the subclasses,
+I could add more behaviors to the subclasses,
+and I could decide to have one of the subclasses have
+a different behavior than the parent.
+And I can override that.
+And that's what we're going to do now,
+is we're going to build a little hierarchy
+and look at how we actually get those kinds of behaviors out.
+There's my Animal class.
+It's just what I had before.
+I've got a way of creating them with an age and a name.
+I've got getters.
+I've got setters.
+I got a way of printing them out.
+Let's see what happens when I want
+to build things on top of them.
+So everything here is, of course, an object.
+That means it inherits all of the pieces inside of Python.
+And then the new object is going to define properties
+that it's going to inherit from that class
+but have its own properties on top of it.
+Let's define a Cat.
+I want the Cat to speak.
+It's not very impressive how it speaks,
+but it does have a speak() method.
+And I also want to override the print() method,
+because while a Cat's an Animal, I'd like to know when I see
+a Cat that it is a Cat.
+So I'm going to define a new string method associated
+with the class Cat that prints out
+almost the same kind of thing.
+This is going to print out the name and the age.
+But now I'm going to ask it to print out the symbol
+cat to tell me that I'm looking at a Cat.
+So I've added some new functionality with speak().
+An instance of type Cat can now be called with those methods.
+But an instance of type Animal will throw an error if I try
+and use it with a method that only belongs to a Cat.
+Let's look at an example of that.
+But let's quickly remind you again,
+I inherit all of the properties of an Animal.
+I've added the new functionality there.
+But I'm going to override other behaviors where necessary.
+And I don't want to have those behaviors show up in places
+that they shouldn't.
+So animals are not going to be able to speak, at least
+in the version I've got here.
+Let's build a version of that.
+And so I'm going to go to my computer and type this in.
+And let's define Jelly to be a one-year-old Cat.
+
+All right.
+I can set its name.
+Now I could actually ask what the name of Jelly is.
+So I could say to Jelly, give me your name.
+I'll use getName() to get that out.
+And it says, I don't have one.
+You didn't give me one yet.
+Hmm.
+OK.
+Let's change it.
+And we'll say we're going to call Jelly,
+just for fun reasons, Jelly Belly.
+And now if I ask for Jelly's name-- ah, good.
+There it is.
+Now as a consequence, if I print Jelly, it tells me,
+first of all, it's a Cat.
+That comes from the string method associated
+with an instance of a Cat.
+It gives me the name of this particular instance
+and its age.
+All right.
+So that string method is shadowing the Animal string
+method.
+And that's an important point.
+Remember, if I-- this is a version of an Animal,
+but it doesn't use the Animal string method when I use this.
+And in fact, if I wanted to go back and look at that,
+I could do what I just showed you there.
+I could print out-- and here, I'm
+going to say, take the Animal class,
+get the string method associated with Animal,
+and apply it to Jelly.
+And I have to do that because Jelly will only see
+the method associated with Cat.
+And if I do that, it now prints out Animal, Jelly Belly, and 1.
+So I can still get to that underlying method
+if I really wanted to use it.
+In a little bit, we're going to see
+how we want to actually take advantage of that idea.
+Let's make another Animal-- Blob.
+This is an Animal, a one-year-old Animal.
+And if I print it out, it tells me it's an Animal.
+It says you've got None associated with the name,
+because I don't have one there.
+And its age is 1.
+I could change that name as well.
+I could say to Blob, set your name.
+And since there's a default empty string for this,
+I'm simply going to give it no argument.
+And as we would expect from what I've
+shown on the slide, when I print it out now,
+it prints out Animal, Nothing, and the name.
+Great.
+I've got ways of dealing with different kinds of objects.
+And you can see how the methods can shadow other methods higher
+up in the hierarchy.
+I'm always going to start with the class associated
+with the instance and look for a method there.
+If there isn't one, then I'm going
+to go up the hierarchy to see if there's a method defined
+earlier on in that chain.
+OK.
+Now let's define rabbits.
+Again, as we have with cats, they can speak.
+Rabbits can also speak.
+In my experience, rabbits don't say a lot.
+So I'm going to have it say something very quiet.
+And similarly, I'm going to define a string
+method here-- it looks a lot like the string
+method for Cat-- but having me tell it it's a Rabbit
+rather than telling me it's a Cat.
+Easy to make the change.
+And now if I go back to my computer,
+I've already got Jelly.
+I've defined that I've got Blob.
+Let's call Peter, or give Peter to be an instance of a Rabbit
+that's five years old.
+I can now ask Jelly to speak.
+
+And it uses the method from Cat and says, "Meow."
+Not impressive, I know, but it did the right thing.
+There it is.
+I could also ask Peter to speak.
+
+And he simply says, "Meep."
+Why am I showing you this?
+There are two speak() methods-- one associated with rabbits,
+one associated with cats.
+And what the system does is say, given Jelly,
+let me get what that is bound to in the global
+or the top-level environment.
+That is a pointer to an instance--
+an instance of a Cat.
+And so because it's an instance, the dot says,
+look up inside that instance the speak() method.
+Now I didn't define speak() inside the instance.
+But because this is an instance, I know it's a kind of Cat.
+I look up the speak() method inside of Cat,
+which is why it does the right thing, whereas down here,
+this speak() method comes from Rabbit,
+because that's what Peter is an instance of, and that's why it
+prints out the right thing.
+I use the appropriate method by letting the instance tell me
+what kind of method I should look up.
+All right.
+Let's have Blob say something.
+I don't know what blobs say, so let's have Blob speak.
+Oh, goodness.
+It complained, and it complained correctly,
+because there is no speak() method associated with Animal.
+Blob is an instance of Animal.
+When I use this, I ask-- the dot says,
+get-- Blob is an instance of Animal.
+Look up an Animal.
+The definition for a method for speak()-- there isn't one.
+And this reinforces that idea that while I can inherit
+methods from higher in the hierarchy,
+something higher in the hierarchy cannot access
+a method of a subclass.
+Even though both cats and rabbits have speak() methods,
+animals cannot get to them because they are below them
+within the hierarchy.
+So I get an attribute error, exactly what
+I'd like to have happen.
+I'm going to just recapture what we've already said but do it
+in a little more concise form.
+Which method should we use?
+We know that a subclass can have methods with the same name
+as a superclass.
+But we always start with that subclass.
+It shadows that higher-level method.
+Subclasses can also have methods with the same name
+as other subclasses.
+I have speak() in Cat and in Rabbit.
+I always let the type of the instance
+direct me to finding the right method to use that.
+And thus, as a consequence, for an instance of a class,
+I look up the method in the current class definition.
+If I don't find it, I go up the hierarchy looking for it
+until I either find one and use it, or if I don't find one,
+throw an error-- an exception saying
+I don't know how to actually use that.
+That nicely encapsulates or packages
+names inside of class definitions associated
+with instances.
+A little bit of a messy slide, but let's
+introduce one more kind of Animal-- a Person.
+And that's a reasonable animal to have.
+And I've got a number of pieces here I want to highlight out.
+First of all, notice, this again is an instance
+or a subclass of an Animal, as were rabbits, as were cats.
+I've got an __init__() method, but it's a little bit
+different.
+So let's look at it carefully.
+This __init__() method again has, as always,
+the self as the first argument.
+And it has two names I'm-- sorry,
+two parameters I'm passing in, a name and an age.
+But I'm going to now use the underlying Animal method
+to create the instance.
+And to get at it, I do what I just did.
+I'm going to say, take Animal, the name of a class.
+Get the __init__() method associated with that,
+and call it to create the actual instance.
+So I'm calling the Animal constructor here.
+I'm also going to use the underlying setName() method
+of Animal to change the name associated with this instance
+of a Person.
+In both cases, I have to get at it
+by giving the name of the class and then
+the name of the method that I want to use.
+And then finally, I'm going to simply define friends
+in this instance directly.
+So I can add a new data attribute.
+What I'm doing here is explicitly inheriting
+the __init__() method of the superclass to create
+the instance, so a different formal than we've seen before.
+Great.
+Now that I've got that, I can create a few other things.
+I've got something that creates a way of getting out
+the friends.
+I've got a way of adding a new friend in.
+This is simply adding a name into a list of things.
+I can have a speak() method for a Person that's different than
+a speak() method for a Cat or a Rabbit.
+I can also do some other things.
+And here's an instance where I'm going to get the age
+difference between two people.
+And I'm going to do it by using the getters for both instances
+to get the difference.
+And then I can actually compare those
+to decide I want to print something different out
+in terms of which one's younger or which
+one's older as I do that.
+And then finally, down here, I've
+got a string method for Person as well, something
+that I want to have that's going to override
+the underlying string method.
+And as before, if I really want to use the Animal string
+method, I could.
+Biggest difference here is where we
+started, that I can explicitly call initialization or instance
+creation methods of other methods-- sorry,
+other classes within the hierarchy.
+And I want to do that with a Person.
+So let's create a couple of people.
+Eric is a Person with the name Eric.
+And he claims to be 45 years old.
+And John is also a Person.
+
+And he claims to be 55 years old.
+I can ask Eric to speak.
+
+And he just says, "Hello."
+Key point again is that instance type tells me which speak()
+method to use.
+What else could I do?
+I could ask, how old-- what's the difference
+between Eric and John in age?
+And so if I ask for the age difference between Eric
+and John, it computes it and prints out
+the string I asked it to.
+That's great.
+I could also, though, do it, as we did before,
+just to remind you, directly by saying, get the Person
+the method for age difference.
+And in this case, let's do it between John and Eric.
+And I'm doing it in the different direction
+than I did before.
+And it gives me out the appropriate kind
+of information.
+Just showing again, I can do that all within this hierarchy,
+as I've done before.
+OK.
+What else might we do here?
+Let's create a special kind of Person-- a Student.
+A Student is a Person.
+It's going to inherit a lot of those behaviors.
+And it does it, again, by using Person.
+But remember now, Person is also a subclass of Animal.
+So a Student both inherits from Person,
+but it will also inherit from Animal.
+And that's going to be important in certain places.
+I'm going to create a constructor for this.
+And it is going to, in this case, use the Person creation
+method, the initialization method.
+And remember, that used inherently a direct call
+to Animal.
+So I can chain up here.
+But the one other thing I want to do here
+is, a Student has a major.
+They're computer scientists.
+They're economists.
+So I'm going to define a new data attribute right here
+in terms of doing that.
+In my experience, students often change majors.
+So I can do that by simply having them decide
+they want to have a new major.
+And I'm going to define a speak() method for Student.
+And here I'm going to do something a little different.
+I'm going to inherit from a module
+the ability to just randomly pick a number.
+And in this case, I'm going to let you look it up.
+I import from the Miranda module ways of doing random--
+and this particular call is going to give me
+back a number between 0 and 1.
+And that's going to allow me to define a different kind
+of behavior for speak() here, which is that students change
+their mind about what they want to say depending on how many
+times they've done something.
+And finally, at the bottom, I'm going
+to define the string method.
+And that overrides the Person string method,
+which already overrode the Animal string method.
+All right.
+Let's see what happens if we create people.
+I've got Eric.
+I've got Fred.
+And I'm simply now going to show you what happens here.
+If I print out Fred-- because if I go back here for a second,
+there's the string method; it was the label Student,
+the name, the age, and the major-- printing
+out Fred prints out something different,
+because it uses the method from Student.
+If I ask Fred to talk, well, I can do it multiple times.
+And in fact, the behavior changes
+here, because each time I call it,
+it computes a random number between 0 and 1
+and, based on that value, he either
+says, "I have homework," "I'm watching TV,"
+or "I'm really starving and I should go eat."
+Again, Fred tells me which speak() method to do.
+And that's really nice, because I
+don't get confused about which behavior I want to have.

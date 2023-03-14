@@ -1,0 +1,208 @@
+...
+So now that we've had the idea of creating
+a recipe as a generic idea.
+We know a little bit about what's inside the machine.
+What we need to do is put those two things together.
+We want to now go from a description
+of a process to a specific set of statements
+that we can store in the machine so
+that that interpreter, that evaluator,
+can then run those operations to use
+the primitives inside the machine to do the work for us.
+As we said, the programming language
+is going to provide us with a set of primitive operations.
+And the next step is to start talking about how
+do we put them together.
+To do that, we use something that we call an expression.
+And the expressions in a language
+are simply more complex but legal combinations
+of primitives that the programming language
+will recognize.
+And we're going to start building those up.
+So you're finally getting to the stage,
+after all of this high level discussion,
+of getting to the place where we're
+going to begin to get the computer to do something.
+One of the things we're going to talk about though
+is that any legal expression in a programming
+language, any computation, has associated with it a value.
+That value is the meaning of the expression.
+And that's going to be important, in part
+because if we know we want to get
+to a particular computation, we want
+to understand how do we get to that value,
+well how do we back out of that the sequence of steps,
+the expressions that are going to compute it for us.
+So let's look at how we put this together.
+Every programming language could be thought of
+as consisting of a set of primitives,
+a means of combination, a way of putting those primitives
+together to create new expressions,
+and a means of abstraction, a way
+of taking some complex expression
+and treating it as it's a primitive.
+To talk about this in a programming language,
+I'm going to give you an analogy to a natural language
+like English.
+In English, what are the primitive constructs?
+They're words, lots of them, some of them
+more common than others.
+In a programming language, we also have primitive constructs.
+These are the atoms on which we're going to build things.
+And in a programming language those
+are typically numbers, strings, or just sequences
+of characters, and simple operations, the things that
+were provided to us by the manufacturer-- addition,
+subtraction, comparison.
+Given those primitives, we want to put them together.
+When we put them together, we have
+to think about two different parts.
+This is taking you back to an English class,
+because we have both the syntax and the semantics.
+The syntax is that parsing of a sentence to know,
+is this a legal sentence or not.
+And some combinations of expressions are legal.
+Some are not.
+For example in English, cat dog or boy
+is not syntactically valid.
+It does not make sense.
+There is no verb in there.
+On the other hand, cat hugs boy is syntactically valid.
+It is a noun, a verb, a noun.
+That's something that makes sense.
+The same thing's going to happen in programming languages.
+Some combinations of primitives are not legal.
+They're not syntactically valid.
+For example this expression right
+here, the first part-- we're going
+to come to this in a second-- is a string.
+It's a sequence of characters enclosed in double quotes
+followed by a number.
+It's not a legal expression.
+On the other hand, as we'll see in a second,
+this is a syntactically valid expression.
+It consists of a number, an operator, and a number.
+So we're going to talk about how do we
+put together legal expressions.
+What is the syntax of those, both
+in terms of simple combinations like this and how
+we do it when we get to more complex aspects
+of the language?
+Associated with every expression that is syntactically valid
+is potentially a meaning, the semantics.
+What does this expression evaluate to?
+And here we're going to separate out both static semantics
+and full semantics.
+Static semantics tells us which syntactically valid strings
+actually have a meaning.
+In English, in bad English, the sentence I are hungry
+is not actually meaningful.
+It's syntactically valid, meaning
+it's put together properly.
+It's in this case a pronoun, a verb, and then an adjective.
+A perfectly legal combination, but semantically
+it doesn't make sense.
+Same thing happens in a programming language.
+The first expression, 3.2 times 5, is syntactically valid.
+The second one, 3 plus the string hi,
+is syntactically valid.
+It is a primitive, an operator, and a primitive,
+but semantically it doesn't make sense.
+I can't add a number and a string together.
+So we have to distinguish things that are not
+statically semantically valid because they're not
+going to be expressions we want to try and assign a meaning to.
+Once we have both syntactically correct and static semantically
+correct expressions, we want to then know
+what's the meaning associated with them.
+And I'm going to start building this up.
+Semantics then is the meaning associated
+with that syntactically correct string of symbols
+with no semantic errors.
+Even here there can be some wonderful nuances.
+In English, we can have a sentence
+that's both statically semantically
+correct and syntactically correct,
+but can have multiple meanings.
+Flying planes can be dangerous.
+Does that mean if I'm flying that it's dangerous?
+Does it mean if they come out of the air and crash on you
+they're dangerous?
+There are multiple interpretations to it.
+Or from an old joke, this reading lamp
+hasn't uttered a word since I bought it,
+obviously playing on the word reading
+lamp in a different way-- different meanings associated
+with it.
+In a programming language, there's
+both good news and bad news.
+The good news is any syntactically correct
+and static semantically correct expression in a programming
+language will only have one meaning.
+But the challenge is it might not
+be the meaning you intended.
+And that's where bugs are going to show up.
+And we're going to come to that as we go through the term.
+But these pieces now are how we're going
+to talk about the language.
+What's the syntax of putting things together,
+and what's the semantics, the meanings associated with them?
+With those three things in mind, you
+can ask what could go wrong.
+And these are also things we're going to see in the course.
+First of all I could have a syntactic error.
+I've not written down a legal expression.
+These are common and easily caught.
+And in fact most good programming languages
+or the environments that interpret them
+will catch those directly.
+As you'll see as we go along, and I'm
+sure I'm going to make some mistakes as I
+do some work here, Python will catch those right away.
+So you won't try and do anything with them.
+Once you've got something that's syntactically correct,
+what about static semantic errors,
+things where things are in the right order but they
+don't make sense?
+Some languages are very strict about catching these.
+They'll actually check before you ever run
+a sequence of operations to make sure there
+are no static semantic errors.
+Other languages-- and Python is one of them--
+will do it on the fly.
+As you're going through a sequence of instructions, when
+it comes to one that is not statically semantically
+correct, it will stop.
+That's good news, but it can lead
+to some unpredictable behavior.
+And we're going to see that as we go along.
+The bigger problem is one where there are no semantic errors,
+but you get a different meaning than what you actually
+intended.
+These are the bugs that are challenging and are
+going to be difficult to find, but you need to find.
+Now what are some of the consequences?
+The program could crash, simply stop running.
+Even worse the program could run forever or until you get really
+tired and stop the machine because it's not
+coming back with an answer.
+And even worse yet, the program gives you an answer,
+but it's different than what you had expected,
+and you're going to use that to now do
+incorrect conclusions based on that error in computation.
+
+So what we're going to do now is start talking about Python.
+And our goal is to learn the syntax and the semantics
+of this particular programming language,
+and then to use that to learn how we can translate
+our recipes for solving a problem into a form that
+can go into the computer so it can run through that very
+mechanical sequence of steps to compute things
+that we want to do.
+And finally as we do all of this,
+we're going to start seeing patterns of computation.
+We're going to build up computational modes of thought,
+different styles of solving problems,
+because those styles are going to be common
+and can be easily reused when we see a new problem that
+fits into the same category.

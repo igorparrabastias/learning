@@ -1,0 +1,130 @@
+...
+OK.
+We want to start thinking about how do we get a computer
+to do things for us?
+So we can start by saying, well, what
+do we want a computer to do?
+We want it to compute something.
+That sounds like a deep, philosophical question,
+and in fact, it is.
+And that leads to an even deeper philosophical question which
+is if we want a computer to compute something,
+we can ask, well, what's the knowledge that it's going
+to use to do that computation?
+And that actually leads to an interesting distinction,
+because we can divide knowledge into two types.
+What we're going to call declarative knowledge
+and what we're going to call imperative knowledge.
+Declarative knowledge-- those are statements
+of fact, statements of truth.
+For example, if I were lecturing here at MIT,
+I might have gone in ahead of time
+and strapped some-- or taped some candy
+under one of the chairs inside the lecture hall.
+An imperative piece of information
+simply says, there's candy taped to the underside of a chair.
+It doesn't tell you anything about how to find it.
+It doesn't tell you where to look for it.
+You'd either have to do it in parallel
+by having every student reach under the chair
+or search the entire lecture hall.
+It's simply a statement of fact.
+Imperative knowledge is a recipe.
+It's how to knowledge or how to information,
+and this gives us a sequence of steps to find a solution.
+Again, if I stuck candy under a chair inside the lecture hall,
+I might say to the lecturer, do the following-- face
+the students at the front of the room.
+Count up one, two, three rows.
+Start in the middle section left side, go in one chair.
+Look underneath it.
+Candy is there.
+It's a recipe.
+It's a sequence of how to steps, very mechanical,
+to get things done.
+Those two kinds of knowledge are important,
+but only the second one's going to really be of value to us,
+because that's what's going to help us get the computer
+to do something for us.
+To see it, let's look at a simple example.
+Suppose I want to compute the square root of some number.
+To make it easy, I'm going to start
+with just an integer number.
+Here's a statement of fact-- the square root
+of the number x is that y such that y squared is equal to x.
+And I'm just going to highlight it right here.
+There it is.
+There's a statement of fact.
+Does it tell me how to find a square root?
+No.
+If somebody gives me a good guess, I can use this to check.
+So if I'm trying to find the square root of, say, 16,
+and somebody gives me a guess of 4,
+I'm lucky because I can say 4 times 4 is 16 and I'm done.
+But it doesn't help me find something.
+Here's a version of imperative knowledge,
+and this is actually a very old algorithm.
+It's attributed to Alexandria of Heron, dating back
+into the 2nd century BC, although other people suggested
+it existed earlier than that.
+But here's a recipe for finding square root.
+I'm going to start with a guess, and I'm going to call it g.
+If g times g-- if g squared-- whoops.
+Sorry, I'm going to go back.
+If g squared is close enough to x, then
+I'm going to stop and say g is the answer.
+Otherwise, I'm going to create a new guess
+by taking g and x divided by g, and averaging them together.
+Take the average.
+OK.
+Once I've done that, I'm going to repeat.
+I'm going to go back up and do the same thing again.
+And that's going to give me a little algorithm, because it's
+going to let me now say, start with a guess,
+check to see if the guess is close enough, and if not,
+keep going.
+And you can see that little graph at the bottom.
+I start with not a very good guess.
+g is equal to 3.
+I square it.
+That's 9.
+9 is not, as you can see here, very close to 16,
+so I'm going to take x divided by g, which is right there.
+And I'm going to take g, and I'm going
+to average them together to get a better guess right there.
+With that better guess, I'm now going to do the same thing.
+I'm going to go back through that loop,
+go back up to step number one, and say try it again.
+And you can see the steps here.
+I square 4.1667.
+I get 17 and change.
+It's really not close enough.
+I take x divided by g.
+I take the average of x and x divided by g
+and I get a much better guess.
+And you can see after the next round,
+I get a guess that's close enough.
+I'm probably ready to stop.
+So this is a nice example of a little algorithm.
+It's a little recipe.
+And let's capture those pieces together.
+What's a recipe?
+Three pieces.
+It's a sequence of simple steps.
+It's a flow of control, a process that's going to tell us
+what order in which to execute the steps,
+and it's going to give us a way of deciding when to stop.
+So those three pieces-- simple steps.
+A sequence of things I want to do,
+a checklist, a flow of control, a thing
+that tells me when to go to the next step,
+when to jump to some other place in that sequence of steps,
+and a way of deciding when to stop.
+Those three pieces constitute an algorithm.
+And you just saw it in the little square root example.
+In general, the flow of control was going successively
+through the steps until I got to a test,
+and that test had me jump back to another place
+inside the algorithm.
+That's what an algorithm is.
+That's what a recipe is, and that's what we want to capture.

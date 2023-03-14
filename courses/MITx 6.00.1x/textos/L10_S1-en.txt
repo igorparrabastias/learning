@@ -1,0 +1,172 @@
+...
+Last lecture we introduced classes into our language.
+And they're an incredibly powerful tool
+to add to what we've been doing.
+By analogy, definitions gave us a way
+to add our own methods or procedures to our Python
+system.
+Classes give us our way to add our own data
+objects to the system.
+And that's really useful.
+And whether this is in Python or in any programming language,
+that idea of being able to boundary together pieces
+of data that naturally co-exist and methods or procedures
+or functions specifically designed
+to manipulate that data, that idea is really valuable.
+As a consequence, even though we've looked at some examples,
+today we're going to do an extended example,
+looking at the different ways in which we
+can use classes to build a hierarchy of a system that
+lets us manipulate objects in a variety of ways.
+Example we're going to use is to build
+a little system that organizes information about people.
+And if that's what we're going to do,
+an obvious place to start is with a Person object.
+Of course I could add lots of different data attributes
+to a Person object.
+For the sake of just building the system,
+we're going to start with some simple things.
+So a person is going to have a name.
+They're going to have a birthday.
+And we want to see things like how can we get out the name,
+how can we get out the last name.
+Can we sort groups of people?
+How do we get the age, things that
+let us access the data associated
+with instances of this class?
+So let's build the class.
+Here's the start for it.
+As before, we're building a class.
+We're calling it Person.
+It's going to inherit from the underlying object class,
+exactly as we did earlier on when we start building
+a system, because object is that underlying basic Python
+class that has associated with it standard methods we
+want to be able to use.
+As before, we need to be able to create instances of this class.
+So there's our init method right there.
+And it's just going to create a person with a name.
+I want to be able to get out information,
+so I'm going to be able to get out the last name, for example,
+of the person.
+And I want to be able to have something
+print out appropriately.
+And so I'll have a string method, again, one of those
+built in methods.
+We're now overriding underscore underscore str, followed by two
+underscores.
+And in this case, when we print out information about a person,
+it's just going to print out its name.
+The only unusual thing I'm doing here
+is I want to get out not only the name,
+but the last name of a person.
+And I'm going to make the assumption
+that the last element in a name is the person's last name.
+I can get out that by taking advantage of the fact
+that I know a name will be a string.
+And using the built in method split
+on it, split around spaces will return for me
+a list of strings, each one a different portion
+of the person's name.
+And finally I'm just going to extract the last element
+of that, as I said, assuming that the last portion
+of that string is the person's last name.
+I can build instances of People.
+I've got a couple of methods here.
+Let me add in a few more methods I'd like to be able to use.
+I said I want to give this person a birthday.
+Lots of ways I could do that, but I'm
+going to do this by importing a library, a module that exists
+in Python, called datetime.
+And in particular, I'm going to be
+able to then say when I give a date of birth to a person
+by month, day, and year, datetime will automatically
+convert that into an internal representation
+that I could use.
+Now I didn't tell you what the representation is.
+I'm not going to, because you shouldn't care.
+All I want to be able to do is to use it.
+And in particular, if I want to get the age of a person,
+as you can see in the bottom line of the slide,
+I will simply take datetime.date.today()
+as a method.
+It gives me back a representation
+for today's date.
+I subtract from that the birth date.
+And then I can convert that into days.
+And it will give me the number of days
+since the person was born.
+And clearly then I can convert that
+into years or other kinds of representations of age.
+Key point here, I'm not telling you how it represents things
+internally.
+You shouldn't care.
+You should be able to just use this
+using the appropriate interfaces, which I'll do here.
+One last method-- I'd like to be able to sort lists of people.
+And here I get to make a choice.
+Again, I'm defining my version of a built in method called
+less than or lt. And I'm going to make the choice
+that in general, I'm going to sort people
+by their last name, which I've already stored away,
+unless they have the same last name, in which case
+I'm going to sort them by the entire name, which
+in essence will come down to sorting them
+by their first name.
+There is a definition of a class.
+You've seen some of these methods before.
+I'm building in something for init to create instances.
+I'm building something in for string
+to say how I'm going to print them out.
+I'm building something in for less than so
+I can compare them.
+And then I've got some internal data attributes, a name
+and a birthday.
+And I'm able to access those souls using getters
+like get_last_name.
+Let's see what happens if we were to use this.
+So I'm going to create a little simple database of some people.
+Perhaps you recognize some of these names.
+And some of them I've given birthdays to, some of them I
+haven't.
+And I can create a list of those.
+So I have on my computer a version
+of this file ready to go.
+And I load it up.
+And I could look, for example, at people in this list.
+So I could say printout p1, and it says Mark Zuckerberg.
+And that's great, because that was how I defined string
+to return things-- good.
+So what else might I do with this?
+Well, I said I want to be able to sort people in this list.
+So we can look at a simple little example of that.
+In particular, I could say for every person in the person
+list, just print them out, and see what I get out.
+And I've shown it here.
+Let's check it on my computer to make
+sure it does the right thing.
+Again, I have loaded in a version of that.
+And so I'm going to clear it and reload it.
+And when I do that, sure enough it prints it out
+in the order in which I created them, which is great.
+Now what I'd like to do is say let's sort
+them to see if the sorting mechanism works well.
+And notice what I do here.
+I use the built in list method sort.
+So person list is a list.
+The dot says from that data type,
+get out the thing that's bound to the name sort, which
+is a procedure.
+And then the open close parens says call or invoke
+that procedure, which will sort the list in place, mutating it.
+And now I should be able to print it
+out and see what it looks like.
+And again, I'm going to load that up on my computer.
+And I'm going to run it.
+And in fact now it has sorted it.
+And notice in the case of two people with the same last name,
+it has sorted it by the full name,
+whereas everywhere else it's simply sorted by last name.
+Simple little example that shows that I
+can start manipulating elements of this data structure.
+Let's see what we do if we build on top of it.

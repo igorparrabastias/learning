@@ -1,0 +1,254 @@
+...
+Now that we've seen the idea of measuring big O notation,
+different classes of complexity, what I want to do
+is look at some examples.
+Here are the list of classes in order of increasing complexity.
+And my goal here is to show you examples from almost all
+of these classes, partly so that when
+you come across a new problem you
+can recognize some of the characteristics of that class.
+There are certain patterns that are
+going to put an algorithm into a class like polynomial
+or quadratic, or into a class like linear,
+or into a class like logarithmic.
+And so the goal is to both let you
+see how we analyze algorithms to say what class they belong to
+and to let you see the characteristics so that when
+you're creating your own algorithm
+you have a sense of how difficult is it going
+to be to solve this problem.
+So we'll see examples of order 1,
+or constant running time complexity, order log
+n, logarithmic, order n, linear, order n log n--
+often referred to as log linear-- order
+n to the c, which is polynomial where c is a constant-- so n
+squared would be quadratic and to the third
+would be cubic-- and finally, order c to the n
+where c is a constant, which is an exponential running time
+algorithm and the most expensive of the classes
+that we are going to deal with.
+Let's start with the simple ones first.
+Constant complexity algorithms.
+There are very few interesting examples of this,
+unfortunately.
+They're the nicest ones because these
+are cases where the complexity is independent of the input.
+It's going to take the same order of time
+no matter what the input is.
+Well, there are very few interesting algorithms
+in this class.
+Often pieces of other algorithms do fit here.
+And we're going to use that to help
+us reason about the complexity of other parts of algorithms.
+Note by the way that one can have loops or recursive calls
+and still be in the constant complexity case.
+It's simply that the number of iterations or calls
+in that instance will be independent of the size
+of the input.
+We're not going to show you examples of these
+because they're mostly pretty boring.
+Logarithmic complexity, on the other hand,
+is something that's going to be very nice.
+These are very efficient algorithms.
+And here, these are algorithms where the complexity
+grows as the log or logarithm of the size of one of its inputs.
+Standard examples, bisection search,
+a binary search of a list, anything
+that divides the space of the search in half at each step
+is a nice characteristic of a logarithmic complexity
+algorithm.
+So let's look at a little example here.
+Here's a very simple example.
+It's a little program that's going to take in an integer
+and convert it to a string.
+And there are standard ways of doing it.
+But in this case, it's going to run through a little loop
+to do that.
+So what does it do?
+It creates an internal variable called
+digits, which is us which is a string of the digits from 0
+to 9.
+And then it does the following.
+Given that input, which is an integer of some size,
+if it's 0, we just returned the string 0.
+Otherwise, we set up a little loop.
+We set result to be an empty string.
+And then we run through a little while loop
+here where we take i, get its remainder base 10, which
+is basically the lowest order digit, and then
+index into digits at that point, which
+retrieves that character of the string,
+and we add it onto result. And then
+we divide i integer-wise by 10.
+We shift right.
+So we're literally going to take each digit in turn,
+figure out what the character as a string is representing that,
+and then add it into the result.
+I don't care what this does There are lots of other ways
+to do it.
+What I want to do is use it as an example
+to understand the complexity of this algorithm.
+So let's look at that.
+There's is my coat.
+And what do we know here?
+We know that we really only have to look at the loop
+because there are no recursive function calls here.
+I'm not calling it to string multiple times.
+Everything's in the body of this coat.
+What else do I know?
+I know-- and I'm going to actually jump
+ahead slightly here.
+I know that these stages here are constant.
+I only do it once.
+We've already seen an earlier analysis they don't matter.
+So all I have to do is look inside of the while loop.
+And in that while loop, the things I'm doing
+are a constant number of steps.
+So inside of the loop is constant Cos.
+Therefore, all I have to worry about
+is how many times do I go through the loop.
+And the answer there is basically how many times can
+I divide i by 10.
+Because each time through the loop
+I reduce i by a factor of 10.
+And that is just logarithmic.
+It's log base 10 of the size of i.
+This is an instance of a log complexity algorithm.
+Now, you might say for a second, wait a minute.
+Isn't it linear?
+And it is in a funny way.
+It is linear in the length or the size of n.
+But it is a log in the number of digits in n.
+And since I want to measure this in terms
+of the number of digits in n-- sorry.
+I'm going to say that better.
+It is linear in the number of digits in n,
+but log in the size of n.
+And since I decided to measure this
+in terms of the size of the input
+I would say that this is an example
+of a log-based algorithm.
+In the characteristic is I'm reducing
+the size of the problem by a constant factor at each step.
+OK.
+Linear complexity, still pretty good
+because it's pretty inefficient.
+Examples you've already seen?
+I want to search a list in order or in sequence to see
+if an element is present.
+It's linear because I'm going to walk down
+the list in turn looking at each element
+until I find whether that element is present or not,
+a nice example of a linear complexity search.
+Another nice example, I want to add up
+the characters of a string, which I assume to be composed
+of decimal digits.
+So I've passed in a string, so a string
+representing a bunch of numbers or decimal digits.
+I want to add them up to get the sum of what those digits comes
+to.
+Again, a simple example, but it's
+going to let you see the characteristics
+of a linear class algorithm.
+So there's a simple piece of code to do that.
+Passing in a string S I initialize a variable valve
+to zero, initially.
+And then I'm going to run through a loop, where
+I take each character in S, which is a string.
+And I want to convert it to an int, add it to val.
+And when I'm done, I'm just going to return val.
+Simple algorithm, but I want you to see
+is the order complexity here.
+It's pretty obvious.
+What do I have to count?
+This is a constant time evaluation.
+Similarly done here, this is going to take constant time.
+Inside the loop is also constant.
+I've basically got 'a conversion to an int,
+and add, and an assignment.
+So it's three steps.
+All I need to worry about is how many times
+do I go through this loop.
+And the answer is however many characters
+there are in s, the string.
+So it is linear in the length of the string.
+Nice example of a linear time algorithm.
+Now let's look at some examples where we actually have calls.
+And I'm going to start with an iterative algorithm, one
+that you've seen before, computing factorials iterively.
+And to remind you, factorial of n
+is n times n minus 1 times n minus 2 all the way down to 1.
+Here, I set up an internal variable to be 1.
+And then I run a loop where n ranges from 1 up to n
+of simply doing the product of what I've already had times i
+and storing it back into there.
+And then I return the product.
+And again, the question is what's the complexity of this?
+Well, it comes down to the same thing.
+The return is constant.
+The setting of a product is constant.
+What I want to measure is how much the cost
+is that are inside the loop.
+And I know that's also constant because it's just
+the same number of, in this case, two operations each
+time through, plus 1 assignment up here to set up i, so 3.
+So the real question is how many times do I go around the loop?
+N, that's the size of my problem.
+So the number of operations, as we've said, inside the loop
+is a constant.
+We go through that thing n times.
+Therefore, this is just 3n, which we've already seen,
+is the same as saying it's a big order, big O notation
+order of n or linear.
+So something that has a loop in it
+with a constant number of operations or work
+inside the loop, characteristic of a linear complexity
+algorithm.
+OK.
+We got an iterative version of factorial.
+What about the recursive one?
+Well, we've seen this as well, reminder
+that the recursive version says if n is 1 or less
+I return 1, otherwise, I return a recursive call
+to the procedure with a smaller argument.
+And then when I get the result, I multiply it by n
+and I return that as a value.
+If you were to actually time these two,
+you probably would notice that the factorial version that's
+recursive is slightly slower than the iterative one,
+mostly because of the cost of setting up the recursive call.
+But we've also said that timing isn't the only thing
+we want to do here.
+It's really what are the number of operations we have to do.
+And here, this is still linear because the number
+of things I have to do to set up the recursive call
+are just two.
+And more importantly, how many times do I call this function?
+I call it n times.
+And so, again, it's order n even though it's recursive rather
+than factorial.
+Again, the characteristic here is,
+I'm doing a recursive call once for each increment
+in the size of the problem.
+And inside of that operation I'm just
+doing a constant number of things.
+So notice in an interesting way both the iterative
+and the recursive factorial implementations
+are the same order of growth.
+It doesn't mean they'll take exactly the same amount of time
+on the same size problem.
+But since we want to measure asymptotic order of gross,
+as we let the size of the problem get really large,
+these both belong to the same class.
+They're linear.
+Now the next level is what we call log linear.
+And we're going to see that many practical algorithms fall
+into this class.
+It's another nice, efficient class.
+And it's very commonly used on things
+like an algorithm called Merge Sort.
+And I'm simply going to defer you.
+We're going to come back to that in the next lecture.
+But this will be a classic example
+of a log linear algorithm.
+And you'll see it a little while.

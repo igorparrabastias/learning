@@ -1,0 +1,346 @@
+...
+Throughout this course to this point,
+you've had the opportunity to write a lot of functions,
+a lot of procedures, to explore different ideas,
+to create algorithms to solve problems.
+You've also seen a number of algorithms
+that we've introduced that tackle important problems.
+And one of the questions we could ask
+is are all algorithms equal?
+Are all algorithms equal?
+Are they all created with the same kind of performance
+or efficiency, or are some algorithms better than others?
+It's a bit of an odd statement, but it's an important one
+to ask.
+And let's set the stage for this.
+First of all, you might say look, computers are fast.
+They're getting even faster.
+So maybe the efficiency of a program doesn't matter.
+If we want to understand how efficient a program is,
+does it really matter if the computers are just
+getting so fast?
+Well, while they are, I would argue that so
+are data sets getting larger.
+And in fact, as you may have already experienced
+in some of the examples you've tried,
+simple solutions may simply not scale well
+to deal with data sets that are very large in size.
+So it is valuable for us to be able to have
+a way of talking about the efficiency of an algorithm.
+The efficiency of a solution.
+And that leads to the question how could we decide,
+if we have a couple of options for a program,
+which ones most efficient?
+Now, that is coupled by several issues,
+and one is there's a trade off typically
+between time as an efficiency measure and space.
+For example, if I have a program that's
+going to compute some particular mathematical function,
+I might decide to precompute a lot of values
+for expected arguments and simply store them
+away inside of the computer so I just look them up.
+And in fact, we saw an example of that when
+we were computing things like Fibonacci,
+where by using that technique we called memorization storing
+in a dictionary precomputed or earlier computed values,
+we could change efficiency.
+So there is a trade off between time and space,
+but for the most part, we're going
+to focus on time efficiency.
+Can we characterize how quickly will a program come up
+with an answer to a set of inputs?
+And in particular, are there different kinds
+of algorithms to do that?
+Now, there are a couple of challenges
+in understanding that.
+The first one, as you've already seen,
+is even given an algorithm, I can implement it often
+in many different ways.
+I could implement it recursively.
+I could implement it iteratively.
+I might have different choices of things.
+So there might be a lot of implementations,
+and I want to separate out choice of Implementation
+from actual efficiency of the algorithm.
+While there are many ways to implement something,
+usually there are only a handful of different actual algorithms.
+That is, mechanical description of a set of steps
+that I'm going to use to solve it.
+And so I'd like to separate out choice of Implementation
+from choice of actual algorithm to solve that.
+And we're going to see some examples in a second.
+Even with that, I could ask, so how
+might I measure the efficiency?
+Well, one option is just to time it.
+Time it on a bunch of inputs and see
+what the time is like and compare different algorithms
+based on the timer.
+We'll look at that and realize there
+are some challenges with that.
+The second one, a little more abstractly,
+is I could count the number of actual operations--
+primitive things that an algorithm is doing
+or a program is doing-- and use that to compare
+different implementations or different algorithms.
+The third one is I could actually abstract out
+a little more generally to something
+we call order of growth.
+And we're going to focus on that.
+We're going to argue that this is actually
+the most appropriate way of associating or assessing,
+rather, the impact of choices of an algorithm
+in solving a problem and in measuring
+the inherent difficulty of solving an associated problem.
+I haven't defined it yet.
+We're going to do that in a second.
+But let's start with the first two
+to see why they're not quite what I need.
+As I said, I could just time a program.
+Here's a simple way to do it.
+I import the time module into my Python environment.
+And then, when I want to use this-- for example,
+if I wanted to measure the efficiency
+of this simple little thing that computes Celsius to Fahrenheit,
+I could start up the clock by just calling
+that particular method, actually run
+the algorithm on some number, and then
+stop the clock-- right there-- and look
+at the difference in time and printout
+how quickly did it take me to do that.
+I could do that for a bunch of trials and see how well I do.
+Problem with this is the following.
+The running time certainly is going
+to vary between algorithms, which
+is what I wanted to measure, but it's also
+going to vary depending on how I implemented.
+More importantly, it's going to vary depending
+on what computer I run it on.
+Different computers have different speeds,
+and they won't vary a lot, but it
+will have a difference in that, and that's really
+not inherently associated with the problem itself.
+And finally, the running time is not
+predictable based on small inputs.
+I would really have to try it on a wide range of examples
+to get a sense of how well is this going to scale.
+Can I use it to predict what the performance is
+going to be like on a really large data set.
+So this is not particularly effective,
+because the time varies for different inputs,
+but we really can't express a relationship between the inputs
+and the time we see because all these other factors show up,
+like what's the implementation?
+What computer am I running it on?
+And how well will it scale?
+OK.
+Let's generalize this a little bit.
+I said I could also just count operations.
+One way to do that is to say let's
+assume that these steps just take a constant amount of time.
+Any built-in mathematical operation,
+any built-in comparison.
+Assigning values to variable names,
+accessing things from memory.
+It's actually not a bad assumption
+to say they all take about the same amount of time.
+Then what I could do is say let's just count
+the number of primitive operations executed
+as a function of the size of the input,
+and that would give me a better measure of the efficiency
+of the algorithm.
+So in the case of c to f they're just three operations.
+I've got a multiplication, I've got a division,
+I've got an addition.
+And that captures how difficult this task is.
+It's actually pretty simple.
+In the case of my little something
+here, which is going to basically take in a number
+and letting I range over the value up to that point--
+it's just going to add them all up-- I can count.
+I got one operation to do an assignment.
+I've got one operation to get I out, basically from range.
+And in here I got two operations,
+because remember, this is both doing the addition
+and then doing the assignment.
+And I'm going to do those three operations
+over the entire loop, which I'm going to go over x times.
+So, in fact, this little function, I could say,
+has 1 plus 3x operations.
+And as I vary the size of x, it tells me
+how this is going to scale.
+And that's actually a better step.
+It gives me a way of characterizing the difficulty,
+the efficiency, the inherent complexity
+of this little function.
+So maybe counting operations is enough.
+Well, it gets me closer.
+It certainly nicely now gives me something that's
+independent of the computer.
+And it certainly is going to vary
+depending on the algorithm, which is what I wanted.
+It still depends a little bit on the implementation.
+It's not so bad.
+But it doesn't really tell us which operation to count.
+I could figure that out, but I have
+to maybe think more carefully about what
+operations I'm going to count.
+So this one is a drawback, although not a terrible one.
+So the nice thing here is that the count, based
+on counting operations, is going to vary for different inputs,
+which is what I want.
+And I can come up with a relationship
+between the size of the input and the expected count.
+And it has the nice property that it really
+depends on the algorithm.
+But it shouldn't, in fact, depend--
+and it is independent of the computer
+and is getting closer to what I want.
+So I'm going to take that idea and build on it.
+What we know is that timing and counting
+evaluate implementations.
+Timing also evaluates the machine, which I don't want.
+What I do want to do is have a way
+of evaluating the algorithm, telling
+how well it's going to scale.
+And I want to evaluate it in terms of the size of the input.
+So I'm going to take that counting idea
+but abstract it slightly.
+Before I do that, I need to decide
+if I want to predict efficiency based on size of the input.
+I have to decide what I'm going to measure
+as the size of the input.
+I want to express that efficiency in that way,
+so that leads me to a choice.
+Many cases, it's going to be obvious.
+But in some cases, the input could be an integer.
+It could be the length of a list.
+You basically get to decide, especially
+when you have multiple parameters, what
+I'm going to use.
+For example, if I'm searching to see if a particular element's
+in a list, probably I want to use the length of the list
+as the size of the problem.
+And not the size of the element, since I'm simply
+looking to see if it's present.
+We'll see some examples of how we use that in a second.
+But you, as somebody doing the analysis,
+have to decide, what's the size of the input?
+Or a better way of saying it-- what is the input that matters?
+And how am I going to measure the size of that
+as I talk about the efficiency of the algorithm?
+Different inputs, of course, will
+change how the computer runs.
+And so when I talk about the efficiency,
+I need to think about that as well.
+Here's a simple little function that searches
+to see if a particular element e is in a list l.
+And what does it do?
+It simply loops over the elements in the list, asking,
+have I found the one I want?
+In which case, I'm going to return true.
+And if I go through the entire loop and I don't find it,
+I'm going to return false.
+Obvious little searching mechanism.
+Here's what could happen, though.
+If I'm really lucky, and e is the first element in the list,
+it's really fast.
+That's the best case.
+And in fact, I could say, in the best case,
+how many operations does this take?
+Probably not all that useful, because I'm usually not
+that lucky.
+If, in fact, the element is not in the list,
+I'm going to have to go through the entire list
+before returning false.
+And that gives me the worst case-- the longest amount
+of time I'm going to have to have before I answer that.
+That's going to be a little more important.
+There's a third way I could measure it,
+which is just to say, what do I do on average?
+And on average, I'm going to look
+through about half the elements in the list before I find it.
+In fact, if I run a bunch of trials, I would find that out.
+And so I could talk about the average case as well.
+Three choices.
+I could say what's the best case, what's
+the average case, what's the worst case?
+Which one's more important to me?
+Well, I want to measure this in a general way.
+And as a consequence, I want to do it basically
+for the worst case.
+To give you a sense of that-- again,
+suppose you're given a list l of some length.
+We could measure it with length of l.
+The best case simply tells me the minimum running time
+over all possible inputs.
+And in this case, it will be constant.
+No matter how long the list is, I find it in the first element.
+I give you a very quick answer.
+The average case is a more practical measure.
+It's going to tell me on average what
+I have to do to look halfway through the list.
+But as I've suggested, the worst case,
+which is the maximum running time,
+is really the more useful one to have,
+because it tells me, what's the worst possible situation I
+would see?
+And in this case, that is going to be linear,
+in the size of the list.
+As that list grows, the amount of time
+is going to grow equally, or at the same ratio.
+And so that's going to be something that's
+much more valuable to me.
+What's the worst case behavior?
+As a consequence, that's the thing we're going to focus on.
+So our goal now is to talk about what we call orders of growth
+or complexity of algorithms.
+And the goal is, we want to evaluate a program's efficiency
+when the input is very large.
+How does it grow as we scale the size of the input?
+We want to express the growth of a program's runtime
+as the input size grows.
+So we'd like an expression that says, as I, for example,
+double the size of the input, here's
+what happens to the efficiency of this algorithm.
+I can't always give an absolute bound
+or-- I'll rephrase that-- I can't always
+give an absolute expression for that.
+So what I'd like to do is put an upper bound on the growth.
+Say it will grow no more than this
+quickly as I deal with that.
+And I don't have to be precise.
+I'm just going to use an order of growth estimate, not
+an exact one.
+And we'll see what that means in a second.
+As a consequence, we're going to look at the largest
+factors in the runtime.
+Which part of the program is going to be the slowest?
+Which one's going to take the longest to run?
+And what's the worst case behavior for that?
+And how do I put a bound on that as I describe the complexity
+of that particular program?
+What we're going to see is that we can categorize algorithms
+into different classes.
+There are things that have what we call constant running time.
+That is, no matter how we increase the size of the input,
+it takes the same amount of time in general
+to solve the problem.
+Things that grow linearly with the size of the problem.
+I double the size of the problem,
+I roughly double the amount of time it takes.
+Things that grow quadratically, or with the square,
+of the time.
+Things that grow logarithmically, that is,
+with the log of the size of the problem.
+Things that we'll see later on that grow in what we call n
+log n time, which are not as bad as quadratic,
+but a little bit more than linear.
+And finally, things that grow exponentially.
+And what you can see here is I'd obviously like, if possible,
+to have an algorithm that is not in this class,
+because that's really expensive, but is more likely to be
+in this class, or this class, because those are not
+bad behaviors.
+And then now we're going to talk about looking at examples
+of each one of those classes and how we capture
+that pattern of behavior.

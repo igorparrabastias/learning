@@ -1,0 +1,130 @@
+...
+Once you've discovered that your code doesn't
+do what you wanted it to, you now want to do three things.
+You want to isolate the bug or bugs, because there's probably
+more than one.
+You want to get rid of them.
+And then as I said earlier, you want to go back and retest,
+keep doing that until you're sure that the code actually
+runs correctly.
+That last point is important, because all too often,
+you spot a bug, fix it, and think,
+I'm set, and not realize that there's another bug hidden
+that you didn't get to.
+So do all three of these stages as you do that.
+Now, the word bug, odd word, where does it come from?
+Well, I want to tell you a little story.
+And I want to go back to September 9th of 1947.
+One of the earliest machines one of the earliest computers built
+was something at Harvard called the Mark II Aiken Relay
+computer.
+And I'm sure you've heard stories like this,
+but this was something that filled an entire room.
+It was built out of vacuum tubes and electronic relays
+and other very large-scale electronic components.
+It didn't do a lot, obviously, we've come a long way,
+but it was one of the earliest computers.
+One of the people, one of the key people in the design
+and programming of that computer was a woman
+named Grace Murray Hopper, a very famous computer scientist
+who eventually retired as an Admiral in the US Navy
+and shown on the left here, along with her colleagues
+doing some programming and one of the earliest computers.
+This console's actually not from the Aiken,
+it's from a different computer, but it gives you
+a sense of the kinds of things they did.
+As they were testing that system on that day,
+they started running some tests of the arithmetic
+functions in there.
+They started up an arctan test, and they were running it.
+They started up a cosine test, and they were running it.
+And they kept getting an error.
+They kept getting something that wasn't working.
+They tried a bunch of things to debug it,
+they didn't use that word at the time, I don't think,
+but they tried a bunch of things to debug it.
+And finally, one of the technicians
+went back into the computer and unscrewed one of the vacuum
+tubes that was in there, and inside it, he
+found that a moth had flown into the computer
+and had shorted out the connection.
+And as you can see, in Grace Hopper's words here,
+this is the first actual case of a bug being found.
+Whether this is the first use of the word bug or not,
+most of us in computer science love it,
+because it gives you a sense of why we use that word bug.
+So that's where the word bug comes from.
+Now, we're going to talk about where
+do bugs themselves come from.
+And here there are a couple of things that we
+want to distinguish between.
+First of all, there are overt bugs,
+and there are covert bugs.
+Overt bugs mean that there's an obvious indication
+that something's wrong.
+The code crashes.
+It stops before it gets to an answer,
+or worse yet, the code runs forever,
+it goes into an infinite loop, which you'll eventually decide,
+when you get tired of waiting for the machine to stop,
+and you stop it yourself.
+Those are obvious bugs, and you know need to fix them.
+Covert bugs are ones where there's
+no obvious manifestation.
+The code actually returns a value,
+but it may not be the correct one.
+And these are sometimes harder to determine,
+that's where the test suites going to be really important
+to try and capture.
+I've got something not behaving the way I expected.
+You don't want code to return values
+that appear to be legal values but are not in fact
+the expected values.
+Similarly bugs can be both persistent and intermittent.
+Persistent ones are the easier are ones,
+it happens every time.
+Every time I run my code, it crashes,
+or it returns a particular value.
+I know I've got a problem.
+I can find it.
+Intermittent ones are those that occur only sometimes,
+even if run on the same input.
+And they tend to depend on other factors.
+It may be dealing with something on the web,
+or it may be dealing with something
+where the time actually is an important factor.
+And as you might expect, finding overt and finding
+persistent bugs and removing them is pretty easy.
+Finding covert or finding intermittent ones
+takes more work and are often harder to spot and get rid of.
+So what are ways we might deal with this?
+Overt and persistent, they're obvious to detect,
+and good programmers typically use a defensive program
+to try and ensure that, if the error is made,
+the bug's going to fall into this category.
+In other words, steer it to this direction,
+because it's going to be easier to find.
+We'll see some examples of defensive programming
+that can help with that.
+Overt and intermittent, obviously,
+are more frustrating, they're harder to debug.
+But if the conditions that prompt the bug
+can be reproduced, they can be handled.
+And that, often, is what you'll do
+here is, you know there's an overt error here,
+you just have to try and figure out
+what were exactly the right conditions to make sure
+that the bug reappears.
+And that'll allow you to isolate in where
+you want to go to try and find the bug and remove it.
+The latter category are the toughest ones.
+They're highly dangerous, as you as a programmer,
+may not realize they're there, and more importantly, the user
+may not realize that answers are incorrect until the code has
+been run for a very long period or has
+gotten to a very different portion of the code.
+And trying to backtrack to find where that error came from
+can be really hard.
+So this is where defensive programming can be important,
+because if you can force bugs into this category,
+you're just in better shape.

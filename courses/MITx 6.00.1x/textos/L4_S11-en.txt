@@ -1,0 +1,136 @@
+...
+Now that we have the ability to create functions,
+to define our own functions, we're
+going to be able to start solving
+some really neat problems, including some of the ones
+we just looked at.
+But one of the things that's going to happen
+is that we're going to be able to create lots of functions.
+And that means that we need to think about how to handle them.
+So far we've assumed that all of our code is stored in one file.
+And that's cumbersome when I've got large collections of code,
+or especially when I've got a collection of code that's
+going to be used by different people in different places
+and I'd like to be able to access it directly.
+And so for that we're going to introduce something
+you're going to use a lot.
+It's called a module.
+And basically a module is a Python file that has something
+with a .py extension to it that's a collection of Python
+definitions of statements.
+Once I've got that module I can use it.
+And I need to talk briefly about how do you use it.
+So for example, imagine I've created
+a little file called circle.pi.
+It's a Python file called circle and it's
+got in it a couple of simple functions for dealing
+with properties of circles-- compute the area,
+compute the circumference.
+Also put a definition of Pi inside of there.
+I've saved that file away and now I want to use it.
+How might I use it?
+Well I can import it.
+I can either import it into the shell itself or I could import
+it in fact into some other file, because I want to use it there.
+And so the usage here is if I can invoke the command import
+circle, it goes and finds that file
+and reads all of the statements, including the definitions
+and assignments inside that file, into in this case
+the shell.
+Now inside of the shell I could redefine Pi to be 3.
+That's OK, because I'm walking inside the shell.
+I could print that out, and in that case
+it's going to print out 3.
+But then I could print out the value of Pi
+that was defined in the module circle.
+And to do that I use this notation here of circle
+with a dot followed by pi.
+It's telling me in the module circle look up the value of Pi.
+And that will print out what I defined there-- 3.14159.
+And similarly I could call the function defined in circle.
+Again, the dot that says inside of the circle module
+get the function called area and call it on an argument 3
+and it prints out something.
+And the same thing with circumference.
+So I can import things into my environment, whether again it's
+the shell or as we'll see later on inside
+of another environment or it's right inside of another file
+itself because I want to use it there.
+If I don't want to refer to the functions and variables
+by their module.
+If I don't want to use that slightly clunky circle.pi
+or circle.area and I know that the names in that module
+don't collide with things I'm using directly,
+either inside the shell or inside of a new function,
+I can in fact do a slightly different version
+in which I say from a module, in this case circle,
+import everything.
+And the everything is done by simply giving it a star.
+That will bring all of the definitions, all
+of the assignments, into that environment,
+but now I simply refer to them by their name.
+I don't have to put that extra circle dot in front of them.
+This has the effect of creating bindings
+within the current scope for all of the objects defined
+within circle.
+And the statements, as a consequence, within a module
+are executed only the first time a module is imported.
+If I want to redo something I have
+to recall that actual invocation.
+But that gives me a nice way to start
+building modularity of a higher scale
+by files as well as by functions.
+And that leads to the last piece we're
+going to deal with today, which is we need a way to save
+our work for later use.
+And we certainly have that if we do something inside of the text
+editor, but we also want to be able to do
+that inside of computations we're doing.
+Every operating system on a computer
+has its own way of handling files,
+and so Python handles by providing an operating
+system independent way of accessing files
+called a file handle.
+And the way that is done is by using the special command open
+and giving it the name of a file and giving it a command.
+So in this particular case, open is
+going to open up a file handle, that is an access into a file,
+with the name kids and the W here
+says that it's opened for writing.
+I'm going to be able to write into it.
+And I've bound that to a name so I can refer to it.
+Name handle is the handle that gets into that file.
+That allows me then to use it.
+So for example, I could write a little loop that
+says to the user, type in a name,
+and I'll write it into that file.
+By again using name handle and the dot and then the
+write command.
+And this little extra character here
+is a string that just says do a carriage return
+or start a new line after the end of this right.
+I could do it as many times as I want.
+In this case it was just going to be two times,
+but what I'm doing is I'm writing directly into a file,
+in this case called kids, things that I'm
+inputting on the terminal.
+You can imagine also doing computations and writing them
+away.
+When I'm done, I close the file handle
+by invoking the method close.
+Again with name handle, because that's
+the one I set up up here, dot close.
+And the open close paren to say that it's actually
+an invoking of a function that closes up the file.
+And finally, I can do the same thing
+where I want to read from a file by giving it the special string
+R. And in this case I could read from that file
+and just print out a set of things,
+and when I'm done again close them off.
+So this gives you a little bit more power now.
+And it's part of that idea of modularity.
+I have functions giving me modularity.
+I can have collections of functions inside of files.
+I can create files as I'm interacting with them.
+And I can use all of those ideas to really control
+the complexity of the systems that I'm building.

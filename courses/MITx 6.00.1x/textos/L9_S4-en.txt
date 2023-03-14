@@ -1,0 +1,377 @@
+...
+Now that we've seen the basic idea of creating a class
+and creating instances of a class,
+and we've seen the idea of defining methods
+for them, including methods that are sort of the built in
+or associated methods-- like what does it print like,
+how do I create an instance-- let's look
+at how we would use this idea of a class.
+And probably the best way to do that is
+to simply take an example.
+So I'm going to create a new type of object
+to represent a number as a fraction, and literally
+as a fraction, not as the floating point
+equivalent of that.
+What do I need?
+I need to say what's the internal representation?
+What are the data attributes I want to glue together
+and how am I going to represent them?
+And then what's the interface, or if you
+like, the methods that I'm going to use
+to interact with instances of those Fraction objects?
+In my case for a fraction, I want
+a numerator and a denominator, a top part and a bottom part.
+In terms of the interaction, the interface, the methods,
+I certainly want a print representation
+so I don't get something messy coming out.
+But I'd like to think about simple things
+like how do I add fractions, how do I subtract fractions.
+And one other thing I might like is, if I wanted to,
+how do I convert a fraction into an actual floating point number
+that I could then use standard Python arithmetic
+operations on?
+Let's see how we would build that.
+And what you're going to see here
+is less the details of doing fractions, more
+the idea of how I use the methods to define behaviors
+that I want to associate with different objects,
+in this case, fractions.
+OK, so initially, I need to define the class of a Fraction.
+I use class to say it's the definition of class.
+I got the name.
+And as before, this is going to inherit from the underlying
+object class.
+I also need, as always, to define
+what does it mean to create one of these objects.
+So I've got an init method.
+It takes in two arguments besides self.
+That is a numerator and a denominator.
+And I'm just going to bind those locally
+within the frame associated with every instance of a class.
+I also want to define what I want to have printed out
+when I do this.
+And here I'm simply going to have it print out
+a string representation of the numerator
+and the denominator separated by a slash,
+sort of like you'd expect to see inside of a fraction.
+There is my definition initially of what a fraction looks like.
+Let's see what happens if I use that.
+So I'm going to go over to my machine and load this up.
+And let's do the two definitions.
+Let's give the name one_half to the fraction of 1 and 2.
+Let's give the name two_thirds to the fraction, obviously,
+of 2 and 3.
+And let's see if it prints out appropriately.
+So I print out one_half.
+Yep, does what I'd like.
+And obviously you would expect two_thirds
+ought to do the same thing, but let's just check it.
+There we go.
+All right, so we can create fractions.
+We're can create a bunch of them, a little boring.
+What could we do with fractions?
+Well as I said, I want to do some operations on it.
+But before I do that, I want to introduce one more
+important idea.
+And that goes back to something we
+talked about earlier, which I'm going to pull in in a second.
+And the new idea is to create something that
+lets me access data attributes.
+These are often called getters.
+I'm going to get out the elements of that.
+And here I'm going to define a getter for numerator
+and a getter for denominator.
+I'm going to give them obvious names.
+I could give them anything.
+But I'm going to say get_numer should give me back
+the numerator of a fraction.
+And get_denom should give me back the value
+of the denominator of an instance of a fraction.
+Why am I creating those?
+Well those are going to be important
+because it's going to separate out
+accessing the internal representation
+from the actual use of the representation.
+But let's check to make sure it does the right thing.
+You can see what I can expect it to do.
+And if I say get half-- sorry, one_half,
+and I use get_numer, that's great.
+It gives me back the numerator of one_half.
+Notice the call.
+There's the dot.
+And I'm going to step through this carefully. one_half points
+to an instance.
+It's a frame somewhere.
+The dot says, get the binding for get_numer in that frame.
+Oh yeah, that was the definition that I did right back here
+of a method inside-- actually the frame of coordinate--
+sorry, frame of fraction.
+But I inherit it because one_half
+is an instance of Fraction.
+But the last piece is that simply gives you
+back the procedure.
+To make it run, I have to invoke it.
+And while it takes no arguments other than self, which
+is automatically provided, I need to say open, close paren
+to actually invoke it.
+Do the same thing with get denominator.
+I can get out the pieces of them.
+As we said, this is a procedure.
+I've got to invoke it.
+And remember again, self is provided separately for me.
+I can now use that to define things
+like how do I add fractions or how do I subtract fractions.
+And notice that while it looks a little messy at code,
+it actually is going to have an important property.
+So here is the definition of add.
+It takes two arguments, the instance itself,
+and some other fraction.
+And inside of there I'm just going
+to do the work to actually define what it means
+to add together two fractions.
+I take the numerator of one, the denominator of the other,
+multiply them together.
+Take the denominator of one, the numerator of the other,
+multiply them together, add those up.
+That's the new numerator.
+The denominator is just the product of those two products.
+And if you look at the slide carefully,
+I notice I have some typos here.
+Ignore them.
+My method is actually going to do them correctly.
+That snuck in somehow into my slide.
+Last piece of this is, having computed that numerator
+and denominator, I need to return an instance.
+And I create one by calling Fraction
+with new values for the numerator and the denominator.
+Subtraction does the same kind of thing.
+Let's see what happens if I actually use that.
+So I've got those two versions there.
+Let's call new what I get by taking one_half and two_thirds
+and adding them together.
+And what does new look like-- perfect.
+Let's do one more example.
+Let's call three_quarters the obvious thing,
+the fraction of 3 and 4.
+Let's just make sure it works in other kinds of versions here.
+So I'm going to call second new.
+Well actually let's just print out three_quarters.
+I can print it.
+
+And there it is.
+And if I let second_new be, let's
+do two_thirds minus three_quarters,
+because I defined sub as well.
+
+Needs to type it properly.
+My apologies, let's do it one more time.
+This is two_thirds minus three_quarters.
+
+I can print that out.
+
+Oh great, exactly what I'd expect.
+I've now got the ability to create
+new instances of Fractions by doing
+arithmetic operations on them.
+And notice how plus and minus are overriding,
+if you like, the built in versions of those.
+And I'm using that in order to be
+able to do this in a manner that lets me type things that
+make sense, but have things come out the right way.
+Last thing I said I wanted to do is
+to be able to convert fractions into floats.
+And that's easy.
+convert would simply take the numerator,
+by using the getter for that, take the denominator
+by using the getter for that, and just do division.
+And so if I ask, for example, to convert second_new-- ah,
+I did that wrong.
+My apologies.
+I'm going to do second_new.convert().
+
+It prints out the floating point representation of those pieces.
+Great, it's exactly what I'd like to have.
+There are some examples of that, just like we did.
+And this is something that's going to give us the ability
+now to think about elements of this class and simply use them.
+I'm going to do one more example.
+But before I do, I want to say another word
+about those getters and setters.
+Why do I want to create separate getters and setters?
+Remember, we said we don't want to directly manipulate
+the internal representation of an object.
+We'd like to separate the use of the object
+from what's inside of it.
+And those getters and setters nicely do that.
+It says any time I want to access something
+inside an object, let me use the method that gets
+that part of the object out.
+I'm going to come back to that idea
+when we do our second example.
+And the second example is, suppose we wanted to build
+a little collection, a set of integers.
+Initially the set's empty.
+And I want to have the property of that
+set be that an integer appears only once inside the set.
+That's what we would call a representational invariant
+of this particular object.
+And I'm going to enforce that by the way I write the code.
+I don't want to have to go and check,
+do I have more than one instance inside the object?
+I want it to be the case that as I add elements to this set,
+I'm always making sure that there's never
+more than one particular version of that integer
+inside of that set.
+I need two pieces.
+Data representation, I'm just going
+to use a list to store the elements of the set.
+And I need an interface.
+How do I interact with this?
+And for that I'm going to have the ability
+to insert an element, the ability
+to check if an element is there, and the ability
+to remove an element.
+And the description is exactly what you'd expect.
+insert's going to put that element into the set
+if it's not already there.
+member will tell me true if in fact an element's
+inside the set.
+And remove will take the element out of the set
+and complain if I try to take something out that wasn't
+already inside of the set.
+Again, a bunch of words.
+Let's do an example.
+Here's the definition of the IntegerSet class.
+And I'm going to do this a little more quickly because you
+should be getting used to these pieces.
+I have something that creates instances.
+In this case, there is no argument to it other than self
+because it starts out as empty, and it's simply
+creating an internal binding for the variable vals, which
+is going to be in my internal name for the set,
+to the empty list.
+I can insert things into the set.
+And here's where I'm going to enforce
+the representational invariant.
+I'm going to take advantage of the property of lists.
+So when I want to insert a particular element
+into an instance of an IntegerSet,
+I'm going to first say, is that element inside the list?
+And I'm just using that iterable operation on this to use that.
+If it isn't, I'm going to append it into the list.
+If it is, I'm simply going to skip by because there's
+nothing to do.
+I want to check if something's inside the list.
+Again, I can use the property of a list.
+I can simply say, return e in self.vals.
+That simply says if e is in that set, that list,
+it's going to be true, otherwise false.
+What else did I need?
+I need to be able to remove an element from a set.
+And here I'm going to use that nice property of exceptions.
+I'm going to try to simply remove, directly,
+something from a list.
+I'm using the property of list here, because vals is a list.
+Remove is a method associated with list.
+And it's going to try to remove the first instance-- should
+be the only instance-- the first instance of that variable
+e from that list.
+If in fact e was not in the list,
+it's going to raise an error.
+And the exception then is going to come down to here,
+and I'm going to raise my own particular error to say,
+that particular element was not found.
+I'm going to override the underlying ValueError exception
+method.
+And finally, I'm going to use string
+to define how I want to print out the elements of a set.
+This is a little funky, but what I'm simply going to do
+is take vals, which is a list, and I'm
+going to sort it by using the sort method and call it.
+And notice I've got three dots here.
+It actually makes sense.
+It says self gives me the instance.
+Dot says look up vals inside of that instance, which
+is simply a binding.
+And then because vals is a list, the next dot, this one,
+says find the method sort associated with lists,
+and then apply it by calling it right there.
+Once I've sorted it, I'm going to run
+through a little loop, where I set result
+to be the empty string.
+And then for each element in the now sorted version of vals,
+I'm going to simply add it in together with a comma.
+And then when I'm ready to return it,
+I'm going to return a string that has
+a curly bracket on each end.
+And I got one extra comma hanging around
+at the end of the last element.
+So I'm going to take result and return everything
+but that last element to get rid of that last piece.
+And now let's try it out.
+I'll show you some examples here,
+but I actually want to go over and type them on the machine
+so you can see that it does what we would expect.
+So I'm going to define s to be an integer set.
+And I could print out what s it is,
+and it just gives me the two curly braces.
+There's nothing there.
+Now let's put some pieces inside of s.
+I'm going to insert 3 into s.
+I'm going to insert 4 into that set.
+I'm going to insert 3 again, because I have a short memory
+and I've forgotten I've already done that.
+And I want to say oh, wait a minute, what does s look like?
+Oh, that's nice.
+It's just got one version of 3 plus 4.
+I go back to what I said earlier.
+I'm going to enforce in my implementation
+that representational invariant, that an element appears
+only once.
+And if you look back at the code,
+you realize that second insert of 3
+would have checked to see is 3 already
+in the internal representation?
+It is, so I don't add it.
+What else could I do?
+Well, I could check to see if something's in the list.
+So I could say is 3 in the set?
+Yes, yes it is.
+Is 6 in the set?
+Yes, no it isn't.
+And that's great.
+Notice by the way, on my machine,
+whenever I type one of those methods,
+it nicely brings up something that tells me
+what the docstring associated with it
+is, what it expects to do, what are the inputs it's expecting
+there, things that are going to help us think about what
+do these different methods do.
+What else could I do?
+I can remove something.
+So I can go back to s and say, let's remove 3.
+
+And that did that fine.
+And let's get rid of-- sorry, let's add in 6 to that.
+And if I look at what s now consists of,
+not surprisingly, I've taken out the 3.
+I've added in the 6.
+I'm simply using those built in methods to manipulate that set.
+I could do one other thing here.
+And I'm not going to do it on my machine
+but simply point out what will happen here.
+If I try to remove an element that's not currently
+in that instance of the set, it's going to throw an error.
+And it's going to print out what I asked it to print out,
+which is different from this, the generic exception
+that I would raise, because I raised
+a specific version of ValueError that said, please print out
+that the specific element in the string
+not found, telling me what it was that went wrong
+when I tried to do all of this.
+So there are two examples.
+Notice how we define an init method for each of them.
+We define a string method for each of them
+to tell us how we're going to print things out.
+And then I create methods specific to this kind of class
+that will let me manipulate instances of that class.

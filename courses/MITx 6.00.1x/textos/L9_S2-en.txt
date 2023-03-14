@@ -1,0 +1,205 @@
+...
+OK.
+Let's get concrete about this.
+Let's look at the specifics of how we both define a class,
+and then implement instances of that class.
+So, if we want to define our own type,
+we're going to start by using the keyword class,
+not surprisingly.
+And that's going to tell us we're
+about to create the definition of a new class.
+So we're going to start with the class definition.
+We're going to give it a name.
+In this case, I'm creating a coordinate.
+That's simply an x-y pairing of points in the plane.
+And then each class definition is
+going to take one argument, which is the parent class.
+And initially, we're going to create
+classes that inherit from the underlying object
+class of Python.
+So we'll always just have object here.
+When we start building hierarchies
+we'll see that we want to extend that idea.
+But just to repeat it, I've got a class definition
+I've got a name, in this case, coordinate.
+And its parent in this case is object.
+It's followed as always by a colon to tell me
+I'm done with this.
+And then immediately below that, I'm
+going to define the attributes of this class.
+And I'm going to have them indented, as always, to tell me
+where the bounds of that class definition lie.
+Now, the word object means the coordinate is itself
+a kind of Python object.
+And that means, it's going to inherit
+all of the attributes of the underlying Python object.
+We'll come back to that in a second,
+but that's going to be valuable.
+One last piece of nomenclature-- we
+say that a coordinate is a subclass of an object,
+and an object is a superclass of a coordinate.
+We're going to have a subclass inherit from its parent
+or superclass object.
+So, simple start, define a class with a name in an object.
+Now I have to get into, how do I actually put attributes inside
+of that class definition?
+So first of all, what are the attributes?
+Well, they're going to be data and procedures that
+belong to this class.
+If I take my example of a coordinate,
+a coordinate's got an x and a y value.
+So I'm going to have some data attributes that
+are the x and y values that are associated with a coordinate.
+What I want to do is think about those data attributes
+and as other objects that make up the class-- things that
+get inherently glued together and can be treated as a unit.
+A point in the plane is a unit-- it
+happens to have pieces in it.
+But I want to have that class capture those things together.
+So as an example, while a coordinate is made up
+of two numbers, a coordinate itself
+is something that I can use.
+Those are the data attributes.
+We also need ways to use the data.
+And those are what we call the procedural attributes
+or the methods.
+Think of methods as functions that work only for this class.
+So for example, if I want to compute
+the distance between two coordinates, I could do that,
+and I can do that in a second to find a distance method
+associated with coordinates.
+But it doesn't typically makes sense
+to think about doing distances between strings
+or distances between lists.
+I'm going to create a method that
+belongs only to this class.
+And it's going to be seated inside of that class
+as one of the data-- sorry, one of the procedural attributes
+associated with the class.
+OK.
+So how do I do that?
+Well, first thing I've got to do is
+define how I actually create instances of this object.
+And for that, we use a special method called init.
+And in fact it's written a very special way.
+It has got two underscores, the word init, and then
+two underscores.
+We're always going to do it that way.
+It's a special method.
+And this special method is going to create an instance
+when I actually use coordinate as a call.
+Now, what's inside of init?
+Its first argument is a parameter
+that's going to refer to an instance of the class.
+And by tradition, we always call it, "self."
+In fact, you'll notice when you type it in,
+the Python environment always types, "self"
+in a different color and in a different,
+in this case italic font, to distinguish that it refers
+to an instance of the clash.
+We also want to give this thing that's
+going to create instances the initial data.
+If a coordinate has an x and y value,
+I want my creation of an instance
+to take in a value for x and a value in y.
+And we're going to glue them together.
+And the way we glue them together is we're
+going to actually create bindings for the names
+x and y to the values passed in.
+
+And what you can do is think of this
+as, when we actually invoke the creation of an instance-- which
+we're going to do in a second-- this
+will bind the variables x and y within that instance
+to the supplied values.
+I'm going to come back in a second to why it
+says self dot x and self dot y.
+But think of this as saying, within that instance
+to which self refers, I'm binding x and y to
+the values passed in.
+This is typically the first method
+that we have inside of a class definition.
+Because we have to say, how am I going
+to create instances of this class?
+This is also inherently defining the data attributes
+associated with this particular class, an x and a y value.
+OK.
+Let's make a couple of versions of this.
+So I'm actually going to do that.
+I've got over here, on my machine,
+a definition of coordinate.
+And I can now create an instance.
+I can say, I'm going to let c be a coordinate.
+So I simply use the name coordinate.
+Oh, and that's nice.
+Notice when I did the open print--
+I'm going to do it again before it disappears--
+it tells me what the arguments are that are expected.
+And I'm going to give it two, an x and a y value-- 3 and 4.
+I'm going to define origin to be the origin
+of my coordinate system.
+So it is another coordinate of 0 and 0.
+And notice, each time I invoke coordinate,
+the name of a class, it's creating a new instance.
+What it's doing is it's calling that init method,
+and using that to create local bindings.
+Now, you might notice here that there's no version of self.
+Wait a minute.
+Didn't I have in my definition, the definition of init
+was self x and y?
+I did, but the style, or the process if you like, in Python
+is that self automatically points
+to the particular instance that I've just created.
+And Python automatically provides that argument for you.
+So when I call init, I only call it with the arguments
+that I need to provide in order to create the data attributes.
+Once I've got that, I now have instance variables
+inside of that class instance.
+And I can get to them.
+So for example, I could say, print out the x-value value
+associated with c.
+And there it is, 3.
+Or I can print, the x-value associated with the origin.
+And there it is.
+I just printed it out.
+Think of this as c giving me an instance.
+It did, because I created it.
+And now I'm going to try and get the x thing associated with c.
+So, I create a new instance of an object.
+I pass in the arguments.
+I use the dot notation to access an attribute of an instance.
+And what I want to think about is,
+what does it mean to do that actual accessing?
+As I already said, notice that the argument for self
+is automatically supplied by Python.
+So I don't need to provide it.
+The way to think about this is as follows.
+Think of c, an instance I created with coordinate--
+think of it as pointing to a frame.
+You may remember we saw that when we did function calls.
+That every time we called a function,
+we created a new frame.
+In essence, a class definition is doing that as well.
+Coordinate is creating a new frame associated with c.
+Within the scope of that frame, we bound values
+to data attribute variables.
+So inside of c, there is a binding
+for x and a binding for y, to 3 and 4 respectively.
+C dot x is then interpreted as saying the following.
+Get the value of c.
+Oh, that's a frame.
+And then inside of that frame, look up
+the value associated with x.
+So c dot x says, get the value of c.
+That's a frame.
+Now I'll use the next thing to say,
+what's the binding for x inside of that frame.
+And thus, that's going to make it easier
+to understand why c dot x gives me back 3,
+and origin dot x gives me back 0.
+In each case, they're referring to a different frame in which
+the variable x is bound.
+And just like with functions, there
+was no confusion about which binding to use.
+The same thing with different instances
+of the same object type.

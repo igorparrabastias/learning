@@ -1,0 +1,189 @@
+...
+So we've seen we can overlay plots.
+We can do plots side by side in different windows.
+We can control the scales on the axes
+in order to zero in on how we want
+to do comparisons of displays.
+We can add labels.
+We can add legends.
+We can add titles.
+We're in good shape.
+Let's think now about how we might actually
+control even more of the parameters
+of the different displays in order
+to better highlight different aspects of what
+we're trying to plot.
+So we might want to change the color
+ourselves of what we're drawing in
+or the style of the datasets.
+We might want to change the width of the lines
+to highlight one more strongly than another.
+And we might actually want to do subplots inside of a plot.
+Let's look at all three of these things
+as different ways of using plots to visualize data.
+I'm going to start with changing the data display.
+And in particular, I'm going to go back to my similar examples.
+There's a lot of code here, but we've seen most of it.
+I'm going to open up a comparison of a window that's
+going to compare linear and quadratic.
+I'm going to clear it as I did before.
+And now when I'm going to do the plot,
+I'm going to add in one more piece.
+I'm again plotting my samples against linear or my samples
+against quadratic.
+We've seen the labels, as before.
+The new thing I've added here are
+strings that specify the color and the style on which I
+want to do the display.
+They're a little terse.
+That's OK.
+I'll let you go look at the documentation
+to see your choices.
+But the first part of the string says what color to use.
+B, I believe, is Blue.
+R is Red.
+G is Green.
+R, again, is red.
+K is black, for reasons I don't know,
+but the designers of pylab do.
+Basically you can look up the choices of those.
+The second part of the string lets
+us decide how we're going to do the display.
+So a single dash is a line.
+A 0 is a circle.
+A little upper arrow or caret is a triangle.
+And two dashes is literally a dash.
+The idea is that the third argument
+is going to let you specify a string that says, here's
+the color and style to use.
+I can still add in other keywords like "label"
+to override this.
+With that in mind, let's see what
+happens if we do the display.
+Hah, cool.
+And notice, by the way, the legends nicely reflect this.
+They also say, here is what we're displaying here.
+So now I've got a dotted line compared to a straight line.
+I've got a dashed line compared to a sequence of triangles.
+I'll let you do the exploration of other kinds of variations
+you could try here.
+But you've got some control in how
+you want to highlight how you're actually visualizing things.
+In a little while, we're going to come back and use this
+as an example to see how this is really handy to capture
+different aspects of data.
+But you can see I've got the ability
+to change the visualization.
+So I can change the style in which I display things.
+What else could I change?
+The second thing I could change would be actually the line
+width-- if you like, how thick a pen
+or how thin a pen am I using to draw these?
+And here you can see I'm simply adding
+in now one more keyword-- "linewidth," not surprisingly--
+and I'm giving it a size from 2, 3, 4, and 5.
+This is referring to the size of the pixels,
+if you like, on the graph that I'm
+using to do the display Everything else here is
+the same as before.
+Let's see what happens when I do that.
+Yeah.
+Very nice.
+Now you can see again the legend picks it up.
+Notice over here, exponential is being--
+is a very thick line compared to cubic, compared to quadratic,
+compared to linear.
+And it's simply another example of being
+able to change the aspects of the display to highlight things
+I want to highlight.
+I could have pick something different.
+This is just a nice way of showing it off.
+The last thing I want to show you
+in terms of controlling displays takes
+a little bit of explanation, and that is to use subplots.
+So some of this is as before-- creating a figure,
+I'm clearing it.
+But now I'm going to give it a call to subplot.
+And the subplot takes as arguments
+three numbers which will look a little bit interesting.
+So let me tell you what those three numbers are.
+Those arguments are the number of rows
+and the number of columns inside of the plot
+and then which location to use.
+So on these top two, I'm basically saying, inside
+of this figure-- same figure-- I want you to display something
+with two rows and one column, so two graphs like this.
+Down here, I'm saying, do something
+with one row and two columns, so something
+that's going to look like that.
+We'll see that in a second.
+And then the third argument is saying, which location am I
+using in terms of that display?
+I'm going to do one other things here.
+I'm going to go back to that idea of controlling
+the range or the limit on the y-axis,
+because I know that these are of different sizes-- in this case,
+setting it to 900; down here, setting it to 400.
+And with that in mind, I'm going to actually go
+ahead and do the display.
+Now notice I've got a call to ylim after each of the subplots
+in order to try and do that kind of a display.
+I'm setting the limit within each subplot.
+I don't have to always do that, but that's a handy way
+to just make sure I'm being careful about how
+I'm doing those kinds of plots.
+OK.
+Let's see what it looks like.
+Ah, exactly as I described-- in the first case,
+I've got one column and two rows.
+In the second case, I've got one row and two columns.
+And the reason I picked setting the limits
+is so we can see the comparison here in the growth,
+because it's the same y in both of these cases.
+And similarly, over here, I've picked the same y
+for both of those cases.
+You can also see a personal choice here.
+I don't particularly like this style,
+because I started getting overlaps of values
+on top of the actual graphs.
+I find this comparison a little bit better to use,
+but it's your choice.
+The main point is, I've got the ability
+to compare things side by side or top to bottom.
+My choice, but another way of thinking
+about using aspects of plotting to visualize the data.
+Now we've seen a lot of examples of actually doing
+different things, looking at these different-- four
+very simple orders of growth-- linear, quadratic, cubic,
+and exponential.
+Let's now switch gears and think about using
+the tools we've seen here to actually think about,
+how do I visualize data, and think
+about computation as part of that visualization process.
+Before we get to that idea of doing that visualization,
+though, let's look at one last thing
+that we can do in terms of changing things here,
+and that's to change the scales.
+And changing the scales here basically
+says, if I've got something that actually grows really rapidly,
+rather than plotting them linear and linear,
+I could plot them where one of the axes
+is done on a log scale.
+And I use the call y-scale, giving it the argument log,
+to tell me that I want to use a log
+scale rather than a linear scale as I do this actual plotting.
+Everything else is as before.
+Now when I plot them, I can see I
+can compare simply linear comparison
+against logarithmic comparison here.
+The reason this is handy is something like exponential
+grows so quickly that it really swamps out things very rapidly.
+And you can actually see here, even with this rapid rise, when
+I plot things on a log scale, which
+is each incremental step here is an increase
+of an order of magnitude, I get a different way of seeing these
+so that now the exponential is linear on a log scale,
+as it should be, and the cubic starts
+to drop off much more rapidly.
+So that idea of being able to change scales
+lets me focus in on orders of growth in a different way.

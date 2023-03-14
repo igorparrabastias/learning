@@ -1,0 +1,136 @@
+...
+Now that we have the idea of being
+able to do different plots in different windows,
+we'd like to see what other things could we add to this.
+And the first thing is, I should really label things here.
+I should really label the axes, because they
+mean different things in different plots.
+So here's a set of code all calling functions out
+of that PiLab library.
+And notice what I've done.
+First of all, I open up a figure that I'm
+going to call lin for linear.
+And the next two calls are putting
+an x and y label on that graph.
+They just take string arguments.
+So I'm going to say, on the x-axis,
+I want to say sample points.
+On the y-axis, I'm just going to say linear function.
+Obvious things to put in there.
+I then do the plot of my samples versus my linear,
+as we did before.
+I can open up, as I did before, another figure, quadratic,
+and do plotting there.
+I could open up another figure which is cubic
+and do plotting there.
+I could open another figure and do exponential plotting.
+And then I might decide, you know
+what, I want to go back to the quadratic figure
+and add a label.
+So notice here, having first created the quad figure there,
+I've done a few other things.
+I can come back right here and say, please
+reopen the quad figure.
+Calling figure with the same name will do that.
+And inside of that window, I'm going to add in another label.
+I'm going to put in a y label that is
+a quadratic function on there.
+Let's see what happens if we do this.
+Oh, nice.
+Now I've got something that labels the x-axis, that
+labels the y-axis.
+And I'll wait a minute.
+Over here, what happened?
+There's no label on the x-axis.
+There is a label on the y-axis.
+Let's go back to the previous slide
+and see why that happened.
+Ah.
+Notice that here, I put an x and y label.
+But that was in the linear window.
+Down here, when I reopened up the quad picture,
+I only put a y label on.
+And that makes sense, then.
+I only said put a y label on there.
+The label for x happened up here only inside
+of the linear window, not inside of the quad window.
+And so I want to fix that, I better
+make sure I do the labels inside of the appropriate windows.
+There is my display.
+And it comes out quite nicely.
+OK, what else might I do?
+If I'm really careful about this,
+I should not only label x and y-axes.
+I should also put titles on these graphs.
+And so I can do that by simply adding.
+And after I've done all of these pieces.
+Opening up the figure, doing the plots, I could put in labels.
+And notice here, I'm reopening up each one of the figures,
+and then putting an appropriate label
+for the title of each one of these graphs.
+Great, Let's see what happens when we do that.
+So there's the display.
+And there's good news and bad news.
+The good news is, there are the titles for the graphs
+that I drew.
+But notice I've still got some labels on the axes.
+And in that previous code, if I go back to it just
+for a second, they're not there, right?
+I'm opening up a figure, I'm plotting.
+I'm opening up a figure, I'm plotting.
+And then I'm putting titles on.
+So what happened here?
+Why are the axes still labeled?
+And the other thing you might notice
+is, why are the colors the same in the two plots?
+They're both of the same color, even though I'm actually
+plotting different things.
+So let's answer both of those.
+The first answer is, or the answer to the first question
+is, we're reusing a previously created window.
+I had done earlier calls where I created those windows
+with those names, and I'd done things in them, including
+putting labels on the axes.
+So if I want to really be clean, I
+should clear the window before redrawing it.
+And I'll show you how to do that in a second.
+And the second one, if you're wondering,
+is why are these plotting functions using the same color?
+We're going to fix it in a second.
+But basically, we're calling a plot
+in a new version of a window.
+And PiLab always starts with the same choice of color,
+and then we'll move on as we do other kinds of plots.
+As we'll see, we can control it.
+But if we don't give any specific instructions,
+PiLab's always going to start with the same color.
+Let's deal with cleaning up the windows first.
+So what I need to do is to say to PiLab,
+when I open up a figure, in case I've
+had an earlier version of it open previously, I'm going to,
+in fact, clear it.
+And it's simply going to use the CLF,
+or clear the frame function inside of each one.
+And it's a nice habit to get into.
+I open up a window, let me clear it
+to make sure I haven't been using it previously
+somewhere else.
+And I have exactly what I want set
+in order to have a clean slate.
+Of course sometimes, I may want to use it previously.
+And in fact, we'll see that right here
+on this side when I want to put labels in.
+I'm reopening that for window and doing
+the appropriate labeling inside of it.
+But with that clear, I'm actually
+going to be able to draw appropriately
+inside each of them.
+And when I do that, I get the display I want.
+Titles, in this case, on the windows,
+but nothing on the axes.
+And I should have said earlier, of course
+there were actually four windows that were displayed here.
+I'm just showing two of them, the linear and quadratic.
+I didn't bother to show to you the cubic and the exponential.
+But those are going to be things that would also be displayed.
+If I wanted to look at them.

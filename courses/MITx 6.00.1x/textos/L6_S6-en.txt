@@ -1,0 +1,130 @@
+...
+In that last example, we looked at how using a dictionary
+could let us make computation much more efficient.
+We store away computed values that we
+want to reuse so we simply look them up.
+Nice idea.
+To demonstrate it I showed you some examples
+of running the code.
+And we simply used the delay in time
+before we printed out a result to try and get
+a sense of how different the efficiencies were of that.
+I'd like a little more formal way of doing that.
+And I'm going to show you an example using
+what we call a global variable.
+Now I'm going to preface this by saying this
+is a dangerous thing to do.
+Globals are something that most computer scientists don't
+like to use because they can really lead to side
+effects in a very bad way.
+But in some cases they're valuable, and this is one.
+They're dangerous to use because global variables break
+the scoping of variables that we get by a function call.
+What do I mean by that?
+Remember when we were looking at a recursive function
+and we call fact on something, and it would call fact
+on a smaller argument, and that would create a separate scope.
+And the value of the parameter in that scope
+was the one we would use.
+And it would be different from the value of the parameter
+in a different scope.
+With global variables we're going
+to have the ability to move that value,
+that access to that variable, out of scopes.
+And that's why it's dangerous to do.
+It also allows for side effects because we
+can change variable values in ways
+that affect other computation.
+But it's going to be really handy if we just
+want to keep track of the information
+inside of a function.
+And I want to go back to my example of Fib
+and Fib efficient to show you how that would work.
+I'm going to take those two definitions
+and I'm just going to change them slightly.
+In particular, I'm going to add in a variable that
+is going to just keep track of how often do I actually
+call this function.
+And so, I'm first going to say, that variable is global.
+And this is simply a statement.
+Notice global is a special term.
+It says this variable name is something
+that I can access outside the scope of the function.
+I'll remind you, before this anything
+inside the body of the function was only accessible
+within the call of the function itself.
+But this is something we're going
+to be able to see up, for example,
+at top level of the global environment.
+And then, what I want to do with both of these functions
+is simply increment them each time I call them.
+It's going to keep track of how often did
+I actually call this function.
+The rest of it is just like before.
+It is exactly what I did when I did these two computations.
+So with that small change I can now
+track the efficiency of this particular pair of functions.
+I'm going to need to initialize that global variable outside.
+I'm going to set it to zero.
+And then what I'm going to do, for example,
+is I'm going to call Fib on an argument like 12,
+and then print out a string and the number of times
+I called that function.
+Because inside that function-- and I'm
+going to go back to that previous slide for a second--
+it's going to update that variable each time I call it.
+I'll then re-initialize it to zero,
+I'll set up my dictionary, and I'll do the same thing with Fib
+efficient.
+And it's going to give me a chance to measure,
+in fact, how different are these two functions in terms of how
+many times are they called.
+So I have on my computer then those two functions.
+I'm going to do exactly that.
+I'm going to start with something
+a little smaller, which is 12.
+And I've just got a variable here, fibArg.
+So I can just change that rather than changing it
+in both places.
+And let's see what happens if we call this.
+
+OK, it ran it and it said basically
+I got 233 as the answer.
+But with the inefficient Fibonacci
+there were 287 calls to that function.
+With the efficient one, because I'm keeping track of what
+I've done, only 21.
+All right.
+Sounds pretty good.
+Let's go back to the one that we used
+to see a bigger difference.
+Let's go to say, 30.
+And let's call that.
+I get the same answer both times,
+that's good, but notice the difference.
+Wow.
+Using the dictionary I only called that function 57 times.
+Without the dictionary 1.7 million.
+Let's just do one more.
+We won't make it too big or we'll be here forever.
+But let's, I don't know, make it 34.
+And let's call it.
+And it's going to take a little while to find that answer
+but it will find it, I hope, in a second.
+There we go.
+The answer is the same.
+Look at the difference.
+With the dictionary, with keeping track of those answers,
+65 calls.
+And boy, I've got to eyeball that, 11 billion
+in the case of the inefficient Fibonacci.
+So dictionaries can be really handy here,
+and here's a great example of that.
+As we go forward, we're going to use dictionaries
+in a lot of different ways to really efficiently capture
+and use information.
+Especially the idea of being able to index
+on arbitrary keys.
+Something we're going to want to be
+able to use as we generalize the kinds of procedures
+we're going to compute.

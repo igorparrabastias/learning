@@ -1,0 +1,252 @@
+...
+So far, we've been talking about how to handle exceptions.
+We've seen some nice power to that.
+That when Python throws an exception rather than bumping
+us up to top level, we can actually say, in this case,
+I know what I want to do.
+And I can actually write code to handle that exception.
+And we saw examples of using that to build little data
+structures.
+Very nice.
+We can actually go the other direction as well, though,
+which is we could decide when to raise an exception ourselves.
+So rather than returning special values when an error occurs
+and then checking to see if that error value was returned,
+we could instead say, you know what?
+I want to raise an exception when
+I'm unable to produce a result consistent with the
+specifications of the function.
+And for that, we have, not surprisingly, another keyword
+called raise.
+And the idea is inside of the code,
+I can say I want to raise using that keyword an exception.
+And I'm going to give the name of the error
+that I want to raise in doing that.
+It could be an error that's an existing error exception.
+It could be one that we're going to create ourselves.
+But typically, it's going to be an existing error exception.
+So in this case, a value error.
+And then, a message that I want to print out.
+And typically, that's just a string
+that I want to have that tells me what was going on.
+Hopefully, something more valuable than just something
+is wrong.
+It may tell me the specifics that
+were happening when I raised this particular exception.
+This is now putting me in control
+of deciding when to raise an exception
+as well as now allowing me to do what
+I did in the earlier part of how to handle that exception when
+I get there.
+Let's look at some examples.
+Imagine I want to take a list of two numbers.
+And I want to get a ratio of those two lists.
+That is, each list I'm going to assume is equal length.
+And I'm going to get the ratio of the first element
+of the first list, the first element of the second list,
+and so on.
+And I've got a nice little piece of code here.
+It has a form you might expect.
+I'm going to set up a list of which I'm
+going to record the results.
+I'm going to then run down the length of the first list
+with a little index going from 0 up to 1
+minus the length of the list.
+And I'm simply going to try and get
+the ratio of those two things and put it
+into the thing I'm trying to accumulate.
+So I'm running try here.
+What I want to do though is deal with a couple
+of different cases.
+One is, what do I want to have happen
+if I get a division by 0?
+And in that case, I'm just going to put something in here that's
+called not a number.
+It's a special thing inside of Python
+that I'm going to insert saying, I can't return a number here
+because it's infinite.
+That's just a standard exception handler.
+But when I get anything else, I'm
+going to raise a different exception that
+tells me I called get ratios with a bad argument.
+And then finally, I'm going to try and return the ratios.
+Let's see what happens if we actually run this.
+So here's an example of get ratios.
+I've loaded in.
+And let's give it a couple of lists, l1 I'm going to say
+is the list 1, 2, 3, 4.
+l2 is the list 5, 6, 7, 8.
+And my apologies.
+I'll do that again. l2 is the list 5, 6, 7, 8.
+And if I call get ratios on l1 and l2, it does what I expect.
+It gives me those ratios and it ran correctly.
+Let's define another list.
+Let's make l3 be the list just 5, 6, 7.
+If I call get ratios on that with, for example, l1 and l3--
+oh, good.
+It did what I wanted it to do.
+In particular, it threw an error because I'm trying to index
+beyond the length of l2.
+It's one short of the length of l1.
+And notice up here, I'm indexing over the size of l1.
+And it did exactly what I wanted.
+It raised a value error.
+So it did throw me up to top level
+because I don't have an exception
+handler to deal with that.
+But it printed out my information,
+not the standard thing that would
+have happened if I didn't have a particular handler there.
+The last one I want to do is to say, let's let l4 be the list
+5, 6, 7, and 0.
+And if I do get ratios of l1 and l4, nice.
+In this case, the exception handler kicked in.
+Because in this case, I have a 0 division error.
+And rather than throwing in error,
+I said, just substitute in that special symbol, not a number,
+in place of the spot where I would have otherwise put it in.
+Again, step away from the code for a second.
+What we're now showing you is I can certainly handle exceptions
+as they come up, but I can also raise
+my own kind of error message for different kinds of errors
+as they occur.
+In this case, when I got a value error giving me out something
+specific telling me where I was when this happened.
+I can use that to control the flow.
+Let's build on that idea and let's look at a second example.
+So as I said, we're managing the flow of the program
+by raising our own error here.
+Let's look at an example where we extend that.
+Let's assume we're given a class list for a subject.
+And each entry is-- as we did in the earlier part,
+it's a list of two things.
+A list of the name of the student and a list
+of grades on an assignment.
+Multiple grades for an assignment.
+So I might have a little example here of test grades for Peter
+Parker and Bruce Wayne.
+And they are both doing pretty well in this class.
+What I'd like to do is create a new class list
+with a name, grades, and an average.
+What's the average that they're doing so far in that?
+And you could see the kind of output
+I'd like to get here, that Bruce Wayne is doing a little better
+than Peter Parker.
+OK.
+Pick your favorite superhero and which
+you want to have do better than somebody else.
+How would I do that?
+Again, trying to use the idea, which
+we're going to do in a second, of using
+the exceptions to handle the way we flow through the program.
+Here's some code that would do the straightforward
+way of doing it.
+A little function called get stats.
+It takes in a list and what does it do?
+It's going to build a new list.
+And for each element in that original list,
+I'm going to take a list of the first element,
+the second element, and an average of the second element.
+And I'm assuming I'm inputting things
+that have a list of names and a list of grades.
+And it's going to compute that out.
+An average, of course, just takes that last element,
+it adds them up using sum, and divides it
+by the length of grades.
+And so if I were to do that with a simple, little example,
+here I've got an implementation of that.
+And I'm going to initially zero out some examples of this
+to do a simple version, and then I'm
+going to do a slightly more complicated version.
+So the simple version is the one that we already have.
+And if I run this, and then I look at test grades, which
+is where I asked to put the result,
+I get what I wanted initially.
+Sorry, that's test grades.
+And now let's actually run it.
+I'm going to do get stats on test grades.
+
+And I get the kind of performance I wanted to get.
+Looks good.
+OK.
+Now, what I want to do, however, is I want to look at a case
+where I've got some other entries in here.
+So I'm going to rerun this.
+I'm going to reload this file.
+I've got test grades in.
+Here's what test grades looks like.
+It's got Captain America with some grades
+and it's got Deadpool without any grades entered yet.
+And if I do get stats on the test grades-- ah,
+I get a division by 0 error.
+And that makes sense because in that last entry, length is 0.
+I'm trying to divide by 0.
+What could I do to deal with that?
+Well, as we just said, if I got somebody
+where they don't have any grades,
+I get that error because I tried to do that division.
+Why don't I think about handling it
+using this idea of exceptions?
+And so in particular, I want to deal with this case.
+And here's what I could do.
+The first one is I could decide to just notify
+the user that something went wrong by putting out a message.
+So I'm going to change now average to try to return this.
+But if I get a 0 division error, I'm
+going to handle it by printing up some data.
+And if I go and do that, I'm going to change now
+my definition of grades.
+Of average, rather.
+I'm going to get rid of this version of average.
+And I'm going to load that file in.
+Now, just make sure I've got the right thing.
+There is test grades.
+And it's my list.
+And if I know say get stats for test grades-- great.
+It ran.
+Notice what it did, though.
+It made a decision.
+So first of all, notice on the printout
+it printed out no grades data.
+So it gave me the warning.
+I handled that error by saying that's what I want to do.
+But in this case, notice what also happened.
+There's the flag for the error, but it substituted in a value.
+And the reason it did is because average didn't return anything.
+My definition of average doesn't have a return in this case.
+And as a consequence, the call to average
+gives back that special thing, the none type.
+And it inserted none in that spot in the pool.
+Maybe I'd like to say that that's
+the average for Deadpool, but that
+doesn't make a lot of sense.
+How could I handle that?
+Well, I could decide I'm just going to give
+a student with no grades a 0.
+Seems like a reasonable thing to do.
+And now I can change my handler.
+Again, catching that 0 division error idea,
+but putting in an explicit return.
+This says not only do I want to print out
+a note that says something didn't go the way I expected it
+to, but let me give me back a value that I can run on it.
+So now, let's go and see what happens when we do that.
+So I'm going to remove this version of average
+and replace it with one that has that return inside of it.
+And when I call this, again, let's check and see
+we're in the right place.
+Let's make sure that test grades was loaded properly.
+And it was.
+And if I now do get stats on test grades-- oh, good.
+Deadpool now has a 0.
+Doesn't say how bad or good Deadpool is,
+he just didn't turn any quizzes and he has no grades.
+And so now what we see here is we still flag the error,
+but we've changed what gets returned to insert something
+that makes more sense for the data structure
+I'm trying to build.
+And so we can see we can use our own ability to raise errors,
+But to handle errors, to deal with things in a manner
+that we want, rather than simply stopping execution and pumping
+it back up to the user to try and decide
+how to handle all of that.

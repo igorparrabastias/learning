@@ -1,0 +1,246 @@
+...
+When we introduced definitions into our language,
+in essence, what we were doing was
+giving you, as the programmer, the ability
+to create procedures that you could then abstract and treat
+as if they were provided by the manufacturer of the computer.
+The same way that you have addition and subtraction,
+you could create new variations of procedures
+and treat them as if they were behaving exactly the same way
+that those primitive procedures did.
+We want to do the same thing with data.
+We're going to talk now about creating objects, classes
+of objects, that you can define as a user,
+and that switch is going to add a tremendous amount of power,
+flexibility, capability to our language
+and to our ability to create new systems.
+So let's see what that means.
+Let's start by talking about the objects you already know about.
+As you know, Python supports a number
+of different kinds of data.
+We've got integers.
+We've got floating point numbers.
+We've got strings.
+We've got lists.
+We've got dictionaries.
+A few others like tuples, but basically, we
+have a primitive set of data objects.
+Each one of those examples that I have on my screen
+is an instance of an object, and every object has three pieces.
+It has a type, int, float, dictionary.
+It has an internal representation.
+It's a way of gluing together the pieces that
+compose the object.
+For primitive things like numbers,
+it really doesn't make sense to talk about it as anything
+other than a scalar, but for a list,
+it would say, how do I get the different pieces--
+elements, if you like-- of a list and glue them together?
+So every object has a type.
+It has an internal data representation.
+And associated with it, it has a set
+of procedures that allow you to interact
+with an instance of that object.
+We're going to look at some examples in a second.
+But those three pieces are key to defining an object.
+And, indeed, every instance that we create
+is a particular type of object.
+One, two, three, four is an instance of an int.
+If I define A to be, quote, "hello," end quote,
+A is now an instance of a string.
+So we talk about objects as having
+Types because that brings with them
+the ability to manipulate them.
+OK.
+If everything in Python is an object and has a type,
+what does it tell us about how we
+might think about using them?
+And the first one is, we want to think about each object
+as being a data abstraction.
+It captures an internal representation of the data
+attributes.
+We'll say what those are in a second.
+And it defines an interface for interacting with the object
+through methods.
+Think of them as procedures.
+And those methods define a behavior
+but hide the implementation.
+Again, in a second, we'll look at an example,
+but every data abstraction is an internal representation
+and an interface for getting to that internal representation,
+doing something with it, and then returning an answer.
+Associated with every object we have the ability
+to create new instances of that type of object,
+and we have the ability to get rid of it, to destroy objects,
+either explicitly using Del, which we know
+is a universal way of removing something from our environment,
+or just forgetting about them and letting the system
+eventually garbage collect or reclaim
+inaccessible or destroyed objects.
+But that idea of an object having
+a type, an internal representation, an interface
+is going to be really important as we think about,
+how do we want to create our own objects?
+We want to talk, then, about data objects and that idea
+of internal representations and ways to manipulate them.
+We have some built in data objects-- lists, tuples,
+strings-- and we're going to see examples
+of how they have both an internal representation
+and associated procedures.
+And we're going to take that idea
+and generalize it to look at the ability to create our own data
+object types.
+And that wraps back to what I said when I began.
+Once we can do that, we want to then treat those data object
+types as if they were provided to us
+and treat them the same way we would treat any built in data
+type.
+Let's look at an example to make this a little more concrete.
+This is an object of type list.
+It's an instance of a list.
+One of the questions we could ask
+is, how is it represented internally?
+Do you know?
+You shouldn't, because we haven't talked about it.
+And you shouldn't have to worry about it.
+You just want to use that data object through a defined set
+of procedures.
+It's possible inside your machine
+that a list is represented by allocating a sequence
+of consecutive slots in memory.
+The list would point to the first slot--
+that would be the first index.
+Incrementally, the next slot of memory
+could be the second index.
+Turns out that's not a great way to represent lists,
+because it's limited in the ability to change them,
+to mutate them, or to have arbitrary sized elements
+inside of them.
+So, in fact, a more common way to represent a list
+is using something called a linked list,
+where the list points to a cell in memory--
+actually, to a pair of cells in memory--
+the first one of which contains either the object or perhaps
+even a pointer to an object elsewhere,
+and the second which points to or links to the next location
+in the list.
+It might be the next spot in memory.
+It might be somewhere else in the memory.
+And when I want to index into a list,
+I'm literally walking down the list and finding the right spot
+and retrieving the element from it.
+That's a nice way to think about building lists.
+Is that the way you do it?
+Doesn't matter, because what you use with the lists
+is a way, a set of procedures, a set of methods,
+to actually manipulate the elements of the list.
+And you've seen lots of these.
+I can get out a specific element.
+I can slice into it.
+I can do it with a specific set of jumps.
+I can have procedures that actually compute things off
+of a list or get rid of an element of a list.
+I have associated with lists a set of methods,
+and there's that dot notation that we talked about earlier,
+and we're going to talk a lot more about in a few minutes.
+The key point here is I've got a set of ways
+in which I standardly interact with and manipulate lists.
+And from your perspective, you think about this.
+You don't worry about what the internal representation is,
+because those procedures take care of that for you.
+As a consequence, that internal representation
+really should be private, meaning you
+don't know what's inside of it.
+And the correct behavior, in fact,
+could be compromised if you try and manipulate
+the internal representation directly.
+Ideally, you should always use the defined interfaces
+to get at portions of or elements
+of a list or any other data object that you've created.
+
+We're going to take that idea now,
+and we're going to talk about, how
+do you create your own objects, and how do you
+use your own objects?
+And we've already seen we're going
+to need an internal representation,
+and we're going to need methods to enable
+us to talk about how we want to manipulate
+that internal representation.
+To do this, though, we're also going
+to make one more distinction, and that's
+between creating a class and using an instance of a class.
+To wrap it back to earlier terms, the idea of a list
+is a class.
+But the example I had of the list one, two, three, four
+is a particular instance of a class.
+And as you know, I could have many instances.
+I can use them in different ways.
+When we want to create our own objects,
+we need to do the same thing.
+How do we create a class?
+How do we make an instance of a class?
+Creating the class is going to involve
+defining the name of the class so I can reference it.
+It's going to involve defining the class attributes.
+I'm going to come to that in a second.
+And an example of this is, in the list case,
+somebody wrote code to implement the list class,
+giving it the name list and defining the attributes
+associated with a list class.
+When I want to use the class, that
+involves creating new instances of that object, different kinds
+of lists, and then doing operations on those instances.
+So, for example, if I have the simple list L equals
+the list of one, two, then there is an operation on it,
+and that's operating on that particular instance,
+not on the whole class.
+I'm going to take those same ideas now and try
+to make them more concrete in terms
+of, how do we define a class, and how do we actually
+use instances of the class?
+But before I do it, let's talk about why.
+What I'm trying to do is now bundle together data
+into packages.
+That bundling includes linking together
+different pieces of data that are associated into one place,
+but it's also associating with it
+the methods that are going to manipulate that data object.
+And this is actually an idea we've talked about a lot,
+because this is simply a version of abstraction.
+By doing this idea of bundling things together,
+I can now treat that bundle as an abstract of data
+representation.
+To get into it, I need to have defined methods
+that can pull out pieces and do things with them,
+but I can treat the whole thing simply as an element.
+And that's also going to be really important as we think
+about building our classes.
+Second key advantage of object oriented programming
+is it gives us a divide and conquer
+approach to development.
+I can implement and test the behavior
+of each class separately.
+And once I have that done, then I
+can start doing the whole system as a larger entity.
+And that increased modularity reduces
+the complexity of the code I write
+associated with any class.
+As a consequence, it makes it much easier to reuse the code.
+In fact, many Python modules defining new classes
+inherently, and each class, therefore,
+has a separate environment.
+That means I don't have any collisions over the names.
+If I want to use a method with a particular name in one class,
+I can use a method with the same name in another class,
+because they're captured inside of a module.
+And as we'll see a little later on,
+we're going to have the notion of inheritance, in which we can
+define subclasses of classes that will capture or inherit
+behavior of its parent class and potentially modify it.
+But it makes it easier for us to write code,
+because we don't have to write the same behavior
+for every class if, in fact, we can have
+it captured in a single class.
+We're going to take those ideas and now
+start to make them much more concrete.

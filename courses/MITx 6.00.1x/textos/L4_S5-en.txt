@@ -1,0 +1,41 @@
+...
+We've now begun to look at functions.
+We're going to do more of those in a second,
+but it's important to take a little break here
+to talk about one other piece of a function
+and that was the idea of a specification.
+This is something we're going to use
+to be able to decide how we want to use a function.
+And think of a specification therefore, as a contract.
+We don't enforce it necessarily, but it's
+a contract between the implementer
+of the function and the people who are going to use it.
+That specification ideally will say here are the assumptions.
+Here's what the implementer of this function assumed
+was going to be true, especially about the values of parameters.
+If you like, it's the conditions that a client
+needs to guarantee are true before they use it.
+And then if those assumptions are in fact
+met the second part of the specification
+are the guarantees.
+It says, here's what the function
+will do provided it's been called in a manner
+consistent with the assumptions.
+The way we do it in Python is to use this idea of a docstring,
+and there's my earlier definition of is even.
+It has a condition on the input, it says,
+if you give me an integer which I'm calling I,
+in particular a positive integer,
+then here's what I guarantee-- that it will return true
+if I is even, otherwise it's going to return false.
+Now, you're not required to put in a doc string or a spec,
+but good programmers always do.
+In part because somebody else might use this
+and you want to tell them how you expect
+it to be used or because a year from now, two years from now,
+you may come back to this function
+and you'd like to know what was I thinking when I built it.
+So I encourage you to build your own docstrings even though it
+takes a little more time because it helps
+you understand what's expected of a piece of code
+and where can I use it.

@@ -1,0 +1,205 @@
+...
+The next sorting algorithm we're going to examine
+is called selection sort.
+And I'm going to describe the idea,
+show you an implementation, and then
+we'll actually look at what the complexity of it is.
+The idea in selection sort is pretty straightforward.
+On the first step, I'm going to find the smallest
+element, which means I'm going to have to look at everything,
+but I'm going to find the smallest element.
+And I'm going to swap it with the element at index zero.
+I'm going to put the smallest element in the first spot.
+On each subsequent step, I'm going
+to look at the remaining list, find its smallest element,
+and put it at the next spot.
+So in the next step, it would find the next smallest element,
+put it at location one, and keep doing that.
+What I'm going to do is constantly keep
+the left portion of the list sorted.
+And so at the i-th step, the first i elements in the list
+are already sorted.
+All other elements are bigger.
+And I'm not going to worry about the bubbling of trying
+to put them into order.
+I could be a little more efficient
+about doing some swaps if I wanted,
+but basically the idea is to select the next element
+and put it in the right location.
+Let's think about what this might look like.
+And to do that, I'm going to show you
+a little video of Professor Guttag with a set of students
+actually doing selection sort.
+And once we've seen that video, we
+can come back and do the analysis of the algorithm.
+All right.
+So now we're going to do selection sort.
+The idea here is, at each step, we're
+going to select the shortest person
+and put them next in line of the sorted group.
+So we'll bring the leftmost person forward,
+and we will compare her to everybody else.
+So one at a time, step forward.
+You're still the winner.
+You go back.
+Please step forward.
+Oh, you're definitely the winner.
+Next.
+
+Still the winner.
+Next.
+Ah, a new winner.
+All right.
+So--
+Can I take her place?
+You can take her place.
+OK.
+
+Now we'll compare.
+Same old winner.
+
+Same winner.
+
+No change.
+It's getting kind of boring.
+Don't fall.
+Same winner.
+Please.
+
+Oh.
+Close, but I think you're still shorter.
+All right.
+Next.
+
+No change, which means you are the first in line.
+Congratulations.
+All right.
+Now you step forward, and we'll compare you.
+
+You are the winner.
+Take your place in line.
+Next.
+It's you.
+
+And once again, we have a lovely group
+of students sorted in height order.
+[CLAPPING]
+
+So now let's think about what a simulation of that
+might look like.
+We saw with bubble sort we were finding the largest elements
+and putting them at the end.
+And there was a lot of percolation
+of elements going through here.
+With selection sort, we're simply finding the next element
+and putting it in the right spot.
+So you'll notice this portion of the list
+doesn't change very much.
+And I'm now building up the list in this direction, opposite
+of what I did before.
+But otherwise, it's fine.
+Nice, elegant algorithm.
+Let's build it.
+Before I do that, I can basically
+say, how do I make sure it's going to do the right thing.
+The simulation suggests it does, but I
+can use an idea we introduced earlier
+to say is there a loop invariant, is there
+a property that will hold true at each stage
+of this algorithm, and can I use that to actually deduce
+that my algorithm is going to do the right thing.
+And here it's pretty straightforward.
+Given a prefix of the list-- that is, the list from zero
+up to i-- and a suffix of the list, everything from i
+plus 1 up to the remainder of the list,
+then the invariant I have is that the prefix is sorted
+and there's no element in the prefix that's
+larger than the smallest element in the suffix.
+From the way I've described the algorithm, that's
+clearly going to be true.
+But how do I now prove it?
+With that induction property I've used before.
+In the base case, the prefix is empty,
+and the suffix is the whole list.
+So it's obviously true.
+The prefix is sorted, and there's
+nothing in the prefix that's bigger than anything--
+or the smallest thing in the suffix.
+On the induction step, I'm simply
+moving the smallest element from the suffix
+to the end of the prefix.
+Because I'm putting at the end, after that step,
+the prefix is still sorted.
+And by the way I did it, I also know that the invariant is true
+because not only is it sorted, but when
+I'm done there's nothing in the suffix that's smaller
+than something in the prefix.
+And when I exit, the prefix is the entire list,
+the suffix is empty, and so I have a sorted list.
+So the algorithm will work.
+So where's the algorithm?
+Well, this is actually a pretty crisp set of code to write.
+I'm going to set up something called the suffix store, if you
+like, to be initially zero.
+And as long as I don't get to the length of the list,
+I'm just going to run through the loop.
+And what does the loop do?
+It says ranging from that point to the end of the list.
+So it's from the end of the things that are already
+sorted to the end of the list.
+I'm simply going to compare.
+And if the thing I'm looking at at that point
+is less than the thing I'm looking
+at at the end of my suffix, I'm just going to do a little swap.
+Now, this is a little more work than I did before.
+I'm actually going to do a little bit of bubbling here,
+but not the complete level of bubbling I did before.
+I could have literally just said find the smallest element
+and move it.
+Here, I'm going to reorder things to save me
+a little bit of time.
+But what I know is, when I'm done with that,
+the smallest element in the suffix is now at the point
+I wanted to look at, right at that point there.
+And I increase my index by one and move on.
+Notice what I'm doing here.
+I'm taking advantage of that idea
+that I don't want to copy the list,
+I simply want to find the right pointer
+and then insert in the right spot.
+So there's selection sort.
+And I could try a version of that.
+Again, what I'm going to do is do it
+where I actually print out what I'm doing as I go along.
+And so with a variant of that, with selection sort,
+again, on a test, you can see in this case
+I see the smallest element always being placed
+at the beginning of the list.
+In some cases, I get lucky, and it was already there.
+But in each case, I'm going to keep doing that work
+until I in fact get out a sorted list.
+You may notice on my computer it doesn't print out
+the overall version, because I am only printing as I enter it.
+And if I actually look at test, you'll
+see that, in fact, it is now fully sorted.
+Real question is, what's the complexity here.
+Well, what do I know?
+I'm going to have to run through that while loop order
+length of L times because I have to go through the loop
+to make sure that I get the next element in the right spot.
+Inside of there, when I do that loop,
+I only have to look at a portion of the list.
+That's basically the length of L minus whatever
+my index is pointing to.
+But that still, in general, is order length of L.
+Gets smaller on each step, but it's still
+what we would call length of L.
+And so you therefore see this is quadratic.
+And it shouldn't surprise you because I've got a loop
+and, inside of that, I have a nested loop.
+And that is a characteristic of that property
+of being quadratic.
+And so it is quadratic in the length of the list.
+But it's another way of doing this sort, perhaps timing-wise
+a little more efficient than the bubble sort version
+we saw earlier.

@@ -1,0 +1,171 @@
+...
+To solve that problem I raised, I'm
+going to introduce one more kind of object
+into Python-- something called a generator.
+And any procedure and method with a yield statement
+inside it is a generator.
+So yield is the new keyword that I'm going to create here.
+And the idea behind a generator is
+I'm going to be able to control the behavior.
+So if I do genTest(), which is a procedure here,
+it returns for me, as you can see, a generator object.
+And once I've done that, the behavior I'm going to get
+is the following.
+Generators have associated with them a next() method.
+It's built into the Python implementation of that.
+And that next() method starts or resumes the execution
+of a procedure.
+So inside of a generator, yield suspends the execution
+and returns a value.
+The next time I call for the next() method,
+it will go until I get to the next yield() method,
+in which case it will stop or suspend execution and return
+a value.
+And it will keep doing that until we run out of yield()
+methods, in which case it will raise a StopIteration
+exception.
+So if I actually create this, I can go over to my Python system
+and try it.
+And so if I define genTest() to be a procedure with a yield
+of 1 and then a yield of 2, and I call it--
+let's say I'm going to give foo is genTest().
+
+If I say foo of next(), it prints out 1.
+It has gone until it found the first yield statement,
+it's returned that value, and it's stopped operation.
+And if I call that again, it prints out 2.
+And if I call it again, it says I
+have a StopIteration exception raised.
+So it's letting me control how far I go in the computation
+before I stop and return a value.
+So this just summarizes what I just did-- in this case,
+executing in the body of foo, which was something created
+by genTest() until it reaches the first yield,
+and similarly to the second one, and then similarly until I get
+to something that raises a StopIteration exception.
+So why might I want this?
+Well, notice how I could use this.
+I could use it inside of a looping structure.
+Now this is a simple example, but it will do the same kind
+of idea, because the genTest(), that generator,
+is going to create something that will execute until I get
+to the first yield point and then return a value.
+And the looping construct, in fact,
+knows to ask that thing returned by genTest(), that generator,
+to do that execution and then stop.
+And so if I were to run this particular example,
+it would print out each of the objects
+in turn, because inside the for loop,
+it's executing until it gets a value returned,
+yielding, and printing it out.
+Great.
+Here's how this could be really nice.
+Here's a fancy operation.
+Let's go back to Fibonacci.
+But rather than writing recursive code for it,
+I'm going to write it in a somewhat unusual way.
+This is going to generate, if I wanted to do it,
+all of the Fibonacci numbers for me.
+And how might I do it?
+I'm going to internal variables--
+one that is initially bound to 0, one
+that's initially bound to 1.
+Those are, if you like, the 0-th or m minus second and m
+minus first Fibonacci numbers.
+And then I know that the nth Fibonacci
+number is the sum of those.
+So I'm going to run through a loop that says,
+I'm going to set next() to be the sum of those two,
+and I'm going to yield that value,
+which will halt execution until I ask it to continue,
+returning that value.
+And when it returns, I'm going to move up one step.
+What was the previous Fibonacci number
+is now the second previous one.
+Next is the previous Fibonacci number.
+And I'm going to go back around the loop.
+And notice, there's no way to exit out of this while loop.
+So it will simply, if I were to call it,
+generate all of the Fibonacci numbers in turn.
+So let's try it over on my machine.
+I'm going to say fib() is genFib().
+
+Let me just make sure I call it.
+I'm going to set that up.
+And so I'm going to use that generator to create something.
+So fib() is what I get by using genFib() to create a generator.
+And if I print out fib(), you'll say it is a genFib() operation.
+And then I could start calling it.
+I say, give me the next Fibonacci numbers.
+It's 1.
+I call it again, it's 2.
+I call it again, it's 3, and then 5, and then 8, and then
+13, and you get the idea.
+It runs until it gets to the next stopping point, yields
+up a value.
+And it's set up in that while loop
+to be ready to compute the next one when I need it.
+Funky way of dealing with it.
+And in fact, if I were to create this loop, which I'm not
+going to, it would produce all of the Fibonacci numbers
+until I ask it to stop-- an infinite sequence of them.
+I don't recommend you necessarily program this way,
+but you can see the power of the generator,
+because I'm separating where I stop
+in the operation from the overall operation
+I'm trying to encode.
+Why is that valuable?
+Well, generators nicely separate out the apparent computation
+from the actual one.
+It separates the concept of computing a very long sequence
+of objects from the actual process of getting them
+explicitly.
+And it allows you as a consequence
+to generate new objects as needed
+as part of another computation.
+So rather than, for example, generating the entire list
+of Fibonacci numbers and then asking for the 12th one,
+you could simply step through it until you get to the 12th one
+and then return that value.
+This is going to be valuable when
+you want to think about a way of creating things as needed.
+And in fact, you've seen this idea.
+You saw it in range().
+Literally what range() is doing is creating something like
+a generator.
+When I say for n in range(), range() is returning something
+that gives me the first value and essentially a promise
+to give me the rest of it when I ask for it.
+I can do something with the first value inside that loop.
+And then when I come back around the loop again, range(),
+that generator, will give me the next value, and so on.
+And this is nice because it gives us better efficiency
+without changing the way we think
+about doing the computation.
+I can program as if that entire sequence is available to me.
+The computer is going to generate it as I need it.
+Now if I go back to what started this,
+that says that, for example, in all students,
+I could change the behavior.
+Right now, I'm returning a copy of the entire list of students.
+I only have 100.
+No big deal.
+But with 100,000 or a million, I don't necessarily
+want to generate them if I want to do something with them
+on the fly or in turn.
+Whereas in the new version, what I could do
+is simply create a loop here that says, for all students
+in that list, just yield them up.
+So one at a time, as I ask for them,
+it will give me the next one without generating
+the entire list as I go through them.
+So from this, I can move to that.
+And that gives me a much more efficient way
+of dealing with things.
+So what you've seen here now is how
+to build a hierarchy of classes with inherited behaviors,
+modularity to isolate changes and behaviors, classes that
+can have classes within their instances,
+and the ability to think about how I control
+the efficiency of all of those.
+And that's the power of object-oriented programming.

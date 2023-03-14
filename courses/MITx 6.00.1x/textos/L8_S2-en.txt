@@ -1,0 +1,273 @@
+...
+So let's use that idea of being able to handle exceptions
+in manners that we decide to look at some standard places
+and where we might use that.
+Some examples of how that ability lets us,
+for example, control the input into a procedure.
+Here is a simple little example.
+I want to have the user type in an integer.
+And if I'm lucky, they do it the first time around.
+But they might not.
+And so rather than having to rerun the code from top level,
+I'd like to create a little loop in which I
+keep asking for that input until it's done correctly.
+So I've got a while loop up here.
+And notice that the condition is true,
+so it's always going to run through this while loop
+unless I break out of it.
+And inside of the while loop, I've
+got one of those try expressions.
+So I'm going to try and execute this code,
+and the code basically says-- asks for an input.
+It says please enter an integer, and then it
+tries to make sure that it really
+is an integer by saying whatever was entered here, which comes
+in as a string, I'm going to cast it into an integer
+right there.
+Now, if that works correctly, the next thing will be a break.
+And I'll remind you, that break will throw us
+out of the try expression and out
+of the while loop because the while loop is the thing that's
+actually running.
+And I'll be able to say I've got an integer
+and I'm going to do that correctly.
+But if there's an error here, if, in fact,
+I type in a string or something else
+and that casting creates an error,
+I'm going to jump down to the except clause handling
+the value error case and I'm going
+to say you didn't input an integer.
+Try again.
+And because I'm inside the while loop,
+I'll go back around and do that.
+So what I've done here is I'm going to execute-- exit,
+rather, the loop only when the correct type of input
+is provided.
+Otherwise, I'm going to cycle through this while loop
+forever until you finally break down and give me
+an integer like I asked for, but that's
+a nice way to control ensuring that the input comes
+in the right way.
+And the other nice thing here is that I'm only
+going to get a message if, in fact, the exception is raised.
+So if you give me the right thing, I just carry on.
+But if you don't, I'm going to remind you
+and I'm going to keep asking about it.
+This only handles value errors.
+So if I, for some reason, had a different kind of error here,
+it would throw an exception that would toss me out
+of the execution completely and back up
+to the top level of the Python Shell.
+But since I'm expecting things to be
+typed in that I can cast in some manner, in general,
+this is going to work just fine.
+A nice example of me controlling the exception
+so that I don't stop computation when an incorrect input is
+provided, but I remind the user of what I want
+and keep doing that until he or she gives me
+something that's valid.
+We can add to that by thinking about-- how do we
+get things out of files?
+So here is a nice example of controlling the input.
+Here are the ideas.
+I am going to open up a file, and I'm
+going to read data in from it.
+So the initial idea is our setup,
+a variable called "data."
+I get a file name by asking for input from the user saying
+give me the name of a file, and I'm
+going to try to open the file.
+Again, if that works well, I'm going to open up the file
+and I'm going to be able to execute out.
+And notice, in that case, I've got a nice example down here
+of going down and, in fact, saying
+close up the file when you're done with all of this.
+OK.
+If, on the other hand, opening the file doesn't work
+and I get an I/O error, I am going
+to catch that and say I couldn't open up that file.
+On the other hand, if I do open it up, fine.
+Then I go to the else clause, and I'm
+going to walk through the file doing some work.
+I'm going to basically process that data
+to add new elements in from the data into this variable data
+so that I can control it.
+And the details here are basically--
+I'm reading in a new line.
+As long as it isn't just a carriage return,
+I'm going to take the line, split it by the commas
+to separate out the pieces to create a list,
+and then remove using this little thing of taking
+everything but the last element.
+Remove the trailing carriage return,
+and add it into the file.
+Let's look at an example of that to see what it might do.
+So in my computer here, I have loaded in that file
+and I'm going to now run it.
+And it says, on my machine, give me the name of a data file.
+And I've got a set of test data points
+that I'm going to now do, so let me just type that in.
+Test grades data py.
+Ah, great.
+It looks like it ran properly.
+And so I could actually look at it.
+I can see-- what does data now look like?
+Oh, neat.
+It's a set of grades for some people taking the class.
+This ran well in the sense that I gave it a file
+that it could actually open.
+If I run it again-- and I'm going to do that.
+Let me rerun it and I give it the name of a file that doesn't
+exist, it catches it, says I've got an I/O error,
+and it prints out that message saying I couldn't open the file
+and it does not try to, in fact, process the data.
+And, in fact, if I look at data, it's still just the empty list.
+I didn't do anything around it.
+Again, it's a nice way of controlling input here in that,
+if I get an error, I'm going to close out of it.
+And in that case where I typed in the wrong thing,
+this finally clause here was important because it closed up
+that attempt to open up the file name
+so it's not hanging around.
+All right.
+So I can now load in data.
+Let's look at how I could use exceptions to do other things
+around using this data.
+So as we said, I'm going to jump out if the filename--
+or if there is no file of that name.
+Otherwise, I'm going to execute the rest of the pieces.
+And in either case, whether I get a correct file name or not,
+I'm going to close the file.
+Important things to do.
+So good news here is it appears to read the data in correctly
+and it converted it into a list of lists,
+which is what I wanted.
+I've got a list of elements, each one of which
+is a list with the name of a student and the grade
+that they're getting in that course.
+Now, suppose I want to restructure this
+into a list of names and a list of grades
+for each entry in the overall list.
+I could write code to do that, but I
+can use the exception idea very nicely to make this happen.
+Same basic structure.
+Again, I've got my try.
+I've got the except.
+I've got the else around all of there.
+Now, look at what I could do once I've got that information.
+I could actually create a new data structure,
+a list called "Grades Data."
+And what I want to do is walk through that data
+and gather up information for it.
+So the first thing I'm going to do
+is say, as long as I've got some data--
+because I read that inappropriately,
+which I wanted to check-- then I could loop through it.
+I could say, for each student in that data,
+I want to do something.
+But here, I'm going to use try again.
+And in particular, I'm going to try and take the data
+and take out the first two elements-- the student's
+first and last name-- and the grades
+and convert that into two lists, a list of the students' name
+and a list of the actual grades.
+I'm going to do that unless I get an error.
+And the error will be, if, in fact, I get an index error.
+Right here.
+Meaning I try to access something
+that isn't available-- typically meaning
+that are no grades for this student--
+I'm going to instead get a list of the students' names
+and just insert an empty list because I have
+no grades for that student.
+I'm giving you a lot of code.
+Let me simply summarize this.
+First part just like before.
+But now, for the second part, as I process each of those data
+points, I'm going to try and make sure
+that, if there aren't any grades there,
+I catch that error and substitute in an empty list
+to deal with the case of a student that didn't show up
+for the exam.
+Let's see what happens.
+So I've got now a version of that code.
+Let me run it.
+And again, I'm going to give it the same data, the same file
+name, which is "Test Grades Data."
+It seems to have run correctly, and let's see
+what we have inside of there.
+So first of all, let's see what data looks like.
+Ah, that's good.
+That's that same list that I loaded in.
+And now, I will set up this new thing.
+Let's look at what Grades Data looks like.
+And that's nice.
+And why is it nice?
+Because Bill Gates didn't take the quiz.
+I guess he was too busy doing something else,
+and there's an empty list there showing that he has no grades.
+Oh, but wait a minute.
+Deadpool now has a last name, 25.
+And Baron Von Richthofen has lost his grades,
+but he now has a Grade of Richthofen.
+What happened?
+I was making an assumption.
+And while I handle the case of no grades fine,
+I'm assuming that everybody has two names.
+OK.
+The good news here is that I didn't throw an error.
+The bad news is that what I produced
+doesn't satisfy the properties I wanted,
+so I need to go back and fix this.
+So it works OK if it's in standard form including
+now the case of no grades, but it
+fails if the names aren't two parts long.
+How would I fix that?
+Well, just by adding in another way
+of dealing with that try case.
+So same structure with the code.
+This is the same as before.
+As before, I'm going to loop over the data.
+But now, what I'm going to do is deal
+with catching the error in a different way.
+I'm going to pull out the name for the student,
+and I'm going to treat it as everything
+but the grade-- so everything but the last element.
+I'm going to have the grades be that last element,
+and I'm going to try and convert it into an integer.
+But in the case that it can't-- because I don't have something
+there-- I'm going to catch the value error and simply insert
+an empty list in that case together with all
+of the elements of the student.
+So now, I'm going to handle the case of no grades,
+but it's going to allow me to deal
+with the case of having multiple names-- either one name or more
+than two names.
+Key thing to see here is I'm just
+letting the exception handle the special case.
+And if we go try this one, what we
+will see-- as I run it and I type in the name of the file--
+it ran correctly or it ran to completion, there is data.
+And now, Grades Data.
+Ah, very nice.
+It has each entry being two lists
+or a list of two lists, a list of the names,
+a list of the grades.
+And notice that it's done Bill Gates correctly,
+having no grades.
+It's done Deadpool correctly knowing
+that that now is only a list of one element with a grade.
+And it's done Baron Von Richthofen correctly,
+a list now of three names and a grade.
+The fact they did the grades right is really irrelevant.
+What's more important is notice how
+I used the exception handling to deal with this.
+In this case, using the fact that, when I try and do a cast,
+it will throw a value error if, in fact, the last element
+is not a number.
+And in that case, it changes what
+I'd use to pull up the name now knowing that everything
+in the student was a name, which is why I used
+a copy of the list here to get all of the names
+and why I inserted an empty list there
+to represent the fact that I had no grades.

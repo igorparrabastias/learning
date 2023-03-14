@@ -1,0 +1,179 @@
+...
+Just a step back for a second.
+We're trying to let you see characteristics
+that associate an algorithm with a particular class.
+Constant, linear, we just saw a quadratic,
+which were things like nested loops that lead to that.
+The next class in that hierarchy are exponential complexity
+algorithms.
+These are the most expensive algorithms.
+And of course, the goal is always,
+if I can find a solution to a problem that's
+lower down in the class of complexities,
+I want to do that.
+But sometimes, unfortunately, we're
+going to be stuck with an exponential algorithm.
+And indeed, many important problems
+are inherently exponential.
+There is no more efficient solution than something
+that is exponential.
+And that, by the way, is why often when we realize that,
+we're going to look for approximate solutions
+because we may be able to get a good guess more
+quickly than finding the most accurate guess.
+A common characteristic to an exponential class algorithm
+is a recursive function, that is a function that
+calls itself, but in each call calls up more than once.
+You saw an example of that, which was Towers of Hanoi.
+I remind you, in Towers of Hanoi we
+said to move a tower of size n.
+We move a tower of size n minus 1 to a spare peg,
+do something, and then move that tower back.
+So at each reduction of the problem
+there were two recursive calls.
+And that's characteristic of something that's
+exponential class complexity.
+Let's look at an example.
+And here is actually a wonderful piece of code.
+It's very crisp and computes something really interesting
+very efficiently, or rather, does it
+in a very efficient set of code.
+The cost is going to be exponential.
+And the idea is if I've got a list, say, of numbers--
+could be the integers 1, 2, 3, and 4.
+I'd like to generate a list of all the subsets of that list.
+So what does that mean?
+The empty list will be a subset.
+The list of 1 would be a subset.
+In fact, every list of 1, of 2, or 3, of 4 would be a subset.
+Lists of 1, 2, 1, 3, 1, 4, 2, 3, 2, 4, you get the idea.
+So this is going to generate a list
+of all of the subsets of the initial list.
+Let's look quickly at the code and then more importantly
+see what the cost is to compute this.
+So the idea is I set up, as always, a little variable here
+called Res for result I'm going to return.
+And then my base case here is if there is nothing in the list,
+the only subset is the empty list.
+And I actually return a list of the empty list
+because I remind you, I want to return
+a list of all possible subsets.
+And the only possible subset here is in fact the empty list.
+The clever solution, much as we saw with Towers of Hanoi
+is to say if I want to generate all
+of the subsets of a list, what I can do
+is first generate all the subsets with everything
+but the last element included.
+And I do that in a very elegant way.
+I get the list with everything but the last element
+and I recursively call this function
+that will give me back a list of all
+of the subsets of everything but the last element.
+I then set into extra a list with just the last element.
+And now I create another list.
+And for everything in that smaller set-- that
+is all of the solutions without the last element--
+I also create a solution that includes that last element
+as part of each one of those earlier elements.
+It's wonderfully clever.
+I find a solution to the smaller problem.
+And then I say for every case where
+I've got a solution, a subset that
+doesn't have the last element, I will also I
+have a version of it with the last element.
+And I do that by simply running through this loop
+and adding small, which is the solution
+without the last element, tagging the last element
+onto it, and putting it into that new list, which is new.
+And then finally, I just returned every solution
+without the last element and every solution
+with the last element.
+It's a wonderful piece of recursive coding.
+And I don't know what they have here.
+About seven lines, I've come up with a great solution to it.
+Having said all of that, now I just
+want to look at the complexity.
+Why is this exponential in size?
+And let's look at that.
+So there's my coat.
+I'm going to make an assumption-- it's actually
+a very reasonable assumption-- that I
+can do the append operation in constant time.
+And that's simply me says I need to know
+where the end of the list is without having
+to walk down the list.
+And that, in fact, happens in Python.
+So what does the analysis now say?
+It says that the time that I need
+is going to include the time to solve the smaller
+problem plus the time I need to make
+a copy of all of the elements in the smaller problem.
+So it's going to be the time I need
+here plus making the copyright down here
+of all of the elements in the smaller problem.
+OK.
+So what does that look like?
+Well, it's important to think about
+what's the size of the smaller problem?
+And there I can do a nice piece of analysis.
+Because I know that in order to solve this for a set of size K,
+there are 2 to the K possible cases.
+How do I get that?
+Well, if I've got K element-- say
+they're integers-- for each integer
+I can decide is this one in or not?
+So for every integer I got a choice of two.
+I've got k of them.
+So there are 2 to the k possible cases
+that could be generated as I solve the smaller problem.
+Now, what does that say?
+It says to solve this case, if I've
+got n elements in my largest set,
+I need to solve a problem of size 2
+to the n minus 1, all the subsets
+with n minus 1 elements.
+I need to solve the problem with 2
+to the n minus 2, a problem with 2 to the n minus c, all the way
+down to 2 to the 0 or 1 case.
+And from mathematics, we know that that
+is, in fact, 2 to the n.
+And therefore, this is a problem that is exponential.
+The base is 2.
+But it grows as 2 to the n.
+And if you're a little confused about how bad
+is it to compare n squared to 2 to the n, try some examples.
+You'll see that the exponential one grows much more rapidly
+than the quadratic one.
+And the characteristic here is I'm
+breaking this down into sub problems
+that I have to call multiple times,
+just as we saw in the Towers of Hanoi case.
+So there's a nice characteristic of an exponential complexity
+algorithm.
+
+That now has let us have a run through the things we've seen.
+And I'll simply remind you very quickly.
+Constantine is just doing a set of operations.
+There could be a recursive call in there.
+But it's going to be constant no matter what
+the size of the problem is.
+Logarithmic, I'm breaking the problem in half or in portions
+as quickly as I can.
+And we want to use that idea when we think about things
+like bisection search.
+Linear, we've already seen it could
+be just a loop that I'm doing throughout some number
+of times, the number of times being
+a reflection of the size of the problem,
+or something that recursively calls itself
+as in factorial, again, a number of times based
+on the size of the problem.
+Polynomial, again, we've already seen
+examples of that, recursive calls being
+very clear examples.
+And exponential, characterized by having recursive
+calls, but we're breaking the problem
+down into multiple calls each time around.
+And as I said, with polynomial, the most common one
+here is where c is equal to 2.
+And a greater characteristic of that is nested loops.

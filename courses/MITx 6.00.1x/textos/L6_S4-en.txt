@@ -1,0 +1,219 @@
+...
+Let me show you an example of using a dictionary-- actually
+of creating and then using a dictionary.
+And I'm going to use an example of simply wanting
+to analyze song lyrics.
+I want to see how often does a word appear in a lyric,
+for example.
+So I'm going to write three functions to do this.
+They're reasonably straightforward functions.
+And it's going to let you see how
+we use dictionaries to capture information in a valuable way.
+So first I'm going to create a frequency dictionary that's
+going to map strings to integers.
+The idea is a given set of lyrics for a song.
+I'm going to walk down it and for each word-- each string--
+I'm going to count basically how many times it actually
+appears inside of that lyric.
+So the dictionary is going to be that association of a word
+and number of appearances.
+And once I've created that dictionary,
+then I can do things like find the word that
+occurs the most often and how many times it does that.
+Here I'm going to use a list in case
+there's more than one word that occurs
+the same number of times.
+And so I'm going to return a tuple-- another data
+structure-- that has inside of it a list for the set of words
+and an integer for how often did that set
+of words, each one of them, appear inside the lyrics.
+And then finally, I'm going to find the words that occur
+at least some number of times.
+I'm going to let the user choose that minimum amount.
+So it will be a parameter.
+And then I'm going to return a list of tuples, where
+each tuple is one of those list int combinations
+that contains the list of words ordered by their frequency.
+And one of the things I'm going to do here
+is take advantage of a property of the dictionaries.
+From the song dictionary, I'm going
+to find the most frequent word, and then I'm
+just going to delete it.
+And I'm going to repeat.
+And because I'm mutating the song dictionary as I do it,
+it's going to actually pull together very
+nicely an efficient way to solve this problem.
+So let's start with the first stage.
+I need to create a dictionary.
+Here's a function that will do it.
+I'm going to call it lyrics to frequencies--
+sounds reasonable.
+Lyrics will just be a string of words
+separated by spaces, potentially other kinds of things.
+I'm going to create an empty dictionary.
+There are the curly braces that do that.
+And then I'm going to just iterate over the lyrics,
+getting each word out as I do it.
+And what I'm going to do is say, if the word is already
+in the dictionary-- and oh, there's that nice thing.
+I'm using the fact that I can treat the dictionary
+as an iterable. I can just say if the word's already
+in the dictionary, increase the value associated
+with it by one.
+Oh, that says I've already got a value there somewhere.
+And that's OK, because it says if the word is not
+in the dictionary, this is the first time I've seen the word.
+I'm going to set the value in the dictionary corresponding
+to that word to one.
+And once I've gone through that entire loop,
+I'll simply return the dictionary.
+On my computer I've got a version of that code
+and I've got a song.
+Now, even though I used Justin Bieber earlier on,
+I'm of a different generation.
+I like The Beatles.
+So I've got a classic old Beatles song, "She Loves You."
+It's also a nice song because it's
+got a lot of repetition of the characters in it.
+And I've got the entire lyrics to "She Loves You" actually
+set up over here.
+And so now what I'm going to do is
+I'm going to actually load this and run it.
+And when I do that, I'm going to basically say,
+what does Beatles look like?
+And Beatles was set up to be the lyrics to frequencies called on
+"She Loves You."
+And there's a piece of it.
+It's actually much longer than you'd
+expect because it's got-- just to show you all the pieces
+there, there are all the words in "She
+Loves You" as a dictionary associated
+with their frequency.
+OK.
+With that in mind, I've now got a dictionary of frequencies.
+That's pretty cool.
+What else do I need to do?
+Just to remind you, I can iterate over the list.
+I can iterate over the dictionary.
+Those are really handy things to do.
+I can update a value associated with key-- all things that I
+wanted to be able to do inside of that dictionary.
+Second thing I want to do now is I
+want to find the most common words given the dictionary's
+input.
+So here's how I will do that.
+First thing I'm going to do is I'm going to get the values out
+from that dictionary.
+Values is a method, so I'm going to call it with the open close
+paren.
+And that gives me back a set of values.
+I know those values are all ints.
+So I can get the most common number very easily.
+I just apply max to values.
+I want to stop here for a second because I
+want to point out a nice thing.
+I could have written an iterative loop that
+walked down this, trying to keep pack
+of what's the best number I've seen so far updating
+as I went along.
+It's a perfectly reasonable way to write the code.
+But it would've generated a lot of code.
+It would have made it harder to read.
+Here, in two lines, I've captured the idea I want.
+Give me all the values in the dictionary.
+Ah, it's now a collection of integers.
+Just give me the maximum value.
+Really nice.
+Now that I know the best, I need to find all the words that
+have that value.
+And here I will write the iterative loop.
+I'm going to set words up initially to be an empty list.
+And then for everything in the dictionary, I'm going to check.
+Is that entry-- does that entry have the value best?
+In other words, is it one of the most common words?
+And if it is, oh, there's that nice mutation of words.
+Just add it to the end of the list.
+And when I'm done, I'm just going to return words and best.
+So over here, I've got my Beatles
+as that set of frequencies.
+And so I could say give me WNB.
+I know it's going to return a tuple
+to be most common words in what I already did
+as the analysis of that song.
+And it says, the most common words that occur in that song--
+not particularly surprising-- "a," "like," "her," and "with."
+And how often do they occur?
+They each occur four times.
+So I've just found that out.
+That sounds pretty good.
+Now what else could I do with this?
+Well, I said I wanted to find the places in which they occur
+most often and find all of those that occur
+more than some amount of time.
+So the last function I'm going to do here
+is I'm going to create a function that says, find
+words that occur often in this.
+Again, I'm going to set up an empty list initially.
+And here I'm going to create a little flag.
+And the flag is initially set default
+because I'm going to run through a loop here.
+And the loop says, as long as I've still got something to do,
+here's what I'm going to do.
+I'm going to find, as I just did,
+the most common words in the dictionary.
+And if they occur more than the minimum number of times
+that I've set, I'm going to add them into my result.
+And then for everything in that word,
+I'm going to remove it from the dictionary.
+So let me say it again.
+I'm going to say, given I've done the analysis,
+find the most common word.
+I don't know how many times it occurs,
+but I'm going to find them.
+As long as they occur more than the minimum
+I've set, then I'm going to collect those,
+because that's part of what I want to have.
+And then I'm going to remove them from the dictionary.
+So I'm mutating the dictionary right here,
+which is really nice.
+Because once I've done that, I could go back around and do it
+again.
+And I'm going to keep doing that until when I pull out
+the most common words, they don't exceed my threshold.
+In which case I'm going to set that flag to true, which
+means when I go back around to the loop,
+it's going to say, oh, I'm done.
+And I'm going to simply return the result.
+And if I do that over here, in fact,
+what I get-- if I do words often of Beatles
+and I want everything that occurs more than five times
+in that structure, huh, I get nothing.
+Now, that's a puzzle.
+And why is it a puzzle?
+And the puzzle is because I did something
+that I should have remembered I did.
+And that is that I actually processed this multiple times.
+So let me start again by going back to this file
+and reloading it, because I actually mutated the structures
+as I went through them.
+And that's why when I said what were the most common words,
+it was just "a," "like," "her," and "with" only occurring
+four times.
+I'd already changed the structure.
+Now if do it the right way, you see, ah, not surprisingly,
+what occurs most often in "She Loves You"?
+Yeah, yeah, yeah.
+The word "you," 36 times.
+The word "yeah," 28 times.
+"She," 20 times.
+"Love," 13, and so on.
+All right, early Beatles weren't very
+imaginative with their lyrics.
+But what you've seen is how I can use a dictionary
+to in fact do analysis, take advantage
+of the iterable structure of the dictionary.
+And if you think about the three functions I wrote here,
+they're very simple.
+They're very crisp.
+And they very nicely capture exactly the computation
+I wanted to do.

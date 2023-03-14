@@ -1,0 +1,145 @@
+...
+So how do we create this notion of abstraction
+and decomposition in Python, or actually
+in any programming language?
+And the answer is, we introduced the idea
+of a reusable piece of code, or a chunk of code,
+called a function.
+Functions are not going to be run in a program
+until we actually ask them to do that.
+So as opposed to things I was typing into my shell--
+every time I typed in an expression,
+it was invoked or evaluated-- I'm
+going to create a definition of a function.
+And when I read that in, it's simply
+going to create the ability to do that computation,
+but not actually call it.
+And we'll see an example of that in a second.
+What are the characteristics of a function?
+Several.
+First, it has a name.
+That makes sense.
+I've got to be able to refer to it.
+In the same way that I had a variable as a name for a value,
+a function will have a name.
+It will also take a set of parameters.
+These are arguments or values that I'm
+going to use inside the function when I do a computation.
+It's going to make sense in a second
+when we look at an example.
+Every function has to have parameters.
+But the number of parameters could be zero.
+Or it's a funny way of saying, it's
+going to take in a parameter list,
+but in fact, it may need no parameters.
+And I'm going to decide when I create a function how
+many parameters I need.
+We'd like every function to have a doc string.
+That is a documentation that tells me
+what the function does.
+We'll see an example of that in a second.
+And finally, a function has a body.
+And the body is the sequence of commands or instructions
+that we want to actually have happen
+when we use the function.
+Those are a lot of words.
+Let's look at an example to get a sense of this.
+Here's a definition of a function.
+And I'm going to walk through each of these pieces.
+So the first part of it is I've got a keyword, in this case
+def.
+And it is a key word, meaning it's
+a special symbol to Python that tells me
+I'm about to define something.
+In this case, I'm about to define a function.
+That is followed by a string that
+is the name of the function.
+In this case, it's is even, or is underscore even.
+That's the name I'm going to give to this function.
+That is followed in parentheses, in those parens,
+by zero, one, or more parameters.
+In this case, I've got one.
+And I'm giving it a name.
+Think of it like a variable name.
+Well, I'm saying, I'm going to use the name
+i as the name for a parameter inside this function.
+And that's then followed by a colon
+to tell me I'm done with the top line of the definition,
+I'm about to follow it with other information.
+So keyword def, a name, and in parens
+some number of parameters.
+Immediately below that in triple double quotes--
+which is a wonderful expression-- is a docstring.
+It's up to you how to use this.
+But traditionally, you would specify
+what's the input to this function
+and what's the output of this function.
+It's a little bit like a contract.
+In this case, I'm saying I'm expecting one input.
+I'm calling it i.
+And it's a positive integer.
+And what I'm going to return is true if i is even.
+Otherwise, I'm going to return false.
+As you'll see in a little bit, one
+of the nice things about a docstring
+is, once I've defined this function, if I go to call it,
+which I'm going to get to in a second, Python will
+automatically bring up a little window that tells me
+the docstring that's remind me what
+the conditions for this function are, which is great.
+So keyword, name, parameters, I've got a docstring.
+Immediately below that is the body of the function.
+This is the sequence of commands or expressions
+I want to evaluate when I'm ready to use this.
+Notice the indentation-- all of this is indented here.
+This is telling me where the body of the function is.
+And in fact, it will be everything
+until I get back to something that
+returns to the left hand side of the editor or of the shell.
+In this case, I've got two expressions in my body.
+It's going to print out simply the string hi.
+And then it's going to return a value.
+We'll come back to the return in a second.
+There is how I write a function.
+Now, how do I use it?
+The function has a name.
+The same way I could use a variable
+as a name inside of an expression,
+I can use the function name.
+And in particular, later on in the code,
+I can say an expression like, is underscore even,
+and then an open paren, followed by an expression whose value
+I'm going to use inside of that procedure
+followed, in this case, by a closed paren, because there's
+only one parameter.
+I call this invoking or calling the function.
+I'm using the function.
+We're going to look at some examples in a second.
+But the basic idea here is that, when I call this function,
+I'm going to take the value 3, in this case,
+and everywhere I see an i in the body of the function,
+I'm going to use that value in place of i.
+And in fact, if I look at it then,
+inside of this particular expression,
+I'm going to print out simple the string hi.
+And then I'm going to evaluate this particular expression.
+And it has the keyword return followed by an actual value.
+Now, I just said, in this case, if I've
+called is_even with the parameter 3,
+i now holds the value 3.
+So I'm going to evaluate 3 remainder 2 and say,
+is that equal to 0?
+In this case, it's not, because the remainder is 1.
+And I'm going to then return that value to whoever
+called this function.
+So that's the expression I want to evaluate and actually
+return.
+So return is a keyword that tells me
+I'm ready to stop the computation.
+And whatever the following expression is,
+that is the value I'm going to give back
+to the person who asked for it.
+In this case, it was simply at my shell.
+But we'll see in a second, it could
+be somebody else that's going to use it
+as part of another computation.

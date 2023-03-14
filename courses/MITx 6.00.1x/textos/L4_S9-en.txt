@@ -1,0 +1,93 @@
+...
+We just saw an example where we could
+have multiple recursive calls inside the body of a function.
+Perfectly fine.
+I want to show you a different example now
+in which we could have multiple base cases inside of a problem.
+And for this I'm going to use another classical problem
+called Fibonacci numbers.
+And here's the story behind Fibonacci.
+Leonardo of Pisa, also known as Fibonacci,
+posed the following challenge-- he
+said imagine I put a newborn pair of rabbits, one female,
+one male, in a pen or an enclosure.
+And I'm going to assume that rabbits mate at age one month
+and that rabbits have a one month gestational period.
+That is they produce a new pair, the female produces a new pair
+at the end of a month.
+He's also going to assume that rabbits never die
+and that the female always produces one new pair, one
+male and one female, every month from its second month on.
+And Fibonacci wanted to know how many female rabbits are there
+at the end of one year?
+So let's do a little simulation of this
+and then we'll figure out how to actually solve it.
+So we start off with a pair of immature rabbits, a male
+and a female, first month.
+At the end of one month they've matured.
+They can therefore mate and at the end of the next month
+they're still around, but they've
+produced offspring, another male and a female.
+At the end of the next month the original pair
+have produced another pair of offspring
+and the first pair of offspring have matured.
+And that means that at end of the next month
+both sets of mature rabbits now produce offspring
+and another one is matured.
+And that keeps happening as we start
+generating more rabbits and more rabbits and more rabbits
+until we're overrun with rabbits.
+Question is-- could I model this to deduce
+how many female rabbits are there at the end of a year, two
+years, five years?
+And when will Australia completely get
+overwhelmed with rabbits, just to take an example of a place
+with too many rabbits.
+So what does this say?
+I've got a little sequence here.
+In fact, they're known as the Fibonacci numbers, in which I
+have the following property-- at the end of one month I've
+got one female.
+At the end of the second month I've
+also got one female, that's now pregnant.
+At the end of the third month I've
+got two females, one pregnant, one not.
+And in general, at n months I've got however
+many females there were the previous time
+and I've also got however many females
+there were two months ago.
+Why?
+Because every female alive at month n minus 2
+will have produced one new female in month n,
+and those can be added to the number that
+were alive in month n minus 1 to get the total that
+were alive in month n.
+So there is basically the definition
+of Fibonacci numbers.
+And how do I capture that in code?
+Well here I've got two base cases.
+I've got how many females at time
+0, how many females at time 1.
+And my recursive case notice involves two invocations
+of that function-- one for n minus 1 and one for n minus 2.
+And if I want to turn that into code, there it is.
+I've got two bass cases.
+I'm doing it in one test, but I'm
+saying if x is either equal to 0 or x is equal to 1, return 1.
+Otherwise return fib of x minus 1 plus fib of x minus 2.
+And if I were to run that, I can see that I can actually
+compute Fibonacci given fib.
+I can check that my base cases work- fib of 0
+gives me 1 fib of 1 gives me 1.
+And just a couple of trials, fib of 2
+should give me the sum of those.
+And fib of 3 should give me the sum of those.
+And fib of 4 should give me the sum of those.
+And you can see, in fact, it is doing
+what I expected it would do.
+Here's a case where I've got two base cases.
+And in fact, I kind of know I need it
+because my return here in the general case
+needs two different invocations of that function.
+And I need two base cases to make sure
+that I can settle that out.
