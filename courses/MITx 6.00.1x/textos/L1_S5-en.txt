@@ -1,0 +1,260 @@
+...
+Now that we have the idea that we want to put together
+expressions, by putting together primitives in legal ways,
+we can take up that idea of how to use
+that to start capturing recipes, start capturing algorithms.
+So let's talk about a Python program.
+Python being the language we're going
+to use in this class to do programming.
+And the program, just as you saw with the recipe,
+is going to be a sequence of definitions and commands.
+Definitions as we'll see a little bit later on,
+are ways of either assigning names to values,
+or more importantly, creating procedures
+that we're going to treat as if they're primitives.
+Those we refer to as being evaluated.
+Commands, are simpler expressions
+that we can execute directly within Python.
+And we do that in something called a shell.
+In a moment I'm going to use a shell.
+A shell is simply a window into which I can type expressions.
+They get passed into the Python interpreter,
+it follows the set of instructions to figure out
+what's the semantics -- what's the meaning associated with
+that expression?
+And then it prints out the result.
+Commands are statements that instruct the interpreter to do
+something.
+So the commands could be simply, do this arithmetic operation.
+Or commands could be apply a primitive that I
+created to do some work for us.
+The last piece, and we're going to see both of these
+as we go through the course, is that we can either type things
+directly into the shell.
+That's a window that the interpreter is listening to.
+That's something where we type something in
+and the machine does something with it.
+Or, we can store it in a file that gets read into the shell
+when we're ready to use it.
+But otherwise, can be saved away.
+To start with, we're just gonna type directly into the shell,
+but we'll see examples of files in a little bit.
+OK, we're almost ready to start programming.
+We know the pieces we need.
+Let's start with what are the fundamental primitives that
+represent data?
+Those, we call objects.
+And programs manipulate data objects
+in order to get out parts of those objects
+or to do something with those objects.
+Every object has a type associated with it
+that tells us what kind of thing it is.
+And more importantly, that type is really important.
+That type tells programs whether they can act on it or not.
+If a program is expecting a number and I give it a string,
+it's not going to try and do something with it.
+So the type of the object is really valuable.
+Finally, objects come either as scalars, which
+says they can't be subdivided.
+Or, if they're scalars, obviously
+non-scalars which are things that
+have internal structure into which we can pull out parts.
+Let's start with the simplest version of these,
+scalar objects in Python.
+There are very few of them.
+We have ints.
+These are integers.
+Standard numbers that you recognize, 5.
+17.
+27.
+Minus 6.
+We have floats.
+These are real numbers, things with numbers
+after the decimal point.
+3.27.
+3.14159, my favorite.
+You have something called a bool, short for Boolean.
+And that represents true or false.
+Those are going to be important when
+we get to tests, because we want to know if a test is true,
+do something.
+If it's not, do something else.
+There's one weird one.
+It's called NoneType.
+It's a very special one.
+It has only one value, which is none.
+We're going to see why that's important later on,
+but just to be careful, NoneType is a scalar object.
+Those are four fundamental scalars.
+There are only a couple of more, which we'll get to a little
+later on.
+Once I have knowledge of those different types,
+I can also find out the type of an object,
+by using a built-in procedure called type.
+And I want to show you some examples.
+So I'm going to go over to my little machine over here,
+and I'm going to skip down.
+I'm now talking to a shell.
+And you'll notice it's got a little prompt that says in,
+saying what's the input you want to give?
+The fact it's got 30 on the machine
+is because I was doing some other work earlier.
+So this is going to be the 30th expression typed in.
+And I'm simply going to type in a number.
+And the output is the number itself.
+Well duh, you say.
+But it's actually important, because what the machine did
+was it read in that sequence of characters, understood
+that it was a number, and the value
+associated with the number is simply the number.
+And in fact, I can check it because I
+can say what's the type of 3.5?
+Notice the open and close parentheses around it.
+And it says, it's a float.
+And I can have integers.
+And if I say what's the type of that,
+it's going to give me back an int.
+Simple things.
+OK.
+Again, just to recap what this says is here's
+what I'm going to type into this Python shell.
+And here's what shows up after I hit Enter as you just saw.
+And in and out are simply going to identify what I typed in,
+in the output that you've recovered.
+Sometimes I want to change types, especially with numbers.
+This is called casting.
+And I can cast types of different forms,
+and you can see the example.
+If I say, I want to take an int, such as 5,
+and turn it into a float I can ask it to do so, by giving it
+the special command float -- the thing contained within
+parentheses -- and it converts it.
+The other direction also works.
+If I want to take a float, such as 3.9,
+and convert it into an int.
+Here you say, boy there might be some choices.
+Python simply gives the whole number part of it.
+It doesn't round it to the nearest integer,
+as you might expect.
+If you want to build your own programming language,
+knock yourself out.
+You could do that.
+But it simply will truncate it down to that int.
+So I can convert back and forth.
+Now, once I've got these things, I
+can start putting things together.
+And in particular, here's a legal expression.
+3 plus 2.
+That has a value associated with it.
+In fact, that expression is to take the 3 and the 2
+and apply the arithmetic operation of addition to them.
+And when I evaluate it, it simply returns out 5.
+Makes sense.
+Sometimes I might want to use something
+that's going to print.
+And I can type, for example, print
+which controls output to the console
+by saying print 3 plus 2.
+
+Huh.
+Little bit of a difference.
+And in fact, there's no out here because no value is returned.
+Print returns that NoneType and doesn't print anything out.
+It just printed something.
+At this stage, you may be saying, well why do this?
+Why the difference?
+What we're going to see is, when we're
+in the middle of a computation and we want to print something
+out to the shell, we can use a print command to do that.
+If we just return the value, that
+goes back into the computation to be used for the next step.
+And so in the simple first case, the whole value
+of the computation was 3 plus 2 equals 5.
+It was printing all 5.
+In the second case, the side effect is to print something.
+The value returned is nothing.
+There is no value.
+We'll come back to that as we go along.
+I've already hinted at this, but now we
+can start putting things together.
+To combine objects and operators into expressions,
+we use a standard form.
+And the syntax is simply an object, an operator,
+and another object.
+Any expression like this that is syntactically valid,
+has a value, which is itself a type.
+So we talk about the types of scalar objects,
+we talk about the types of more complicated expressions.
+What would those expressions look like?
+Well, here's the first set of them.
+There's a lot on this slide, but you're
+going to get used to them.
+And most of them make sense.
+If I want to add together either two ints or two floats,
+my expression is to have two numbers
+as I just did, 3 plus 2.
+The value associated with that is the combination
+of adding the two things together.
+I can subtract, I can multiply.
+And for these examples, if both I and J are ints,
+the result is an int.
+If either of them or both of them are floats,
+the result is a float.
+And let's look at an example.
+If I do 3 plus 2, I get 5.
+If I do 3.0 plus 2, I get the float 5.
+So Python is always using, if you like,
+the higher level representation when it
+does those kinds of operations.
+Divisions, a little trickier, because I
+have both standard division, which will be a float,
+and I have integer division, which
+will be the quotient without the remainder.
+And let's look at two examples.
+If I do 5 divided by 2, I get 2 and 1/2.
+If I do 5 with two slashes divided by 2,
+I get the integer part, which is 2.
+The .5 is thrown away.
+And if I wanted to get the .5 I could
+do 5 remainder 2, which is the percent sign,
+and that gives me the piece left over when I divide those two
+pieces together.
+Finally, I can raise something to a power.
+And that is done right here with I. Two stars, J. So one star
+is multiplication.
+Two stars, gives me power.
+
+Once I've got that, I'm ready to start putting together pieces.
+In particular, I've got different operations.
+So I have to think about how do I put together pieces in ways
+that control what I want to do?
+And here, we're going to use parentheses
+to tell Python in what order to do the operations.
+There's a precedence to those operations.
+And those are shown right down here, going in this order.
+Exponentiation, powers are always done first.
+Then multiplications, then divisions.
+And then finally, additions or subtractions.
+And overall it's done in a left to right order, as it
+appears inside the expression.
+And that means that as I change where the parentheses are,
+I'm changing the order in which I'm doing things.
+So to do an example, if I take 3 times 5 plus 1.
+That's going to give me 16.
+And that's because the multiplication is done first,
+3 times 5 gives me 15.
+And then the addition is done, to give me 16.
+On the other hand, if I say 3 times,
+and then in parentheses 5 plus 1,
+the parentheses say reduce this expression first.
+Add 5 and 1.
+That gives me 6.
+And then do the multiplication, which gives me the 18.
+
+As a consequence.
+I can create very complicated expressions.
+And I will simply use parens open
+and close-- to define what operations to do first.
+Always simplifying inside out, before then using the operator
+precedence order, in order to decide what
+the expression actually means.

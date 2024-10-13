@@ -1,0 +1,136 @@
+...
+The notion of a for loop or a while loop
+extends the ability to write programs considerably for us.
+That generalization of a concept of iteration
+goes much beyond what we could do
+with simple branching programs.
+Remember with a branching program, based on a test
+we could either execute one piece of code
+or a second piece of code, but we
+would then proceed below that and would not
+be able to repeat that code in any significant way.
+With an iteration, we can now do more.
+We can use the same code multiple times.
+As with a branch, we start with a test.
+If that test is true, then we're going to execute the loop body,
+loop once, go back and check the test again.
+And we'll keep doing that until the test evaluates to false,
+at which point we go to the code following the iteration
+statement and execute that.
+So this says we can go through this loop
+multiple times before we come out.
+Whereas in the branching program,
+we only went through the code once before we exited.
+That's a powerful tool, and we're
+going to capture that a lot as we move forward.
+Here's an example that will give you a sense of this.
+And the example here is to do squaring
+by repetitive addition.
+So another way of saying it is if I
+wanted to compute n squared, that's
+n plus n plus n all n times.
+
+I could write a little piece of code to do it.
+I've got it here.
+I'm going to run it in a second.
+I'm going to start off with something
+that I want to square.
+In this case x is equal to 3.
+I'm going to start off with an initial value for answer.
+That's going to be where my answer goes.
+And I'm going to keep track of how many times
+I need to go through the process.
+Remember I said that before about loops like while loops.
+I need to set a variable outside.
+Then I'm going to see, do I have anything left to do?
+And if I do, if I'm not down to 0,
+I'm going to increase ans by x.
+I'm going to decrease the number of steps by 1.
+And I'm going to go back around the loop.
+And I'll do that until I'm done.
+So if I look at a version of that over here now in my IDE,
+I've got a little file I've written
+that is going to do that.
+It's exactly that same code.
+And I'm going to load it into my environment.
+And wow, there it is.
+It printed out, as you can see on my little computer screen,
+3 times 3 is 9.
+It ran through that loop.
+Just to check it again, let's make
+something a little bit bigger.
+I'll change x to 5.
+Again I'm going to load it and run it.
+And it computes the computation as we'd expect and returns
+5 times 5 equals 25.
+OK, big deal, I can square things.
+But what I want you to see here is that idea
+that I've now got a loop that lets
+me use the same code arbitrary numbers of times.
+When x was equal to 3, I ran through this portion
+of the code three times.
+When x was equal to 5, I went through it five times.
+That notion of iteration, that's really useful.
+Let's make sure it really did what I thought it would
+by actually stepping through this.
+Again I've got a copy of the code there.
+And on the side I've got a little table that gives me
+the values I'm going to use.
+I'm going to start off with x equal 3.
+That comes from that statement.
+I'm going to start off with answer equals 0.
+That comes from that statement.
+And I'm going to start off with the number of iterations left
+equal to 3, the value of x.
+Here's what the code does.
+First thing it does is it checks to see
+is iters_left equal to 0.
+So it does that test.
+Answer is no.
+So what does it do?
+It takes answer and x, adds them together,
+gives us a new value to store in answer.
+It takes iters and reduces it by 1 and stores a new value.
+Now I've got another version of the computation.
+The while loop says go back around.
+I check, is iters_left equal to 0?
+It's not.
+So same process, the current value
+of answer or ans, which is 3, is added to x to give me 6.
+iters_left is reduced by 1.
+Go back around the while loop.
+Is 1 equal to 0?
+No, one more time, change answer by incrementing it
+by 3, the value of x.
+Changes iters_left by 1 to get it down to 0.
+Now check, is itersLeft equal to 0?
+It is, and I return 9.
+And aren't you glad I didn't pick 27 to do this
+on but something simple like 3?
+My point is you can see how the while
+loop executes appropriately.
+It keeps reducing one variable, the thing that's
+counting how many steps I want to go
+through here, while accumulating an answer in ans
+as it goes through.
+And you see the properties we need for this kind of a loop.
+I need to set the variable outside the loop.
+I need to test it to determine when it's done.
+And I need to change the variable
+inside the loop in addition to whatever other work I want
+to do as I go through this.
+And in fact what we see then is that we've now
+got a greater capability.
+Branching structures, things like ifs,
+only let us go through a different piece of code
+based on a test once.
+They run in constant time.
+They're only going to go through the code once.
+Looping structures like whiles let
+us repeat code until a particular condition is
+satisfied.
+But now the amount of time that it takes
+is going to depend on the values of the variables
+as well as the length of the program.
+And later on in the course we're going to come back
+to look at that in more detail.

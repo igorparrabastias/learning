@@ -1,0 +1,281 @@
+...
+Let's go up a level just for a second.
+What have we've built so far?
+Simple objects, the idea of iteration,
+for and while loops as a way of doing
+particular kinds of computations,
+reusing the same piece of code over and over again.
+And now we've introduced the idea of functions
+as a way of capturing that code.
+That puts us in a position to introduce another really
+big idea in computer science.
+And that's the notion of recursion.
+I'm going to show you an example of recursion in a second,
+but let me give you the sense of what recursion is about.
+Recursion is going to be a nice way to design solutions
+to problems by breaking it up into pieces that I can reuse.
+Divide and conquer, or decrease and conquer,
+are words that we're going to use around here.
+And it's, in particular, a programming technique
+where inside of the function, it calls itself.
+So I'm going to define a function, say f.
+And inside the body the function,
+I'm actually going to call f.
+Now, this is the kind of thing that in high school geometry
+class, you could get into trouble.
+Right?
+You don't define something in terms of itself.
+But in recursion, as long as we don't set up an infinite loop,
+we don't call it infinite numbers of times, we're fine.
+And so we're going to see in recursion
+that as long as we have one or more base cases
+that are really easy to solve, and can be solved directly,
+then I can solve a problem by reducing it to a solution
+to a simpler version of the same problem
+until I get down to a simple base case.
+That notion of recursion is going
+to nicely amplify iteration.
+It's going to give us a much more simple way
+of thinking about how to break problems up into simple pieces.
+And so we're going to spend the next portion
+of this lecture just looking at different ways of using
+recursion.
+If you think about iterative algorithms,
+to set the stage for recursion, what do we have?
+They're basically looping constructs.
+And they are captured by the idea
+of having a set of state variables
+that update each time through the loop.
+So I got a while loop or a for loop.
+In the case of a while loop, we talked
+about setting up the variable outside the loop,
+inside the loop, changing it, usually decreasing it,
+until I got down to a state where I'm done.
+And then returning a value.
+That's what an iterative algorithm does.
+So here's a simple example to think about that.
+Suppose I wanted to do integer multiplication.
+And yeah, I know that already happens in Python,
+but I want to use it as an example.
+I could think about multiplying a by b as the same thing
+as adding a to itself b times.
+So it's really, if you like, a plus
+a plus-- I've got b of those.
+That's the same thing as a times b.
+Iteratively, I would solve this by saying,
+I want to capture the state of the computation
+with an iteration variable, let's call it i.
+I'm going to start it off at b because I've
+got b additions to do.
+And a current state of the computation,
+I'm going to call it result. And I'll start that off at 0.
+And then my iteration is to simply, at each stage,
+do one more addition and reduce that variable by 1,
+that iteration variable by 1.
+And down here at the bottom is a function to do that.
+Multiplication iterative.
+Takes in two parameters, a and b.
+It sets result when I call it to 0.
+And then it runs the iteration I would expect,
+that little loop right here, that
+says as long as b is bigger than 0,
+I'm going to change result by adding a to it.
+I'm going to reduce b by 1.
+And I'm going to keep doing that until b gets down to 0,
+in which case, I'm going to return the result. Cool.
+Nice iterative way of trying to make that happen.
+There's the iteration.
+There's how I'm changing the computation.
+There's where I'm changing the iteration variable.
+And when I'm done, I'm simply going to return the result. OK.
+I'm not going to run it.
+I encourage you to try it yourself,
+but you'll see that it actually does
+the multiplication I'd expect.
+With that in mind, now let's look at a recursive solution
+to this problem.
+And here's a way about thinking about this idea of doing
+successive additions to compute multiplication recursively.
+Again, a times b is adding a to itself b times.
+But I could think of that as saying,
+that's the same as adding a to-- adding a to itself b minus 1
+times.
+OK, you say.
+That sounds like semantics.
+It is, but it's an important point.
+Because what's this?
+That's just a multiplied by b minus 1.
+Ooh, that's cool.
+Because now I've taken a problem and I've reduced it
+to a simpler version of the same problem plus an operation
+I know how to do.
+OK.
+What's a times b minus 1?
+Oh, I know how to do that.
+That is just a plus a times b minus 2.
+I could do exactly the same reduction.
+And I could keep unwinding this computation.
+I need to stop somewhere.
+I could keep unwinding this computation
+until I get down to a base case, something
+that I know how to do.
+And what's the base case?
+When b is equal to 1, the answer is just a.
+And boy, that's nice, because there's
+a recursive implementation of multiplication.
+Inside the body it says, if b is equal to 1, that's
+my base case, just return a.
+Otherwise, return whatever I get by adding
+a to-- doing the same thing, but on a slightly smaller problem.
+Multiplying a times b minus 1.
+And that will again call itself until we
+get unwound down to the level that we want to get to.
+There's the recursive step.
+And that's a standard form for a recursive function,
+and is a really elegant way of thinking about how
+to solve this problem.
+
+I could do the same thing.
+Let's think about computing factorial.
+Factorial written in mathematically
+as n followed by an exclamation point,
+is the product of n times n minus 1 times n minus 2,
+all the way down to 1, where n is a positive integer.
+If I wanted to solve this problem,
+I could say, for what values do I actually know factorial?
+And that's easy.
+If n is 1, factorial of 1 is just 1.
+There's my base case and the value I want to return.
+How would I return it?
+Well, just as I did with the multiplication case,
+n factorial is the same as multiplying n by n
+minus 1 factorial.
+So there's the recursive step.
+And I've just written the body of code for something
+that would be a definition for factorial, or fact.
+What you're seeing here is a pattern.
+And this is the idea of a recursive function.
+Break it down into a smaller version of the same problem,
+plus some operations I want to do,
+and figure out when can I stop breaking it down
+into smaller versions of the same problem
+because I know how to compute it directly?
+In the case of factorial, when I get down to a factorial of 1.
+With that in mind, let's deal with something
+that may be puzzling you, which is how in the world
+does the computer know when to stop unwinding this?
+And how does the computer know which
+versions of the function-- of the parameters of the function
+to use?
+I'm calling fact of n.
+How does it know which version of n to use?
+We've already kind of seen it, but let's walk it through.
+So here's my definition of fact.
+Fact of n is if n is equal to 1, return 1.
+Otherwise, return n times fact of n minus 1.
+Then I'm going to call it on a value of 4,
+and I want to print out the result of that.
+I'm going to do this reasonably quickly,
+because you've seen these pieces before.
+But let's look at what happens.
+When I define fact in that global scope,
+I create a binding of fact to some code.
+Hasn't been run yet.
+And now I'm ready to run it by actually calling it
+on print of fact 4.
+OK.
+Here we go.
+I've got to call fact of 4.
+Fact creates a new scope, inside of which n is bound to 4.
+And relative to that, it's going to evaluate
+the body of the procedure.
+Says is n equal to 1?
+No.
+It's equal to 4 here.
+So I go to the else clause, which says return n times
+fact of n minus 1.
+Aha.
+I've got to call fact again.
+I know I want to return 4 times fact of 3.
+That's the value of n minus 1.
+But I've got to call fact.
+Great.
+It creates a new frame, inside of which the formal parameter,
+n up here, is bound to 3.
+And relative to that, it does exactly the same thing.
+So I'm now going to go faster.
+Is 3 equal to 1?
+No.
+So I'm going to return 3 times calling fact
+on n minus 1, which is 2.
+That calls a new frame.
+Here's the binding for n.
+n's still not equal to 1.
+I'm going to again go to the return clause, or the else
+clause, that says return 2, which
+is the value of n times fact of n minus 1, which is 1.
+And that calls one more frame.
+And aren't you glad I didn't do fact of 64?
+Almost done.
+In that frame, I now say is n equal to 1?
+Great.
+It is.
+And so in that case, I know that's the expression
+I want to call.
+And it says, ah, return 1.
+Where does that go?
+I'm returning 1 to the person who asked for it.
+And that was that call to fact.
+That's great, because now that expression
+says return 2 times 1, the value returned by that call to fact.
+And who asked for that?
+Right there.
+That reduces to return to 3 times
+2, which reduces that one to return 4 times 6,
+which prints out 24.
+And I'm done.
+So you can see the computer, with these nested scopes,
+these nested frames, nicely knows
+exactly where to get values in order to do the computation.
+And therefore, the computer knows
+to stop at the right time.
+I've just said that.
+Simply going to put the slide up so you can see it.
+Each recursive call creates its own scope.
+Bindings of variables in a scope are not
+changed by the recursive call.
+And the flow of control passes back to the previous scope,
+because that was the person who asked for that function call
+as we did it.
+And therefore, I'm going to be able to use
+exactly the same variable name.
+I need to because that's the formal parameter
+of the function.
+But it's always done in a different scope.
+And therefore, it's always clear which version
+I'm using when I'm calling the body of the procedure.
+This leaves us then with this nice comparison
+between iteration and recursion.
+Both of these pieces of code do exactly the same thing
+in terms of what they compute.
+How they do it is done differently.
+I'll let you decide your own style.
+Personally, I like recursion better.
+I think it's more intuitive.
+I don't have to remember to set up a parameter variable
+before I start things.
+I don't have to worry about dealing with all those pieces.
+I can make them a little different.
+In this case, I've changed it slightly
+to use range rather than setting up the iteration variable.
+But I personally find the right-hand side easier
+to look at, because I can easily see
+where the recursive call is.
+From the programmer's point of view,
+recursion may be more efficient.
+From the computer's point of view,
+it may not be as efficient.
+And we'll see that.
+But basically, the idea is each of these things
+does the same thing.
+You get to decide which one you want to use.

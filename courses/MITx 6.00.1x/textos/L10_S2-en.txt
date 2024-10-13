@@ -1,0 +1,241 @@
+...
+Now, as we saw last time, a key element about having classes
+is that we can build hierarchies,
+that is, classes that inherit from other classes.
+It gives us a very crisp way of building code
+that can be re-used.
+It lets us build modules that easily interrelate.
+So let's look at that idea here.
+I've got the idea of a person.
+Now I'm going to add a new kind of person, an MIT person.
+Contrary to popular belief, MIT people are people.
+They have the same properties.
+They're born.
+They have a name.
+We'll add a few other things, though, to an MIT person.
+They have an ID number.
+And one of the things we want to look at
+is how we can use the ID number to identify specific instances
+and use that, in fact, for things like sorting.
+So let's look at how we might build an MIT person.
+So here's my class definition, and I
+want to show you a couple of highlights
+here, things that are important.
+The first one is, as I did in an earlier example,
+I'm going to create a class attribute.
+So this is a definition of a data object
+that's built into the class.
+It does not belong to an instance,
+it belongs to the class.
+And it's going to let me keep track of how many ID
+numbers have I assigned.
+I'll initialize it to 0.
+That's a good place to start.
+Even though MIT person is a kind of person,
+I'm going to build an initializer or something that
+creates instances for this class as well.
+But the interesting thing here is
+I'm going to use the underlying-person method
+to also create the instance.
+So when I call MIT person, it's going to create an instance,
+but it's going to call the person-class initialization
+method to initialize the same kinds of things-- the name,
+and as a consequence, it will set up a birth date in case
+I want to use that.
+The second thing I'm going to do,
+though, is assign to this instance an ID number.
+So self here will say that I want it
+in this instance by an ID num to a particular value,
+but I'm going to use the value associated with MIT person.
+I do MIT person dot next ID num.
+It will get the value of that data variable
+and assign it to this instance.
+And then finally, I'm going to increment
+that global class data attribute by 1, so
+that the next person I create is going
+to have the next number in the sequence.
+Once I've done that, I could get out the ID number of a person,
+and sorting here I'm going to do simply by comparing ID numbers.
+If I want to sort a list of MIT people,
+I'll do them by ID number, starting at 0 and moving up.
+The last one I'll come back to later on
+is I want to give MIT people the ability to speak.
+I'll give them a string that I want them to say,
+and they will return something that says,
+their last name says, and then a string.
+We'll look at an example of that in a second.
+With that in mind, let's look at what
+would happen if I built some examples of this.
+So a way to think about this is in my memory somewhere,
+I have a representation for the person class,
+and I have a representation for the MIT person class.
+When I call for an instance of MIT Person,
+it's going to use this init procedure, because it's
+that class, and that's the one that's
+visible inside this environment.
+But as we saw in the code, calling that init procedure
+then calls the person init procedure.
+It literally goes into the person class definition
+and finds that init procedure and calls it,
+and that will set up a binding for name and birth
+date inside of that instance.
+In particular, that is returned to the MIT-person class,
+because that's the place where the call was done.
+But the bindings come from the init procedure
+that's associated with person.
+So I just created that instance, and having
+done that-- and that'll have a binding, for example,
+to a last name-- the next thing I do
+is I get the value of the ID number
+from next ID num inside of MIT person,
+and I bind that to the ID number for this instance.
+Great.
+This is now person number 0, and that's because of this call
+right here, which says within that self, bind ID
+num to what we see inside the class definition.
+And then the next thing I do is I
+update next ID num by 1 inside that MIT person environment.
+That's great, because now I have an instance with an ID
+number associated with it, and if I
+were to call for another instance of MIT Person,
+it will go through the same process,
+calling the person init method to set it up.
+But now, next ID num is 1, so the binding here
+is ID number 1, and that gets incremented to 2.
+You see as a consequence how that class attribute
+can store information I can use to associate with instances
+of the class.
+Great.
+Now, what happens if we create it?
+Well, again, I'm going to take a similar set of characters.
+I'm now going to make them MIT people.
+I'm going to create a Mark Zuckerberg, a Drew
+Houston, and a Bill Gates.
+I'm going to give them birthdays.
+And I you may notice here, even though I want to create them
+in this order, I'm going to change the numbering so
+that M3, although it's the first one I created,
+I'm going to have the third element in my list
+down here as I build it.
+And let's see what happens if I were to go and do that
+for this particular example.
+Let me just set up my computer.
+
+And if I call that, I now have a set of people in my system.
+And let me just look at an example.
+If I print out M1, I get Bill Gates.
+That's great, that's what I called him down there.
+If I print out M3, I get Mark Zuckerberg,
+and one of the things I said is I could have
+these people say something.
+So I could print M3 speak, and I'll just
+have him say something pretty straightforward like, Hi there.
+
+And it prints out as I expected.
+Gates says.
+Hi there.
+OK.
+One of the reasons I wanted ID numbers
+was so that I could do things like sort people.
+I'm going to use them in other ways to access information.
+But let's look at now, going back
+to the same kind of example, what
+would happen if I were to print out the people in this list?
+Well, if I just do that, I' going to see what
+you would expect to happen.
+We're going to load this up and print it,
+and it prints out as shown on the screen here-- Bill Gates,
+Drew Houston, Mark Zuckerberg.
+Now remember, I created them in a particular order.
+This is the order I created them in,
+so in fact, that's the way in which it prints them out,
+even though in the list, they were in a different order.
+Now, let's look what happens if I do them by ID number.
+And if I were to go ahead and sort and then recall this,
+now it prints them out by ID number,
+Zuckerberg first, then Houston, and then Gates.
+So you can see in this case I am sorting by ID,
+exactly as I set it up.
+Great.
+What else might we do with this?
+Well, let me create another version
+of a little set of MIT people, partly to show you
+that the ID number can be important because the names may
+not be distinctive.
+So here I've created three MIT people, Eric and two Johns.
+I've also created just a base person, also
+with the name John, and I want to think about things
+like, how might I sort these?
+In particular, what happens-- well,
+first of all, what happens when I create them?
+In this case, I have bindings for P1, P2, and P3,
+two instances of MIT people, each with a unique ID number.
+P4 points to a different kind of object.
+It's just a person-- no ID number associated with them.
+It's going to be important in a second.
+And now let's look what happens if we wanted to do things like
+compare them, which would be part of doing the sort.
+So I'm going to try some examples here.
+Having loaded those into my system,
+let's ask is P1 less than P2?
+And it says true.
+
+That makes sense, because the sorting here
+should be done on the basis of ID number.
+I created P1 before I created P2.
+Great.
+Now let me ask is P1 less than P4?
+Oh goodness, I get an attribute error.
+
+Let's try it the other way.
+Is P4 less than P1?
+No.
+Wait a minute.
+What's going on here?
+Well, this is highlighting how a class or an instance of a class
+gets a method.
+So why is it that in one case it works,
+and in another case it doesn't?
+So how is the comparison actually taking place?
+What happens is that MIT person as a class
+has its own less than method, and that method shadows
+the person method, meaning if we compare an MIT person object,
+since its environment inherits from that person class
+environment, it will see this version of less than.
+It won't see the person version of it.
+As a consequence, when we ask, is P1 less than P2,
+that is literally converted into this form here.
+It says P1 dot less than of P2.
+Long string.
+It basically says, from the P1 object,
+get the less than method.
+I've just said because it's an MIT person,
+it will get that version of the method.
+And then it's going to apply it to self, which is P1 and P2,
+and it will do the appropriate comparison.
+Because these are two MIT people objects,
+it's going to use the less than method
+appropriately on that, comparing ID numbers.
+On the other hand, why does P4 less than P1
+work if P1 less than P4 does not?
+P4 less than P1 is equivalent to asking P4 dot less than method
+applied to P1, which means we use the less than method
+associated with the type of P4, which in this case
+is a person, one that compares based on name.
+So based on name, it can come up with an answer, which is great.
+On the other hand, when we ask P1 less than P4,
+that's equivalent to getting the less than method
+associated with the type of P1, which is an MIT person.
+And since that tries to compare on ID numbers,
+and P4 as a person does not have an ID number,
+this will throw an error, or in this case,
+say that there's an attribute error.
+I don't have an ID number associated with it.
+So we see that with the less than method,
+we have to be careful to make sure we
+use the appropriate one for the kinds of objects
+we want to use.
+And in particular, the specific object
+calling it, in this case, the first one in that comparison,
+is the one that's going to define the type and therefore
+the method that we want to use.

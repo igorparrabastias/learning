@@ -1,0 +1,263 @@
+...
+So the first part of creating a new class is to say,
+how am I going to create instances of it?
+And as I said, that also tends to inherently capture
+what are the data attributes associated
+with an instance of a class?
+But now, I need methods.
+I need ways of manipulating those attributes,
+those data attributes.
+And so first of all, what's a method?
+It's a procedural attribute.
+Think of it like a function but a function or procedure that
+works only with this class.
+It's designed for that class.
+As an aside, as I said earlier, that's nice, because it says,
+I can use the same name many times
+doing similar things for different classes
+without worrying about the confusion of the name.
+Now, when I define a method, Python always
+passes the actual object, the instance,
+as the first argument.
+And so the convention is going to be
+to use self as the name of the first argument of all methods
+not just init.
+As we've also seen, and we're going
+to see now an example of it, the dot operator
+is going to be used to access any attribute, certainly
+the data attributes, the variable names,
+but also the method.
+And we're going to see an example of that in a second.
+But first, let's look at actually making one of these.
+So let's go back to my coordinate definition.
+I already said, I might want to compute the distance
+between two coordinates.
+So I can add a new method, and here it is.
+I'm going to define distance.
+And notice, with both of these-- and I
+should have said it earlier-- these are now
+just standard definitions of procedures.
+They happen to be invented inside this class definition,
+because they belong to the class.
+So I'm going to define distance.
+As I said just previously, we need
+to have the first argument be self,
+because it's going to refer to a particular instance.
+It says, here's the method I want to do on this instance.
+In this case, I've also got another parameter,
+because I want to measure the distance
+between a particular coordinate and some other coordinate.
+So I'm going to give it a name.
+I'm going to call it other.
+Within the body of that method, I just
+do the standard work I would do.
+I'm going to compute a couple of things.
+I'm going to return a value which
+is just the sum of the squares-- the square root rather
+of the sum of the squares.
+The only other nuance here is I'm using dot notation
+to access the data.
+Other than that dot notation, everything else
+behaves just like you would expect.
+What's the dot notation doing?
+Well, as we already saw when we wanted to get values out,
+I need to do that to get the values associated
+with instances, not only for self but also
+for this other coordinate.
+And just as I did in the earlier example,
+think of other.x as saying, get the value of other,
+it points to a frame, because it's
+an instance of a coordinate, and in that frame,
+when I created it, I defined variable bindings for x and y,
+retrieve those variable bindings.
+But there is now a nice little method for computing distance.
+And so I could actually use it.
+And in fact, let me do it.
+I'm going to go over to my machine,
+and I'm going to make sure I have that definition in place,
+and I do.
+And I've got C, and I've got origin.
+So let's do the following.
+I've defined C and origin as before.
+I can print out, what is the distance from C to the origin?
+
+And it says it's distance 5, which makes sense,
+3 squared plus 4 squared is 25, square root is 5.
+Notice how I called it.
+I called it by saying, first of all,
+what's the object on which I want to call the method?
+In this case, it was the coordinate C.
+What's the name of the method?
+And then what's the parameter I want to use?
+But again, notice I did not provide anything for self,
+and this is because, in this particular version,
+C being a frame, I look up the value of distance,
+it is a method within it, and because I'm using it associated
+with that particular instance, Python automatically
+provides C as the first argument to this distance function.
+I could do it a different way.
+Again, I could have C as a coordinate, origin
+as a coordinate.
+And I could do the following.
+I could print out the class coordinate
+dot distance of C and origin.
+And that might look a little more reasonable to you,
+because now, I'm saying what's the distance between C
+and origin?
+And if I do that, I also get out 5.
+What's the difference here?
+Now, I'm giving it the name of a class.
+What's that?
+Well, it actually also points to a frame,
+a frame in which all the class definitions are created.
+So inside of the coordinate frame,
+I'm looking up the distance method.
+And that takes two arguments, and therefore, I
+apply both parameters, C and origin.
+If I'm using an instance to get the method,
+Python automatically uses that instance as the first argument.
+If I'm using the class to get to the method,
+you need to provide both arguments,
+because Python doesn't know which is the instance that you
+want to use.
+Think of it this way, coordinate is pointing to a frame.
+Inside the scope of that frame, we
+created methods when we created that class definition.
+So coordinate dot distance basically says
+get the value of coordinate.
+It's a frame.
+The dot says, look up the value of distance within it.
+I get that, that's a procedure definition.
+And then I apply it to the arguments that are provided.
+C dot distance doesn't have a distance method defined
+within C. It's just an instance.
+But because it's an instance of the class,
+it inherits that distance method from it.
+And as we said, Python automatically
+uses C as the first argument.
+I'm belaboring this point, because I guarantee you
+that you're going to, somewhere in the near future,
+make the mistake of either not providing an argument for self
+or providing one when you don't need to.
+And so this slide hopefully gives you
+a way of separating out the two differences.
+OK.
+Now that we got them, we might want
+to look at those coordinates.
+So I could just print them out.
+And I could go back to my machine and say, print out C,
+and it gives me garbage.
+Well, I shouldn't say garbage, it gives me, actually,
+information that says, within the main environment,
+this is an instance of a coordinate object,
+and here's the actual memory location at which it lies.
+I guess I could go in and start playing with that memory,
+but that doesn't make a lot of sense.
+This is clearly an uninformative representation.
+And that's because, by default, this is what it prints out.
+I'd like to have it print out something that's
+much better at representing what a coordinate looks like,
+and I can do that by defining another method for my class.
+This is another special method called the string method.
+And it's typed as __str__.
+
+Whenever I ask to print an instance of any kind of data
+object, Python is going to call the string
+method that was used as part of the definition of the class.
+And you get to decide what it does.
+By the way, even with existing object types,
+there is, in essence, a string method
+associated with lists, a string that associated with tuples.
+So say we want to have our string method actually
+produce something with an angle bracket
+and then the two coordinate separated by a comma
+and another angle bracket.
+Well, I could do that, and it's actually pretty easy.
+Right down here, I'm going to define that special method
+string.
+It's going to tell me how things are going to print out.
+And all I require is that, how ever I want to define it,
+it must return a string.
+And so if I go back over to my machine,
+and I'm going to uncomment that string method.
+Now I can evaluate that.
+And I'm going to define, again, C to be
+the coordinate of 3 and 4.
+If I print C, oh, nice.
+It prints out a much better representation
+of the coordinate, something that I can recognize,
+and that's going to make it easier to think about what's
+inside of that coordinate.
+Having done that, I can now also think about a few other things
+I might like to do with classes.
+I could say, what's the type of this particular object.
+So I could print, as you can see there, what's the type of c?
+And it actually gives me back something that makes sense.
+It says C is an instance of a class,
+and the class type is coordinate.
+The .main just tells me it was defined up in that overall
+environment to which I interact, that Python environment
+in which I interact.
+And in fact, it makes sense because I
+can say both what is a coordinate, it's a class,
+and what's the type of a coordinate, it's a type.
+So I can make instances.
+I can measure things about them.
+I can print them out.
+One of the other things I might want to do
+is to know what kind of thing is this.
+Do I have something that is an instance of a coordinate?
+I could do that by looking at the type
+and trying to check what's the type of this thing.
+But you've already seen right here that the type of C
+is this complicated thing.
+I really don't want to write, is the type of this object
+equal to class underscore main dot coordinate, that's messy.
+So instead, I'm going to use another built-in method
+associated with any object, which is is instance.
+And I can use that to check if an object is
+an instance of a coordinate.
+So I can say, for example, is c an instance of coordinate?
+And it says, you bet.
+I could do that with built-in objects, by the way, saying,
+is this thing an instance of a list?
+Is this thing an instance of an int?
+I can often do shortcuts in those cases,
+but that underlying method of is instance comes
+from, basically, the objects that exist within Python.
+
+We also have a few other methods that we
+saw with other kinds of objects that we can build
+into our new class definitions.
+There's a long list of them.
+I'm going to simply let you go look them up.
+But basically, many of these come
+provided, but I can override them.
+And the standard ones are, I can define
+what it means to add two instances together,
+to subtract them, to test if they're equal,
+to test if there are less than, to print out the length--
+and we've already done print here, that's the str.
+Each one of these methods has a built-in name
+that I can use to override the underlying version of that.
+So for example, imagine I want to subtract two coordinates.
+I could do that by simply defining
+what sub should look like.
+And I'm going to do that by going to my computer, where
+I've built one of those in.
+And what sub should do is, simply take the instance itself
+and another instance, subtract, coordinatewise, the x values,
+and then return a coordinate.
+And if I run that--
+And I'm going to create two versions of it here.
+I'm going to let C be the coordinate at 3, 4.
+I'm going to let origin be the coordinate at 0, 0.
+And if I want to say C minus origin, great,
+I get out a coordinate.
+Let's give it a name, and I can print Foo,
+and it gives me back what I would expect,
+which is just the vector between that point and the origin.
+Key thing to note here is, I can have
+my method return simple values.
+I can also have it return new instances of things I created.
+And that's a really nice thing to have.

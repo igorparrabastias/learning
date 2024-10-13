@@ -1,0 +1,137 @@
+...
+Now that I've started building a hierarchy,
+one of the things I'd like to show you
+is how that modularity, that associating methods
+with different data attributes around a particular class,
+makes it easy for me to change behaviors for one class
+without changing behaviors elsewhere.
+And to do that, I'm going to add in one more kind of object
+to my hierarchy-- a Professor, also a kind of MIT
+Person, but behaves differently, as you've probably
+already seen.
+And I'm going to use this, as I said,
+as an example to see how one can leverage methods
+from other classes in the hierarchy
+but use that modularity to isolate changes to methods when
+I want to.
+Let's start by defining a Professor.
+Again, it inherits, as a kind of MIT Person,
+I'm going to have an initialization method,
+as before.
+And as I did with students, I'm going
+to inherit or use the inherited MIT Person initialization
+method to set it up.
+But I'll add in one more attribute-- the department
+in which this Person is a Professor.
+This Professor can speak.
+Again, I'm going to use the underlying MIT Person speak()
+method.
+But I'm going to add in a few other things to the utterance.
+And you can see the example here.
+I'm going to, in fact, say what department the Person is in
+and how they say things.
+And we'll see an example in a second.
+Professors not only speak, they lecture.
+And so I'll give the Professor the ability to lecture.
+And notice here I'm going to use my own speak() method,
+or the Professor speak() method, to the lecture() by adding some
+other pieces in.
+So this method will shadow the MIT Person speak() method
+for professors, although it will use that inherited speak()
+method.
+And lecture() will use the base speak() method associated with
+the Professor but add other things in as we do it.
+Let's see what happens if we were to do this.
+So I'm going to go back to the things I've already built,
+some of my early examples, and just look at how the different
+speak() methods work.
+So I've got an MIT Person, and I can do that.
+I can say, I'm going to print out
+asking M1 to speak and just say a very simple "Hi there."
+And it prints out, as we saw before, "Gates says,
+'Hi there,'" because that's the speak() method for an MIT
+Person.
+Now I know that that uses that base method.
+Let's look at another example.
+I'm going to print out for a Student.
+And if I do print s1 speak-- again, just saying "Hi there,"
+it prints out, "Damon says, 'Dude, hi there.'" It's using
+the Undergraduate speak() method because that was the kind
+of Student we had created, which uses the MIT Person method
+but simply adds "Dude" to the front of the utterance.
+What else might I do?
+Well, let's have a Faculty Member.
+And I've created a Faculty Member here.
+Let's just have a Faculty Member speak.
+
+And if we ask that Faculty Member to say "Hi there"-- I
+should have said earlier, the Faculty Member I created
+was a Professor named Dr. Arrogant in Course 6.
+And he prints out, "In Course 6, we say,
+'Hi there.'" And this is coming from the change I made to that
+speak() method for a Faculty Member.
+And finally, if I were to have a Faculty Member lecture--
+so I asked this Faculty Member that I created to lecture
+on the topic of "Hi there"-- he says-- or rather,
+it prints out, "Arrogant says, 'In Course 6, we say,
+"It is obvious that-- Hi there."'" So notice what
+the lecture() method does.
+It uses the Professor speak() method,
+which incorporated that "In Course 6, we say,"
+but it added into it as part of the utterance this little
+annoying phrase, "It is obvious that."
+Key point-- each class has a speak() method.
+And in the hierarchy, we start with the class instance
+or the class of which we have an instance,
+use that speak() method.
+We may inherit from higher up in the hierarchy.
+But we have all of those pieces nicely
+contained to the instances, so speaking
+different kinds of objects do in a different way.
+With that in mind, we could make some changes.
+So in particular, because I've got that isolation,
+I could go into the MIT Person speak() method and change how
+we have this actually print out.
+In particular, I'm going to have it return the name rather than
+just the last name as part of that says() method.
+Let's see what would happen if I did that.
+So I have a version of my file over here that does that.
+And if I now change that in the Person method--
+I'm going to reload that file-- and in particular,
+if I were to go through the same instances,
+now the print() methods, notice, all at in front the full name.
+Why?
+Because all of these methods use the underlying MIT Person
+speak() method.
+They just added other pieces into it.
+In the case of a Student, it added in "Dude."
+In the case of a Faculty Member, it added in "In Course 6,
+we say."
+In the case of lecturing, it added in other pieces.
+But in all cases, ultimately, it calls the underlying MIT Person
+method.
+So all of these classes inherit that.
+But I could make a different kind of change.
+For example, I could decide that I'm going to change
+the Undergraduate Student's speak() method to, rather than
+saying "Dude," say "Yo, bro."
+And if I were to make that change
+and come back and try it, I load it into my machine,
+and I were to print those things out,
+I would get the following behavior.
+It looks exactly like the previous case.
+The only difference is right there,
+that the Undergraduate speak() method uses "Yo, bro."
+Notice it doesn't change Faculty Member either speaking
+or lecturing, it doesn't change the MIT Person,
+and for two different reasons.
+For the MIT Person case, Undergraduate
+is lower in the hierarchy, so in fact it
+would not have a change there.
+In the case of a Faculty Member, it's
+in another place in the hierarchy,
+and it does not use the Student's method,
+it uses the MIT Person's method.
+I've modularized it.
+I've captured a behavior locally.
+And that's really nice.

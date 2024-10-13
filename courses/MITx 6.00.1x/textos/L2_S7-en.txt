@@ -1,0 +1,299 @@
+...
+This notion of an iterative algorithm is really valuable.
+It broadens dramatically the class
+of things that we can compute.
+Again, if I just have branching things,
+I can only go through the code once.
+Now, I can start generalizing.
+And so we've got things that do much more
+than just the simple arithmetic we were doing earlier.
+We can repeat a sequence of steps
+multiple times based on the decision.
+One of the things that comes out naturally
+once we have this idea of repeating things
+is a set of methods that are sometimes
+called guess-and-check methods.
+They're very useful, even though they're not always
+the most efficient technique.
+And I want to extend that notion of iterative algorithms
+to capture examples of guess-and-check methods.
+Go back to what we talked about in an earlier lecture.
+Remember we had that declarative definition of square root.
+Square root of x was that y such that y squared was equal to x.
+And I said, if we were lucky, somebody gave us a guess.
+We could at least use it to check whether we were right.
+Now, we went and looked a different direction.
+We looked at an algorithm to actually compute it,
+but we can go back to that idea, because if we had a good way
+to generate guesses, we could use that declarative definition
+to check.
+That's the basis of guess-and-check.
+I'm going to have to come up with a way of systematically
+making guesses for the possible answer,
+check them, and keep doing that in an iterative algorithm
+until I find a good solution.
+Let's see how we might do that.
+I'm going to use cube root rather than square root
+just to change it up a little bit,
+but the same idea would work.
+One way to use this idea would be to try and find,
+for example, starting at 0, try 0 cubed,
+then 1 cubed, then 2 cubed, and so on, until I get to a point
+where I find a k such that k cubed is greater than x.
+If I found the square root-- sorry,
+the cube root before then, I stop,
+but once I've got something greater than x,
+I know I can stop.
+Now, clearly this is only going to work for integers.
+I can't do it for all possible numbers.
+But in this case there's only a finite number of things
+that I need to try.
+So let's see what that would do.
+Here's some code that would actually make it happen.
+I'm going to start by inputting an integer.
+Notice my use of input.
+I'll remind you that says it's going to print out
+that message, then read in whatever I type
+in into the environment inside Python.
+Remember that input returns something as a string,
+so I'm going to convert it into an integer.
+It's going to assume I typed in an integer.
+If I give it something else, it's not going to work.
+And then I'm just going to have a little loop.
+I'm going to set up answer to be 0,
+and then as long as I have something that's
+less than the thing I'm trying to find the cube of,
+I'm just going to increment-- add 1 to it.
+And I'm going to keep doing that until I get something that
+is equal to-- sorry, something where the cube is either
+equal to x or greater than x.
+And once I get there, I'll simply check to see,
+did I actually get the cube, by doing a test.
+Let's try this out.
+Again, I've got a little piece-- same piece of code over here.
+I'm going to load it into my system.
+It says "enter an integer."
+Let's give it something reasonable, like 27.
+So in my environment, I give it 27.
+Ah, good.
+Cube root is in fact 3.
+Let's try something else.
+Again, I'm going to load this into my system,
+and I don't know, let's pick 38.
+And it says, doesn't work.
+It's not a perfect cube.
+All right.
+My code runs.
+What was this doing?
+It's simply using a loop, right here, to generate guesses.
+
+And it's going to keep doing that until it gets
+either to something that is the right thing,
+or has gone too far, in which case,
+I'm simply going to do a check to see which case I'm in.
+Here, I'm using that declarative knowledge,
+because there's the test.
+Test is right there to see, do I have something
+that is in fact the cube root?
+That's nice.
+That's what I'd like.
+What could I say about this piece of code?
+Well, first of all, it's only going
+to work for positive integers.
+OK.
+I could easily fix that by just keeping track of the sign
+and then [INAUDIBLE] the solution to the positive case.
+And I do this because one of the things we want to do with code
+is think about how well does it run?
+Does it run on all the things I expected?
+And how might I modify it?
+And here the modification is actually
+pretty straightforward.
+I'm going to do the same kind of thing.
+I'm going to run the code, but I'm
+going to use "abs," which is a built in function,
+to take the absolute value of x.
+I'm going to check the cube root against the absolute value
+of x.
+And then when I'm done, I can just decide down here
+whether in fact I want the negative or positive version
+of that.
+I could make that change and run it.
+I'm not going to do it.
+It'll work for me, but it simply shows you
+that I can easily extend my code to build new versions of things
+to handle cases that I didn't think about when I wrote
+the first version of the code.
+There's the first version of a guess-and-check method.
+A little slow, but it does the right kind of thing.
+Now, one of the things that we've talked about
+is that we know when we do a loop that we
+need some characteristics.
+In particular, we need a loop variable
+that's initialized outside the loop, that
+changes within the loop, and that's
+used to test when I'm done.
+That notion we can also capture in a little bit
+more general form, because it's useful to think about what's
+happening inside the loop.
+How do I know the loop's actually going to stop?
+And for that, we often want to think
+about something we call a decrementing function.
+The idea is that we're going to map all of the program
+variables into an integer, and when the loop is entered,
+that value is going to be something that's non-negative.
+When I go through the loop, it's going to keep decreasing,
+and when that value gets less than or equal to 0,
+I know I want to terminate.
+So this is a capturing of this idea of the loop variable
+in terms of looking at what's being done inside the loop.
+And in my case here, I was simply
+using the absolute value of x minus answer cubed
+as my decrementing function.
+If you think about it, every time through the loop,
+that is decreasing.
+And once it gets to a stage where
+it's either less than or equal to 0, I'm ready to stop,
+and I'm going to be able to go on
+to see whether I've actually computed-- sorry,
+a perfect cube or not.
+What could go wrong?
+Well, these are the standard problems with a loop.
+Suppose I don't initialize the variable.
+Most likely thing is I get something called a name
+error, which is I'm going to try and refer
+inside the loop to something that I haven't defined
+outside the loop.
+There is no value.
+I can't look it up.
+That's at least OK.
+I'm going to stop.
+What's worse is if I've used that loop variable somewhere
+else in my code before this, I'm actually
+going to get something that starts off
+the computation in a place I don't expect,
+and that's a harder problem to find.
+So this is one of the things we always
+want to remember with loops-- make
+sure we initialize the variable before we start it.
+What if I forget to change the variable inside the loop?
+I'm in trouble, because I'm going to go through that loop
+until I get really tired of the machine running.
+It's going to simply go through what we call an infinite loop,
+doing exactly the same code over and over and over again,
+because it will never reach a terminating condition.
+And those are two standard problems with using a loop.
+A while-loop, in particular, is I've
+gotta make sure I set up the variable ahead of time.
+I've gotta make sure I'm changing it inside the loop.
+And I need to make sure that the termination test is actually
+using that variable appropriately.
+But as long as I get into the discipline of that
+set the variable, write the loop,
+decrement the variable inside the loop, and check for it,
+I should be OK.
+So that gives us actually a broad class of algorithms.
+Not the most efficient, not going to work in every case,
+but a good guess-and-check algorithm
+is something where you guess a value,
+you check to see if it's right, you change the conditions
+inside the loop, and you keep guessing
+until you find a solution or you've used up
+all the possible values.
+This is an example of a set of algorithms
+called exhaustive enumeration, and you
+can see why "exhaustive."
+Two reasons.
+One, you're going to exhaust all possible options to use.
+And two is it's going to take a while to run,
+so you get tired waiting for it to finish.
+But as computers get faster, surprisingly,
+many of these algorithms can actually work quite well.
+On the other hand, I might not want
+to always think about making sure I initialize a loop
+variable, do a while-loop and then change it inside.
+So I could clean this code up by using
+the other kind of variable-- sorry,
+the other kind of iteration structure, a for-loop.
+So here's a nice variation of that.
+I could set up a value for cube.
+I could have read it in, but I could set up
+a value for the thing I'm trying to find the cube
+root of, and then just run a for-loop, because I know
+that the cube root has to be less than cube itself,
+at least for positive integers, things greater than 1.
+So I can simply use "range" to generate all possible things
+I want to use as a guess, and then
+run a for-loop, where I'll run this and simply say, again,
+check to see, is guess cube equal to cube?
+If it is, I'm done.
+Let's see what happens if we find-- if we try that one out.
+So I've got a little simple version of that over here.
+I'm going to start off with cube equal to 8.
+And if I run it, does the right thing.
+It says cube root of 8 is 2.
+Let's try 27.
+And if I run that, wow, it's great.
+Cube root of 27 is 3.
+This is working really well.
+OK.
+But suppose I now give it something different, like 28,
+and I run it.
+Hm.
+What happened?
+Well, it completed.
+I can check that over here, if I go back to my process.
+I've got things here, but it didn't print anything out.
+Ah, because I made a slip when I wrote the code.
+That code is going to run through all possible options
+for guess, but it's only going to print something out
+if in fact I find something that is the cube root-- if there
+is a perfect cube.
+28, that's not going to happen.
+It didn't give me anything informative.
+So I ought to clean that up, and I can, by simply saying,
+do the same thing.
+I've actually cleaned it up to add
+an "abs" here so that I'm going to deal
+with the negative cases.
+But do the check here, and if I get to a place
+where I've gone too far, simply break.
+Break out of it.
+OK?
+Otherwise, run through the loop, but now, when I do the check,
+do the print.
+Otherwise, do the check with the second piece.
+And actually, I've done that in an inverse way.
+Here I'm checking to see it's not a perfect cube,
+and I'm going to print that out.
+If it is a perfect cube, I'm going
+to basically determine whether I want the positive or negative
+version of it.
+So I'm cleaning up two things here.
+I'm allowing for negative integers,
+but I'm also allowing for it to print out something that's
+going to do the right thing.
+And let me show you what would happen if I run that version.
+So now when I run this, cube root of minus 27 is minus 3.
+And if I give it a minus 28, it says it's not a perfect cube.
+And I'm all set.
+What was my point?
+When I run the code, I shouldn't just
+run it on things I'm expecting, like perfect cubes.
+I should run it on other things to see
+if it does the right thing.
+When it didn't, I wanted to add in a different check,
+and I added in a second thing here which
+I had done earlier, which is to make
+sure I can deal with negative integers and not just positive
+integers.
+But that now gives us a nice tool.
+I've got exhaustive enumeration, guess-and-check methods that
+can work on problems where there's
+a finite number of choices.
+I can come up with a way of exhaustively testing
+all of those, and it's a good way
+to generate guesses in an organized manner using
+those iterative loops as a technique to tell when I'm done
+and to return a great answer.
+And we're going to build on that idea as we move on.

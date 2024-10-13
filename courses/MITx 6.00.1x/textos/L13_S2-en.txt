@@ -1,0 +1,98 @@
+...
+So our goal is actually to explore
+how visualization plotting helps us think about data to see
+variations in data.
+So let's start building on that.
+Suppose I want to display all four
+of the graphs of the different orders of growth
+all at the same time.
+A simple way to do it-- I just call plot
+with each of those lists as the y
+values-- the linear one, the quadratic one, the cubic one,
+and the exponential.
+And you'll know I'm keeping the same x
+values here because I want to have the same x-coordinate.
+I just want to see what the different graphs look
+like when I call those.
+So if I were to execute this in my computer,
+I get a display like this.
+Hmm, not quite what I wanted.
+And that's part of what we want you to see.
+You can see here that there are at least three graphs overlaid.
+You can guess that this one out here is probably
+the exponential one.
+It's growing really fast.
+That is probably the cubic one.
+But you'll notice down at the bottom, what happened
+to the other two graphs?
+Well, in fact, it's impossible to see the linear graph
+here or even, frankly, the quadratic one.
+If you look closely, you can see a very slight red line
+down there.
+And that's because the scales of these graphs change so rapidly.
+Remember, I'm graphing things with an x-axis from 0 to 29.
+So the linear graph only goes up to 29.
+And notice the scale here goes up to 140,000.
+That's part of what we want to look at.
+How do we change things so we can actually visualize data?
+And the first thing we can take from this is, boy, exponential
+grows really fast and certainly, a great deal
+faster than linear.
+OK, how might we think about doing the display so we can
+see things a little bit better?
+As we said, it's not helpful because I
+can't see things because the biggest plot just
+grows too fast.
+So could I graph each one separately?
+And the answer is sure.
+I'm simply going to call another function called figure.
+And I'm going to give it an argument.
+And that argument simply gives a name to this figure.
+It's going to allow me to generate
+different windows, different displays, for different graphs.
+And in fact, I'm going to be able to refer back
+to that figure if I want to do other things inside of it.
+Let's look at how that might help my problem here.
+The idea is that when I call plt.figure,
+if I call it without argument for the first time,
+it's going to generate a new display with that name.
+If a display already exists with that name,
+it's going to reopen it and let me do additional processing
+inside of it.
+And let's look at an example.
+So here are my four calls to my plots as I did before.
+In the previous case, I just called them all
+and they overlaid all those plots inside
+of the same graph or display.
+But now, I've added a call in between each one of them,
+saying, in the figure with name lin,
+I'm going to do the linear one.
+In a new figure with name quad, I'm
+going to do the quadratic one, and similarly for cube and expo
+for exponential.
+I'm creating four different displays, each one
+with its own plot inside.
+So that lets us then see things like this.
+Here, calling plt.figure figure of lin
+opened up a window, or a graph, with the name lin,
+inside of which I plotted my samples and my linear.
+And I get that nice graph of a straight linear line
+with the range only going up to 30
+because that was the maximum size of something
+inside of that graph.
+When I call plt.figure with expo,
+that has now a new window with the name expo inside of it.
+And when I call plot of my samples and my exponential,
+it gives me a different graph.
+The range here is automatically set
+to be the largest value I need to show the same thing.
+That's 140,000.
+But now, we can compare those two graphs.
+I can see the effects of these two different displays
+inside of each window without having them, if you like,
+buried one very tiny inside of a second one
+inside of the same window.
+So I could plot on separate graphs.
+That's nice.
+What else might I do?
+Well, we'll look at that in the next section.

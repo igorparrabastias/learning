@@ -1,0 +1,52 @@
+...
+So we want to sort things.
+And we're going to start with some really simple ideas
+and then look at more interesting, more complicated,
+but more elegant ways of doing this sort.
+The little animation you're seeing here
+is in demonstration where I've got N integers
+from 0 up to M minus 1.
+And I'd like to have them sorted so if you went along
+the axis here is the index into the list.
+And this is the value of those elements.
+And ideally when they're sorted.
+They'd all lie along this diagonal.
+The first sort has a number of names.
+It's called monkey sort.
+It's called bogosort.
+It's called stupid sort-- you'll see why in a second.
+Slow sort.
+Permutation sort.
+Shotgun sort.
+And the idea is very simple.
+I randomly assign the elements into the list.
+And then, I look at them and say are they in order?
+And if they aren't, I randomly assign them again.
+You may have played this game with your friends as a kid
+with a deck of cards.
+We used to call it 52 card pickup.
+Because you scatter the cards and then
+you pick them up to see if they're in order.
+Clearly, not a great way to do the sort.
+Are they sorted?
+No, repeat.
+And you keep doing that until you come up
+with something that does work.
+It is a possibility, it's not one that I recommend,
+unless you've got a really small sized problem.
+So what's the complexity of bogosort?
+There it is.
+It says, while it's not sorted, just randomly
+shuffle them and then keep going.
+Well in the best case, it's great.
+It's only order n because I just have to check,
+are they in order.
+What's the worst case?
+Who knows.
+If you're really unlucky, you could be here a very long time.
+It's unbounded because there's no guarantee I will ever
+come up with a random solution that comes up with this.
+So I probably don't want to look at it,
+but it's going to set a base if you like
+to compare other things too.
+So there's a really simple way of doing sort.

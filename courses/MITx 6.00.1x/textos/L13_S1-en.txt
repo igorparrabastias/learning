@@ -1,0 +1,202 @@
+...
+Today, we're going to talk about a different topic,
+but one that we hope is going to be very valuable to you.
+And that's the topic of how to visualize data.
+To set the stage for it, let me remind you
+that a couple of lectures ago, we
+looked at examining orders of growth, complexity.
+And there, the issue was worrying about
+if I write two different algorithms to solve
+the same problem but they come from different classes,
+they're going to take different amounts of time.
+They're going to take different amounts of resources.
+And our focus was understanding those choices
+between a linear algorithm, a quadratic algorithm,
+and, God help us, an exponential algorithm.
+We could look at that just looking at numbers.
+We could look at that looking at mathematical expressions.
+But we also chose to look at it by looking at graphs.
+Using graphs to help us visualize
+what are the differences in cost between
+a quadratic or exponential algorithm
+and a linear or logarithmic algorithm.
+That use of graphs gave us an intuitive sense
+of the differences between those choices.
+That's valuable.
+We're going to come back to that.
+But it also let us do something else.
+And in particular, it was an example
+of leveraging an existing library.
+Something that was provided to us
+and just using those procedures, rather than writing procedures
+from scratch.
+That's also a handy tool.
+And it's something that modern computer scientists use a lot.
+In the old days, you might write everything yourself.
+Today, other people have done a lot of work for you.
+And so what we want to look at in this lecture
+is the idea of using existing libraries
+to help us examine algorithms, procedures, data,
+and help us think about how we want
+to write our own procedures building on top
+of those libraries.
+It turns out that Python provides--
+or most Python implementations provide a set
+of nice libraries for you.
+Could be libraries for graphing.
+Could be libraries for numerical computation.
+Could be libraries for stochastic computation.
+And many other things.
+And we're going to look at one example of that
+today to explore the idea of using existing library
+procedures to guide processing and exploration of data.
+The library we're going to use is called pylab.
+Now, you've already seen how to import things
+into a computing environment, you just say import.
+Here, I'm going to use a slightly different version
+of it.
+I'm going to import pylab, but I'm
+going to say in particular, import pylab as PLT,
+short for plot.
+That's going to allow me to reference any of those library
+procedures with their name, but preceded by PLT and dot.
+Just lets me distinguish in my own shorthand,
+this is a plotting function.
+I could have picked anything to do that, PLT
+seems like a nice choice.
+That gives me then, access to a range of graphing or plotting
+procedures.
+And we're going to look at those in a second.
+In this lecture, I'm just going to look
+at some simple examples.
+There's lots of wonderful additional information
+available in documentation associated with pylab.
+I encourage you to go look at that.
+And indeed, if you choose to take
+the second part of this course, you
+will see many other examples and details of these ideas.
+Here, we want to look at the idea of using a library
+and using plotting to help us think
+about what's our algorithm actually telling us.
+Let's start with a very basic function to do that.
+The most basic function in pylab simply plots two lists,
+taken as being the X and Y values of some function.
+Other data structures are much more powerful.
+And you'll see some nice examples of that
+if you take the second part of the course.
+In particular, using something called an array,
+lets you do some processing very straightforwardly.
+Here, we're just going to focus on lists.
+First, let's generate some data.
+So I'm going to create five little lists called
+my samples, my linear, my quadratic, my cubic,
+my exponential.
+And I've got a little for loop down here
+that's going to generate some samples for me.
+Now if you look at this, I'm running with a range of I
+from zero up to, but not equal to 30.
+And I'm generating simply samples of I
+and linear samples of I. It may seem a little redundant,
+but I want to separate out the X values, which
+are my samples, from a linear function over those X values,
+which is my linear.
+And you can see I'm computing quadratic, taking I squared.
+I'm computing cubic, taking I cubed.
+And I computing an exponential, taking 1.5
+to the [? Ith ?] value.
+So I'm generating a set of lists and I'm going to plot them
+in a second.
+Now since I motivated this by talking about orders of growth,
+really, I should have used a value like 2
+for my exponential.
+So 2 to the 0, 2 to the 1, 2 to the 2, 2 to the 3, and so on.
+Unfortunately, that grows so rapidly,
+it's really going to make it difficult to visualize.
+So I've taken a slightly smaller value of 1.5.
+But you could use any value in here.
+So this little for loop generates for me, 5 lists.
+A list of the numbers from up to 29, which are my X values.
+A list of linear functions of that, which again,
+will be 0 up to 29.
+A list of the quadratics, the cubics, and the exponentials.
+All associated with that set of samples.
+I'm ready to start plotting.
+So to generate a plot, I'm going to use PLT because I
+imported pylab into that name.
+And then I've overwritten it, but then the dot.
+And then a call to the function plot.
+It's the simplest possible function
+for doing our procedure for doing plotting.
+And I need to give it two lists, a list of the X values
+and a list of the corresponding Y values.
+And here, I'm just going to plot my samples, which are the X
+values, and the simplest of the Y values, which I stored up
+in my linear.
+As I said before, for now, the arguments are lists.
+They could be other structures, you'll
+see that if you take the second part of the course.
+Most important point is the lists
+need to be of the same length.
+They both need to be of length 30,
+in this case, in order for this to work.
+There are two ways in which I could actually
+call this function, or at least in my version of Python.
+Your version may be slightly different.
+But I want to show you both of them because you have a choice.
+I could call the function in an iPython or interactive Python
+console.
+And that will generate a plot right inside of the console.
+I could also call the function in a Python console.
+And that's actually going to generate a separate window
+in which the plot is displayed.
+So let me show both of those working.
+If I go to my computer, I'm going to start off
+with just a Python console.
+And in this case, I'm going to plot four functions.
+It doesn't matter.
+I just want you to see what happens.
+And if I plot those on my computer,
+you will see that nothing has happened,
+but a separate window has shown up.
+And in that window, I have in fact, four different graphs
+overlaid.
+We'll come back to that in a second.
+This is nice if you want to store things
+in a separate window, you want to save things away,
+you want to be able to actually play
+with different aspects of the window.
+I'll let you explore that yourself,
+but in fact, in this window version of things,
+you can adjust scales, you can adjust
+other aspects of the graph.
+It's one way to deal with it.
+The second way I can deal with it
+is to do it inside of an iPython or interactive Python console.
+And here, if I call this function,
+you will see that it actually embeds
+the graph, the plot directly inside of that console.
+And I could do other things inside of here.
+This is convenient if I just want to visualize but not
+manipulate.
+Using the full console version is nice if I actually
+want to do the manipulation.
+So I've got two different ways of doing this.
+And from now on in this lecture, I'm
+just going to show you the results of doing
+the graphing using actually a Python console
+so that I'm generating a separate window.
+So to remind you then, to generate a plot,
+I'm just going to call plot, giving it
+a set of X values, a set of Y values.
+As long as they are the same length list,
+I'm going to be able to graph them out.
+And let's look now what happens if I do that.
+The simplest plot would simply be
+to plot my samples against my linear.
+And not surprisingly, it gives me this nice straight line
+because each value was in fact the X value represented
+as a Y value.
+Simple example.
+You see what happens when I call the plot.
+In the next section, we're going to turn
+to doing more interesting things with these plotting functions.

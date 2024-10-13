@@ -1,0 +1,121 @@
+...
+We've seen a number of examples of recursive function,
+something you're going to use a lot.
+But all of them so far have just been numerical.
+So let me show you one more example
+that I can do recursive problem solving, recursive functions,
+on other things.
+For example, on strings.
+So here's the challenge.
+How would I tell if a string of characters is a palindrome?
+Meaning, that it reads the same forwards and backwards.
+Now, I'm going to cheat a little bit
+and remove punctuation and capitalization,
+but I just want to know is something a palindrome?
+Probably one of the most famous attributed to Napoleon,
+although I don't know that he said it in English was,
+able was I ere I saw Elba.
+If you look at it frontwards or backwards,
+it reads out exactly the same.
+Second one attributed to Anne Michaels.
+Are we not drawn onward?
+We few, drawn onward to a new era.
+And you can see if I read it from right to left or left
+to right, it's exactly the same.
+I'd like to write a piece of code that
+can solve this recursively.
+And you can think about doing it iteratively,
+but recursive is so much better a solution to use.
+So how would I do it?
+Well, I'm going to do a little bit of cleanup first.
+I'm going to convert the string to just the characters.
+I'm going to strip out any punctuation,
+and I'm going to convert everything from uppercase down
+to lowercase so I just have it all as a sequence
+of characters.
+And then I've got a very simple solution.
+If the string is empty, it's a palindrome.
+If it's just of length 1, it's a palindrome.
+Otherwise, how would I tell if some string is a palindrome?
+Well, check the first and last element.
+If they're the same, then check everything in between
+to see if it's a palindrome.
+That's cool.
+That's a recursive solution.
+I've just broken it into a simpler
+version of the same problem.
+And, of course, as I keep breaking it down,
+eventually I'm going to get down to either string of 0
+if the whole thing started off as even or a string of 1
+if the whole thing started off with an odd length.
+Can I do that?
+You bet.
+I'm simply going to write a little piece of code that's
+going to say if I've got a piece of code that is palindrome,
+I'll first convert this just into the string.
+I stripped out all the separate spaces, the punctuation.
+I remove uppercase to lowercase.
+And then, as I said, if the first and last element are
+the same, then I just want to check, is that a palindrome?
+And there's the code, nice and compact, nice and simple.
+I'm not going to walk through all of it,
+but you can see the first part here is simply
+something that's going to convert
+that string into characters.
+It takes advantage of a property of strings
+that I can call a method called lower that will convert
+everything into lowercase.
+And then I've just got a nice little iterative loop here
+that basically walks through each character in the string.
+There's that iteration over the string itself.
+So string iteration.
+
+And it basically says if that character is, in fact,
+a character add it in.
+And then there's that nice, elegant solution
+to palindromes.
+It says, give them one of those strings.
+If it's of length 1 or less, it is a palindrome, return true.
+Otherwise check the first and last-- there's
+that call with minus 1 to a string,
+the first and last character of the string--
+and check by slicing out from the string
+everything but the first and last character
+and see if that's true.
+And finally, I'll just convert the string
+and call [? ispel ?] on it.
+Let's try it out.
+I've got those two characterizations over here.
+I've got it loaded up, and if I call it, it says
+is for example a simple thing like Eve a palindrome?
+You bet.
+E-V-E is a palindrome.
+And what about, is able was I ere I saw Elba palindrome?
+You bet.
+Again, notice how thinking about it recursively has let me
+find a really nice solution to this problem.
+This is a very crisp piece of code
+that solves what otherwise seems like a very hard problem.
+Could you solve it iteratively?
+Sure, but you'd have to keep track
+of where you are on both ends of the palindrome
+as you decrement them to walk in.
+That sounds like a pain.
+I'd much rather think of this recursively,
+and that's what I did.
+This is, as to all the previous examples,
+but this is a really nice example
+of what we call a divide and conquer algorithm.
+I solve a hard problem by breaking it
+into a set of other sub-problems that have the property
+that they're easier to solve than the original.
+In this case, it is shorter.
+And that the solution of the [? sub-problems ?] can be
+combined to solve the original problem.
+We saw that with factorial.
+We saw it with other ones.
+This is a great example of it.
+And we're going to come back to this idea of divide
+and conquer algorithms as we go through the course,
+because they're a very powerful pattern that we
+want to be able to use.

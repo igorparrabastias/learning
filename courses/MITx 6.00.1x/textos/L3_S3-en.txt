@@ -1,0 +1,211 @@
+...
+We've been using exhaustive algorithms, guess and check
+algorithms.
+When we got integers we saw.
+That's nice, because there's only
+going to be a finite number of solutions.
+But we won't be able to find, say,
+square root of cube roots of numbers
+where that isn't a perfect square or a perfect cube.
+We've generalized that to look at something
+that does a different kind of guess
+and check where we take incremental steps,
+still enumerating all the possibilities
+within the resolution of that step,
+trying to find a solution.
+And we saw that that either means we take very small steps,
+and we take a long time.
+Or if we take larger steps, we might miss the solution.
+And I suggest that we want to find a more effective way
+of doing that.
+So here's an example of that and a wonderful tool
+that we're going to see a lot as we go through the course.
+It's called bisection search.
+Let's think about a square root.
+One of the things we know about the square root of a number
+is that it lies between 1 and that number
+if that number is bigger than or equal to 1.
+We'll do fractions in a second.
+So square root of 25 lies somewhere, we know,
+between 1 and 25.
+Here's the basic idea.
+Rather than trying everything starting at 1
+and taking small steps, suppose we
+pick a number in the middle between 1 and say 25?
+12 and 1/2.
+If we're lucky, that's going to be close enough.
+Well, it's probably not close enough in this case.
+We know where it is, but it's a nice start.
+But we can take that idea and generalize it.
+If it's not close enough, then we can ask,
+well, was the guess too big or too small?
+And in particular, if that guess g squared is bigger than x,
+we know it's too big.
+So what can we say?
+Well, we know that the answer has to lie below g,
+and that's really cool, because it says all of this stuff here,
+throw it away.
+I don't have to look there.
+I know that the answer has to be somewhere between 1 and g.
+Do the same thing.
+Pick something halfway between.
+That's my new guess.
+Try it again.
+If it's close enough, I'm done.
+If it's not, ask the same question.
+And for example, in this case, if g squared is less than x,
+then we know it was too small.
+So we can throw that stuff away and only focus on this portion.
+And, again, pick something in the middle and keep trying.
+You can already see why this is going
+to be really nice, because on each step,
+I'm throwing away half of the things
+that I don't have to look at anymore.
+And that's going to let me hopefully very quickly zero in
+on finding the right solution.
+That's a wonderful idea.
+It's called bisection search, and we're going to use it.
+So what do we say at each stage?
+I'm losing half the values.
+Really cool.
+Let's see what happens if we wanted
+to actually make code for it.
+So this is a little bit of a busy slide,
+but we'll walk through it.
+This is an example of computing square root using that example
+of a bisection search.
+I'm going to start off just giving it the thing I'm
+going to look for.
+x will be 25.
+That's the thing I'm going to use as the root.
+Again, I'm going to pick something
+that I'm going to use to tell how close I am.
+And I'm also going to keep track of how often do I actually
+run through the loop just to compare it
+to what we saw earlier.
+I need to set a low value and a high value,
+the range in which I'm going to look.
+Initially, that is 1 to the number itself.
+And then I'm going to make an initial guess, which is halfway
+in between.
+Just high plus low divided by 2.
+And then I run through one of those nice little loops.
+What do I do?
+I say if the difference between the answer
+squared and x is bigger than or equal to epsilon,
+I'm not close enough.
+And in that case, I'm going to print out some information,
+increase the number of guesses by 1.
+And then do what I just did, which
+is if answer is too small, that is,
+answer squared is less than x, then
+I can change the low part of the range to move up to answer.
+And if answer is too big, I can change the high part
+of the range down to answer.
+As I did before, I start out here.
+If answer was too big, I changed the high arrange
+to bring it down into there.
+If answer is too small, I bring the low range down into there,
+and I keep sorting it down until I get into something
+that's reasonable.
+This algorithm just captured that idea I just described.
+So let's try it out We'll do it with 25.
+Here's a bisection search on square root.
+And if I run this code, wow, it actually
+got there very quickly.
+It did it in 13 guesses.
+I'll remind you, in the previous case we took
+30,000 guesses to get there.
+I don't want to print all that out on my screen.
+And notice how quickly it zeroes in.
+It starts off with low 0 and high 25.
+And then it says low 0 and high 12 and 1/2, half and then low
+0 and high 6 and 1/2.
+You can see, if you look at the printout,
+how quickly it narrows in on the range.
+That's really cool.
+
+Do the same thing with cube root.
+I can do exactly the same idea.
+This is almost exactly the same code.
+The only difference is I'm using guess cubed
+rather than guess squared.
+And I'm going to keep track of otherwise exactly
+the same information.
+And let's compare that.
+If I go over and pull up my cube root example,
+we'll start with 27.
+Again, I'll remind you that in this case
+I was doing 30,000 checks to deal with this.
+Now I run it, and in 14 guesses it
+gives me a really good answer.
+And if I pick something that's not a perfect cube, like 54,
+and I do the same thing, in this case
+it took 15 guesses to get me a really good answer.
+This is a powerful tool, that idea of bisection search,
+throwing away half the possible values at every stage,
+let's me very quickly zero in.
+As before I can ask, well, can I do everything?
+This is only going to work for numbers bigger than 1.
+What about fractions?
+Well, I know with fractions between 0 and 1,
+now the difference is that the root doesn't
+lie between the number and x itself,
+or it lies between 0 and that number.
+But that's an easy way to change,
+and we can actually think about making that change.
+But just to remind you of how powerful this is,
+notice what happens.
+If I start if with the number n, on the first guess
+I reduce the set of things in half.
+On the second guess, I reduce it by another half.
+So it's now n over 4.
+After g guesses, I've got a range that's only n over 2
+to the g.
+And what this says is that in an amount of time that
+is going to grow as the log of n,
+I'm going to get to an answer.
+That's really nice, because it says
+I don't take a linear time, I actually take less than linear
+time to get there.
+We'll come back to that idea later on in the course,
+but this is a great example of a logarithmic time algorithm
+finding an answer very quickly.
+I jumped ahead a little bit, because I already
+started talking about what happens
+if I want to look for cubes only greater than 1,
+I could modify to look at negative cubes,
+and I could modify it to look at things where
+the answer is less than 1.
+And so for example, if x is less than 1,
+I just change the search space.
+So now, rather than going from 1 up
+to x, it goes from 0 to x-- sorry,
+rather than going from 0 to x, I want to go from x up to 1.
+I'm not going to do it.
+I'm going to leave it for something for you to try out,
+but it's really easy to make that change.
+And, again, notice what I've done.
+Start with a basic set of code, check to see what it runs on,
+and then decide if I wanted to use the same code,
+how could small changes have it run
+on other kinds of solutions?
+What can I take away from this?
+Bisection search really radically reduces
+computation time.
+I went from 30,000 times through a loop to 10 or 15 times
+through a loop.
+That's really nice.
+And this should work on any problem we would
+call an ordering property.
+That is, the value of the function being solved
+varies monotonically, that is, it increases
+as the input value increases.
+G squared has that property.
+As I change g, it grows.
+G squared grows as g grows.
+G cubed, same kind of idea.
+So bisection search will work on any problem
+that has that kind of property.
+We're going to see more examples of that
+as we go through the course.

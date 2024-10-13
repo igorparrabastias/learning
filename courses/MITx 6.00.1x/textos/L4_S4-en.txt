@@ -1,0 +1,82 @@
+...
+Now that we've introduced the idea
+of a definition, a function in particular,
+as a way of doing encapsulation of information,
+we can start exploring some of the variations to them.
+And I want to show you one place in Python this actually
+can be very handy.
+And that is that I can have a function definition
+that I can change in terms of how I want
+to think about invoking it.
+So let's start with a simple function here.
+This is a very simple function that
+says if the last argument is true,
+then I'm going to print the last name comma first name.
+Otherwise I'm going to print the first name comma followed
+by the last name.
+And I'm going to expect those to be strings.
+And I've got a simple little implementation over here.
+I'm going to import it into my Python shell so I can use it.
+But at this stage, you can hopefully look at this function
+and realize, given some value for reverse,
+I'm going to test that.
+If it's true, I'm going to do this, which is just to print.
+It's not going to return anything.
+If it's false, I'm going to do that.
+OK?
+Now, here's one of the nice variations on it.
+First of all, that first call does what I'd expect.
+And, in fact, if I go to my Python and type
+it in, I can say if I do print name--
+and I'll do myself-- of Eric Grimson,
+and I give false as a value for reverse,
+it prints it out in the order I expect it.
+I could do, by the way, the same thing.
+I could say print name just to show you
+it does the right thing of Eric and Grimson.
+Notice the commas, by the way, to separate the parameters.
+And I give it true.
+It would help if I can type.
+So I'll do it one more time with Eric Grimson and true.
+Now it prints it out in the other order.
+But here are some of the variations.
+I could say explicitly give the binding to the parameter
+name reverse the value false.
+So doing it in the same place, but I can actually specify it.
+I could similarly for any of the parameters in the invocation
+literally say the parameter followed by an equal sign
+and the value that I want.
+And all three of these are going to print out
+exactly the same thing.
+And, in fact, so will the last one.
+But notice here I have reversed the order.
+So if I'm not going to use this kind of formalism,
+I have to give the parameter in the place it expects.
+But in this case, I reversed it.
+Even though the function expects first name then last name,
+I've said I'm going to have last name have the binding
+Grimson, first name have the binding Eric,
+and reverse equal to false.
+That's nice if I forget the order
+or if I just decide I want to call them in a different way.
+I can do some other things here though.
+I can change the definition of my function to give a default
+value to one of the parameters.
+In this case, the syntax is there's the parameter name,
+and I'm saying let it have initially the binding of false.
+And that means that if I call the function, as I do right
+here, without an explicit parameter passed in,
+or value passed in for that parameter,
+the default holds true.
+In this case, I'm going to assume that reverse is false,
+and therefore I'm going to do this particular print
+statement.
+Now, on the other hand, if I want
+to change the value of that, I need
+to give it an explicit value to overwrite the default value.
+And this is handy if I've got a parameter that normally I
+expect just to have a particular value, but on a rare occasion
+I might want to change it, my invocations
+don't have to always pass in those values.
+So a nice little variation on how we pass
+values into parameters of definitions of functions.

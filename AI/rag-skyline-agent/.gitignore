@@ -1,0 +1,23 @@
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración de IDE
+.idea/
+*.iml
+
+# Ignorar archivos de dependencias
+node_modules/
+/packages
+
+# Ignorar archivos de compilación
+*.o
+*.pyc
+*.class
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar archivos de entorno
+.env
+

@@ -1,0 +1,303 @@
+...
+So we've built a hierarchy.
+We've got professors.
+We've got different kinds of students.
+We've got MIT people.
+We've got ordinary people.
+We've seen some of the nice aspects
+of how that lets us isolate methods within particular class
+instances.
+Let's look at one more direction of building this hierarchy,
+in particular to look at a class that can include instances
+of other classes within it.
+And here, staying with my theme of students,
+I'm going to create something called a grade book.
+And the idea is to build a data structure that
+can hold grades for students.
+And I want to gather together the data and procedures
+for dealing with them in a single structure
+so that users can manipulate them without knowing
+the internal details.
+So within a class or a grade book instance,
+I'm going to have representations of students.
+I'm going to have representations of grades.
+I'm going to capture all of those instances
+of other classes inside of that structure.
+Let's look at some code, and let's see what
+happens when we then use it.
+So here's my definition for grades as a class.
+And you notice the docstring that
+says it's a mapping from students to a list of grades.
+And I want to show you what that means.
+As always, I'm going to start with,
+how do I create an instance of a grade book or an empty grade
+book?
+And I'm going to have two parts here.
+The first part is, inside that grade book,
+I want a list to students.
+I want a list of the different students in the class.
+As we saw in an earlier example, I
+could do this with a set of lists,
+but I'd like to associate with the student
+a piece of information.
+So I'm similarly going to have an internal representation
+of the grades, and they are going
+to be represented as a dictionary,
+because I'm going to use ID number to get a list of grades
+associated with each student.
+Let's look at that a little more carefully.
+I'm going to set up students as an instance name
+within an instance created here that's initially an empty list.
+When I want to add a student to my class,
+I'm going to, first of all, check
+to make sure that that student is not already in there.
+And then notice there's that little test where
+I'm going to raise a value error if, in fact,
+I've already got a version of a student in the class.
+But the second thing is, notice how I do the add,
+because students is a list.
+I simply append directly onto it,
+mutating that list to add in that student.
+Grades is a dictionary, and so notice when I add
+a student what I do.
+I take the student, which is an instance of a class.
+I get out the procedure that is associated with it
+that gets out the ID name.
+I call it with the open close paren,
+and that gives me now a spot in the dictionary.
+In fact, it's going to create a spot
+in the dictionary in this case, and into that,
+I store an empty list.
+The nice thing here is that my dictionary is going
+to be accessed by ID number.
+Separately, I'll have a list of students,
+and that will allow me to manipulate either of those,
+depending on what information I want to get out.
+The last piece about this class, when
+I set up the initial instance, I'm
+going to say arbitrarily, because there's
+nothing in there, that this list or this collection is sorted.
+If there's nothing there, that's obviously true.
+When I add a new student to the class,
+because it's getting appended to the end of the list,
+I'm going to change that flag to false.
+And that'll be important if I ever
+want to get out a list of the students sorted by ID number.
+All right.
+There's the first part of grading the grades
+object, the grade book.
+Now, I want to add a grade in.
+I've got a student, and they've got a new grade in this class.
+And, remember, a student going to have multiple grades,
+because there are multiple quizzes.
+So how do I want to deal with that?
+Adding the grade is going to be fairly straightforward.
+Notice the format that I've got here.
+Because it's a dictionary, as I just did before,
+I'm going to take the student, who is an instance,
+call the get ID number from that class on it.
+That gives me back an ID number, and I then going to,
+in that spot, in grades, insert-- let me rephrase
+that-- add something.
+To say it a little bit better, doing that particular access
+gets me out from the dictionary a list of grades.
+It goes into the dictionary, pulls it out.
+Because it's a list of grades, I can add to the end.
+Mutate in place.
+And that's great.
+It says for every student, I can add a new grade to their list.
+Notice I'm going to use my nice try method to do that,
+and, simply, it will work unless there
+is no entry in the dictionary for the student, in which case
+it's going to raise a key error saying that I've got a problem.
+And in that case, I'm going to explicitly raise
+a value error, printing out, here's the problem,
+using that idea we had earlier on of trying something
+and then handling the exception when it comes up.
+I can add grades to the grade book.
+Finally, I might want to get out a list of grades for a student.
+And, again, I'm going to use the try method with almost
+the same kind of indexing.
+Given the student, which is an instance,
+I call the class method for that type of instance
+to get out of particular ID number,
+and I go into grades, which is a dictionary,
+to retrieve that entry.
+The last thing I do we saw before, which is,
+rather than returning it, I'm going
+to return a copy, which means I can do things on that
+without destroying the original set of grades.
+A safe thing to do.
+And, again, as before, I'm going to run in case I hit an error.
+And if I get an error, meaning I can't get into the dictionary,
+I'm again going to raise my own value error,
+telling me that the student was not in the grade book.
+And then, finally, I might want to get
+a list of all the students in the grade book.
+And here's what I'm going to take advantage
+of that flag, which is, if that flag for this instance
+is sorted, is false, I'm going to go ahead and sort--
+remember, it's a list, so I can do that in place.
+I'll set the flag to true, and then, in either case,
+having done that, I'm going to return
+a copy of the list of students.
+So I go into students, which is a list,
+and I return a copy, again, so I don't accidentally
+destroy the underlying list stored inside of the instance.
+What do I have here?
+I've got a data structure, a grade book.
+Inside of it, I have a set of classes.
+And notice how I'm storing them.
+I have a list of the students.
+Those are the classes.
+And I have associated with that a dictionary that,
+by ID number, lets me retrieve information about each student.
+OK.
+Let's see what happens if we were to try this out.
+So I can create this.
+Now I want to get out a report.
+How are students doing in my class?
+Here, I'm going to take advantage of the fact
+that I get out-- or I can get out, rather,
+all of the students.
+And if I go back a slide, remember,
+all students here gives me a copy
+of the list of all the students stored in that class.
+So if I go back forward, what am I going to do?
+I'm simply going to loop over that collection,
+and I'm going to use that method to get out
+that list so that I'm preserving the information hiding.
+I'm not directly going in and getting that list,
+and I'm going to loop over that.
+For every student in that list, I'm
+going to simply do a little computation.
+I'll set total to zero, number of grades to zero.
+And I'll run for every grade in the grades associated
+with that student.
+And notice the access.
+Notice the access there, right here, which is,
+again, I'm using the getter of get grades for that student
+to return the list of grades.
+And I just run through it, adding the grades up,
+including then increasing the number
+grades I've got recorded.
+And then I'm going to just report
+the average, unless I have a divide by zero error, in which
+case I will report something different.
+And I'm simply appending that onto that list
+that I'm growing.
+When I'm done with all of that, I'm just going to return it.
+I'm going to do one unusual thing down here, which
+is, because this is a big list of strings,
+I'm going to return it where I just
+break this up by inserting a carriage
+return in between each one of those strings.
+And that's what that joint operation
+does that we saw earlier.
+It says, taking that string, I'm going
+to insert into it a carriage return or this backslash n
+in place of each one of those pieces,
+and that's just going to print things out
+in a nicer manner for us.
+I think we're ready to try this out.
+So I'm going to create a little database of students.
+And let me just go to my computer and set that up.
+
+So if I load this into my system,
+it prints out a set of things.
+Now let's see why it printed that out.
+I'm going to create some undergraduates.
+I'm going to create a couple of graduate students.
+I'm then going to create one of these grade books.
+And I'm going to add the students into that grade book.
+And notice I'm adding them in arbitrary order.
+That doesn't matter, because things like the ID number
+are going to help us sort out who they are.
+Having done that, I can add some grades.
+And what I did is I added in grades
+for each one of these students, and then
+I just asked to print out a grade report.
+And it prints out that sequence that you saw there, nicely
+set up because those carriage returns don't print it
+as one huge, long string but print each entry, if you like,
+on a different line.
+Now that I've done that, I could go in and add some more grades.
+And I'm going to just do that here.
+Add in some additional grades, and if I
+do that, I can again check to see what happens if I-- sorry.
+I just want to set this up.
+What happens if I then print that out?
+So if I load that into my system, oh, nice.
+It's updated the grades to have the pieces I wanted inside
+of there.
+The point you should take away from this
+is that I'm now dealing with this database, this structure,
+without having to know the internal details.
+I don't know in what order are the students entered.
+I don't know that, in fact, the grades are stored as a list.
+I can simply say, use Add Grade to add a grade associated
+with the student.
+I can then use things like sorted
+to simply figure out how to resort them so that they'll
+come out in an appropriate order,
+and then I can print out the appropriate information.
+And also notice this class has within it a large number
+of other class instances.
+That's perfect, because if I change
+the behavior of those class instances,
+it won't change the behavior of the grade book.
+Now, if I wanted to get out, for example,
+all the students in a class, I could do that
+by doing what I show right here, and I should do it that way.
+I'm going to just show you an example of that.
+If I say, for S in 600 all students--
+let me printout, yes-- it nicely prints out
+a list of the names of the students there.
+So exactly what I'd like, sorted by ID number, which is perfect.
+Now, why didn't I just do for S in 600 dot students,
+I know that that's the representation I'm using.
+I could do it.
+In fact, if I typed it, it would give me
+out basically the same kind of thing.
+But this violates that data hiding aspect of an object.
+It exposes the internal representation.
+I want to come back and remind you of this idea
+that I don't want to do that.
+Having built this system, I want to isolate from the user
+the internal representation.
+And as a consequence, if I were to change
+how I want to represent a grade book,
+I should only need to change the methods
+within that object, not any external procedures that
+use it.
+So in that case, this would still work,
+but this would not if I were to change
+that internal representation.
+Just a reminder of a good, clean way
+to try and build your hierarchy.
+So what we see here is that this nicely
+separates the collection of data from the use of the data.
+I could start now computing statistics
+on how students are performing in my class.
+I can add students to my class.
+If I needed to, I could drop a student from the class.
+Because the access is through methods associated
+with that grade book object, I've got this nice separation,
+and I'm going to try and be consistent of only
+using those methods to get out the internal data.
+There is one problem left with this,
+which is the thing I'm going to fix
+in the last portion of this lecture.
+Right now, this version is inefficient.
+To get a list of all the students,
+I create a copy of the internal list.
+That's nice.
+It lets me manipulate things without changing
+the internal structure.
+And if I have a class of only 20 or 30
+or even a couple of hundred students, not a big deal.
+But in a MOOC like this with 100,000 students,
+I don't want to always be generating a list 100,000 long
+before I do something with it, and I
+want to see how I might change things to have efficiency
+while preserving the performance that I've seen so far.

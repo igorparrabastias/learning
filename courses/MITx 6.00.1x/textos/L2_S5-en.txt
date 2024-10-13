@@ -1,0 +1,316 @@
+...
+With these new data types in mind,
+strings, with some of the other pieces we've added in,
+let's go back and just remind ourselves
+about branching programs so that we can build on that to start
+creating iterative programs.
+So just to remind you, what's a branching program?
+It's something where I have a conditional that I test.
+If that test returns the Boolean value true,
+then I have a block of code I'm going to run.
+If it returns the Boolean value false,
+I've got something different I'm going to run.
+And I'm going to simply take either this branch
+or that branch and pick up the remainder of the code.
+We've already seen a simple version of that with an IF.
+To do the testing, we had comparisons,
+things like comparisons on ints and floats.
+These are simple numerical things.
+I will simply remind you again the double equal checks
+equality, equal sign does not.
+And we had logical operations to put things together.
+With that in mind, we could start then
+building the simplest of the branching code, which
+were either IF statements, which says if this condition is true,
+execute a set of code.
+And IF ELSE, which said if this condition is true do this,
+otherwise do that.
+Or the more general, IF ELIF ELSE,
+which says if this condition is true, do this.
+If it's false, check to see if this condition is true,
+in which case do this.
+And keep doing that until I get through all of the ELIF
+clauses, and if all of the conditions are false,
+pick up the ELSE clause and do the rest of that.
+It's just repeating what we've done before, things
+that you've already seen.
+With that though, I'm still stuck
+with things that can only flow through code once.
+I can take different branches to get there,
+but I can't go back and do something again.
+And let's think about where that might actually not
+help the way I'd like.
+As I said, simple branching programs just make choices.
+Sometimes though I might want to do something
+over and over and over again.
+How would I do that?
+Well, imagine you're writing a simple little video game.
+And part of that game has a character
+that gets lost in some woods.
+And I agree the graphics here aren't great,
+but you get the idea.
+I'm stuck in a set of woods.
+What I'd like to do is to say to the character, if you go right,
+you're going to get back to the same place.
+You're going to be stuck in the same piece of the woods.
+How would I write that as code?
+Well, you could say, gee, I could have an IF statement that
+says if I'm told to go right, here's
+a set of things I want to do, otherwise if I go left,
+I'll get out of there.
+OK?
+But I want this to be something that if I keep going right,
+I keep getting stuck in the same spot.
+All right.
+You say, gee, that's easy.
+I could have another IF statement
+that says if the command is still exit right, do something.
+On the other hand, if I exit left,
+I'll get out of the woods.
+But I didn't want to do that again.
+If I'm going right, I want to keep doing it.
+You can see the problem.
+I want to be in literally an infinite loop
+in this little video game that says if I'm going right,
+I'm always coming back to the same spot.
+How would I write code to do that?
+Well, I could say I'm going to assume that a character doesn't
+push go right more than 100 times,
+and I could write literally a big loop here-- not a loop,
+sorry-- a big sequence of IFs that was 100 deep.
+But maybe somebody is really persistent,
+and they want to do it 1,000 times.
+You could see my problem.
+I don't want to write code when I have an indeterminate number
+of things that I want to do.
+I need a different way of controlling this,
+and I have that.
+It's called a while loop.
+We're going to look at it in detail,
+but the idea is that I'm going to say here's
+a check, a condition.
+If it's true, I'm going to do this,
+and I'm going to go back around and do it again.
+And I'll keep looping around and around on this while
+until this condition is false, in which case
+I'll jump out and do the next kind of thing.
+And that says, no matter how many times I go right,
+I'll always be in that loop until I finally go left
+and break out of it.
+So I can control the flow.
+Now, for the first time, not just
+in a linear way with something that lets me check conditions.
+And so the format of a while loop is very simple.
+There's the while expression.
+There's a test that's going to return a Boolean value,
+either true or false, and then with indentation
+a set of expressions I'm going to evaluate.
+And the performance of this is exactly what I just described.
+If the condition is true, I'm going
+to do all the steps inside that code block.
+I'm going to go back up and check the condition.
+And I'll keep going through that loop
+until the condition finally comes out as false.
+All right.
+How might I use that to do something a little more
+interesting than trying to get out of the woods?
+Well, first of all, let's fix the woods.
+Here's a nice little piece of code that will do that for me.
+The first one says input based on this prompt,
+an instruction, left or right.
+So n's going to be either the word left or the word right.
+Notice what the while loop says.
+It says, if n is equal to the string right,
+then I'm going to execute this block of code,
+which simply again says you're in the lost forest.
+Go left to right.
+And notice what that while loop will now do.
+As long as n is equal to right, it
+will keep prompting me, asking for an input, until I
+finally type in left, at which case, this will be false,
+and I'll jump down and pick up the print statement.
+I can have an indeterminate number of times here.
+It's still always going to do the same thing.
+A little brain damaged, but it's still
+going to do the right thing.
+And that's kind of nice.
+Now, let's see how we might use this then
+in other kinds of things.
+So here's a while loop.
+And notice what I need to do inside a while loop.
+I need to set up a variable outside so that I can test it
+and then do some pieces.
+And I need inside to have something that actually changes
+that variable, otherwise I'm never
+going to get out of the loop.
+Now, we can see what this does.
+If I type this into my Python shell,
+I can set n equal to 0, which is done.
+And then I can say while n is less than 5 colon,
+I'm going to print out n, and I'm going to set n to n plus 1.
+
+Cool.
+It just did what I'd expected.
+It starts out with n equal to 0.
+Is 0 less than 5?
+You bet.
+So it prints out n, changes n by 1, goes back around
+and checks again.
+Is 1 less than 5?
+You bet.
+And you get the idea.
+That pattern is something that we would use pretty regularly.
+That pattern is also slightly annoying,
+because what if I forget to set n equal to 0 before I start?
+I'm either going to get an error, because n isn't bound
+to anything, or I'm going to get a performance I don't expect,
+because n has got some value I didn't expect.
+Similarly, what if I forget to increment?
+I set n equal to 0, and I say while n is less than 5,
+print n.
+Well, I'm going to print out 0 a billion times
+until I finally stop the machine,
+because I haven't incremented.
+So it turns out there's another form that we're
+going to use that is much more convenient,
+and that's called a for loop.
+And the for loop has a particular syntax.
+It has a variable.
+It has the key word in in this case,
+and then it has something we're going to come back to
+in a second, but an expression.
+And what for does in this case is
+it is going to work through all of the values
+returned by that expression one at a time,
+executing the body of the code.
+Now, range is something that returns
+basically a sequence of integers starting at 0
+and ending before 5.
+0, 1, 2 3, 4.
+It actually does something a little different
+we're going to talk about later in the course,
+but think of it for now as giving us the collection
+of integers 0 up through 4.
+And so if I go over here and type it,
+I say for n in range of 0 to 5, print out n.
+I get the same behavior, but this code is easier to see.
+It says for n in this sequence, do something.
+As we said, range gives us back, in essence, the integers
+0 up through 4.
+We'll see some other variations on range
+shortly in terms of other ways in which we control it.
+But the for loop gives us a nice way
+to capture easily an iteration, a repeating of code
+some number of times based on, in this case,
+a specific number, although I could also base it on a test.
+
+Just to recapture this then, the overall general
+format for a for.
+The special character in, in this case using
+range to get me out a set of numbers and a body of code
+that I'm going to execute.
+And just to remind you again it says,
+each time through the loop, variable
+is going to take a value.
+The first time it starts at the smallest value in range.
+The next time it gets the next value, in this case, for range
+added by 1 and so on.
+Now, I can actually be a little more clever about range,
+because maybe I don't want to do every value in that range.
+Maybe I want to skip some of them.
+So, in fact, I have something that
+says I can start at a different point than 0
+if I give it two arguments.
+In this case, it will give me the range of numbers from 7
+up to but not including 10, or I can give it three arguments.
+Start at 5, end when I get up to or past 11, but do it by 2.
+And in each case, I'm going to get a different range out.
+So let's look at what those do.
+If I go over here and say my sum is 0,
+and then I'm going to say for i in the range 7 to 10,
+I'm going to increment my sum by i.
+And then if I print out my sum, I
+get 7, 8, and 9 added together, which
+gives me out the thing I would expect to see.
+If I do the second one, my sum again
+starts out as 0, and for i in the range 5 to 11 by 2,
+this should be 5, 7, 9, but not 11.
+And, again, I'm going to say my sum I'm
+going to increment by i, and remember plus equal says
+add to my sum the value of i.
+And I print out my sum.
+I get 21 in this case-- 5 plus 7 plus 9.
+Sounds right.
+So I can use range to actually give me a set of values,
+but the nice part about all of this is the for loop
+always will just run through all of those values
+and executing the body of the loop each time through.
+Now, as I'm doing these loops, it
+might be the case that I want to get out of one of them.
+I might want to stop if something is actually,
+for example, a condition is true.
+And for that, I have another special thing called a break
+and does exactly what you would expect.
+If I'm running through some code,
+and I execute or see rather that special key word break,
+it stops the execution of that loop at that point or that code
+block at that point and breaks out of it.
+So in this case, if I'm inside this while
+loop, when I hit break, it will never execute that expression.
+It will pop out of all of this and pick up at that point.
+That lets me control how I want to deal with loops.
+For example, I might see a particular condition is true
+and, based on that, say I don't want to do the rest of this
+and jump out of it.
+I could write it as an if, but the break
+gives me a natural way to control
+where I am inside of that loop.
+And so there's an example.
+I could set my sum equal to 0.
+I could run over that range, but I'd say in this case
+if it's actually equal to 5, I can just break out.
+While I'm typing that in, think about what this might do.
+So I'm going to set my sum to 0, for i in range 5 to 11 by 2.
+I'm going to increment my sum by i,
+and then I'm going to say if my sum is equal to 5, break out.
+
+And what do you think?
+If I look at the value of my sum, it's just 5,
+which is exactly what I'd expect,
+because the first time around i is going to have the value 5.
+I'm going to increment my sum by 1, but then this test is true,
+and this break pulls me out of that entire loop
+and stops the computation.
+Silly example, I agree, but it lets
+you see how break controls the actual processing, breaking
+myself out of a loop when I decide I'm ready to do that.
+And there's the body of code it's going to break out of,
+which is why it stops after only the first stage.
+To put all of these together, here's
+a little summary of for and while loops.
+In a for loop, we know the number
+of times it's going to run through an iteration,
+although I can end it early with a break.
+Because I've defined the range of things over which
+I'm going to do the work.
+It uses a counter that's captured
+inside the for loop itself.
+I can always rewrite a for loop as a while loop
+by taking that variable that I'm using, that counter I'm using,
+pulling it outside, initializing it, and explicitly doing
+the increment to the counter inside of the loop.
+A while loop can have an unbounded or unknown number
+of iterations.
+Again, I can always end it early with a break statement,
+but I here have to set up the counter ahead
+of time outside of the loop.
+And I have to make sure I increment it inside the loop.
+And unfortunately, I can't always
+rewrite a while loop using a for loop.
+You'll see in most code, we tend to use for loops
+when we know what we're going to do as a computation.
+We'll use the while loop when there's
+going to be a condition that we can't
+predict that's going to allow us to break out of that loop.
+But both of them give us the first version
+of iterative algorithms.

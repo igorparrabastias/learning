@@ -1,0 +1,182 @@
+...
+We've been using exhaustive algorithms, guess and check
+algorithms to solve some simple numerical problems.
+But if you think about it, they've
+all been doing things with integers
+where there is a finite number of choices
+that we have to check.
+And that makes sense.
+I can certainly run through all of them
+until I get to either the right answer
+or determined there isn't a possible answer.
+But now, suppose we want to find, say,
+the square root or the cube root of any non-negative number.
+Could be an integer, it could be a float,
+it could be any number.
+I can't generate all possible guesses.
+They're infinite.
+So I can't, in this case, guarantee an exact answer,
+but I could come close.
+Now what I just want to do is try and find
+a guess that's close enough to the cube
+root or the square root of the thing I'm looking for.
+I can still use that notion of exhaustive enumeration.
+But I'm going to now have to pick examples
+where I take small steps in order to generate the guess
+and check to see if I'm close enough.
+Let's see what that might look like.
+Here, the idea is I have to define
+what's a good enough solution.
+So I want to start with a guess, say, one.
+I want to check to see if that's close enough.
+If it isn't, I'm going to change it by a tiny amount, say 1.001.
+Check that one.
+Then 1.002 and keep doing that.
+So I need to increment by some small value as I go along.
+But I also have to define, what does it
+mean to get close enough?
+It won't be exactly the same because I'm not going
+to be able to guarantee that.
+So here, I'm going to use, in the case
+of cube root, something that tells me
+whether I'm close enough.
+By looking at-- sorry, the guess cubed,
+take the absolute value in case it's negative,
+and look at the difference between that
+and cubed to see if it's less than
+or equal to a small number.
+And if it is, I'm going to say I'm close enough
+and I'm going to stop.
+One of the tricks here is that when I have these small values,
+I'm going to have to be careful.
+If I make them really small, I'll
+make sure I find a really good guess
+but it's going to slow the program down.
+If I make them really large, I might actually miss the answer.
+And similarly, when I decide how close I
+want to get with epsilon, if I make epsilon big,
+I'm going to make it easier to find an answer,
+but I might get a less accurate answer.
+And so I have to think carefully about how I do both of those.
+But let's look at that idea to see
+how I can still use the idea of guess and check, but now
+with things that could compute the cube root of anything.
+So here's an example.
+I'm going to start off with some value for the thing I'm
+trying to find the cube of.
+27 is going to be an easy one.
+I'm going to set up some initial values.
+Epsilon is going to be something that tells me how close I
+want to get to the answer.
+Guess is where I'm going to start.
+And increments, the size in which
+I'm going to increase my guess as I move along.
+And just to keep track of it, I'm
+going to set up another variable called number of guesses.
+I'm going to use that to keep track of how many times do I go
+through the loop as I do this.
+And then what does this code do?
+It says while the difference between the cube or the guess
+cubed and the thing I'm trying to find the cubed root of,
+while that difference is still bigger than epsilon,
+I'm going to keep going by incrementing guess
+by increment.
+There's that plus equal that I've used before.
+And changing number of guesses by one.
+Saying I've done another guess and keep going.
+I'm going to keep doing that until I get to something where
+the difference between guess cubed and cubed
+is small enough.
+And at that point, I'm going to stop.
+And I'm going to return both how many guesses did I run
+and some information about did I find the right answer.
+Let's see what happens if I run that.
+So there's a piece of code.
+Let me start with 27, which is the thing I had before.
+And if I load that and run it, it
+gives me, oh, not quite the answer I expected.
+It says 2.997000000001906 is close to the cube root of 27.
+And that's true.
+We're going to see us in a little bit
+why it doesn't just give me 3.
+It gives me this funny answer in there.
+But you're going to also see that it
+took almost 30,000 times through the loop before it got to that.
+Why?
+Because I started with a very simple answer, zero.
+That wasn't close enough.
+Then I went to 0.0001, then to 0.0002.
+And you can see I'm going to have to do a lot of things
+until I get to something that's going to give me a good guess.
+Now, I could pick another example.
+Let's make it 29, which I know is not a cubed root.
+Let's see what happens if I do that.
+It's not a perfect cube, but in this case it found it.
+That's actually nice.
+In the previous case, I could only
+find things that were cube root of integers.
+And now I've got something where the cube root isn't an integer,
+but I can still find it.
+This took almost 31,000 times through the loop.
+So I could say, you know what?
+I want to use something where I'm going
+to step a little more broadly.
+Let's step every thousandth of a step
+rather than every ten thousandth of a step.
+And now if I run it, OK, I get a little bit different guess.
+But it only took 3,000 trials through it.
+And if I change it to say the increment should
+be in hundreds, I can run that.
+And if I do that-- whoops, sorry.
+It decided it didn't like that.
+Let me think about why it didn't like that.
+Ah, what's happened here?
+It's off in an infinite loop.
+And the reason it's off in an infinite loop
+is because I'm checking only to see if I get to a place
+where it's close enough.
+I've actually gone right past the cube root,
+and it's still running.
+So I need to stop this.
+And I'm going to interrupt it to hold it back.
+That's something I need to fix.
+So if I go back to a little bit better increment
+here and rerun it, I get back to the thing I wanted to have.
+OK, how would I fix that?
+I need to make sure that the guess isn't too big.
+If you think, and I'm going to go back to where I was,
+with this test, it simply says when guess cube minus cube,
+as long as it's bigger than epsilon,
+I'm going to keep going through the loop.
+If my step is too big, I could try something just below cubed
+but not have it work.
+And then go past cube and keep going further and further on.
+That says I need to make a change here,
+so I want to make sure that my guess is still small enough.
+And if I make that small change, which
+I'm going to do over here, and guess less than
+or equal to cube, I should be in a little bit better shape.
+I can still run the same one.
+But now, if I change increment to tense, run that.
+Ah, it gave me a solution.
+Not a very good one.
+It basically says I didn't find a solution.
+But at least I didn't keep running forever.
+What was the point of doing this?
+It's not to try and trick you.
+It's to remind you that as you make changes to the code,
+you need to think about the consequences.
+And this was one where my test wasn't
+capturing all of the cases.
+So what can I say about this particular algorithm?
+Step could be any small number.
+If it's too small, it's going to take a long time.
+But as we just saw, if it's too large and I'm not careful,
+it could skip over the answer without getting close enough.
+At least in this case I stopped, rather than running forever.
+In general, it's going to take x divided by step number times
+through the code to find a solution.
+And so clearly, as I make steps smaller and smaller,
+it's going to increase the number of steps.
+And I'd like to find a more efficient way
+to solving this problem.

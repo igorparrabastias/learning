@@ -1,0 +1,420 @@
+...
+This idea of function invocation-- function calling--
+is really important.
+It's central to how we're going to use
+functions to control our code.
+So I want to work through in a little more careful detail
+exactly what happens when we call a function
+and how we get values associated with variables.
+You'll see on the screen here, I've
+got a little piece of code.
+I'm defining a function called f.
+I'm binding x to 3, and then I'm going
+to call f with the value of x and bind that to z.
+Let me show you what happens if I actually run this.
+So on my computer, I've got a version of that file.
+And I'm going to load it into my shell.
+And what it prints out, as you can see, as it says in f of x,
+x is equal to 4.
+How'd that happen?
+What's going on here, because x seems like it's
+used in a lot of places?
+So this is going to be an important opportunity
+to look at how functions are called.
+As I've already said, the key idea is each formal parameter--
+in this case, I only have one-- is
+going to get bound to the value of the actual parameter
+when the function is called.
+And then when I call a function, I'm
+going to create a new environment,
+sometimes called a frame or a scope,
+a new place in which I'm going to bind variables
+and relative to which I'm going to evaluate
+the body of the function.
+Think of that scope as a mapping of names to objects.
+And, in fact, we've been using that idea when we were just
+talking to the shell, when we defined
+x to have a value of, say, of 5, we were creating
+in the global scope or frame a binding of the name
+x to the value 5.
+Now, let's look at this in a little more careful detail.
+Imagine I now do what I just did on my computer.
+I evaluate this sequence of expressions.
+There is that formal parameter.
+There's the actual parameter I'm going to use,
+and let's look at what happens.
+I evaluate that, and in that global frame,
+I create a set of bindings.
+First one is evaluating that definition
+binds the variable name f to something.
+Oh, but that's important, because that something is just
+a set of code.
+I haven't run f yet.
+I haven't tried to do x equals x plus 1 or anything else.
+I've literally, in the machine, said associate the name
+f with a chunk of stuff.
+Next thing I did was I evaluated x equal 3,
+and that just creates a binding.
+We've seen this before.
+So in the global scope, x has a binding to the value of 3.
+And now I'm ready to evaluate that last expression, which
+says give the name z the value of calling f on x.
+And I'm ready to do that.
+Now remember, before I can actually do the binding of c,
+I have to get the value of that expression.
+So calling f literally creates a new scope, a new frame.
+It will actually inherit things from the global frame
+if it needs it, but right now I've got a new environment.
+The definition of x has a formal variable
+x, and that's exactly what that corresponds to.
+And the value associated with it is
+the value of x that I passed in, which actually came from there.
+I know it looks a little confusing.
+I'm deliberately using two different values
+of x so you can see where the bindings come from.
+So f evaluated on x says, what is the value of x?
+I get it from the binding that I just did previously.
+So inside that f scope, x is bound to 3.
+Now, relative to that scope, I'm going
+to evaluate the body of f.
+I want to do the work that f says it's going to do.
+So let me see what happens there.
+First expression says, evaluate x plus 1,
+and I'm actually going to go back for a second.
+Remember, in the f scope, x has the binding of 3.
+I add 3 plus 1, that 4, and I create a new binding
+for x but in the f scope, because that's
+where I'm doing the work.
+So it changes it here.
+It does not change the thing that
+was out in the global frame.
+That's great.
+Now, relative to that, I'm going to print out something,
+and on my computer screen you saw
+it said, in f of x, x is equal to-- ah--
+the value of x in the f scope.
+And that's why it printed out 4.
+And then what it's going to do is it's going to return x.
+So literally it's going to get the value of x
+in the f scope, which is 4, and it's
+going to return it to the person who asked for it.
+And what was that person?
+That was down here.
+We're doing the binding of z.
+So I've just returned to that binding,
+a value for f of x, which is 4, and that
+creates the binding for z.
+If this is a little confusing, watch the same segment again,
+because this is an important idea.
+Any time I do an evaluate-- sorry, rephrase
+that-- any time I do an invocation of a function,
+I create a new frame.
+I bind the formal parameter of that function, or parameters
+if there is more than one, to the values
+of the expressions passed in.
+And relative to that frame, I now
+evaluate the body of that expression.
+When I'm done with the body of the function,
+if there's a return, I'm going to send the value back
+to whoever called for it and erase or remove that frame
+because I no longer need it.
+OK.
+With that idea, let's look at a couple of other examples.
+First, what happens if there is no return statement?
+Here's my function from before-- is even.
+But rather than returning is the remainder of i divided
+by 2 equal to 0, I just have the expression.
+So there's no return here.
+What happens in this case is that Python returns the value
+none, because I did not give a return.
+So Python will say in a function call,
+if you don't have an explicit return,
+I return the none value.
+It represents the absence of a value,
+and unfortunately that would mean, in this case,
+I would not get back the answer of true or false.
+I would simply print out nothing, because there's
+nothing to be returned.
+Point of this is, any time I want
+a function to do something, unless it's simply
+doing something we call a side effect,
+I always want to have at least one return that's
+going to give a value back.
+So remember to keep your returns in.
+In fact, that gives me a chance to talk about the difference
+between return and print.
+You can see the description here,
+and let's just do it quickly.
+Return only has a meaning inside a function.
+It's the only place we can use it, inside a function.
+I could have more than one return.
+If I have branches or other conditionals,
+I might have different places from which I want a return.
+But only one return will ever be executed inside the function,
+because it's going to throw me outside of the function
+and return a value.
+Any code inside the function but after the return statement
+will never be executed.
+And of course, a return does have
+a value associated with it.
+It's given back to the person who called the function.
+By comparison, while return has a meaning only
+inside a function, a print can certainly
+be used inside a function, but it can also
+be used outside of a function.
+We've already seen that.
+We can also execute many print statements inside a function.
+And any code inside the function after that print statement
+can, in fact, be executed.
+Again, a print has a value associated with it,
+but it is simply output directly onto the console
+rather than being returned.
+So prints are going to be handy to have us pass information
+back to the user to let them know
+the status of a computation.
+Return is the way in which I'm going
+to get a value back to somebody who asked for it, whether it's
+me as the user or some other function call.
+With that in mind, let's look at,
+in fact, how you might have other function calls.
+So not only can parameters have numerical values,
+they could also have another values,
+including being a function.
+So I have three definitions of functions here.
+The first one, A, takes no parameters.
+I've said this earlier, but I'm going to say it again.
+Notice it has an open and close paren.
+That's important.
+I have to tell it that there are no parameters there.
+Function B takes one parameter, in this case called y.
+And function C also takes one parameter, in this case it's z.
+What's interesting about this is how these functions
+are going to use them.
+And in a second, I'm going to run it.
+But notice I'm going to call function A with no parameter.
+So an open and close paren to tell me there
+are no parameters.
+I'm going to call function B. It's
+going to take in one parameter.
+In this case, I'm going to give it a number.
+And function C is going to take in one parameter,
+but in this case it's another function.
+Whoa.
+That's funky.
+It's actually OK.
+I can pass in the name of the function,
+and that will literally pass the actual function
+in to that parameter call for function C.
+Let's see what happens if we try this.
+So I've got that code loaded up over here.
+I'm going to pass it into my computer.
+And notice what it printed out.
+The first thing is it printed out inside function A.
+That came from calling this function,
+and that's the print statement right there.
+There is no return in function A.
+And so, in fact, the print takes the value returned
+by function A, which was none, and it printed it out
+on my computer.
+I then take the next call.
+I pass into the function B. Function B
+prints inside function B right there,
+which is the next thing it did.
+And then it returns the value passed in, which
+is the value of y, which is 2.
+That gets out at the 5, which is why on my machine
+I printed out 7.
+The print statement printed out 7.
+And then the last one, again, a little funky.
+I passed in function A as an argument for z in function C.
+And what happened?
+It printed out inside function C,
+and then it called a return of calling z with no arguments.
+And what's z?
+It's function A. Oh, that's nice, because function A then
+said print out inside function A, which it did.
+Return nothing, because there is no return statement.
+And so this print at the bottom then printed out none.
+We could step through it more carefully,
+but you hopefully get the idea.
+In each case, I'm simply evaluating the body
+with respect to a frame.
+And the arguments could, in fact,
+be other functions that I can invoke inside
+of a function call, which I did inside of function C.
+So as a consequence, inside of a function,
+we can both access a variable defined outside
+as well as a variable defined inside.
+On the other hand, inside of a function,
+we can't modify a variable that's
+defined outside of the scope of that function.
+And here I have three little examples just
+to give you a sense of that.
+What I'm going to do is show you basically
+what would happen for each one of these function calls.
+So I've defined f of x to be set x equal to 1, add 1 to x,
+and then print out the value of x.
+I've define g to simply say print x,
+and then print x plus 1.
+And I've defined h to have a body that
+says simply increment x by 1.
+And I want to think about what do those things actually do?
+Well, let's look at each of those examples.
+In each case, I'm going to define x to have the value 5.
+I'm going to call the function with that value of x,
+and then I'm going to print out x.
+What happens?
+In the case of f of x, x as 5 is passed in.
+I redefine x to be 1 inside of there.
+And then I add 1 to that value of x, which is 2,
+and then I print out x.
+So, in fact, f of x is going to print out the value 2.
+And then this print statement is going to print out the value 5.
+Why?
+Because it sees the value of x defined in the global scope,
+which is where I am.
+What happens in the case of g? g says-- well, first of all,
+I called g with the value of x, which
+is 5, which means 5 is going to be used in place of y.
+And then I say print x.
+Hmm.
+You say, wait a minute.
+There is no x as a parameter to g.
+That's fine, because it then says
+if I can't find it in the frame associated with g,
+let me look outside.
+And there is a value, which is 5.
+So in this case, it's going to print 5,
+then it's going to print 6, which is x plus 1.
+It has no return.
+So it's not going to do anything else.
+And then I'm going to print the value
+of x, which I get from here, the global environment.
+And it's going to print 5.
+Finally, I define h of y.
+I've done that.
+I've defined x to be 5, and now I call h with the value of y
+being 5.
+And what do I do?
+I'm going to print out-- sorry, not that.
+Rephrase that.
+I'm going to try and define x to be x plus 1.
+And let's think about what happens.
+So just to go back to this, I've already
+defined x from outside g.
+That's why I pick up that scope.
+What happens in the case of h?
+Oh, I got an unbound variable error,
+because I'm trying to look up the local variable value of x.
+I'm referencing it before I've assigned it.
+So, in fact, I'm going to complain about this,
+and I'm not going to succeed.
+So we can see, I can look up values outside the scope,
+but I can't change the values of those things
+outside of the scope appropriately.
+And that's a place where I have to be
+careful about how I actually use these different procedures.
+Three different examples shows you different ways
+in which we can deduce how we actually pick up
+the values of the variables.
+In each case, as I said, the x comes
+from the global or main program scope
+when I print out this value at the bottom down here.
+
+I'm going to show you one more example of scoping.
+I want to do a quick aside, which
+says when you get to really tricky things,
+there's a nice place to go look, which
+is this place on the web called the Python Tutor that helps
+you sort these pieces out.
+And the last example, before we move on to other topics,
+is to look at something that actually has a function defined
+inside another function.
+Wow, that sounds neat.
+Here I've got a definition for g, and inside of there,
+I've got a definition for h.
+And if I look at this code, I'm going
+to actually run it over here.
+Let's see what happens when I run it,
+and let's see why it does that appropriate thing.
+And when I ran it, it prints out the statement
+inside g of x, x bound to 4.
+And I want to see how that comes about.
+So here we go.
+When I evaluate or when I just, in fact,
+evaluate it inside my machine, this description, here's
+what happened.
+As I saw before, in the global environment,
+g was bound to a bunch of code.
+Where is h?
+It hasn't happened yet.
+It's simply sitting in a chunk of code.
+We have not yet evaluated that body.
+So nothing has happened yet.
+x is bound to 3.
+So when I get to the point shown by the arrow here,
+this point in the code, I've got g as some code.
+I've got x bound to the value 3.
+Now I'm ready to do a binding for z to be a call to g.
+We saw it happen before.
+g creates a new scope, and inside of that scope
+I'm going to bind the value of x.
+And that x is coming from the formal parameter for g.
+The value is coming from the binding
+for x in the global scope.
+So x is bound to 3.
+And then I'm going to evaluate the body of g.
+And this is cool, because that says inside of here,
+I'm evaluating the definition of h.
+This is sometimes called an internal or helper function,
+because it belongs only to g.
+The binding for h right here is to some set of code.
+Only when I'm inside of g can I use h.
+It's protected.
+That's great.
+Haven't used it yet.
+I've just got a binding for h.
+And then what do I do?
+I create a binding for x, and notice what happened.
+I say get the current value of x, which was 3, add 1 to it,
+and then change the binding for x in the scope of g,
+because that's where I'm doing the work.
+So it's changed that binding for x but not this one
+over here, which is still 3.
+And then I do the print statement,
+which is why it says in g of x, x has got the value 4.
+Because, in fact, I see this value of x over here.
+All right.
+Almost done.
+Now I'm going to call h.
+How?
+H is a function.
+It's right there.
+And since I'm invoking it, I create a new scope.
+And this scope inherits from g, which inherited
+from the global scope.
+Inside of h, I bind any formal parameters.
+There aren't any.
+What do I do?
+I evaluate the body of h.
+So I bind x to the string abc, and then what do I return?
+Oh, yeah.
+Nothing.
+Because I have no return statement.
+So having done that binding for x, I'm done with the call to h,
+and there is nothing to return.
+Having done that, I'm now ready to do the last part of g,
+which was to return x.
+And you notice that binding inside of h, of x equal to abc,
+it's gone.
+It's been garbage collected.
+And so I now simply return the value x, which I know
+is defined inside the scope of g.
+And that gets returned as the value that I associate with z.
+Perfect.
+I'm now set, because z has the binding 4.
+So there is a more complicated example,
+but you notice how those rules for scopes
+very nicely tell me and, more importantly,
+tell Python exactly how to look up values
+and how to use those to store new values as I do bindings.

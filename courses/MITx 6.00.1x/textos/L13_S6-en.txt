@@ -1,0 +1,345 @@
+...
+We've now seen different uses of plots.
+We've been mostly comparing orders of growth,
+which we've seen before.
+I wanted you to see the idea of how plotting
+lets you visualize data.
+And now I want to turn to a variation of that, which
+is to think about, how can we actually use
+that visualization of results to help guide computation, to help
+guide the values of parameters we might want to pass in
+or the kinds of things we want to explore inside
+of a computation?
+To do this, I want to use a simple little example.
+Imagine you're planning a retirement.
+You want to think about making sure you've
+got enough money saved away so that you
+can retire at the age you want.
+Let's look at, basically, how a retirement fund grows
+with compounding of interest.
+And I'm going to do it with the following simple little
+example.
+I'm going to plan to set aside a particular amount.
+Let's call it m every month out of my salary,
+save it away in a retirement account.
+I also expect that I'm going to earn a little interest in that.
+I'm going to invest it in some stocks or bonds or C-Bills
+or something else.
+So I'm going to expect to earn a percentage
+r of additional income every month
+on the investments I set up.
+And I want to explore, how big is my retirement fund going
+to be when it compounds over time
+with both new contributions each month and accrual of interest
+each month so that I can decide when I want to retire?
+How much do I need to have before I'm
+ready to actually retire?
+Let's look at how we might both write code to do that,
+and especially how we can visualize
+results to think about how I want to do that computation.
+Well, let's start with just something that
+computes compound interest.
+I've written a little procedure here called Retire.
+It takes in three arguments-- the amount
+I'm going to put aside each month,
+the rate at which I'm going to earn interest or, if you like,
+grow my income through investments on it,
+and how many months or terms I want to compute over,
+how many terms do I want to look at before I'm
+ready to look at retirement.
+This function should not surprise you.
+It does things you've seen before.
+I'm going to set up a list called Savings.
+I want to set up a list called The Base.
+That's going to be my y and x values, if you like.
+I'm going to compute the monthly rate.
+That's just the annual rate, but every month, so
+divide it by 12.
+And then I have a simple little for loop here
+that runs over the range of the number of terms,
+so however many times I want to look at this.
+And it just adds into each of those lists
+the next label for the x-axis, so the next month.
+And then the savings computation is a little bit different.
+I take the value of savings the previous month,
+and I add to it something that adds in the extra rate.
+So it's multiplying by 1 plus the monthly rate, which says,
+I've got the savings from last time,
+plus I've got a little bit more because I've
+earned a little bit more interest off of it.
+And then to that updated value in my savings,
+I add in the new monthly contribution.
+I'm building up two lists, and I'm simply
+going to return those-- a base list, which gives me
+the x labels, if you like, and a savings list, which gives me
+the y labels.
+This shouldn't look surprising to you.
+This is just a standard little accrual
+of values in a list of a compound interest
+plus a new contribution each month.
+What I want to look at is, how do I visualize that?
+So I'm going to use Retire to compute those two lists.
+And notice, by the way, I'm returning both of them.
+It's very nice.
+I'm going to use that in a second.
+Now I'd like to display that.
+And I'm going to start by looking at something that's
+going to display the different growths in retirement accounts
+as I change how much I put aside each month.
+I'm going to call this the display
+retirement with monthlies.
+It's going to take in an argument that
+is a list of different amounts to set aside each month, a rate
+and terms as before.
+And I'm going to start setting up to do the plotting.
+So I'm going to create a figure with a name.
+I want to clear it, as I did before,
+to make sure that in fact I'm going to be able to reuse it.
+So I'm going to clear that out.
+And then I'm going to run over a loop.
+And the loop is going to, in that list of different monthly
+values, select a new value and run Retire.
+I'll remind you it said it returned two things.
+So I'm going to get back out the x values and the y values.
+And now I'm just going to plot them, just as I did before.
+Great-- I'm going to plot x values and y values.
+The one other thing I'm going to do
+is I'm going to put in a nice label on here that actually
+says, the label is, I'm retiring.
+And I'm going to put in there what monthly
+rate I was setting aside so I know how
+to associate different graphs with the different amounts set
+aside.
+And when I'm done with all of that,
+notice this is going to be a loop.
+So I'm plotting different versions here.
+When I'm done with all of that, I'm
+going to put the legend up in the upper left corner.
+Let's try it out.
+I'm going to try it out with a monthly rate
+of 5%-- nice and healthy.
+I'm going to take 40 years of contributions.
+So I've got 40 times 12, because I'm
+plotting these at each month.
+So that's the total number of terms.
+And I'm going to look at what happens
+when I decide to put different amounts aside
+each month from $500 up to $1,100 each month.
+And if I do that plot-- ah, nice.
+Now, the legend is a little big here.
+I stuck it in a corner where I know it would show up.
+But the labels are valuable.
+Because they tell me, how do I correspond each color
+to the different graph?
+And you see the growth, the exponential growth,
+that you would expect here as I slowly
+grow up each one of these different terms.
+So I've got a set of graphs over here.
+I can see what those differences are.
+I might want to zero in on those a little bit
+to look at some things about each one of those pieces
+in order to decide which one is better for me.
+And in particular, I can see the impact of increasing
+the monthly contribution.
+I get things that range from about $750,000 to almost $1
+and 2/3 million as a monthly savings go from $500 to $1,100.
+Again, my point was to look at, how do the visualizations help
+me think about the computation?
+This lets me see the range of growth
+as I change the monthly component.
+What's the effect of the rate of growth on the investments?
+Well, I could do the same thing.
+I could write another function, display retirement now
+with rates.
+And here, I'm going to give in a list of different rates.
+I'm going to pick a particular monthly contribution.
+I'm going to give it a set of terms to look at.
+And the rest of this looks much like before.
+Again, I'm going to put a label on here that lets me understand
+what I'm capturing.
+So notice it's got the string Retire.
+It's got the monthly rate.
+And I'm also going to put something
+in here that tells me the actual rate of investment growth
+so that I can associate each of those pieces with the graph.
+I'm going to give it a particular argument.
+I took something about in the middle, $800.
+I'm going to give it three different ranges of growth
+in terms of investment rate.
+And again, I'm going to give it the same number of terms.
+And now if I do the graph, I see that there's
+a different variation in the exponential growth.
+Here, varying the rate of growth of the investment return
+actually tends to spread out more rapidly the actual graphs
+that we see here.
+But again, I can now start seeing the range of variation
+here.
+I can see that in fact if I can have something
+with an aggressive growth-- and hoping for 7%
+is probably being a little bit optimistic here--
+I actually end up with a much better range in terms
+of the total amount I've got in my retirement account
+when I'm ready to retire-- sounds nice.
+So here I can see the impact on a different dimension.
+Now it goes from about $600,000 to almost $2.1 million.
+OK, I want to look at both rates together.
+What happens if I both think about,
+I want to change how much I'm setting aside each month,
+and, I'm going to be conservative or aggressive
+in what I want to do in terms of my investments
+to decide how to get growth in terms
+of my actual overall retirement account?
+So I can do both at the same time.
+It's a little bit more messy code.
+But you've seen both pieces of it.
+Now I'm going to have a list of monthly rates.
+I'm going to have a list of different rates in terms
+of what I expect of the return on investment, saying,
+am I conservative or aggressive in how I do all of this?
+I'm going to set up a figure with an appropriate label
+on it.
+I'm going to clear it out.
+I'm actually now going to zero in on just the high end
+of the range.
+And here I probably should have, rather than
+giving it explicit values, looked at the range of terms
+and set it up.
+But I happen to know what I was going to use here.
+So I'm just going to look at the last 10 years of investment
+on these pieces.
+So I'm going to literally separate out
+the x limit on that.
+Ah, notice-- previous examples I set the y limit.
+Here I'm choosing the x limit, the x-axis,
+and just zeroing in on one piece of it.
+The last piece of it is I'm now going to loop twice.
+I'm going to loop over how much to set aside each month.
+And for each of those choices, I'm
+going to loop over different rates of return.
+As before, I'm going to set up a label.
+And that label is going to help me out.
+And now I'm going to look at four different monthly rates,
+three different returns.
+And let's see what happens when we do that graph.
+And I should've said that.
+I'm just going to focus on that last stage of the fund.
+And if I do that, and I put on the appropriate label,
+I get-- yuck.
+Well, the labels help me here.
+They tell me what's going on.
+Zeroing in on just the last 10 years was probably valuable.
+Because it lets me spread these out.
+But it's a little hard to figure out which of these graphs
+is corresponding to which color.
+So I ought to be able to fix that so I can really see more
+appropriately the comparison.
+And I remind you, that was one of the points.
+How do I use the visualization to help me decide how
+to think about the computation?
+Here there's too much overlay of the graphs.
+How can I separate those out into pieces
+that would really help me think about this a little bit better?
+So let's do that.
+I can't distinguish because of the overlap of the graphs.
+I could just analyze them separately.
+But I can also be careful about how
+I want to visualize the different effects.
+And I'm going to do that in the following way.
+As before, I'm going to set up a graph,
+clear it out, focus in on the last 10 years of all of this.
+But I'm going to do a couple of other things.
+The first one is I'm going to create a set of labels.
+I'm going to create a set of monthly labels--
+r, b, g, and k for red, blue, green, and black.
+I'm going to set up a set of rate labels.
+And I'm going to now use-- notice-- the color to tell me,
+what was the monthly contribution?
+And I'm going to use the style of display-- solid line,
+circle, dash line, for example-- to tell me
+how I want to actually visualize the different rates.
+Inside of those loops, I'm going to select out
+a month label by doing the following wonderful little
+trick.
+I pick out a monthly rate from that list of monthlies.
+And to get that month label, I'm simply
+going to take the remainder after dividing
+by the number of those pieces to tell me which label to use.
+So it's going to walk through the labels one at a time.
+And if I have more choices than I have actual labels,
+it will cycle back to the beginning.
+But this is going to let me select out the label.
+I'm going to do the same thing with the rate label.
+I'm going to pick it using the remainder function so that I
+cycle through those choices.
+And then when I do the display, I
+should get something that better separates out
+the visualization.
+So let's see if that actually happens.
+I'm going to create that label by putting those two
+pieces together.
+Remember, to do the label, I need both a color and a style.
+And so by putting those two pieces together as a string,
+that's going to give me the piece I'd like.
+And there we go.
+This may still look messy to you.
+But this is actually nice.
+Because notice, the color all corresponds.
+For example, red is all $500.
+Blue is all $700.
+So the color tells me very nicely,
+what was the monthly rate?
+And the style-- solid line, circle, dash line--
+tells me whether it was a return of 3%, 5%, or 7%.
+And while there's still a little bit
+of overlay between these graphs, it's now easier
+to see, what's the impact?
+Which one has a bigger impact?
+In fact, it's being more aggressive
+about your investments that has the bigger impact.
+Because that shifts things up much more rapidly
+than basically how much I set aside each month.
+You can see that the slant of the line,
+if you like, up here with the three-- or the four, actually.
+I should have done that right.
+The four dash lines is much better
+than the slant of the line down here with the four solid lines.
+And that was my original point.
+I want to be able to visualize and use the visualization
+to guide the computation.
+And this says, start saving early for retirement.
+Because you really want to do that to get
+that wonderful compound interest rather than relying on getting
+a 25% return each year.
+Because that suggests that somebody
+has convinced you to invest in a Ponzi scheme,
+and it's not a good idea.
+Whatever you do for your own retirement, you get the idea.
+I can visualize the data.
+I can use that visualization to guide the computation.
+And so that nicely leads to this summary.
+It's now easier to see the grouping of the plots.
+Color encodes, in this case, monthly contribution.
+Format-- solid, circle, dash-- encodes the rate of growth
+that I chose for the investment.
+And more particularly, as you saw with this example,
+I can interact between the plotting routine
+and the computation to explore the data.
+I can change the display range to zero in on a particular area
+of interest.
+In this case, it was the last 10 years.
+I can change the set of values and visualize the effect.
+And that then guides a new choice of values to explore.
+What if I wanted to look at different rates of return?
+What if I wanted to look at different monthly rates?
+And finally, I could change the display parameters
+to highlight how to cluster plots by parameter.
+If you choose to take the second half of this course,
+you're going to see lots of nice examples of using plotting
+to visualize data to think about what
+it says about a computation.
+But we also wanted you to see an example of using a library.
+And notice throughout this entire lecture, all I did
+was use a set of functions so I could look up inside of PiLab.
+That lets me rely on somebody having written code I can use
+and using that library, a tool you're
+going to use a lot as you move on in your own computation.

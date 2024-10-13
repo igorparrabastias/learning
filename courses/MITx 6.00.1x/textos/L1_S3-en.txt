@@ -1,0 +1,221 @@
+...
+We've described a recipe.
+We said it's a sequence of mechanical steps.
+It's going to capture the sequence of things
+I want to do in order to compute something.
+But now I want to get it inside the computer.
+I don't want to just give it to my friend
+and have him do all the work for me.
+So the next question is how do I capture a recipe
+inside a mechanical process?
+Go back to my square root example.
+I'd like to get a machine that's going
+to compute square roots for me.
+Historically, there were two choices here.
+The first one was to use what was called a fixed program
+computer, and this would be a computer designed specifically
+to calculate a particular computation.
+You've actually seen them.
+Actually, you may be too young to have seen them,
+but people my age have seen them.
+Handheld calculators were a fixed program computer.
+They did addition, subtraction, multiplication,
+a simple set of arithmetic operations.
+That's all they could do.
+If you wanted it to search the web, good luck.
+Wasn't going to happen.
+Very famous historical example was Alan Turing's bombe
+this was a machine designed during World War II
+to break German codes for the Enigma machine.
+And it was designed specifically for that process.
+It was also built out of devices you don't see anymore
+like vacuum tubes and relays, and you
+can imagine the challenge of building such a machine.
+But it was designed to be a fixed program computer.
+That'd be boring if that's all we could do.
+I don't want to have to carry around
+a computer for square root and a computer for cube root
+and a computer for quadratic root, you get the idea.
+The alternative is what's called a stored program computer,
+and that's what you're used to seeing.
+Difference with a stored program computer
+is that you can load into it that description, that sequence
+of instructions, that recipe.
+And then inside that computer, there
+are going to be a set of parts that
+are going to do those instructions when
+I ask them to.
+And in particular, there's going to be a special program
+inside the computer typically called an interpreter, which
+when you start it up, is going to walk through each
+of those sequence of instructions,
+in turn, doing the computation I want.
+And the advantage of a stored program computer
+is I can load in a different program
+and have it do the same thing.
+In essence, that stored program computer
+is emulating or imitating a fixed program
+computer for each program that I load in.
+Gives me an infinite range of things that
+are going to be able to do.
+So what I want to now think about is,
+how do I take a description of a process
+in those mechanical steps and write it in such a way
+that I can load it into the computer
+and the computer can do the work for me?
+Before I do that, I need to think about what's
+inside the machine.
+So we're going to take just a second to open up the hood
+and look inside a typical computer.
+Basic machine architecture of a computer
+has some simple pieces.
+It's obviously got some memory, places in which I'm
+going to store things.
+Now, up here in this memory, it could be data,
+but it also could be a sequence of instructions
+that are my program.
+That mechanical set of steps.
+I haven't said exactly what they look like,
+but you got a sense of them from what I did in that square root
+example.
+I'm also going to have a way to load things into the machine
+and print things out of the machine.
+Input and output.
+We'll come back to those later on.
+Inside the heart of the machine there are two elements.
+The first is often called an ALU-- an Arithmetic Logic Unit.
+And what this unit does is it takes information from memory,
+reads it in-- often two pieces of information if I'm
+going to do an operation that takes two inputs-- is going
+to do a primitive operation could be addition,
+could be subtraction, could be testing
+to see if something is true or false,
+and then typically is going to store stuff
+back up into memory.
+To make that happen, we need one more piece,
+and that's the control unit.
+And that's going to keep track of what a specific operation
+I want to do in that ALU at each point in time.
+And inside the control unit there's
+an important thing called a program counter.
+So very simply, when I load a program
+into the machine- in a second we'll get into how to do that.
+But I load a program into the machine.
+It's a sequence of instructions up here.
+and the program counter points to the location
+of the first instruction.
+And when I ask the machine to execute,
+the program counter reads that first instruction.
+It's going to cause an operation to take place,
+and is then going to add one to the program counter, which
+is going to take it to the next instruction in the sequence.
+Just as we saw in the square root example.
+That's going to do another operation.
+Typically doing some arithmetic operation,
+move things back into memory, and it's
+going to increase the program counter.
+Eventually, we're going to get to a test,
+and that test is going to say whether something
+is true or false.
+And based on that, we're going to change the program counter
+to go back up, for example, to the beginning of the code.
+But that's, in essence, what happens
+inside a modern machine.
+Control unit tells me where I am in a sequence of instructions.
+I've read into the machine, that stored program.
+That causes a simple loop inside the machine of operations.
+When I get to a test, it's going to potentially change
+the program counter, and when I get
+to something that says stop, it will
+and it'll print something out on the machine.
+That's the heart of a machine.
+That's all there is inside a computer.
+All right.
+It's a lot of stuff inside there,
+but that's basically what the machine is going to do,
+and our goal is now to figure out
+how do we write that sequence of instructions
+so that the computer can do the things I want it to.
+To summarize, a stored program computer, then,
+is going to be that sequence of instructions.
+It's going to be built out of simple arithmetic and logic
+instructions.
+It's going to be built out of simple tests.
+And it's going to allow us to move data around.
+And associated with that is going
+to be this special program called the interpreter that's
+going to execute each of those sequences of instructions
+in order, changing things with the flow of control
+when a test says, I want to go somewhere else.
+And then finally, when I'm done, print out the answer.
+
+That sounds great.
+So what are the basic parameters?
+Most machines will come, as I said,
+with simple arithmetic and logic operations.
+But in fact, you can go even simpler than that.
+And if you go back to that gentleman I mentioned earlier--
+Alan Turing, one of the greatest computer scientists
+in the history of the world-- Turing
+showed that you can compute anything
+with just six primitives.
+In fact, there's something called a Turing machine,
+an old example of which is shown in that little image
+on the slide.
+A Turing machine is an infinite tape
+with a set of squares on it.
+In each square, there's a symbol,
+could just be a 0 or a 1.
+And what Turing showed is if you have six operations.
+And those are move left, move right, scan, read, write,
+do nothing.
+With just those six primitives, you
+can compute anything that's computable.
+You're now panicking and looking to find a different class,
+because if what you had to do was program
+a computer by saying move left, move right, read, write, scan,
+stop, you don't want to program.
+Fortunately, modern programming languages
+come with a more convenient set of primitives.
+But the fundamental idea is that with a simple set
+of primitives, you should be able to compute anything.
+Equally importantly, you don't want to just write everything
+in terms of addition, subtraction, logical tests.
+What you want to do is write descriptions
+like that square root program that we
+talked about earlier and then abstract them.
+And I want to highlight that word,
+because abstract is going to be really important.
+You want to treat that square root as if the manufacturer had
+built a little primitive and installed it in your machine.
+You want to be able to use it as if it was something that
+came with the machine, and that's
+what the power of computational thinking is going to give us.
+One last thing about computation.
+Let's go back to the Turing machine idea.
+I said you could compute anything
+if you just had the six moves.
+There are some nuances to this.
+A more sophisticated computer scientist
+could debate some of those details,
+but there's a fundamental property
+which says anything that's computable in one programming
+language is, in fact, computable in any other programming
+language.
+Wow.
+That's amazing.
+Says, well, you may get heated debates between people
+about whether Python or C or Fortran or LISP
+is the best computer programming language.
+They're all the same.
+OK.
+Slight misstatement.
+
+In some languages, it's going to be easier
+to do some kinds of things than others.
+In Matlab, it's easier to manipulate matrices.
+In C, it's easier to deal with web programming.
+But nonetheless, anything you can compute in one language,
+you can compute in any other language,
+and this is a property called Turing complete.
+It's one of the fundamentals of computer science.

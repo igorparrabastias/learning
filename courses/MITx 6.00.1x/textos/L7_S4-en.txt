@@ -1,0 +1,173 @@
+...
+So once you're ready to start debugging,
+here's some advice that can help you out.
+The first one is, I want to start by pointing out that this
+is a steep learning curve.
+It often takes a lot of experience
+to really become very skilled at debugging,
+which is why a very practiced programmer has
+a great deal of advantage over an inexperienced programmer.
+They know the kinds of things to look for, the kinds of tools
+to use.
+So this is my way of saying, be patient
+as you learn the techniques try and figure out
+how to debug efficiently.
+There are some tools that are provided to you.
+First of all, there are some built in tools into the IDEs,
+ease into Idle or into Anaconda.
+And I encourage you to use them.
+You'll see examples of this as you go through some
+of the problem sets.
+As you hit a bug, you can use the things
+that are printed out by the environment
+to help you isolate where the error actually occurred.
+I know an obvious instinct is, you run a piece of code,
+it crashes in the environment.
+You instantly go to the code.
+Stop, take a look at what was printed out on the screen,
+it will tell you something about where it was in the code
+when it hit the problem.
+It will tell you something about the kind of error
+that occurred, and that's valuable to you.
+Obviously, use the tutor to help you understand this.
+But the third one is again, one of those very simple things,
+but something that really practiced programmers
+use all the time, and that's the print statement.
+Insert statements at different points in your code
+that will print out, here's what I'm expecting,
+here's what I'm seeing.
+That's going to help you isolate where
+the code may be going wrong.
+It's going to help you narrow into the particular place
+in the code that you want to search to find the bug.
+And finally, be systematic in your search for a bug.
+Treat it like a scientific experiment.
+Formulate a hypothesis as to where
+you think the bug is occurring, what an experiment would
+be to test that, and then run the experiment
+to see if it validates or invalidates your hypothesis,
+and then move on.
+The print statement, as I said, is a great way
+to test hypotheses.
+And here are some suggestions.
+Print when you enter a function.
+Print out what the values of the parameters
+are to make sure that they are what you expect.
+Print the parameters themselves.
+At the end, print out the result.
+Even if you're going to pass it on to some other function,
+print it out so you can see what was
+returned to check whether it was what you expect it or not.
+Another way to use print statements
+we're going to do in a second, which
+is to use the bisection method, that is put it print statement
+halfway through the code saying, here's what I expected
+the state of the computation to be at this point, and here's
+what it actually is.
+Given that, it's going to help you
+narrow into where the bug may occur,
+because if you get halfway through the code,
+and it's correct, the bug must happen after that.
+And you can put in another print statement and keep doing that.
+And so that lets you very quickly
+isolate which procedure, which function
+may be causing the bug to occur.
+Those error messages are often really easy to use.
+If I get an index error, it tells me
+that I'm trying to access something
+in a structure that's outside of the length of that structure.
+So here's an example that could lead to that,
+but more importantly, an index error
+tells me, check the bounds of what
+I'm using as indices to look at structures.
+If I get a type error, it suggests things like,
+I'm trying to convert something to a type
+that I can't, or I'm trying to use a function on something
+whose type does not support that kind of usage.
+If I get a name error, it's likely
+that I'm trying to reference a nonexistent variable.
+I haven't defined or bound the variable initially.
+I'm trying to use this value before I've ever created it.
+Here's another kind of type error that I might see.
+I'm mixing data types together without appropriate coercion.
+I'm trying to divide a string by an integer,
+rather than casting that string into an int
+before I deal with that.
+A syntax error, that's something that will often
+occur when I do things like forget
+to close a parentheses or a quotation.
+Here, I'm missing a close paren right there.
+And so this is not a well-formed expression,
+because I'm trying to combine a print statement with doing
+a length call on a structure.
+So let the error messages actually
+guide what you're looking for in terms of the bug.
+
+Logic errors are harder.
+This is where I actually get a value out,
+but it's not what I was expecting.
+And so what I would suggest here is a couple of things.
+First, think before you start writing new code.
+An obvious statement, but a valuable thing to do.
+Draw some pictures.
+Sketch out what you were asking the code to do.
+And then take a break, walk away from it, come back
+and look at the pictures to say, does my code actually
+do what I was thinking it did?
+And then one of the best ones, explain your code.
+Explain what you were trying to do.
+Now, you could explain it to somebody else,
+It doesn't matter whether they actually understand it or not,
+just explaining it as a process will help you out.
+And there's a classic version of this in computer science,
+explain it to a rubber ducky.
+Walking through the explanation, it
+will often help you go, oh, why was I doing that?
+I was trying to do this different thing.
+But don't just read the code to see if I can find it,
+walk through the explanation.
+So I advise you all to go out and buy your own rubber ducky,
+and have it handy when you try to debug your code.
+A great way to drive yourself into doing the explanation
+and helping spot where those errors may be occurring.
+When you're ready to do the debugging steps,
+here are the two obvious things to do.
+First, do look at the code.
+But ask things like, how did I get the unexpected result?
+Don't ask what's wrong, ask, how did I get there?
+And is it part of a family of problems
+that I might be able to see?
+And then finally, do what I suggested earlier.
+Use the scientific method.
+Study the available data, form a hypothesis
+as to what might be causing that particular error to occur.
+Come up with an experiment that I can use to test a hypothesis.
+And then pick some cases that will actually deal with it
+and walk through that cycle.
+And do it until you end up with bug-free code.
+So don't just write the entire program, test the whole thing,
+and then try and debug the whole thing, instead, write a module,
+test it, debug it.
+Write another module, test it, debug it.
+Then test the entire structure, then go back
+and do the same cycle here of, test each of the modulus
+before you go through the entire integration testing routine.
+And similarly, don't change the code,
+figure I'll remember where the bug was,
+test it, and then either forget where the bug was
+or what change you made and go into panic mode.
+Instead, back up the code, change it, write down
+the potential bug in a comment, test it,
+and compare the new version with the old version
+to see what was the actual change
+and did it catch the piece that I wanted to find.
+This latter one I stress, because I see too many people
+just go in and start messing with the code,
+trying to debug it, and end up with something
+even worse than what they had and not able to recover
+where they were.
+So when you've got code that's buggy,
+save away a version of it, take a clean version,
+and start modifying it, so that you
+can see what were the changes I made that got me to the place
+I wanted to get to.

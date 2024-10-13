@@ -1,0 +1,319 @@
+...
+We're going to look at one more extended example
+in the last part of this lecture to introduce, again,
+some new ideas around using classes.
+But before we do, let's take a second to step back
+and talk about why.
+What's the power of object-oriented programming?
+Why would we like to do this?
+I've already said some of this earlier,
+but it's useful to remind you of this.
+The first idea is that we want to bundle
+together objects that share some common properties.
+They share common attributes, and they share procedures that
+operate on those attributes.
+That's an abstraction.
+And it's a really nice abstraction
+because it lets us make a distinction between how
+to implement the object and how to use it.
+Defining the class lets me define the methods.
+That tells me how I want to use that object.
+When I actually go to use it, though, I
+can simply use the instances and use
+that associated or inherited methods, along with them.
+Second thing that object-oriented programming
+gives us, this idea of bundling things together,
+is another idea of abstraction, which is I
+can treat each instance of that kind
+of class, that kind of object, as if it's a primitive.
+I don't have to think about the internal representation.
+I don't have to think about the details of how to get at it.
+I simply know that there are a set
+of methods associated with it.
+And that lets us, then, build on top of that idea.
+And in particular, it lets us build
+layers of abstractions that are going to inherit
+from other classes of objects.
+We're going to come to that idea in a second when
+we talk about not only having classes, but having inherited
+classes, classes and super classes
+and other super classes, or a better way of saying it--
+some base level of class and sets of subclasses
+underneath it that inherit behaviors from classes
+above them in the hierarchy.
+And that's what we've been doing already
+when we build our own class of objects
+on top of Python objects.
+We're inheriting the base methods for printing,
+for accessing elements of lists on top of those Python objects,
+and we're building on top of that directly.
+
+We've already talked about this idea,
+but I want to remind you again that we
+want to distinguish between implementing the class
+and using the class.
+And when you think about it, I'm really
+writing code from two different perspectives.
+I'm thinking about how do I implement a new object type.
+There, I define the class.
+I define the data attributes.
+What is the object?
+And I define the methods.
+How do I want to use the object?
+And I do that before I ever have a particular version of it
+around so that when I use the class,
+I can simply create instances and just
+use the operations, again, without thinking
+about what's inside of them.
+One last way of thinking about this-- I've
+got a class definition of an object type.
+I want to distinguish that from the instance of it.
+So a class is the type itself.
+When I create a coordinate, it was a class type.
+And the class is defined generically.
+I use self to refer to any instance
+while defining the actual class.
+And that class defines the data and methods
+that are common to all instances of the class.
+Separate from that is when I actually
+create instances of the object, I
+have a particular version of the object.
+My coordinate, for example, is a particular coordinate.
+The nice thing here is that I can
+have many different instances.
+They have different values.
+They are different because they have different values.
+But they all have the same structure of the class.
+They all use the same common methods.
+And so I'm going to keep flipping back and forth
+between defining the class and the behaviors
+associated with all instances of the class
+from particular uses of that on unique and specific instances.
+
+With that in mind, let's do one last slightly larger example.
+And this is going to try and get us at the idea of why would
+we want to have classes of objects,
+anyway, other than this notion of bundling things together.
+And part of it is we might want to mimic actual systems.
+So different kinds of objects are all parts of the same type.
+So I might have different cats-- Jelly,
+a one-year-old brown cat; Tiger, a two-year-old brown cat;
+Bean, who's very young and is black.
+And I might have different instances of rabbits.
+But I've already said that both of these
+can be clustered together because there are behaviors
+that belong to cats, and there are behaviors
+that belong to rabbits.
+And I'd like to have classes capture those common behaviors
+so that I can build instances of them that
+can have those behaviors, but also
+have other kinds of attributes.
+Let's see what happens if we wanted to build that out.
+So I'd need to think about what are the data attributes,
+and what are the procedural attributes.
+And this is just recapping what we've done before.
+The data attributes-- how do I represent our object with data?
+And while as everything so far we've done has been numerical,
+I can start thinking about other kinds of things.
+For an animal, it might be an age, which
+is a number, but also a name.
+What are the procedural attributes I want to have?
+Again, I did numerical things when
+I was talking about things like coordinates.
+But for things like animals, I might
+want to have methods that do other things,
+like have it make a sound.
+This is letting me generalize what
+attributes, procedural attributes, could do.
+And that's going to make sense as we actually
+start building the animal.
+So let's do that.
+I'm going to start with the notion of an animal.
+It's going to inherit from object, as we've done
+in every other case so far.
+We're going to do a variation of that in just a second.
+As I've also done in every case so far,
+I need to define an init method that's
+going to create instances of the animal class.
+So there's the class definition.
+There's the name.
+There's the parent.
+There's the special method to call the instance.
+And there's, again, as before, the variable
+that's going to refer to the instance of the class.
+And there's the other information I want to pass in.
+In my case, every animal's going to have
+an age, even if it starts at 0.
+The other thing I can do here is that I
+can define not only bindings for data attributes that
+are passed in-- in this case, age--
+but I can also define data attributes
+that I'm just going to set up internally,
+that I'm going to set separately.
+And in this case, name is not something I pass in.
+But this init is going to create a binding for both age
+and name inside every instance.
+And initially, name is simply set to none.
+Newborn animal-- it doesn't have a name yet.
+I get to name it.
+Point I want to make here is that I
+can define other data attributes that I want to use,
+even if I don't pass them in as an initial parameters when I
+create instances of that class.
+There's the first start on animal.
+So I could make one of these things
+like, say, my animal is an instance of animal,
+and I need to give it an age.
+And that lets me now use animal in ways
+like saying what's, for example, the binding for age
+or the binding for name?
+Particular instance-- particular parameter passed in that's
+mapped in that particular instance
+to that class definition variable.
+
+Let's start doing some interesting things
+with animals.
+I did this a little bit earlier.
+I said I need methods to get out values.
+And here, I'm going to have something
+that gets out the age, something that gets out the name.
+That makes sense because those were the two attributes
+I defined up here, even though I didn't pass
+in an initial value for name.
+But I also want to have another kind of method here,
+and we call those setters.
+And those are methods that can change
+the binding for internal data attributes.
+So if I want to change the age-- I
+want to run a simulation of the animals getting older--
+I can change the binding for age.
+I can rebind it to a new value.
+I could also change the name.
+It starts out as none.
+And I could change the name by having a rebinding here.
+And my version of setting the name
+is going to use something we've seen before, which is not only
+the name of the variable, but I'm
+going to have a default binding, which is the empty string so
+that if I call setName on an instance,
+if I don't give it an argument, I'm
+just going to redefine it to be the empty string, or a string
+of nothing, as opposed to that separate symbol, none.
+And of course, I could pass it in as a particular name, which
+I'm going to do in a second.
+And finally, as I've done before,
+I'm going to want to have a way of printing out
+what an animal is.
+And here, my choice is going to be the string of animal
+with a colon, followed by the actual name of the animal,
+followed by its age so that I can
+tell some information about that particular instance-- just
+added some more methods to an animal.
+I want to remind you, again, that those getters and setters
+should always be used outside of the class
+to access the data attributes.
+So let's try this out.
+Let's go over and load up animal.
+I've done that.
+And let's see if we can give a particular example of that.
+So my animal is an animal.
+
+And it takes in an age.
+And I'm going to say it's three years old.
+And if I print my animal, it does what I asked it to do.
+It gives me a string that says it's a version of an animal,
+it has no name-- none-- and its age is three.
+Well, I'd really like to give it a name.
+So I could say my animal, and I want to set the name.
+
+And I'm going to-- I don't know, pick a particular name--
+the standard computer science name, Foobar.
+And now if I print my animal, it says it's an animal,
+it's got the name Foobar, and it's three years old.
+Now I want to come back to this idea of always using
+the getters and setters outside.
+Again, I could use getter on this.
+I could say my animal, and I want to get its age.
+And it says it's three, which makes sense.
+That's what I put in there.
+But let's go back to this idea.
+Sorry.
+This is just going to remind us, again, of what we already know.
+I can create an instance by using the class definition.
+The dot notation lets me get out the pieces inside of it.
+And I could, in principle, get my animal's age, again,
+if I type that in here-- my animal age.
+But in fact, I really don't want to do that.
+I'd really rather use the getter.
+And that's because I want to separate
+the internal representation from access to that representation.
+And so here, I'm directly accessing the data attribute.
+Here, I'm using the method and calling it
+in order to get it out.
+And this is much better because it's
+going to separate out things outside of the attribute
+from things inside of the attribute.
+And in fact, that's what we call information hiding.
+We can actually use it in other ways.
+I could define a definition and change
+the name of a data attribute.
+Here, I've decided to have init define
+years to hold the value of age.
+I'm replacing the age data with a use of the name years.
+And I can make that be OK by simply changing--
+sorry about that-- simply changing the getter so that it
+refers to that piece.
+This leads to this important high-level issue, which
+is when you're accessing data attributes outside
+of the classes, you should always use the getters.
+If you're doing that access directly
+outside of the class and the class definition changes,
+I can get errors.
+In this case, I changed my class definition
+to use years as the name for age.
+And so if I try and get a.age and I've made that change,
+I'll get an error, whereas if I use the getter
+and I've changed it, this will always work well.
+So I really encourage you to be clean and crisp about using
+getters outside of instances to get out
+the pieces internal to them.
+Unfortunately, Python doesn't enforce this.
+Python's not great at information hiding.
+It lets you, as we just saw, go in and directly get
+access to those pieces.
+I could also write into an instance something
+like its age is infinite, or its size is tiny.
+While I could do it, please don't.
+It's not good style.
+Always write a method to store new attributes inside of it
+to access using getters the attribute values
+that you want out there.
+Even though Python will let you shortcut it,
+you're much better off writing code that always is clearly
+using specific methods to get to attribute values.
+
+This is just repeating what we already knew.
+And I'm simply going to do it one more time.
+Self is always determined from the instance.
+We pass it in as an argument.
+We did that, for example, with our initialization method.
+But when we call a particular instance,
+that's provided automatically.
+And that's why when I use animal, I simply give the age.
+I don't use a specific call to the instance.
+I do have another way, as we've seen, of getting to it.
+So there's using the method associated with an instance.
+But I could also, say, take the class,
+get the method out, and apply it.
+And we saw that earlier on when we used other versions
+of classes to make that happen.
+We also saw, as we saw here, the idea of using a default
+value for a formal parameter.
+That equal sign says start off with having
+a default value for that name.
+And so for example, in my animal case, I did that.
+I set the name to be something different.
+And that allows me to do that overwriting of the default
+value here.
+Let's see what we can do with those pieces
+when we get to the next section.

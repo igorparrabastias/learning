@@ -1,0 +1,110 @@
+...
+We just saw an example where we walked through carefully
+the execution or the invocation of a function
+called a factorial in order to see
+how the different scoped frames were created
+and to help us sort of decide that, in fact, it
+will stop when it reaches a base case and return a value.
+But when I start trying to design code,
+I have to think about the same thing--
+how do I set it up so that I know
+it's actually going to stop?
+How do we know a recursive code is going to work?
+In the case of an iteration, we know that
+by making sure that we've got a loop invariant that
+changes as we go through it in order to make sure
+that we actually get down to a place where we hit the end
+test.
+So mult inter terminates because b is initially positive,
+and it decreases by 1 each time through.
+I've set that up by making sure I change it by 1.
+And so I know eventually it's got to get down to a place
+where it's less than 1, which is going to trigger that n clause.
+And I can use that to deduce that I've
+written code that is, in fact, going to terminate if I give it
+an appropriate set of values.
+What about the recursive version?
+Sorry, as I said, mult is called with b1,
+in that it has no recursive call, and it stops.
+But how do I know that it stops in general?
+Well, if I call mult where b is greater than 1,
+it makes a recursive call with a smaller version of b.
+And so, again, I know that eventually it
+must reach a call where b is equal to 1.
+This tells me that when I write a recursive version
+of a function, I need to make sure that I'm
+changing the parameter.
+In this case, this value, so that I'm
+going to get down to that test case.
+That's nice, but there's another way in which, in fact, I
+could reason about my code to decide,
+is it going to, in fact, terminate
+or is it going to get into an infinite loop,
+because it's going to recursively call itself
+over and over again?
+And to do that, we can use, as a little sidebar,
+a nice little mathematical tool called mathematical induction.
+Here's the idea behind induction.
+If I want to prove a statement that
+is indexed on integers, that is, it's
+a statement that is applied to a set of integers.
+If I want to prove that statement
+is true for all values of some parameter n,
+I just need to prove that it's true
+when n has it's smallest value.
+For example, n is equal to 0 or 1.
+And then I need to prove that if it is true on an arbitrary
+value of n, I can also then show that it
+must be true for n plus 1.
+And with that, I can then essentially
+deduce mathematically, that it's true for all values of n.
+Let me show you a little mathematical example of this.
+The sum of the integers for 0 up to n,
+I claim as n times n plus 1 divided by 2.
+If n is 1, it says 1 times 2 over 2 is 1.
+If it's 2, 1 plus 2 is 3, and 2 times 3 divided by 2 is 3.
+You get the idea.
+How would I prove this is actually a true statement?
+Well, the proof says take the simplest case.
+If n is equal to 0, what do I have?
+Then the left-hand side is just 0,
+and the right-hand side is 0 times 1 divided by 2,
+which is just 0.
+So it's true.
+To prove it in general, I simply assume
+it's true for some value-- let's call it k.
+And then I need to show that it's true for k plus 1.
+So I need to show that this statement is true.
+Well, but that's nice, because the left-hand side,
+I know that it's true for that.
+I just assume that.
+I know that in that case, that is
+k times k plus 1 divided by 2.
+So the left-hand side is simply that, by that assumption.
+And if I do just a little bit of algebra,
+I can show that that is, in fact, the same as this,
+and I'm done, having proved it.
+Assuming k, therefore it's true for k plus 1,
+I can now say it's true for all values of n.
+So this formula is always true.
+What does that have to do with code?
+Well, I can do the same thing.
+Here, with my case of a recursive call to mult,
+I need to do the following-- I need
+to show the base case is true.
+Will this true return the right answer when b is equal to 1?
+Yep.
+Now, what about in the recursive case?
+I'm going to assume that my code does
+the right thing for smaller versions of the problem,
+meaning that I'm going to assume that mult returns
+the right answer.
+And, in that case, I can then say on this piece of code,
+if it does the right thing, then this return does
+the right thing, because it's simply an addition.
+So in that case, I know it returns the right answer
+for a problem of size b.
+And by mathematical induction, my code
+will always do the right thing for appropriate values
+of a and b.
+Thus induction tells me I've got code that works.

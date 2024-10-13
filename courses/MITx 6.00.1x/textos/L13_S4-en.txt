@@ -1,0 +1,167 @@
+...
+So we looked at adding labels, adding titles to our graphs.
+Good thing to do if we want to save them,
+we want to put them in a paper, we want to hang on to them,
+look at them later on.
+But we started this discussion by saying we also
+wanted to use the plotting or graphing
+as a way of thinking about different kinds of results.
+We started that when we began plotting different functions
+in different windows.
+But even there, what I showed you earlier
+could have been a bit misleading because it looked
+like the linear graph and the exponential graph
+grew at different levels.
+But we didn't have a clear sense of that
+because we didn't change the scales.
+The scale on the y-axis for the linear graph
+only went up to 30.
+The scale on the y-axis for the exponential graph
+went up 140,000.
+And we'd like to be able to better visualize differences.
+So if the scales are different on the graphs,
+how could we deal with that?
+One option is to explicitly set limits on the axis.
+Right now, we're just letting PiLab do that automatically.
+It figures out what's the maximum range of y-values,
+and it sets the axis scale appropriately.
+We could control it.
+A second option is to actually plot multiple functions
+on the same display, but to choose
+which ones I want to display.
+We did this earlier when we put all four together
+and we saw that that wasn't really effective
+because the smallest ones were too small.
+But we're going to look at how we
+might do a different way of doing that multiple display
+to get a better sense of that kind of difference in scale.
+So let's look at both of these.
+Changing limits on the axes.
+Here's the code, things we've been using as before.
+Notice again, I'm going to get into that habit of just
+clearing the frame before I deal with it.
+And now, I can explicitly say, I want
+to have the y limit go from 0 to 1000.
+I'm picking that number because I
+happen to know what this display is going to look like.
+Some experimentation might let you decide an appropriate set.
+But what you should see here is that when I am plotting,
+I have the ability to explicitly set the range on the y-axis.
+By the way, I could set the same thing on the x-axis.
+And I don't have to show all of the values of the y
+function or the x function, I could actually
+pull out just a subset of it.
+So in this case, I'm going to do a plot for the linear.
+I'm going to do a plot for the quadratic, each
+in their own frame.
+But I'm going to set the y limit to be the same in both frames.
+And then I label them.
+And let's look at what happens when we do that.
+This is actually quite nice.
+Why is it nice?
+Because now I can see what's the difference
+between a linear function and a quadratic function.
+We knew that the quadratic would grow more rapidly.
+But now we get a sense of that difference,
+because I've set it up so that both y-axes have
+the same range.
+Notice also, I picked a value that has a little bit of a gap
+up here.
+I happen to know that the y-values are
+going to go up to about 800.
+I could have lowered it down, but this
+was a nice way of picking a range that was going
+to let me see that difference.
+From the perspective of visualizing data,
+this is nice because now I can really
+compare how quickly does quadratic
+grow relative to linear while still seeing the difference.
+What else might I do?
+Well I can overlay the plots on top of one another,
+but do it in a way where I actually pick which
+ones I want to think about.
+We saw earlier that trying to compare linear
+against exponential is going to be a wash because you'll never
+see the linear.
+But now, I can go back to the idea of set
+up a function or a frame, clear it.
+And then in this case, let's plot two functions inside
+of that frame, pick a second one,
+clear it, and plot another two functions inside of that frame.
+And if I do that, again, because I
+am calling both of those plots inside of the same figure
+they're going to overlay.
+And because I'm calling the second pair
+of plots inside the same frame, they're
+going to get an overlay.
+But I have a better way of doing the comparison.
+And when I do that, I get the following display.
+Now I can see the difference between linear and quadratic,
+and I can see the difference between cubic and exponential.
+And interestingly, you may not have
+realized that cubic, early on, actually
+grows a little bit faster than exponential.
+But after some point, exponential
+takes off and really overwhelms it.
+Notice at the same time, I should
+be careful about comparing these two graphs
+because this one only goes up to 900,
+that one goes up to 140,000.
+Part of the message for you here--
+if I want to compare things, I need
+to think about what I'm comparing.
+But it gives me a way of actually doing
+that visualization in a very nice way.
+So there are some times when I want to overlay things
+on the same window, and other times
+when I want to just have them displayed side by side.
+
+I can do a couple of other things here.
+Now that I'm starting to do other displays on top
+of things, I could also add a legend
+that helps me tell which plot is which.
+If I go back to this window, you kind of know
+which one's quadratic, which one's linear,
+but I'd be handy to label them.
+And I can do that.
+And in particular, I can add in a label for a plot.
+Here, I'm using the keyword label, and then
+the equal sign, and then the specific label
+to put on each one of them.
+And I'm putting obvious labels here.
+I'm going to label each one of these plots
+so that now when I display them, I'm going
+to get a nice display out.
+One more thing before I do them.
+I need to decide where am I going to put the legend.
+And I could actually give it a location
+by giving, under the plot function legend,
+the keyword loc for location of upper left.
+Or I could simply say, put the legend up,
+but give it no argument and let PiLab decide what it thinks
+is the best location to use.
+Notice, by the way, that I need to do this because it's not
+just that I put the label here.
+I actually have to command PiLab to put a legend in for it
+to appear.
+OK, with that in mind, what does it look like?
+Oh, kind of cool.
+Remember I said use the upper left location.
+There's the legend.
+And now, each graph has a legend associated with it.
+So I know that the blue line-- this one down here-- is linear,
+and the green line is quadratic.
+When I let PiLab decide where to place it,
+it makes the decision that it thinks
+is the best location to put it.
+You might argue that in this case,
+putting it in the upper right corner really
+isn't great because it overlaps a little bit of the graph.
+It might have been better to put it over there.
+But we leave it up to PiLab to decide where to place it.
+And again, now I know that this is the cubic,
+and that is the exponential because the legend tells me
+that right there.
+So that's great.
+I can start adding more information to the plots
+that I'm using.

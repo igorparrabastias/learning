@@ -1,0 +1,296 @@
+...
+So we've now seen the beginning of programming.
+Simple expressions, ways of putting them together
+into more complex things of means a combination,
+and the very first version of abstraction,
+giving names to things.
+But so far, all we've been able to do with these pieces
+is just behave like we're a simple calculator.
+We can do arithmetic.
+Let's add one more piece in, which
+is the ability to make decisions based on tests.
+And for that, we have to compare things.
+We have to decide, am I close enough to square root
+that I'm done?
+Am I close enough to something else that I'm done?
+So we have to be able to compare things.
+And since so far we've just talked about numbers,
+what are the comparison operators
+for integers and for floats?
+They're the things that you might expect from arithmetic.
+If i and j are any names of variables,
+they have values as numbers, then
+we have ways of testing if something is greater
+than something else, if something
+is greater than or equal to something else,
+less than, less than or equal.
+So is 2 less than 3?
+And if I do a simple example over here.
+2 Less than 3, returns true, that's good.
+2.0 greater than 3.0?
+Returns false.
+Also good.
+Is 2 less than or equal to 2?
+Returns true.
+On the other hand, is 2 less than 2?
+Returns false.
+Simple comparisons.
+I also want to be able to tell when something's equal.
+And you might think, well, that's easy.
+Is 2 equal to 2?
+Wait.
+We already used equal as an assignment statement,
+so that won't work.
+And as a consequence, equality is done with double equal.
+Is 2 equal equal to 2?
+So for example 2 equal-- try that again.
+
+Returns true.
+And then finally, if we want to know is something not equal,
+we use the exclamation point followed by the equal sign.
+Often referred to or pronounced as bang equal or not equal.
+That will return true if i is not equal to j.
+Simple comparisons.
+They're going to let us build the very first kinds
+of programs that are going to let us make decisions.
+Because based on whether something is true or false,
+I'm going to be able to decide which operation I
+want to do next.
+You're going to get a chance to explore all of these,
+but these make sense because they're simple arithmetic
+things other than that double equal sign-- which
+as I said, is there because equal is already reserved.
+Once we have logical expressions,
+we also need to be able to combine them.
+I might want to say, is something less than this
+and greater than something else?
+And so if I have two expressions that are Booleans
+I can also combine them using either and, which
+is true if both are true.
+Or, which is true if either of them are true.
+And of course, not, which will be the opposite.
+Not a is true if a is false.
+It's false if a is true.
+Once I've got those pieces, I can
+put together more complicated expressions to decide tests.
+How might we use these?
+Well, here's a simple little example.
+This is actually a map of MIT.
+MIT students are always looking for free food.
+So imagine there's some food stored away somewhere at MIT.
+And I want to give instructions to a student to find them.
+All right.
+This is a complicated map, but we could
+use a simpler version of it.
+I've got my student.
+So over here with his backpack ready to
+find that free food, which is a way over here.
+And I want to think about how would I
+instruct him to get there.
+What would the test be that I might want to use?
+Well, I might say, if you can go to the right,
+keep going to the right.
+On the other hand, if you get to the right and it's blocked,
+change and go forward.
+Unless both the right and the front
+are blocked, in which case go to the left.
+Unless all of them are blocked, in which case backtrack.
+Won't be perfect, I could still get stuck.
+But this will work pretty well to get my way through a maze.
+What I've just described are four simple tests
+to let me think about how I would instruct somebody
+to solve a problem.
+In this case, trying to find the free food.
+Oh, yeah, I need one more thing, which
+is to test when I found the food to know when to stop.
+Simple tests.
+With those ideas, I can put together
+the first kind of actually more reasonable
+or interesting rather program called a branching program.
+And it would say, in that case of the maze,
+move forward unless a test's true.
+That test might be moving to the right is blocked.
+If it's not blocked to the right,
+I'm going to do one thing-- keep moving forward.
+If it is a block to the right, I'm going to move ahead.
+And a branching program then simply consists
+of a test, something that's going to return
+a Boolean true or false.
+If the test is true, it's going to have some code that tells
+me what to do in that case.
+On the other hand, if the test is false
+it's going to have some code to tell me
+what to do in that case.
+And in either case, once I'm done with those pieces of code
+I can pick up the rest of the computation.
+You can see why it's called a branching program,
+it takes one of two branches based on that test.
+In Python, we don't necessarily have to have the false block.
+We have to have the true block.
+If this is true, there should be something I would do.
+But if it's not always the case that I
+want to do something even when it's not true, I can skip that.
+With that in mind, I can start now
+building a little bit more interesting programs.
+And so here's a simple example.
+There are some pieces here we're going to come back to.
+Don't worry about them.
+Pieces like input, which is going to give me
+a way to read something in.
+But what I want you to see here are the tests.
+And the first case of a branching program
+is an if-statement, that's a special symbol.
+It is treated differently and when the Python evaluator
+sees this it says, given that's an if,
+I'm going to evaluate this expression, which
+should return a Boolean.
+It says, if the remainder of x divided by 2 is equal to 0--
+notice the double equal sign there, if it's equal to 0,
+if that is true, then I want to execute this set of code.
+It's going to print out a blank line
+and then print out the word even.
+If it's not true, I need to tell it what to do.
+And I use the special symbol else for that.
+These are often called if-else expressions.
+If this is true, do this.
+Otherwise, do that.
+And here again, I've got a block of code.
+In this case, it's going to print out a blank line and then
+the word odd.
+In either case, when I'm done with all of that
+I'm going to go down to the rest of the code.
+Which is just going to print out a simple thing that says,
+I'm done with this conditional.
+You could type this in and run it, I invite you to do that.
+But what I want you to see here is a couple of things.
+This if-else structure.
+And I said in a branch there should be three pieces.
+And you can see them, there's the test.
+
+There's the first block, that's the true block.
+And there's the false block.
+
+Now, how did I know?
+Or rather, how did Python know those are the blocks?
+Because of this indentation right here.
+The fact that those lines of code are inset
+are important, because it tells us
+that's an entire block of code and when I get done here,
+I'm going to pick back up the rest of the else.
+And more importantly, when I get done there
+it tells me where the rest of the code picks up.
+A simple example of a branching program.
+I've already said this, but I want to recap it.
+I've got a test, it evaluates to true--
+when in fact, in this case x divided by 2
+has a remainder of zero.
+As I've already said, notice the double equals sign rather than
+a single equal sign to do the comparison.
+As I've also said, the indentation
+is really important, it tells us what
+pieces are associated together.
+And notice how that indentation gives us
+a nice visual structure for seeing where the code is.
+To see the semantic structure of the code.
+What's the true block?
+What's the false block?
+Now, it turns out that you can have nested conditionals.
+Inside of a block I could also have a conditional.
+And that's perfectly fine.
+It says, if this is true, then I'm
+going to go in and look at this portion.
+And if this is also true, I'm going to do that.
+On the other hand, if this is true, but this is false
+I'm going to jump down here and run that piece.
+Again, I invite you to type this and try it.
+But it's going to do something that
+based on what the value of x is, it prints out whether it's
+divisible by 2 and 3, by 2 and not 3, or by 3 and not 2
+as it runs through that sequence of branches appropriately.
+And finally, we can have compound Booleans.
+As I said, I have things that can be combined.
+This is a Boolean.
+That's a Boolean.
+And the combination with the end also gives me a Boolean.
+So in this case, if x is less than y
+and x is also less than z, then the combination is true
+and I'm going to print out a particular thing.
+Again, don't worry about what this actually does.
+What I want you to see is the structure,
+including one last piece, which is elif also shorthand
+for else-if.
+This says, if this test is true, do that.
+But if this test is false, then see if this is true.
+If that's true, do that.
+But if it's false, then skip down.
+In this case, there's an else and it will always do this.
+I could have multiple elif statements.
+It's a way of giving me a sequence of tests in order.
+If this is true, do something.
+If it's false, but this is true do something.
+If that's also false, but this is true do something.
+And so on.
+This just then pulls them together.
+I've got a basic conditional.
+If this condition is true, do a sequence of expressions.
+You can also have an if and an else.
+Or I can have an if, a sequence of elifs, and an else.
+And again, notice how the indentation
+tells us which things to do associated
+with which block of code.
+That indentation is how we are going to capture
+other pieces as well.
+And it doesn't have to just be conditionals.
+I could have something that has other statements inside
+of it, such as the print statement here.
+Again, don't worry what this code does,
+it's a simple piece of code to execute some simple comparisons
+on numbers.
+What I want you to see is how we walk through the branches.
+And with that, we now have the first kind of code.
+There is one set of blocks inside of which,
+I've got another set of blocks.
+And again, if this is true and that's true,
+I'll get to that point.
+But if this is true and this is false-- so true
+here, but false here what happens?
+Oh, there is no code here, so nothing happens.
+It simply skips out to the end and jumps past it.
+Again, I invite you to try this to see if it works
+the way I've described it.
+What I want you to see is the form of it.
+One other piece I want to remind you of
+is the fact that when we do comparisons
+we need to use the double equal.
+Equal sign binds a value to a variable.
+Here I, want to compare two things.
+And this is a standard place I make it all the time
+where you'll get a bug.
+Don't worry when you do it, Python is going to complain
+at you saying you're trying to do a binding in a place that
+you can't.
+But remember, this is a place where
+when I'm doing a comparison I want
+to use the double equal sign in order
+to make the comparison of two values and return a Boolean.
+
+OK.
+What have we added?
+First, simple kind of program.
+Branching programs allow us to make choices
+and do different things.
+But it's still the case that at most each statement
+gets executed once.
+I might skip a set of statements if I skip over that branch,
+because I don't get there.
+But as a consequence of this, these
+are what we would call linear programs.
+They run in constant time because I execute
+each instruction at most once.
+And the maximum time to run the program
+is going to depend only on the number of instructions
+that I have there.
+Still valuable to make some decisions,
+but it's not going to give us the power that we
+want to really build interesting algorithms.
+And that, we're going to get to next time.

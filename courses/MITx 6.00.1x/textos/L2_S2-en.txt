@@ -1,0 +1,158 @@
+...
+So far, we've just been playing with numbers-- names
+for numbers but basically just with numbers.
+Now we want to add in one more type of object.
+We've seen ints, we've seen floats,
+we've seen bools, which are ways of getting values
+back out of tests.
+The next thing we're going to add in is a string.
+We'll see a few others as we go along,
+but strings are going to be valuable to us.
+And what's a string?
+A string is simply a sequence of characters-- letters,
+special characters.
+Could be spaces, could actually be sequences
+of characters put together into words,
+put together into sentences.
+And those are all contained within either double quotation
+marks or single quotes.
+Let me show you some examples.
+I've got some on my slide, but let
+me show you some examples with my screen.
+I can give the name hi to the string H-E-L-L-O space
+T-H-E-R-E double quote.
+Those quotes on either end say treat this entire sequence
+as literally a sequence of characters.
+And if I ask for the value of hi,
+it prints it back out, in this case,
+with a single quote around it.
+As we said, we can either use double quotes or single quotes.
+Why?
+Partly historical.
+One would really work, but a place
+where double quotes are handy is if I actually
+want to use an apostrophe somewhere in a string.
+Because from Python's perspective,
+the apostrophe looks like an end of a quote.
+And so for example, if I want to say foo is this isn't right,
+notice that the single quote does not get interpreted
+as the end of a quote.
+And I can put out the value of foo.
+Once I've got strings, I can put them together.
+So for example, I could say I'm going
+to give name the value Eric.
+I could certainly print out name.
+What's its value?
+There it is.
+But I could also put things together.
+And the next expression looks a little unusual.
+Greet is hi plus name.
+And when I print out greet-- sorry, if I type properly,
+it would help.
+Print out greet.
+
+It puts the two things together-- hi there and Eric.
+Two things going on here.
+The first one is-- whoa, little funky
+to think about adding strings together.
+But just as we can add numbers together,
+strings have a natural way of getting combined.
+And in this case, it's to concatenate them together,
+to literally take the first string, glue the second string
+onto the end, that creates a new string, and I can print it out.
+But if you look at my computer monitor,
+it didn't quite do what I wanted.
+It said hello Theric.
+I have no idea who Theric is.
+I'd really like to have it say hello there, Eric.
+And so I can get that by adding in a little blank space.
+And so if I type in greeting as hi plus a space plus name,
+then the value of greeting is what I wanted-- hello there,
+Eric.
+Really nice.
+Notice concatenation, just as with numbers,
+could have multiple things in a row.
+So I can concatenate multiple things together as I did here.
+What we say when we talk about using addition this way,
+by the way, is we say we have overloaded it.
+We have had addition apply not only to numbers but now
+to strings.
+Oh, yeah.
+We talked about that earlier on.
+Remember when I said in the first lecture
+that the type of an argument, the type of an object,
+would tell an operation some important information?
+Here it does that because it's telling addition,
+if the two things are strings, concatenate them.
+It's also telling addition, if I give you two numbers,
+just add them together using straightforward arithmetic.
+So I can use addition in multiple places
+to let the type of the object define what's going to happen.
+Once I have strings, I need operations on them.
+I've already seen the first one.
+We can do concatenation, but we can do some other things
+with strings.
+In particular, we can do successive concatenation.
+So if I type three times the string Eric, I get an echo.
+Three versions of Eric are stitched together.
+So I can successively concatenate things together.
+It's kind of nice.
+And, again, notice I'm overloading multiplication
+here.
+I'm saying multiplication of a number times a string is simply
+saying give me three versions or n versions,
+however many versions of that string put together.
+I can ask for the length of a string, and that makes sense.
+It tells me how many characters there are in that string.
+And that will include, by the way, counting spaces.
+So the length of hi there includes the space, not just
+the characters.
+It tells me how many literal elements there
+are inside of it.
+Strings have things inside of them.
+They're the first version of a non-scalar object,
+in that I can get out pieces.
+And one of the ways I can do it is say I can index into it.
+So if I take the string, Eric, and I
+want to get out the first element in square brackets,
+I can say give me the first element, and it gives me r.
+Wait a minute.
+That's not the first element.
+The First element's e.
+Eh, in Python we have chosen to decide to start
+counting starting at 0.
+So if I want to get the zeroth element of Eric,
+I would say give me the zeroth element, and there it is.
+I've already bound name to be Eric so notice, by the way,
+I could ask for the zeroth element of name,
+and it gives me the zeroth element of the value associated
+with name, which pulls back out the e, exactly what I wanted.
+If I try and index beyond the length minus 1 of a string,
+I'm going to get an error.
+And that's because I start at 0.
+So even though this is of length 4, if I take the string Eric
+and I ask what's the fourth element?
+It gives me an error, something called an index error
+that says you tried to go too far outside of it.
+One last thing about strings.
+I can certainly get a single element out.
+I might want to get a chunk out of it.
+And so I can slice a string apart by giving it a somewhat
+funky looking expression.
+I take Eric and, again, in those square braces
+I give it a starting point, which is 1, and a colon,
+and then an ending point, in this case 3,
+and it gives me the first and second elements
+of the string, r and i.
+I can choose to say everything starting at the beginning,
+I could use that as a 0, but I can also
+do that by saying give Eric with nothing
+before the colon and just 3, and it gives me all the elements
+up to but not including the element number 3.
+And similarly, I could do it by saying take Eric,
+give it 1, but nothing after the colon,
+and it gives me all the elements starting at element number 1.
+And if I just want to make a copy of the whole thing,
+I can say open square brace colon close square brace,
+and it gives me literally a copy-- not the original--
+but a copy of this entire string.

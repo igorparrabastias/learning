@@ -1,0 +1,184 @@
+...
+Now that we've seen the idea of using class attributes,
+data attributes, to give unique names to things,
+or unique identifiers to them, we
+can start building up a little representation of MIT people.
+More importantly, given now we've
+got two classes in our hierarchy,
+we want to extend it to look at variations
+on how we inherit methods.
+So let's add in different kinds of MIT people.
+We have students.
+They're all MIT people, but they come in different flavors.
+We have undergraduates who have a class here.
+We have graduate students who don't have a class for,
+because we can't tell how long it's
+going to take them to finish up their PhD Let's add those in.
+So I can extend my class again and again.
+I'm going to start building on top of MIT person,
+which I remind you inherits from person, which inherits
+from the base object class.
+And you UG stands for undergraduate.
+So an undergraduate has a name.
+It also has a class year.
+And as I did before, I'm going to use the inherited,
+in this case MIT person, method to create the instance.
+Remember that in turn will use the person initialization
+method to create the underlying instance
+and then assign a unique ID number to them.
+On top of that once I've created that instance
+I'm going to bind year as a data attribute to the class
+year of the student.
+I could, of course, then get back the class year
+with a getter.
+The other thing I want to do here
+is I want to give MITUndergraduates
+an ability to speak that's a little different.
+They are going to use the inherited MITPerson speak
+method.
+So notice the call.
+I use MITPerson.speak to get that method that we just
+saw used from an MITPerson.
+Person.
+What I'm going to change though is I'm
+going to add a little bit to what they actually say.
+And we'll see an example of that in a second.
+I've got undergraduates.
+We're going to also have graduate students.
+And you can make a separate class for them.
+And then I want to be able to tell whether I have
+a Student, an instance of that.
+And here I can use both types to actually pull them out.
+So I can check for the superclass of
+is somebody a student by simply saying,
+is this an instance of an undergrad
+or is this an instance of a grad student?
+Good.
+Let's see what would happen if we
+were to use this to start building up
+a little bit of our hierarchy.
+So I'm going to create some undergrads.
+I'm going to give them a class year.
+And I'm going to create a grad student as well.
+And if I load these in, which I'm going to do now,
+I can now see what happens with this instance of things.
+So first of all, let me print out
+some information, in particular of s1.
+And I say if I print s1, it prints out the name,
+Matt Damon-- great.
+I can also know what class is Matt in.
+So I do get_class class on s1, s1.get_class using that getter
+method.
+And since it's a method, I do open, close paren.
+And it says class of 2017.
+Hopefully he'll graduate in a year's time.
+And then I can use the speak method.
+And to remind you, in my code, I had the undergraduate
+speak method.
+Use the underlying MITPerson speak method,
+but adding something to it.
+So if I ask Ben-- sorry, Matt to say speak, where is the quiz,
+it prints out, Damon says, dude, where's the quiz?
+So Damon says came from the MITPerson speak method.
+And that insertion of a dude came
+from the way I defined adding that to the utterance.
+And as a consequence, I can have his friend respond
+with, again as an undergraduate would hear, Affleck says, dude,
+I have no idea.
+My point of this is, notice how I'm
+using the underlying MITPerson speak method to do the work,
+but I'm simply adding something in when
+this is an example of an MIT student speaking.
+I can print things out.
+I can have them talk to each other.
+All right, what else might I want
+to know about this hierarchy?
+First of all, let's remind you of what I have here.
+Here's a diagram that shows what we've built. You have a Person.
+That's my base class.
+Under that, we have a subclass of an MITPerson.
+And that was where things like the speak method resided.
+And then relative to that, I can build both undergraduates
+and graduate students.
+Now I haven't done much with the graduate students yet.
+You could imagine they might speak a little differently.
+They might have other kinds of attributes.
+And my arrows here are showing the relationship of subclass
+to superclass and the fact we inherit methods up
+the hierarchy as we need them.
+Having built that, I now realize there's
+another kind of student, a transfer student, somebody
+that comes to MIT after a year of being somewhere else.
+So I'd like to add a new class to my hierarchy.
+I could certainly do it right there.
+But now I have a problem.
+I have to rethink is_student.
+Remember, for is_student I would simply say,
+see if it's an instance of an undergrad or grad student.
+I need to change that.
+One way to change it would be simply
+to add another clause to that expression that says,
+is this a transfer student?
+But a cleaner way to change it is
+to realize that I have an implicit class here.
+And that is a class of student.
+And let me add that in and show you
+how it cleans up the hierarchy.
+I'm going to create another class right up here.
+It inherits from MITPerson.
+It's a Student.
+They are MIT people.
+And then I'm going to have each of these subclasses inherit
+from Student-- very straightforward,
+but it has two nice properties.
+The main one is, look at what happened to is_student down
+at the bottom.
+It's changed.
+But before I do that, notice this strange thing
+in the class definitions.
+It was in an earlier slide and I didn't say anything about it,
+but here, the special symbol or keyword pass basically says
+at least at present, there is no expression
+associated with that.
+I'm simply passing through it.
+And that in particular with student is going to be nice.
+I don't have any methods associated with student.
+I simply am passing through, but it's
+let me clean up the hierarchy.
+And then finally, notice with is_student now,
+it simply is checking, is this a student?
+If I were to add in other kinds of students here,
+it's simply a matter of adding the class definition,
+ensuring that it inherits from student,
+and I don't have to change the hierarchy or the methods
+associated with them.
+So it cleaned up in a very nice way.
+And in particular, we can now go back
+and make sure with that change that we still
+have the same performance as before, that it
+will inherit appropriately.
+And so if I load up a version of that, I can do the same test.
+I can print out, s1, still prints the same way.
+And I could print out having s1.speak.
+Where is the quiz?
+He's still looking for the quiz.
+Still prints the same way.
+And if I print s2.speak, again it still
+prints out appropriately.
+Inheriting from the appropriate place-- adding that extra class
+in there did not change anything because my definitions were
+still going back to MITPerson to get
+the underlying speak method.
+If I look at my hierarchy, I've got Person.
+I've got MITPerson.
+I've now inserted a new class, Student, in between.
+And that says it was much easier, in this case,
+to add in that TransferStudent class.
+And this relates to something sometimes
+called the substitution principle,
+that important behaviors of a superclass
+should be supported by all of the subclasses.
+And in this case, adding Student in as a superclass was
+gathering all that information together in one
+place while still allowing us to inherit methods,
+for example, up here from MITPerson.

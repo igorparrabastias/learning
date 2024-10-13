@@ -1,0 +1,131 @@
+...
+As we've already seen in our programs,
+we need to be able to both read input in and print stuff
+out, or return values.
+I want to now spend a little bit more time on that.
+We showed a very quick example of it earlier on.
+But I want to come back to that to be
+able to give you a sense of how you can control that.
+So let's start with output.
+I want to be able to print something to the monitor
+as I'm doing computation, not just
+at the end of a computation, but perhaps partway through that.
+And here, we have a keyword called print
+that's going to do that for us.
+And I've got a simple little example here,
+which I'm going to run on my machine.
+I'm going to define x to have the value 1.
+I could just print x.
+So the keyword print followed by an open paren followed by,
+in this case a name, x, followed by closed paren
+simply prints out that value on the screen,
+kind of trivial in this case.
+But I want to show you some examples
+of how I could control the print a little bit differently.
+So I'm going to define x string to be the string x.
+And notice what I'm doing here. x is an int.
+str is going to actually cast it into, or convert it,
+into a string, that is, the symbol x.
+And I'm going to have a name.
+In this case, I've called it x underscore str.
+When I do that on my machine, I've now got a binding for x
+string.
+Now, I can do printing.
+And printing here can take multiple arguments.
+You can see it on my slide.
+I'm going to print out a combination of this expression,
+that expression, a sequence of expressions,
+all separated by commas.
+Let's see what happens if I do that.
+So I'm going to print of my favorite number is a comma,
+to say I've got something.
+And then I'm going to give it x.
+And then I'm going to give it a period enclosed
+in double quotes.
+And then I'm going to give it something
+that says what's the actual value of x and x,
+sequence of things.
+And if I print it, I get something pretty funky.
+It says my fav num is 1.
+Oh, but then there's a space before the period.
+And then it says x is equal to 1.
+Hm, what happened there?
+Well, what happened is that print is literally
+printing each element followed by a space.
+And in particular, x has a value that's
+going to show up separately from the period.
+On the other hand, if I give x as a string,
+it's simply going to put the two pieces together.
+And so I can do a second kind of print, which is, I can say,
+print my favorite number is.
+And then I'm going to add to that, or concatenate, x string.
+And then I'm going to add to that period,
+add to that the last part of the string, x equals,
+and add to that x string.
+And if I print that out, I get something a little better.
+In fact, I blew it.
+I wanted to have a space between the period,
+so that it would actually print it out as saying,
+my favorite number is 1.
+So let's do that one more time.
+Print my favorite number is, and a space,
+concatenate x string with period, and a space,
+concatenate that with x equals, with a space at the end.
+We concatenate all of that with x string.
+And I finally get what I wanted.
+What am I showing you here?
+In the case of print with multiple arguments,
+it will print each one of them spaced apart.
+In this case, I am concatenating the entire thing
+into one long string and then printing it out.
+And I can control the spacing around it.
+So this is going to give me a way
+to give an output to the machine telling me
+what I've done as I control it.
+What about the other direction?
+I want to bring in input.
+And here, I have another key word
+called input not surprisingly.
+And it takes a single argument, which is a string.
+And its behavior is it's going to print out whatever is inside
+of those quotes, that string.
+It's going to wait for me to type something in.
+When I hit Enter, it's going to evaluate whatever I typed in
+and return that as the result of the input statement.
+Typically, I'm going to want to bind that to something.
+So I can bind it to a variable named, like text.
+And if I try this, I can say, text equals input.
+And I'm going to simply say type something.
+
+Notice what it did.
+It just printed out type something.
+It's waiting for me to do something.
+And I can say, foo.
+What did I do?
+I bound that to the name text.
+If I look at the text, there it is.
+So if I wanted to really be annoying about it,
+I could then say print 5 times text.
+And there it is.
+Now, maybe you're looking at that and saying,
+wait a minute, why are the double quotes there?
+Because I typed them in.
+Input simply expects everything to be a string.
+So I could do the same thing.
+I could say text equals input type something.
+
+Again, it's waiting for it.
+In this case, I'm simply going to write in the string bar.
+And what's text?
+It's just bar.
+And in fact, if I say, what's the type of text,
+it says it's a string.
+So if I'm going to type something in,
+it's automatically going to read it in as if it's a string.
+Ah, but that says, if I wanted to get a number in,
+I need to cast it.
+And that's what this last example does down here.
+Input, even if I type in a number,
+is going to interpret it as a string of the characters
+of the number.
+And so I need to turn it into an int before I actually use it.

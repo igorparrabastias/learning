@@ -1,0 +1,6 @@
+langchain
+langchain_openai
+pydantic
+rich
+gradio
+python-dotenv

@@ -1,0 +1,208 @@
+...
+We're ready to start talking about complexity of algorithms,
+orders of growth.
+And we're going to do that using something
+we refer to as big O notation.
+Comes from the Greek symbol omicron, which was that
+the symbol that was used to measure
+it, which is why we will sometimes also write it as O.
+And we'll be using that notation.
+And what big O notation is going to do
+is measure an upper bound on the asymptotic growth
+of complexity.
+So asymptotic means as the problem input size gets really
+big what is the behavior?
+And how do I put a bound on that,
+an upper bound on that that let's me describe that
+class of behavior?
+And obviously, I'd like as good an upper bound as I can get.
+Rather than just seeing every problem as exponential,
+I'd like to say no, this is inherently a quadratic problem,
+or this is inherently a linear problem.
+Big O notation is going to describe the worst
+case, as we've already said.
+And that's because the worst case can occur often.
+And it's usually the bottleneck when a program runs.
+So I'm going to talk about what's
+the worst case behavior when I put that upper bound on it.
+And I want to express the rate of growth of a program,
+as I said earlier, relative to the input size.
+Finally, rather than using timing,
+I'm going to do this by evaluating the algorithm, not
+the machine or the particular implementation inside of it.
+And so big O notation is going to be
+our way of describing the asymptotic behavior
+of algorithms.
+
+Let's look at an example of what big O means.
+And I'm going to do this with a procedure you've seen before.
+This is computing factorials in an iterative fashion.
+So how do I do it?
+I set up a variable answer to one.
+And then I run through a loop where basically I
+let n start at 1.
+And I keep doing that until I get to-- sorry.
+Let me say it again.
+Let's look at an example of this.
+And we're going to do it with factorial [? iterative. ?]
+We've seen this before.
+We're going to set up an answer to be the value 1.
+And then basically, we're going to multiply answer by n,
+decrease it by 1, and keep doing that until we
+get down to the point where n is equal to 1.
+And then we're going to return the answer.
+So it computes factorial.
+And I could ask, so how many steps are there here?
+And in fact, what do I have?
+Well, I know that there are two steps right there because
+literally what I'm doing is setting, if you like, n,
+temp to n minus 1, and then n to temp as I do this,
+or if you like, doing both an addition and a reset.
+But what we can see is inside of this expression
+I have the following.
+I have one step there.
+I have a loop here that I'm going to go through n times.
+And inside of that loop I have actually five steps,
+the test, two steps there, two steps there.
+So I've got five steps.
+And I'm going to do that n times.
+So I've got 5n operations.
+And then finally I'm going to return answer,
+which gives me one more.
+So the expression for the number of operations independent
+of the machine is 1 plus 5 n plus 1 or 5 n plus 2.
+I want to know what's the worst case behavior?
+And so as n gets really large, the fact
+that I got two extra steps becomes irrelevant.
+And that says that I can ignore the additive constants, the two
+ones.
+The fact that it's 5n as opposed to 7n or 3n,
+as n gets large really also doesn't matter.
+Practically, it'll be a little bit difference in time.
+But as an asymptotic behavior, it really doesn't matter.
+And so in fact, I will say that this is order n.
+I ignore the additive constants.
+I ignore that multiplicative constant.
+And I basically say this is a linear or order n algorithm.
+So that says when I get expressions
+for the number of steps inside of a particular computation
+I'm going to drop the constants and I'm going to drop
+the multiplicative factors.
+And I'm just going to focus on the dominant terms.
+So if I had an algorithm that had the number of steps shown
+in that first example, I'm going to say that's order n squared.
+And if you think about it, as it says as n gets really large,
+n squared is going to be much, much more dominant
+than the 2n factor.
+And so really this grows as n squared.
+Even if it's n squared plus 100,000n plus a really large
+constant, we still say this is order n squared,
+because asymptotically as n gets really big,
+that's the dominant term.
+For the third one, it's order n because n grows more rapidly
+than log n.
+And as a consequence, this as things get really large
+is the dominant term.
+For the third one, we say it's order n log n.
+And for the last one it's order 3n.
+It may look a little weird.
+N to the 30th is a big number.
+But as n gets really big, this grows much more rapidly
+than this.
+And so we will say the dominant term here
+is an exponential in 3 as opposed to a polynomial of n
+to the 30th power.
+So these are going to show us how
+we simplify the expressions.
+And you can now see what we'd like to do.
+Given an algorithm, we're going to count
+the number of operations as best we can
+as a function of size of input.
+And then we're going to ask what's the dominant term here?
+Where's the bottleneck?
+What's the worst case behavior?
+And that's going to let us characterize
+the order of growth.
+We've already seen these examples.
+These are the kinds of behaviors we're going to look for.
+Constant, written as order 1, logarithmic, written as order
+log n, linear, written as om, log
+linear, written as o of n log n, polynomial,
+written as order n to the c.
+And I don't really care that much what the c is.
+But I'll at least distinguish is this quadratic
+versus cubic versus something else.
+And finally, exponential-- does it grow as c to the n
+as opposed to n to the c?
+And if you don't understand the difference between those two,
+write a little program and look at some difference
+in values between n to the c and c to the n.
+Pick c, for example, as a 2 or a 3,
+and see how differently these change.
+Ideally, I'd like an algorithm that
+is as close to this point in the hierarchy
+as possible, because the higher up I am in this hierarchy,
+the more efficient the algorithm is.
+So a couple of statements about this and then we're
+going to look at some examples.
+One of the things I want to be able to do, as I said,
+is analyze the programs and talk about their complexity.
+And I'm going to combine complexity classes.
+I'm going to analyze statements inside the functions
+and then apply some rules and focus on the dominant term.
+So here are two things to look at.
+The first one we can call the law of addition
+for big O notation.
+And we use it with sequential statements.
+So if I have a piece of code followed
+by another piece of code, I could
+get the order of growth of the first piece of code,
+the complexity of it, and then the second one.
+And then I can talk about the sum of those
+being the order of growth of the overall combination.
+So for example, if I have two little loops,
+as I've shown down here, the first one is order n.
+The second one is order m squared.
+The overall order is order n plus n squared.
+And as a consequence, the law of addition
+says that the order I want is just n squared because that's
+the dominant term.
+It says I can add up the complexity in order
+to do the analysis.
+And that makes sense.
+This is going to take much longer than that as n
+gets really big.
+So I've got a lot of addition for analyzing these pieces.
+I have a second one, a law of multiplication
+for [? big order. ?] And we use that when
+we have nested statements or loops.
+So in this case, if I have something
+that has a particular function, and I've
+got another one that I'm going to do inside of it,
+the order of growth of that multiplication
+is the order of growth of those two functions multiplied
+together.
+Another way of saying it is if I have two loops, one
+inside the other-- so I'm going to loop over this loop--
+and inside of there I'm going to do a second one,
+then I have an order of growth n for the interior part
+and an order of growth n for the exterior part.
+And that is the same as having an order of growth
+of the product.
+That is, I'm bringing this multiplication
+inside the notation.
+And we say this is n squared.
+Another way of saying it is it's because that outer loop
+is done n times.
+And the inner loop also does n times.
+And since we do the inner loop n times for every version
+of the outer loop, it's n times n or n squared times
+in terms of execution for this particular kind of example.
+So I can analyze loops or nested statements
+looking at what does it take the inner part
+and then what does it take-- how many times do
+I do that inner part and the outer part,
+multiplying that complexity together.
+And we saw with addition when I have sequential things,
+I want to add the orders of growth together
+and then do the analysis.

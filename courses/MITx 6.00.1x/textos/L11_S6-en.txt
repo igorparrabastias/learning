@@ -1,0 +1,202 @@
+...
+So let's wrap up this lecture by looking at a few more examples
+just to see, again, those common patterns that
+are characteristic of particular classes of complexity.
+The first one might look a little tricky.
+You've actually seen a version of this earlier.
+I've got a little function here.
+I'm just calling it h of n.
+And what's it doing?
+It's assuming that n is an integer greater than 0.
+And basically, it's adding up the digits
+of a number together.
+So it's going to take every-- sorry.
+It's going to take that value of n.
+It's going to turn it into a string.
+And for each character in the string,
+it's going to walk down, convert that character back
+into an added into answer, and then return answer.
+It's a slightly brain damaged, or if you prefer,
+computationally challenged algorithm.
+There are lots of ways to do it.
+But what I want you to see is how
+we would do the analysis here.
+I've got n as my input.
+And I want to say what's the complexity of this.
+We know that this is going to be linear in the length of s.
+But what is it in terms of the input m?
+And in fact, that's if you like the tricky part.
+And it's similar to what we saw as an earlier example.
+I'm converting an integer to a string.
+I'm then iterating over the length of the string.
+But that's not the magnitude of the input in.
+Think of it like that early example
+dividing n by 10 on each iteration.
+And so while it is linear in the order
+of the length of the string, it's
+log in the size of the input n.
+And the base here doesn't matter whether it's base 10 or base 2.
+It's simply logarithmic.
+My point is it's important to think about
+what am I using to measure the size of the problem
+and then how do I characterize the complexity of the algorithm
+in terms of that size.
+And this is characteristic of a log algorithm.
+I'm reducing the size of the problem
+by a constant factor on each stage.
+Let's look at another example.
+Fibonacci And I want to show you both iterative and recursive
+Fibonacci.
+Now, I remind you Fibonacci, the nth Fibonacci number
+was the sum of the previous two Fibonacci numbers.
+And the first two cases are 1n is equal to 0.
+It's 0.
+1n is equal to 1.
+It's 1.
+You can see the code here.
+What I want you to simply notice is
+how I would look at the complexity of this.
+I've got the two base cases.
+And then I'm going to set up two variables.
+And I'm iteratively going to run from I up to the range of n
+minus 1 of temporarily holding one value right here
+and then simply creating the next Fibonacci number by adding
+the two previous values while holding
+onto the values for the next iteration through the loop.
+You can convince yourself this does the right thing
+for Fibonacci.
+What I want to know is what's the complexity.
+We know that's constant.
+Order 1, I only do it once.
+We know that that's constant because I simply set it up
+in the else clause.
+What I want to look at is inside of the loop.
+And there I've got basically an assignment, an assignment,
+an addition, an assignment, four operations.
+And how many times do I do that?
+However many times go I go through the loop, which
+is order n because of range.
+I'm going to do this, actually, n minus 2 times.
+But that's the same as doing order n times.
+And then I return it.
+So that's-- and that last return, of course, is constant.
+So this is nice.
+This is a linear time algorithm to compute Fibonacci.
+Cool.
+Actually, the best case is order 1.
+But the worst case is order 1 plus order n
+plus order 1, which we know is order n.
+It's linear.
+OK.
+A more elegant way, in some sense to compute this
+is what we did initially, which is to compute Fibonacci
+recursively.
+And there we see a different kind of characteristic
+because while I've got some base cases,
+the recursive call is actually two calls.
+I compute Fib on n minus 1.
+I compute Fib on n minus 2.
+And then I add them together.
+And I'm going to give you a hint.
+We already looked at this earlier
+and saw when we had dictionaries we
+could make this more efficient.
+And the reason we want to do it that
+is because what do we have now?
+Ah, yes.
+We've got a case where as a reduction to the problem
+I've got two recursive calls to the function.
+And we know that should be characteristic of exponential.
+And it is.
+Because it says, basically, if I want to solve Fib of n,
+I've got to do that by solving two versions of Fib
+of m minus 1, which is going to have to be solved by four
+versions of a Fib of n minus 2, which has got to be solved by 8
+versions of Fib of n minus 3.
+And you can see the characteristic here.
+I've got to gain that sequence of 2 to the 0 plus 2
+to the 1 plus 2 squared all the way up to 2 to the n.
+And that overall sums up to being an exponential or 2
+to the n problem.
+Interestingly, as we saw earlier,
+if I use dictionaries to remember earlier computation
+so I didn't have to recall them, I
+can reduce this back to the efficiency
+of the factorial version while preserving the elegance
+of the recursive call.
+But as it is here, recursively this is exponential.
+Iteratively it was linear.
+So same problem, different algorithms,
+different complexity.
+And that's part of what you want to recognize
+is, can I find a solution that's lower complexity
+and still gives me the answer I want.
+One last example, when the input's a list,
+I have to think about how do I measure that.
+And we've already seen examples of this.
+This is simply one where I'm adding up
+the elements in the list.
+The issue here is that I have to define what
+the size of the input means.
+Many other cases, it was the magnitude of the number.
+Here, the obvious one is simply the length of the list.
+And because there's just that one loop there,
+this is going to be linear in the size of the list.
+So a big O is a really valuable tool.
+It compares efficiency of algorithms.
+And we use it to describe the growth asymptotically
+as the algorithm takes on bigger and bigger-sized problems.
+I want as low an order growth as I can to do that estimate.
+And I wanted it to be independent of the machine
+or the specific implementation.
+So big O lets us describe that growth asymptotically
+in the worst case.
+And you've now seen the classes of algorithms
+that fall into that category.
+One last example is to look at lists and dictionaries.
+Because as we've seen, both of them
+come with a set of built-in operations.
+And you might want to know, so what's
+the complexity of those operations.
+And here's simply a list of them.
+For many of the list operations, indexing to get an element out,
+storing it a spot, getting the length,
+adding something to the end, they're all constant
+because the implementation in Python
+is such that we know exactly how to get to that spot
+and do something.
+On the other hand, other operations
+are the two things equal.
+If I remove an element from the list,
+if I want to make a copy of the list,
+and so on, you can see somewhat naturally or linear.
+If I want to remove an element, I
+have to walk down the list until I find it because I
+don't know where it is.
+If I want to copy a list, I clearly
+have to look at every element.
+So these are clearly linear in the size of the problem.
+Dictionaries have slightly different behavior.
+Notice here that index is linear.
+And that makes sense.
+If the list-- it was ordered, so I knew exactly where
+to go to get to an element.
+But here with the dictionary, we said
+it could be stored in any order.
+It gives me more power, but it has
+a cost, which is that it is linear compared
+to a list, which was constant.
+Same thing with store, same thing with length,
+same thing with delete, which is the equivalent to remove--
+they're all linear in the cost.
+On the average case, they may be much more efficient.
+Indexing actually is going to be constant on average.
+But remember, we're worried about the worst case.
+And so what you see here is I get more power
+with a dictionary.
+But it comes with a cost in terms of the complexity
+of the algorithm.
+But you now have, I hope, a really good sense
+of the different complexity classes of algorithms
+and the characteristics that are associated
+with each of those classes.

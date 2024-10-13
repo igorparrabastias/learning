@@ -1,0 +1,354 @@
+...
+So we've seen some quadratic complexity sorting
+algorithms-- OK, but not great.
+And clearly we'd like to get the sort as efficient as possible.
+And fortunately, we already know an idea
+that we can use to do that, and that's
+to use divide and conquer.
+If I could somehow break the problem down
+into half size chunks and do work on that,
+that would be really great.
+And that leads to a great technique called merge sort,
+a very common sorting algorithm.
+And here is the basic idea of merge sort.
+If I got a list of length 0, or length 1, it's already sorted.
+I'm done.
+If I have a list longer than that,
+let's just split the list into 2 parts of roughly equal size,
+and sort each of them.
+Once I've got them sorted, I'm going to merge them together.
+And I'm going to do that, as we'll
+see in an example in a second, by taking advantage of the fact
+that if I have 2 sorted lists, I can just
+look at the first element of each, ask which one is smaller,
+and put it into the result, and then
+look at the next portion of it.
+That's going to be a nice linear time solution.
+And so when I do that, once I've got to an empty one of those 2
+lists, I just copy the rest of the list, and I'm done.
+You can see the idea.
+Break it down into smaller and smaller and smaller
+sized problems, until I get to something
+that's trivially sorted.
+And then I'm going to merge those results,
+and keep merging those results out, taking advantage
+of the fact I'm splitting the problem in half at each stage.
+Let's look at a visualization of that to get a sense of that.
+Again, it's a nice divide and conquer idea.
+So if I've got a big list that's unsorted,
+I'm going to split it into half.
+If those are still too big and they're unsorted,
+I'll keep splitting until I get down to something
+where I've just got lists of one element.
+Once I'm down at that level, merging
+is actually really easy.
+I just look at the 2 and decide which one is smaller.
+And that gives me lists of size 2 that are sorted.
+But now merging those is also pretty easy,
+as we'll see in a second, because I'd simply
+look at each of the elements in the 2 lists,
+putting the smallest one in.
+And I merge those.
+And then I merge those.
+And then I merge those, until I get back to something
+that is overall sorted.
+Nice divide and conquer algorithm.
+Should have a nice complexity.
+We're going to look at that in a second.
+Before we do, let's again get Professor Guttag
+and a set of MIT students to give you
+a little visual demonstration of doing merge sort.
+And then we'll come back and look
+at what's the actual complexity of the algorithm.
+[VIDEO PLAYBACK]
+So we're about to demonstrate a merge sort.
+And we're going to sort this rather Motley collection of MIT
+students by height.
+So the first thing we need to do is
+we're going to ask everyone to split into a group of two.
+So you split a little bit.
+You two are together.
+You two are together.
+You two are together.
+You two are together, and you are all by yourself.
+I'm sorry.
+All right, so now let's take the first group.
+Take a step down.
+And what we do is we sort this group by height,
+with the shortest on the left.
+And look at this, we don't have to do anything.
+Thank you.
+Feel free to go back up.
+We then sort the next pair, please.
+And it looks to me like we need to switch.
+All right, take a step back.
+
+Ladies, OK.
+Ladies, gentleman, also OK.
+
+And again, OK.
+And I think you're in the correct order.
+Now what we do is we take these groups and merge the groups.
+So let's have these two-- going to sort these groups,
+have them step forward.
+And now what we're doing is we're
+doing a merge of the two sorted groups.
+So we start by merging them.
+We'll take the leftmost person in this group
+and compare her to the first person in this group,
+and decide she's still the shortest.
+Take a step back.
+
+Now we're going to look at you and say,
+you're actually taller than this fellow.
+So you now step up there.
+
+And we're good here.
+Both of you take a step back.
+
+Now we'll take these two groups and follow the same procedure.
+We'll merge them.
+Let's see, we'll compare you, the first person in this group,
+to the first person in this group.
+Now it's a little tricky.
+So let's see, the two of you compare.
+Let's see, back to back.
+We have a winner.
+Step back.
+And now we need to compare the shortest person in this group
+to the shortest person in this group.
+We have a winner.
+It's you.
+I'm sorry.
+And now we're OK.
+Please step back.
+
+Now we'll have these two groups come forward.
+We'll compare the shortest person in this group
+to the shortest person in that group.
+I actually need you guys to get back to back here.
+
+You are the winner.
+And it's pretty clear that the shortest person in this group
+is shorter than the shortest person in that group.
+So you go there and you step back.
+And now we repeat the same process.
+
+And you can see that we have a group of students
+sorted in order by height.
+[CLAPPING]
+[END VIDEO PLAYBACK]
+So again, that visualization is, as we just
+saw with the students, pretty straightforward.
+I'm going to do sub pieces and sort them and then merge them.
+And as you see with the visualization
+of this algorithm, it starts with smaller pieces,
+does a merge sort on those smaller pieces,
+and keeps doing that until it can do a merge sort
+on the entire element.
+And you can also see, even if I get to 2 sublists of 1/2
+the size of the problem, the merge
+is pretty straightforward to do.
+And that's what's going to give us
+the power of having a nice complexity to this algorithm.
+So let's look at the merging part.
+And then we'll look at the subdivision part.
+The idea here is if I've got two lists that are sorted,
+I want to simply say, look at the first element in each,
+that comparison, and put it into the result.
+The smallest one goes in.
+Having done that, one of the lists is now smaller.
+And again, I'm going to look at the first element of each.
+In this case, the 2 is going to go into the result,
+and the second list has gotten smaller.
+And I'll simply keep doing that simple comparison
+of the first element of each list, putting the smaller
+one into my result, until I get to a stage
+where one of the lists is empty, at which case
+I simply copy the remainder of the list that's not
+empty to the end of the list.
+And I'm done.
+You can see I might have to take a linear number of steps
+in the size of the lists to be able to get to that stage.
+But that's still not bad.
+And that's going to be nice, because, in many cases,
+it will actually be faster if I actually
+don't have to look at all the remaining elements of a list.
+So merging is going to be pretty straightforward.
+So here's the code that would do it.
+Merging simply says, given a left and right sublist
+that we know are sorted, what am I going to do?
+I'm going to set up a result into which I'm
+going to store the values.
+And I'm going to set up a couple of indices, i and j.
+And basically, I'm going to let them walk down the list.
+So again, I'm not making copies of the list.
+I'm simply looking at the elements.
+As long as i is not to the end of the length
+of the left sublist, and j is not
+to the end of the length of the right sublist,
+I'm going to do the comparison.
+And if the left one is smaller, I'm
+going to add that element into the result.
+Again, I know append is constant.
+So that's nice.
+And I change i, just as I did in my example.
+I now move my index in the left list up by 1.
+On the other hand, if the right element is smaller,
+I add it in, and I change j.
+And I'll keep doing that until one of the lists is exhausted.
+And then these two cases simply tell
+me, in either of those cases, just add
+in the remainder of that list.
+Great.
+What do I know here?
+I've got left to right sublists that are ordered.
+So I'm just moving the indices for the sublists.
+It's avoiding that copy of the list.
+And so that cost is basically going
+to be linear in the size of the list.
+When the right sublist is empty, I
+copy the rest of the left sublist.
+When the left sublist is empty, I
+copy the remaining elements in the right sublist.
+And then I just return the result.
+What's the complexity here?
+I go through two lists, but only one pass.
+And I'm only comparing the smallest elements
+in each sublist.
+So the complexity is basically order of the length of the left
+and the length of the right sublist.
+Overall, I've got order length of the longer list comparisons,
+and so this is always going to be linear
+in the length of the lists.
+So the merge stage is linear, depending
+on how long those lists are.
+OK, now how do I put it together?
+Knowing I know how to merge, I do
+the following for merge sort.
+Given a list, I say, if there's only 0 or 1 elements there,
+I'm done.
+Just return a copy of the list and I'm all set.
+Otherwise, there is that nice pattern.
+Find the midpoint.
+Break this in half.
+Find the midpoint by taking the length of the list,
+doing an integer divide by 2.
+And then simply do a merge sort on half of the list-- that's
+the smaller half of the list-- do a merge sort
+on the left side of the list, then
+the right side of the list.
+Once I get those back, simply merge them together,
+and I'm done.
+So what I'm doing here is treating base case,
+dividing the problem in half, solving two sub problems,
+and then conquering it with the merge step
+to bring it back down-- nice, crisp, elegant solution.
+What else do we want to know here?
+Well, let's just look at an example
+of how we would do this, and then
+look at the overall complexity.
+So imagine I have a list of 8 elements, as you see up here.
+I'm initially going to break them in half,
+and I need to go off and do a merge sort of the left half.
+Again, I break it in half.
+I need to do a merge sort to the left half.
+And eventually I get down to actually 2 base cases.
+The first base case, the solution I can just pass back,
+simply list of one element.
+Same thing with the second one.
+And I just am doing that merge.
+And that gets passed up to the place I wanted to do it.
+I do the same thing with the right 1/2, same kind of merge.
+That gets passed.
+And now I can merge 4 and 8, and 1 and 6
+with that simple little linear search
+to get out the solution I would like.
+Halfway there.
+Same thing on the other 1/2.
+Having passed that back, I can go to the other half
+and very quickly get it down to a base case.
+Merge those results.
+Get it down to another base case.
+Merge those results.
+Those 2 get back up and get merged into an unordered list.
+And now I can simply merge those 2 sublists
+to get out the overall sorted list I wanted.
+I show you this diagram because you
+can see that a nice pattern.
+This is breaking it down in a nice way
+into smaller pieces of things.
+And you already ought to have a good sense
+of what's the complexity here.
+The complexity of the overall breaking down into sub pieces
+is going to be probably-- and we'll
+see in a second-- logarithmic, because I'm
+reducing the size of the problem in 1/2 at each point.
+The wrinkle here is that the merge we saw
+was linear in the size of the problem.
+So let's put those two pieces together.
+At the first level of recursion, I've
+got n over 2 elements in each list.
+And so I've got order n plus order n, which
+by that additive law of complexity is still order n,
+in terms of solving that problem.
+Meaning, once I've got the solution,
+I've got to do basically linear amount of work to do the merge.
+At the second level, I've got n over 4 elements in each list.
+And there are 2 merges there.
+We saw that in that diagram.
+So while the size of the problem is smaller,
+I've got twice as many searches.
+And if you think about it, I'm still
+at that entire second level looking at each of the elements
+probably once.
+So it's also order n.
+At each recursion level, the merge step is order n.
+The size of the list is smaller, but I got more of them.
+And that basically cancels out I've got a linear search.
+The good news is, how many times do I do it?
+I've already hinted at it.
+You know the answer.
+I'm doing a logarithmic number of steps.
+Because I'm basically saying, given a problem of size n,
+a 1 recursive call is n over 2.
+2 recursive calls is n over 4.
+At k recursive calls is order n to the k.
+I'm done when end n to the k is of size 1.
+That's when k is log in.
+And this is an example of something
+I promised to you earlier, it's order n log n.
+Its log linear.
+So it's not quite as nice as logarithmic.
+It's not quite as nice as linear.
+But it's a lot better than quadratic, or certainly
+than exponential.
+And this is a characteristic of a wide class of problems
+that are really nice.
+n log n, log linear, great solution.
+So what do I have for sorting?
+I can be dumb about it and use bogosearch.
+Good luck.
+I could use bubble sort.
+I could the use selection sort.
+They both have a similar property
+that they are a quadratic in size.
+Timing wise, selection sort is probably a little bit faster.
+One of the advantages of selection sort
+is that I can guarantee that the first i elements are sorted.
+So in fact, if I want to stop the computation after I
+get some number of the best elements out,
+I could do that without having to sort the rest of the list.
+And that's better than doing bubble sort.
+But my best option is merge sort.
+And in fact, while we won't do it here,
+one can show that n log n is the fastest time in which one
+can actually do a sort.
+But having an n end log n sort time
+is nice, because if I amortize that cost over searching,
+I actually have something that's going to work out quite nicely.
+And so now you've seen search.
+You've seen sort.
+And you've seen a wonderful example
+of an elegant class of complexity, which are
+those log linear algorithms.

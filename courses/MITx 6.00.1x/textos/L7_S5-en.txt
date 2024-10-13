@@ -1,0 +1,307 @@
+...
+I want to show you one somewhat more explicit example
+of doing debugging.
+And I want to do this to highlight this idea of treating
+debugging as a search problem.
+We've already talked about it, but basically, I
+want to look for an explanation for the incorrect behavior.
+And I'm going to do that, as I said,
+by looking at the available data, both the correct cases
+and the incorrect ones, and trying
+to come up with a hypothesis about why
+I'm seeing that behavior-- something
+consistent with the data.
+Then design and run a repeatable experiment
+that has the potential to refute the hypothesis.
+This is really just a scientific method.
+And keep track of that until I narrow down
+the range of hypotheses and I find
+where the bug or bugs, cause maybe more than one
+actually exists.
+One of the ways to do this is to do it literally by search.
+And binary search is a really powerful tool for doing that.
+So what I'm going to do is give you a piece of buggy code.
+So when you see it, don't panic.
+I know there are bugs in there.
+I put them in there deliberately.
+And what I want to do is insert a set of print statements
+to help me narrow down by bisection search
+where are the bugs or bugs that may be
+causing this kind of behavior.
+And that's going to give you a way of seeing both
+how print statements help as well as how search is going
+to help me find those bugs.
+So here's two functions.
+They're attempting to tell me whether something
+is a palindrome or not.
+Similar to what I did earlier, but here I'm
+going to actually have a little function,
+it's called Silly, deliberately, that's
+going to take in a number.
+And I'm going to type in a set of characters
+up to that number of characters.
+Use that to pull together a list, as you can see,
+because I'm going to build a list here in result.
+And then I'm going to run that through isPal which
+is going to basically take the list,
+take a reversed version of the list, and then compare them.
+Because if they're the same, that's
+another way of testing if it's a palindrome or not.
+That's different than what we did before,
+but it's a nice way to test a palindrome.
+Whether this is the best way to do it or not, I don't care.
+What I want to do is use this as a debugging tool.
+So with that in mind, I've got a version of my buggy code
+over here.
+I'm going to load it into my machine.
+And I'm going to run Silly a couple of times
+just to test it out.
+So I'm going to run Silly with 5 and I'm
+going to enter a, b, c, b, a.
+And it says it's a palindrome.
+That's good.
+It was.
+That's great.
+Let me do Silly again with 10 and I'm
+going to enter p, a, l, i, n, n, i, l, a, p.
+And correctly, it says it's a palindrome.
+Now if I'm in a hurry, I say great, this works,
+but I've only tested it on things
+that actually are palindromes.
+So let's try it on something that isn't a palindrome just
+to make sure that I haven't missed something here.
+So I'm going to do a really simple case Silly of 2.
+And I give it a and b.
+And it tells me it's a palindrome.
+Oh crap.
+I got a buck.
+OK?
+Now I want to get into debugging mode.
+So I need to try and figure out where is this error occurring.
+So I've run it as I said here.
+It worked on this case.
+It worked on this case.
+But it says that it was in fact a palindrome which is wrong.
+So I'm going to pick a spot halfway through the code
+and simply look at the intermediate values.
+And so in particular, I'm going to insert a print statement
+right here, right at that spot.
+And that print statement is going
+to look at the value of result before I ever actually
+called isPal.
+I want to check to see am I handing
+into the thing testing for palindromes something
+of the right form.
+So I have a version of the code like that over here.
+And I'm going to call it.
+And I'm going to run Silly again.
+And I want to see what happens when I print out
+intermediate results.
+And I give it a and b and I have a problem.
+What's the problem?
+Well, I would have expected at this point
+that I should have had the list of a and b,
+but when I ran the code, I just got b.
+Now, because of binary search, I know that at least one bug must
+be present earlier in the code.
+So I want to add a second print in, this time, inside the loop
+to see what's going on.
+And when I say inside the loop, I
+was looking after I'd gone through this loop
+and I know that the error here says that I'm not
+getting the right kind of list.
+I want to do something inside the loop
+to see if I can figure out what's happening there.
+So let me now put a print statement inside the loop
+and let's see what happens if we run it.
+So now I've got a new version of the code.
+I'm going to print out the result each time
+through as I do it.
+And I'm going to run that.
+I'm going to go over and call Silly again, 2 and I give it a
+and it prints out the list a, and I give it b
+and it prints out the list b.
+Ah!
+That's telling me something valuable.
+It's telling me that each time through, I'm
+just putting into result just a single element.
+So append, somehow, was not doing what I expected it to do.
+And that suggests that the result is not
+keeping all of the elements.
+And in fact, I can probably already figure out
+what the problem is.
+The problem is that I'm initializing result
+inside the loop and I really want to initialize it
+outside the loop.
+If I go back to my code, you can see right here every time
+through the loop, I'm setting result back to an empty list
+and then just putting the next element into it.
+I really want to set up result outside the list
+and then see if I can append.
+I use this as an example because you've probably
+made this mistake.
+It's an easy one to do.
+So let's now move result, as I said, from this position
+and put it at that position.
+And with that in mind, here's a version
+of that where I've moved that initialisation.
+I've still got the print on the inside.
+Let's run it.
+And when I test Silly with 2 and I give it a,
+it says I got the list a, rather,
+and I give it b-- oh good.
+I'm now at least getting the list in the right form.
+That's good.
+That's encouraging.
+It now tells me that the list is being delivered
+in the right form, but I'm still getting an incorrect answer.
+And that tells me that I still have another bug.
+So the data structure is being properly set up,
+but there's another bug.
+And that's really important.
+It would have been really easy to say, I'm done, but I'm not.
+There may be more than one problem.
+And this suggests that the second or maybe third bug
+must lie somewhere below the print statement.
+So let's go look at isPal.
+As before, let's pick a point in the middle of the code,
+add a print statement, and see what we can do
+in terms of trying to find it.
+And I'm going to remove that earlier print statement
+because I don't need it.
+So now, up inside of isPal, I'm going to add a print statement.
+And I'll remind you, I need to decide what do I want to test.
+So here, what I'm trying to do, as you know,
+is take x which should be a list of these characters.
+I'm creating a temporary version of that
+and I'm trying to reverse it.
+So I'd like to check at this point is temp different from x?
+It should be a reversed version of that.
+All right.
+I have a version of that on my machine.
+Let's just load it and run it and see what happens.
+And as before, I'm going to do Silly with 2 and I give it a
+and I give it b.
+Oh!
+That's interesting.
+I was trying to reverse the list.
+And what was I testing here?
+I was saying what is the structure of temp
+and what is the structure of x?
+I would have expected them to be reversed one from the other,
+and they're not.
+So it should have been that x was a b
+and temp should have been b a, but they both have a b.
+So I've got a problem and it must be happening
+before this point in the code.
+Because of when I get here, I have the incorrect structure.
+So let's add another print statement
+a little earlier in the code.
+And now I'll put a label on it so I
+can see where I am because I got multiple print statements.
+So I'm going to now have the one I had before,
+which is after the reverse.
+And I'm going to have the one that
+was going to do it before the reverse to see what's going on.
+OK?
+With that in mind, I'm going to come over and try this.
+I've got now a piece of code with those two print
+statements.
+And when I run it and I run my Silly example a and b.
+Hm.
+So it wasn't reversing.
+Even if temp started off as the list x, I printed it out,
+it was in the right form.
+After the reverse, it's not.
+So temp has the same value before
+and after the call to reverse.
+And if I look at the code, I can see the bug.
+And it's a standard one.
+I forgot to actually call the procedure.
+I just need an open and close paren.
+OK.
+Let's try that and see if that helps
+what we were trying to do.
+So now I've got a version of that and I call it.
+And I run my Silly example with 2 and I give it a
+and I give it b.
+Ah!
+Some progress, but not quite what I wanted.
+Because now temp and x were the same before hand, now
+both of them are reversed.
+Crap.
+What happened?
+I got a reversal, but I got both of them reversed.
+So putting that in lead to having both of them reversed.
+And now, we've simply narrowed it down to a single line.
+The error must be in that line where I did the call.
+And I can actually figure out what it is.
+The problem is we've got an aliasing bug.
+Reversing temp has caused x to also be reversed
+and that's because they're referring to the same object.
+And I can see that in the code.
+What did I do?
+I said let temp equal x.
+Oh, yeah.
+That's pointing back to exactly the same structure as x.
+So when I reverse temp, I reverse x.
+I've got an aliasing problem.
+There's an easy fix.
+And that easy fix is to make a copy
+to clone x before I do temp.
+And with that last change, hopefully I'm finally done.
+And if I do that, now I run it and I run Silly with 2
+and I give it a and I give it b.
+Ah!
+Finally!
+Now I can see that after the reverse temp is reversed,
+x is not.
+And it says in this case, it's not a palindrome.
+So it took me a while.
+I had multiple bugs, but I found them.
+And the message I want you to take out of this
+is that using that binary search really
+helped me isolate where those bugs were
+by thinking about what should I expect at this point, what
+do I actually see at this point, and what does it
+tell me about that hidden bug that I wasn't able to spot.
+So at this point, I should actually
+go back and check that all our other test cases still
+work properly.
+I'm not going to do that, but that is actually
+part of the good testing pattern just
+to make sure that having fixed this set of bugs,
+I don't still have some hidden bug still showing up somewhere
+or that I haven't accidentally introduced a new bug into some
+of those other test cases.
+So a last set of just pragmatic hits.
+Look for the usual suspects.
+What are the standard places where you might make an error?
+Aliasing being an obvious one.
+I found out by looking at when I reversed something,
+does it reverse everything or just
+the thing I was trying to reverse?
+Secondly, ask why the code is doing what it is,
+not why it's not doing what you want.
+The latter is because you've got a bug.
+Asking why the code is doing it is
+going to be helpful in helping you
+isolate where the bug might be.
+Third, the bug is probably not where
+you think it is so try and eliminate locations.
+That's where the binary search, the bisection search
+really helps.
+As we've already said, try and explain the problem to someone
+else, including a rubber duckie.
+Don't always believe the documentation.
+It may say, here is what I'm expecting,
+but it may not actually explain it.
+So if I'm still having a hard time finding the bug,
+ignore the documentation for a second and try and isolate in.
+And finally, if you've been at it for a while
+and you're not getting there, take a break
+and come back later.
+A fresh look can often help you suddenly
+spot a problem that you weren't seeing
+because you had hidden assumptions about what
+you were looking for.

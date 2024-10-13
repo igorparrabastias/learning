@@ -1,0 +1,86 @@
+...
+So far we've just been typing things into our Python shell.
+And for simple expressions, that's OK.
+But it's even there a little bit painful.
+And when we want to do things that we might like
+to run multiple times or when we want to do things
+with multiple commands, we'd really like a better way
+to deal with that.
+And for that, we'd like to have a text editor.
+Just like an editor you'd use for writing Word documents,
+we'd like an editor into which we can type Python expressions.
+And in most cases that comes as part of something
+called an IDE, an integrated development environment.
+I happen to be using one from Anaconda.
+IDLE's another version of it.
+And that IDE comes both with a text editor into which I
+can enter things, I can edit them,
+and I can save them away, a shell, which
+is that place where I'm going to be able to interact
+and where I can load that information in before I do
+that interaction, and as we'll see later on,
+an integrated debugger.
+And I want to show you just an example
+of how I would use that text editor as part of the IDE.
+
+Your own computer may have a slightly different version,
+but you should be able to figure it out.
+Let me simply show you an interaction on mine.
+So on my computer, I have both a text file opened up
+as well as the shell.
+And here I'm going to type in a couple of expressions.
+I'm going to set x to the value 5.
+And then I'm going to create a little conditional.
+I'm going to see if x is not equal to 5-- and remember,
+I'm going to close that conditional with a colon
+to tell me I'm at the end of it.
+When I hit a carriage return, the editor automatically
+indents, which is really nice.
+I know that the next set of things should be indented.
+So in this case I'm going to say print out I am here.
+I have no idea, why but it seems like a reasonable thing
+to print out.
+I hit a carriage return.
+I'm still at the same place.
+But then I'm going to put in an else clause.
+And notice it nicely indents back
+because the else should be at the same level as the if.
+And then I'm going to say print, no I am not.
+Now I want to run this, meaning I'd
+like to load this information into my shell.
+There are a number of ways to do it.
+But the easiest one is if I go up to my menu item at the top,
+there is something called Run.
+And if I click on that, it gives me a set of options,
+including something called Run.
+And I hit Run.
+And it's going to ask me where to store that file.
+I'm going to give it a name temporarily.
+
+And it said I didn't like that.
+So I'm going to try it again, giving it a place
+that I know I can store it to.
+Let me do that.
+I want to pick a particular place, save it away.
+Oh nice.
+If you now look at my shell, it's
+actually evaluated that code.
+It turns out that I have other options here.
+Under that menu I could run the entire file,
+or I could pick something out and run just a portion of it.
+I could select a thing using the mouse or run a line.
+One of the other things I'd like to do
+is to run that file multiple times.
+So for example I could say I'm going to change x from 5 to 6.
+And now it turns out on my machine
+there's a short cut, which is just function F5.
+It may be different on your machine.
+It automatically saves the file away, executes it.
+And again, on my shell, I've now seen a printout.
+This is going to be really nice.
+It's going to let me have easier ways to edit files,
+edit code before I run them.
+And so what you have then is that ability
+to have both a place into which you can type things, save them
+away, and a place in which you can then evaluate them in order
+to do the kinds of computations we've been discussing.

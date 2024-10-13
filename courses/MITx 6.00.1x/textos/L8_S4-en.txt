@@ -1,0 +1,136 @@
+...
+Having the ability to deal with exceptions,
+to raise our own exceptions, to basically
+control how we want to deal with unexpected circumstances,
+really improves our ability to write good code.
+And it's part of that theme of defensive programming.
+If you think about it, what I did in those examples was,
+I thought ahead to things that could occur that might not
+be what I normally expect and thought about what
+I wanted to do in that case.
+So my example of looking at grades
+was saying, if there are no grades,
+how do I want to handle that?
+And plan ahead so that I don't just throw an error,
+I actually deal with that circumstance.
+We can take that idea and use one more tool from Python
+to think about how to do defensive programming
+to prevent circumstances from leading to unexpected results.
+And that last idea is something called an assertion.
+We talked earlier on about saying,
+when we write good code, we include things
+like a docstring that says, here's
+what I assume the inputs are going to look like.
+And here's the guarantees I'll put on the output
+if you give me inputs that satisfy those conditions.
+But we never enforced that contract, if you like.
+We simply said, document what you're trying to do.
+We might want to be sure that the assumptions on the state
+of the computation really are what we expected-- not
+just for inputs, although that's a standard place to do it,
+but maybe more generally.
+And for that, we can use an "assert" statement
+to raise an error-- an exception, called an assertion
+error-- if those assumptions are not met.
+As I said, could be on inputs.
+It could be in an intermediate state of the program
+where I want to check that I'm in the right place.
+I can do an assertion that says, I
+assert that the following should be true, and if it's not,
+raise an exception.
+A nice example of good defensive programming.
+Here's an example, if I back to my idea of just taking
+average of grades.
+I could assert-- using that special keyword "assert"
+right here-- when I enter average,
+that I will expect there to be at least
+some grades in that list.
+And so I can assert that the length of grades will not be 0.
+And what that says is, if I give an input to average that
+has a list of one or more elements,
+this statement will not be true, because it won't be 0.
+It'll be bigger than that.
+And in that case, I'll skip past the "assert" statement
+and do the right thing.
+I'm safe to go ahead and do the division.
+On the other hand, if I accidentally
+give it an empty list, then, in fact, the length of the grades
+is 0.
+The "not" statement is false.
+And since that is false, assert, then, will stop the execution,
+throw an assert error-- throw an assert exception
+with that message printed out.
+So it raises an assertion error when
+I get something I don't want.
+Otherwise it runs OK.
+And what's nice about this is it's not
+going to stop execution as long as I give it legal things.
+And this is a simple way of enforcing the expectation
+I have for this function.
+That's a nice thing to have, because I stop immediately
+if the assertion is not met.
+I don't wait til I'm partway through the processing
+before I stop the execution of this particular procedure.
+So assertions are really a nice way
+of doing defensive programming.
+They don't allow a programmer to-- I'll
+start again on this slide.
+So assertions are a good way of dealing
+with defensive programming.
+What are the properties of assertions?
+First of all, assertions don't allow a programmer
+to control the response to unexpected conditions.
+It simply is going to ensure that execution halts whenever
+an unexpected condition is not met.
+Typically we use it to check inputs.
+It's the standard place to do it.
+And you'll see in good programming,
+often, every function or every critical function
+will have an assertion at the beginning saying,
+here's what I expect in terms of the form of the input
+before it comes out.
+If I want to be really careful, I
+could actually use it to check outputs
+before I return a value from the function to avoid
+propagating bad values.
+And if you think about that docstring,
+I have an expectation on the inputs.
+I have an expectation on outputs.
+Having an assertion both on inputs and outputs
+is a nice way of being very defensive in terms
+of how I program things.
+The other nice thing is that having those checks does
+make it easier to locate the source of a bug,
+because I'm going to stop the execution as soon as I
+get an input that doesn't meet the specs of a procedure.
+And that tells me instantly that the bug
+must have occurred prior to the call to that function.
+And it's a little bit like doing that search I did in my earlier
+example, but using assertions to help me spot the places to find
+the bugs rather than having to go in and put
+explicit prints throughout the entire procedure.
+So where should you use assertions?
+Well, these are some good examples of it.
+Our goal is to spot bugs as soon as they're introduced
+and make clear where they happened.
+So I can use assertions as a supplement to my testing,
+raising them anytime a user supplies that input data.
+And good places to use assertions
+are to check types of arguments, to check
+that invariance on a data structure
+are met-- this is a list of more than one element,
+for example-- to check constraints on values being
+returned, and to look for violations
+of constraints on a procedure.
+For example, I say I expect a list to have no duplicates.
+Well, I could enforce that by actually doing a check
+and raising-- or using an assertion, rather,
+to stop the execution if I get to that kind of point.
+So using exceptions to control flow
+of processing through a procedure,
+using assertions to check conditions on inputs,
+outputs, and potentially intermediate
+values-- two valuable tools to have
+as you think about how to write code that is bug-free
+and does defensive programming to try and ensure
+that it's bug-free.

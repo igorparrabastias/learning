@@ -1,0 +1,125 @@
+...
+So far in this course, we've seen
+a lot of interesting different algorithms computing
+a wide range of things.
+And we've also now started talking
+about the complexity of an algorithm--
+how costly is this going to be to compute
+as the size of the problem grows.
+We're going to look at one last class of algorithms-- really
+valuable algorithms, really important algorithms, both
+looking at the solutions and looking at the complexity.
+And those are what we're going to call search and sort
+algorithms.
+So a search algorithm-- an obvious statement.
+This is something where I want to find an element, or an item,
+or a group of items with specific properties
+within a much larger collection of items.
+Now, that collection could be implicit.
+Way back at the beginning of the class,
+we talked about finding the square root
+as a search problem.
+We don't generate all possible solutions
+and then look inside there.
+We may do it in a more approximate way-- for example,
+with bisection search or with Newton-Raphson,
+things we've seen earlier.
+But these are examples of finding a square root
+as a search problem.
+And we know the complexity of those algorithms,
+because we have the tools to look at them.
+The collection could also be explicit.
+And we saw an example of that when we built a little database
+to look at student grades.
+Is a particular student record in a stored collection
+of much larger numbers of those data records?
+So search is going to be important.
+How do I know if something's in a collection?
+How do I find that solution in that collection?
+We'll see why sort is going to matter in a second.
+But starting with search, what could
+we say about a search algorithm?
+Well, the most straightforward way
+is just what we would call brute force search.
+Given a collection, just walk through them
+one at a time trying to see if I found the solution or not.
+And in fact, when we were looking at square roots
+much earlier in the course, we did that.
+We had a brute force, sometimes called British Museum search,
+where I look at every possible version of it
+until I find a solution.
+The nice thing here is, if I've got
+a list of possible solutions or a list of things I'm searching,
+it doesn't have to be sorted.
+It could just be an arbitrary order.
+But it's going to be linear.
+And if the list is really large, that's a problem.
+Bisection search is a much nicer solution.
+But it only works if the list is sorted.
+And the idea if I've got a sorted list is,
+I don't have to look at all of the list to find it,
+I can divide up the work the same way
+we did when we did other kinds of bisectional solutions
+to problems.
+And I want to show you two different implementations
+of the algorithm and look at the complexity.
+So first of all, linear search, straightforward.
+I'm simply going to loop through the list until I find them.
+And here, I have to obviously look
+through all of the elements to decide if it's not there.
+So the complexity here is going to be obviously linear.
+And notice, I could speed things up
+a little bit by just retuning true here, rather than worrying
+about this actually setting the flag and returning it.
+But even breaking out of this loop, in the worst case,
+is still linear.
+So linear cost search to run through all of those pieces.
+Now, I'm also going to make an assumption here.
+But just to remind you, it's order length
+of the list l times order 1 to test if the element is actually
+the thing I'm looking for not.
+But overall, it's linear.
+That's great, linear time search.
+But I have one other piece I'm doing here,
+which is I'm assuming here that I
+can retrieve the element of the list in constant time.
+We said that in a previous lecture,
+that that would be the case.
+But let's just do a quick aside to see why that's true.
+And then we'll look at bisection search.
+So why can I say I could get to testing whether something
+is at a particular place I can retrieve
+an element of a list in constant time?
+Let's do this simple case.
+If my list is all, say, of integers,
+then they're smaller than sum overall size.
+I could reserve, say, 4 bytes of memory to store each integer.
+And that says, to represent the list,
+I would just set aside 4 times the length
+of the list of consecutive elements of memory
+to store things in.
+And then if I want to get to the i-th element,
+I know that I've allocated that 4 bytes, for example,
+to each one.
+I know that the i-th element is that whatever
+the location of the base element, or first element
+is, plus 4 times i elements down.
+So I can go exactly to that location in memory.
+I can go directly here to pull it out.
+So I can do this in constant time.
+What if the list is a more complicated elements?
+Well, we saw that solution earlier as well.
+We use what's called a linked list, where I set aside
+a consecutive number of elements in memory to hold the pieces.
+They point to the next one in turn.
+And the entries simply point out to the element
+that I want to do.
+So I simply walked down-- not walk down-- I
+go straight to the i-th location in memory
+and then just follow the pointer to retrieve the element I want.
+So in both cases, it is constant time access.
+So brute force method, linear search,
+linear time to find out whether the element is there or not.
+And worst case is, I have to go through all
+of the elements of the list in order
+to deduce it's not present.

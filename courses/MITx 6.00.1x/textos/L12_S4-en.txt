@@ -1,0 +1,98 @@
+...
+So the next algorithm we're going to look at
+is a clever idea.
+Not the most efficient algorithm, but it's something
+called bubble sort.
+And the idea here is that given a list of elements,
+I'm going to start at the beginning
+and compare successive elements.
+And I'm going to swap them so that the smaller one is always
+first of that pair.
+So if I look at the first two and the second element
+is smaller than the first one, I'm going to do the swap.
+And then I'm going to look at second and third,
+and then third and fourth.
+And you can see what happens here.
+As I walk down the list.
+I'm basically bubbling the largest element
+so that after one pass through the list,
+the largest element's going to be at the end of the list.
+If I'm lucky, some of the other ones
+may already be in the right place.
+But having gone through it once, I
+can bubble that largest element to the end of the list.
+I go back and I do the same thing-- passing through,
+bubbling them along.
+And I'll do that until, in fact, the entire list is sorted.
+The little animation nicely shows that you here.
+You can see how as we pass through here, bubbling things
+along, we build up basically that diagonal
+from this end down.
+Largest element there first, and then as I go along,
+the next largest and so on pass through.
+I might not have to go through the list n times here.
+If I'm lucky, many of the things might be in the right spot.
+But in the worst case, you can already
+get a sense of what the complexity's likely to be.
+I've got to go through the list, and I got
+to do that probably n times.
+So it's probably quadratic, but let's
+look at how we might build it.
+Here's a little algorithm for bubble sort.
+I'm going to set up a flag that says, initially,
+I've got a value false.
+And we'll see why.
+It's going to let me tell when I'm done.
+And then I run through a loop that
+says, as long as I'm not at a true point,
+while this flag is false, I'm going
+to let j go from one up to the length of the list.
+And I'm just going to compare successive elements.
+And if, in fact, I have a case where the element I want to do
+is bigger than I want, I set the flag to false, and I do a swap.
+And then I go back into it again.
+So that inner loop's doing the comparisons.
+The outer while loop is going to be used for multiple passes
+until there's nothing left to be swapped.
+What I'm interested in is, what's the complexity of this?
+And that says, basically, I have to say, how many times do I
+go through this loop?
+It could be, in fact-- I'm sorry.
+To go down the loop, I have to do it
+n times because I've got to look at all of the elements
+and do the swap.
+Inside of here, there's extra work,
+which is why it's not as efficient because I've
+got to do some number of operations.
+But that's constant for every time through the loop.
+So I've got an order n, or length of the list processing
+here to go through the loop.
+And then how many times do I do it?
+If I'm lucky, not very many.
+But in general, it's probably order length n.
+And so I can see what the order of growth here is.
+It's n squared, because I've got to do n minus 1 comparisons,
+and I've got to do n minus 1 times.
+I can look at a little example of this.
+I've got a version of a bubble sort on my machine.
+I'm going to load it in.
+And what I want to do is actually
+print out what the version of the list is at each pass
+through the loop so that you can see what happens here.
+And so if I call a bubble sort on the little test list,
+you can see what it does.
+When I enter, the list is just in some arbitrary order.
+After I've gone through the list once,
+you'll notice number 9 is at the end.
+After I've gone through the list twice, 5, 6, 8, and 9
+are all in the right spot.
+So I got lucky.
+Some of them happen to be just in the right place.
+Although what I was really doing was bubbling 8
+to its position in the list.
+And so you see here, I don't actually do this end times.
+But the complexity is still order n times
+through the process, and order n times within each loop
+in order to get out the solution I want.
+So a quadratic solution.
+Clean little code, not as efficient as I would like.

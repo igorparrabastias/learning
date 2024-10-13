@@ -1,0 +1,130 @@
+
+We've seen some simple examples of recursion,
+factorial, doing multiplication by doing recursive addition.
+These are nice places to start.
+But recursion is actually really a powerful tool.
+And I want to show you a very different way of thinking
+about recursion on a problem that's
+otherwise hard to solve if you don't
+think about it recursively.
+And this is to take a classic problem called
+the Towers of Hanoi.
+The story is that somewhere in the temple in Hanoi
+there are three tall spikes on which there are initially
+64 disks of different sizes all stacked together
+in decreasing order with the largest at the bottom
+going all the way up to having the smallest at the top.
+And the goal of the priests in this temple
+is to move the entire stack from one spike
+to another one, moving one disk at a time,
+but with the property that they can never
+have a larger disk covering up a smaller disk.
+And there's a little animation you
+may be watching at the bottom here
+that's showing an example of that
+with a stack of size three.
+We want to figure out how would I write a program
+to tell the priests exactly how to move those disks so they
+can move all 64 from one spike to the other.
+And I'm going to do a little demo to show that to you.
+So I want to demonstrate for you how to solve Towers of Hanoi
+and especially how to use recursive thinking to do that.
+But to begin with, I'm simply going to show you solutions
+to Towers of Hanoi and see if you can figure out
+how to write code to describe the set of moves
+that would solve it.
+Let's start with the easiest case.
+I have a stack of size one.
+Moving it is easy.
+I just move the disk.
+If I have a stack of size two, I know
+I've got to move the higher to the smaller
+disk to the spare place while I move the bottom one,
+and then move it over-- pretty straightforward.
+If I want to move a stack of size three,
+takes a little more work because I got to move the top disk.
+I got to be careful not to cover up a smaller disk with a larger
+one.
+But once I've cleared the bottom disk,
+I can move it, and, again, move the top disk to the spare one
+so that I move the entire thing without covering up a smaller
+disk with a larger disk-- also pretty easy.
+But what about a stack of size four.
+It takes a little more thinking because I
+have to really be careful here that I'm not accidentally
+covering things off.
+And it takes a lot more work to, in fact,
+expose that bottom disk, which I'm now ready to move.
+And now I've got to get all of those back over again
+without covering a smaller disk with a larger one.
+And so that allows me, basically,
+to make that set of moves to get to that point.
+Great-- easy to write code to do this.
+Right?
+Probably not.
+But if I think about it recursively, it's really easy.
+So what does that mean?
+I want to move a stack of N disks.
+And recursively, I would say if I already
+knew how to move a smaller stack, what's my solution?
+Oh, that's easy.
+Move a slightly smaller stack to the spare disk.
+Now I can move the bottom disk and move
+that stack to the target.
+And what does it mean to move that stack to the target?
+Move a slightly smaller stack to the spare disk,
+move the bottom one, and move that stack.
+And I'll just keep on winding that until I'm just
+moving single disks.
+Recursively, this is easy to see.
+And that leads to a very natural implementation.
+OK.
+What you saw in that demo is that it's
+going to be hard, even if you watch things
+like moving a stack of three or stack of four.
+How would you write the code to do it?
+And then what you saw is if I think about it recursively,
+it's actually really easy.
+Because recursively, what do I do?
+I solve a smaller problem.
+Move a stack of size N minus 1 onto the spare disk.
+Then I've got just one disk left on the bottom of it.
+I move that one, which is a simpler problem.
+And then I move that stack that I just temporarily
+moved to the other side back on to the place I'm going to.
+Recursively, this is really easy to see.
+And so even though this looked like a very hard problem,
+it's very easy to write code to do it.
+And so there is, in fact, a little set of code
+that says-- I got a function that simply
+says print an individual move from the from stack
+to the to stack.
+And then here, notice what I've got I've got.
+I've got a test for a base case.
+If I've got just a stack of size one,
+I'm just going to print the move to take it from from to to.
+Otherwise, I actually now have to solve
+two recursive problems.
+So it's a little bit different.
+I'm going to move a smaller stack from to
+from to the spare swap.
+Having done that, I'm going to move
+the simple case to the place I'm trying to go to.
+And then I got to move another smaller size
+stack from the spare over to the to spot.
+But the code itself is really straightforward.
+And if in fact I go and run this on a stack of size four,
+it gives me very nicely all of the moves
+I want to do to move that stack over.
+What I want you to see here are two things.
+One, I can have multiple recursive calls
+inside of a function body.
+It's perfectly fine.
+And two, this is a problem that I suggest
+is really hard to solve iteratively,
+but elegantly easy to solve recursively.
+And I want you to think about the notion of break it down
+into a smaller version of the same problem,
+assume that can be solved, build your solution with that
+and other simple operations, and let the recursion then
+unwind it to get to the solution that you want.

@@ -1,0 +1,128 @@
+...
+So we've now seen primitives.
+We've also seen means of combination, simple arithmetic
+things, expressions that we can use to compute values.
+I said earlier there was one last piece, abstraction,
+ways of giving names to things.
+So I can refer to a value just by its name and reuse it.
+We're going to see other kinds of abstractions
+as you go along, but that's probably
+the most important first one.
+And so we can now introduce that into our programming language.
+In Python, we do an assignment using an equal sign.
+And you see an example of it right here.
+There is an assignment of a name to a value.
+And in particular, the value will just
+be computed the normal way.
+In this case it's simply that float.
+That's what we call a variable.
+It's a name.
+And the equal sign gives us an expression
+called an assignment that says bind to
+or associated with the name pi the value 3.14159.
+Once we have that, we can use pi wherever we would like.
+So in fact if I go over to my machine
+and I do the same thing, I say pi is equal to 3.14159.
+If I now ask for the value of pi, it prints it back out.
+I've bound pi to a number.
+I could do other things.
+I could give an approximation to pi.
+And I want to put this one up because I want to remind you
+that if I were to use double slash,
+I would get just the expression 3.
+But here it's going to give me something a little different.
+And if I do pi approx, I say 22 divided by 7,
+and I ask for that value, I get a little bit better,
+or maybe not better representation of pi.
+That value is stored away in computer memory.
+It's in something we call a name table where the variable pi has
+associated with it a value.
+And as we said, we can just retrieve it
+by asking what's the value associated with that name.
+Once we have that, we can start putting together
+more complicated expressions.
+So why will we give names to values of expressions?
+Couple of reasons-- one is I want to just reuse the name
+and not redo the computation to get the value.
+If I actually had some very complicated arithmetic
+expression that reduced to a simple value,
+I don't want to redo it every time.
+I just want to give it the name.
+The second one is it can give me code that's
+much easier to understand.
+The name ought to be informative.
+It lets me think about what it's telling me
+about what this represents.
+And finally it's going to be easier to change the code later
+if I've just got a name and I want
+to change the binding of the name and reuse it.
+So here's a simple example.
+I can bind pi to a value.
+I can give a radius, say 2.2.
+And then I can compute the area, pi r squared.
+And that'll give me a simple little computation.
+Those expressions also tell me something about what
+I'm trying to capture.
+And so those names turn out to be really valuable.
+One of the things to keep in mind
+is that this is simply following the sequence of steps
+we talked about.
+It's not like doing math.
+In programming, you do not solve for x.
+So for example in this little example,
+I define pi to be 3.14159.
+I set up a radius.
+This is just a comment.
+We're going to come back to that.
+That hash sign says it's just something
+that's going to be there for me to read.
+The computer doesn't do anything with it.
+I can now compute the area.
+And then I can decide I want a different radius.
+And in fact look at this expression
+here, because what it says is get
+the value of this expression, which is what's
+the value of radius, 2.2.
+What's the value of one-- 1.
+Add them together, that gives me 3.2.
+And change the binding so that radius is now 3.2.
+This does not change area.
+It's not like a set of mathematical expressions.
+It's simply following the sequence
+of instructions we gave it.
+And that means that if we want to do something different,
+we would need to recompute area.
+Again, I just want to repeat what we
+said, because it's important.
+An assignment statement says, find the value
+on the right hand side of the expression.
+Take the name on the left and assign that name to that value.
+One last thing-- we're going to see a lot of shorthand here.
+That expression, adding 1 to something,
+it's something we're going to do a lot.
+It's called incrementing.
+And so there's a shorthand which is you could write this instead
+as just +=.
+And that is simply short for saying radius += 1 is radius
+equals radius incremented by 1.
+
+The last piece here is you saw we could change the bindings.
+I can rebind a variable name in a new assignment statement.
+The previous value may still be around in memory,
+but it's lost.
+There's no handle, no way to get to it.
+And as we just saw, the value for area
+doesn't change until you tell the computer
+to do the calculation again.
+Another way of thinking about it is, if this cloud is my memory,
+when I do a binding for pi, it associates the name pi
+with a value off in memory.
+When I do radius, I get the same thing.
+When I compute area, it looks up radius, squares it,
+multiplies it by pi, and then associates the name area
+with that value in memory.
+And now if I change radius, it loses that first association
+and creates a new one.
+But area hasn't changed.
+If I wanted to recompute the area for this circle,
+I would need to do another call to area to make it happen.

@@ -1,0 +1,109 @@
+...
+Let me show you one other place where
+a dictionary is an incredibly valuable thing to have.
+And to do that, I'm to go back to a piece of code
+that we looked at a while ago.
+Fibonacci was counting the number of bunnies in a pen.
+Remember Fibonacci-- it had two base cases,
+it said if n is equal to 1.
+The value is 1.
+If n is equal to 2, the value is 2.
+Otherwise, the nth Fibonacci number
+is the sum of the n minus first and n minus second Fibonacci
+number.
+It calls itself twice.
+It has to because it has to do that computation.
+And it will certainly work, but this code
+is actually very inefficient.
+And let me show you why.
+Think about what happens if I want to compute fib of, say.
+5.
+To compute the fifth Fibonacci number,
+I need to compute the fourth Fibonacci
+number and the third one.
+But to compute the fourth Fibonacci number,
+I need to compute the third one, which
+needs to get the second one, which then also needs
+to get the first one.
+Now those two are the base cases.
+I've unwrapped it all the way down to that level.
+Having got fib of 3, fib of 4 also needs fib of 2.
+And that's also a base case.
+And then finally, fib of 5 needs fib of 3 as well as fib of 4.
+And that's got to do another set of computations.
+So building a tree of computations, if you like.
+Now why do I say it's inefficient?
+I don't need to recompute those.
+I already know them.
+Well, in the case of fib of 1 and fib of 2,
+they're just constants.
+But fib of 3, I'm doing a computation
+there that I didn't really need to do because I've already
+figured it out over here.
+And you can imagine if I was doing fib of 6,
+it would need fib of 5 and fib of 4.
+And down here, there would be a whole bunch of other structures
+that included things that I'd already computed.
+It's inefficient.
+And in fact, it really slows down
+when you start trying to compute large Fibonacci numbers.
+Here's where the dictionaries can really help us.
+Rather than recalculating the same value many times,
+let's just keep track of what I've already done.
+So here's a nice version of fib that's very efficient.
+And it basically says I'm going to compute Fibonacci, the NTH
+Fibonacci number, but I'm going to give it a dictionary.
+And what I'm going to do is say, if I'm computing this Fibonacci
+number for the first time, I'll do the work as I normally
+would, and then I'm going to store it into the dictionary.
+But if I've already done the work,
+just look it up and return it.
+So if n is already in the dictionary,
+I just look up the value and return it.
+Otherwise, I do the recursive call as I would
+have done before, compute it.
+Having done that, I store that value away in the dictionary,
+and I return the answer.
+And I'm saving the answer here because I
+need to hold onto it in order to be able to return it.
+To start this up, I need to give the base
+case in the dictionary, so there I go.
+I put into the dictionary the first and second Fibonacci
+numbers.
+And then I can just go ahead and do the work.
+This process is sometimes called memoization.
+It's a way of creating a memo to yourself that remembers
+what you've already done.
+And that turns up to be much more efficient.
+So let's look at a couple of examples of this.
+And so over here, I've got versions of fib and fib
+efficient.
+I'm going to initialize the dictionary.
+Then I'm going to just set up an argument.
+Let's say I want to compute for-- let's start
+with something simple.
+Let's just compute the fifth Fibonacci number.
+And I've set up a little print routine
+that's going to print them out so you
+can see how well it does this.
+And if I call this-- oh, I did it really quickly.
+And it gives the same answer, which is good.
+Now let's give it a little bit bigger number,
+and I want to let you watch how long it takes
+to do the computation because I'm
+going to do the straightforward one and then the efficient one.
+There was a little bit of a gap there,
+but it was almost the same.
+Now, let's give it an even bigger number, which is 30.
+Oh, and you notice the pause.
+And in fact, if I do one more-- I
+don't want to make it too long, but let's make it 34.
+And I do this.
+It's working on fib.
+It's working-- oh.
+And fib efficient came about really quickly.
+So what that's doing is saying, I
+can use the dictionary to hold onto values that I've already
+computed that I don't need to recompute.
+And it gives me a really efficient way
+of doing this computation.
