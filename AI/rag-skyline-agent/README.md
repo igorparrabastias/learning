@@ -21,6 +21,6 @@ Esto se puede hacer con una variedad de técnicas, incluidas las siguientes:
         RPrint("Has neither 1 not 2: ")
     ).invoke([2, 1, 3]);  ## -> Has 1 (didn't check 2): [2, 1, 3]
 
-## Diagrama de flujo
+# Diagrama de flujo
 
 ![Diagrama de flujo](./diagram.png)
