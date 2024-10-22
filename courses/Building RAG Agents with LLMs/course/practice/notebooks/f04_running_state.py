@@ -10,12 +10,6 @@ from functools import partial
 from typing import Dict, Union, Optional
 from pydantic import BaseModel, Field
 from langchain.output_parsers import PydanticOutputParser
-import os
-
-# Cargar las variables de entorno del archivo .env
-from dotenv import load_dotenv
-load_dotenv()
-# from langchain_nvidia_ai_endpoints import ChatNVIDIA
 
 
 console = Console()
