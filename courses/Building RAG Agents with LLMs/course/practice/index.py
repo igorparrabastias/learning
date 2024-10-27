@@ -3,7 +3,10 @@ import config
 # from notebooks.f04_running_state import *
 # from notebooks.f04_running_state_exercise import *
 # from notebooks.f05_documents import *
-from notebooks.f06_embeddings import *
+# from notebooks.f06_embeddings import *
+# from notebooks.f07_vectorstores import *
+# from notebooks.f07_vectorstores_exercise import *
+from notebooks.f08_evaluation import *
 
 """ f03_langchain_intro """
 # runnable()
@@ -30,3 +33,15 @@ from notebooks.f06_embeddings import *
 # refining()
 
 """ f06_embeddings """
+
+""" f07_vectorstores """
+# visualize_faiss()
+# visualize_faiss_pandas()
+# visualize_faiss_3d()
+# chain_with_retriever()
+# automatic_conversation_storage()
+# load_arxiv_docs()
+
+""" f07_vectorstores_exercise """
+
+""" f08_evaluation """
