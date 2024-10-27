@@ -133,23 +133,43 @@ def output_puller(inputs):
 
 # Chain 1 Specs: "Hello World" -> retrieval_chain
 # -> {'input': <str>, 'context' : <str>}
-long_reorder = RunnableLambda(
-    LongContextReorder().transform_documents)  # GIVEN
-context_getter = RunnableLambda(lambda x: x)  # TODO
+long_reorder = RunnableLambda(LongContextReorder().transform_documents)
+
+context_getter = (
+    itemgetter('input')
+    # Interfaz estándar de LangChain: LangChain sigue una interfaz de retrievers, donde objetos como el que se genera con as_retriever() implementan un método estándar que procesa las consultas. En la implementación de estos objetos, se define un método __call__ o invoke que, cuando se llama al objeto, automáticamente invoca get_relevant_documents().
+    | docstore.as_retriever()
+    | long_reorder
+    | docs2str)
+
 retrieval_chain = {'input': (lambda x: x)} | RunnableAssign({
     'context': context_getter})
 
+# intermediate_result = {'input': "What is holon?"}
+# pprint(context_getter.invoke(intermediate_result['input']))
+
+
+# print(context_getter.invoke({'input': "What is holon?"}))
+pprint(retrieval_chain.invoke("What is holon?"))
+# sys.exit()
+
 # Chain 2 Specs: retrieval_chain -> generator_chain
 # -> {"output" : <str>, ...} -> output_puller
-generator_chain = RunnableLambda(lambda x: x)  # TODO
+generator_chain = (
+    chat_prompt | RPrint() | instruct_llm | StrOutputParser()
+)
+pprint(generator_chain.invoke(
+    {'input': "What is holon?", 'context': context_getter.invoke({'input': "What is holon?"})}))
+sys.exit()
+
 generator_chain = {'output': generator_chain} | RunnableLambda(
-    output_puller)  # GIVEN
+    output_puller)
 
 # END TODO
 #####################################################################
 
 rag_chain = retrieval_chain | generator_chain
 
-# pprint(rag_chain.invoke("Tell me something interesting!"))
-for token in rag_chain.stream("Tell me something interesting!"):
-    print(token, end="")
+pprint(rag_chain.invoke("Tell me something interesting!"))
+# for token in rag_chain.stream("Tell me something interesting!"):
+#     print(token, end="")
