@@ -180,7 +180,7 @@ rag_chain = retrieval_chain | generator_chain
 # Use those two document chunks to generate a synthetic "baseline" question-answer pair.
 #####################################################################
 
-num_questions = 1
+num_questions = 3
 synth_questions = []
 synth_answers = []
 
@@ -212,8 +212,6 @@ for i in range(num_questions):
 # #####################################################################
 # Use the RAG agent to generate its own answer.
 # #####################################################################
-
-# pprint(rag_chain.invoke(synth_questions[0]))
 
 rag_answers = []
 for i, q in enumerate(synth_questions):

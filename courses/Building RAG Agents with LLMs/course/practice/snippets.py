@@ -1,3 +1,4 @@
+from openai import models
 from rich.style import Style
 from rich.console import Console
 from functools import partial
